@@ -99,11 +99,30 @@
         if (basePrice <= 0) { box.remove(); return; }
 
         var tiers = parseTiers();
+        var parsedTiers = tiers.slice();
         if (!tiers.length) {
             console.warn('[Volcanic] Faixas de desconto não reconhecidas na descrição da regra da Tray. Usando faixas padrão.');
             tiers = DEFAULT_TIERS;
         }
+        var allTiers = tiers.slice();
         tiers = [ { qty: 1, off: 0 } ].concat(tiers).filter(function (t) { return !stock || t.qty <= stock; });
+
+        /* Diagnóstico: abra o produto com ?qd-debug=1 no final do endereço */
+        if (/[?&]qd-debug/.test(window.location.search)) {
+            var dbg = document.createElement('pre');
+            dbg.style.cssText = 'white-space:pre-wrap;font-size:12px;background:#f5f5f5;border:1px dashed #999;padding:10px;margin:10px 0;';
+            dbg.textContent = 'DIAGNOSTICO DESCONTO PROGRESSIVO\n' +
+                'Preco base: ' + basePrice + ' | Preco cheio: ' + listPrice + ' | Estoque: ' + stock + '\n\n' +
+                'Regras recebidas da Tray:\n' +
+                Array.prototype.map.call(box.querySelectorAll('.qd-rules li'), function (li, i) {
+                    return (i + 1) + ') nome: "' + (li.dataset.name || '') + '" | descrição: "' + li.textContent.trim() + '"';
+                }).join('\n') + '\n\n' +
+                'Faixas reconhecidas no texto: ' + (parsedTiers.length ? parsedTiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') : 'nenhuma (usando padrão)') + '\n' +
+                'Faixas exibidas: ' + tiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') +
+                (allTiers.length + 1 > tiers.length ? '\nFaixas escondidas por estoque: ' + allTiers.filter(function (t) { return stock && t.qty > stock; }).map(function (t) { return t.qty + 'un'; }).join(', ') : '');
+            box.parentNode.insertBefore(dbg, box.nextSibling);
+        }
+
         if (tiers.length < 2) { box.remove(); return; }
 
         var best = tiers[tiers.length - 1].qty;
