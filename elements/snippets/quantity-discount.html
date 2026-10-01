@@ -80,10 +80,12 @@
                 var q = 0;
                 var above = text.match(/(?:acima|mais)\s+(?:de|do|da)\s+(\d+)/i);          /* "acima de 3" = 4 ou mais */
                 var from = text.match(/a\s+partir\s+(?:de|do|da)\s+(\d+)/i);               /* "a partir de 4" = 4 */
-                var qty = text.match(/(\d+)\s*(?:unidades?|un\b|unid|itens?|produtos?|pe[çc]as?|frascos?|potes?)/i);
+                var qty = text.match(/(\d+)\s*(?:ou\s+mais\s+)?(?:unidades?|un\b|unid|itens?|produtos?|pe[çc]as?|frascos?|potes?)/i);  /* "4 ou mais unidades" = 4 */
+                var buy = text.match(/(?:compre|leve|combo)\s+(\d+)/i);                   /* "Compre 4" / "Combo 4" */
                 if (above) q = parseInt(above[1], 10) + 1;
                 else if (from) q = parseInt(from[1], 10);
                 else if (qty) q = parseInt(qty[1], 10);
+                else if (buy) q = parseInt(buy[1], 10);
                 if (pct && q) {
                     var o = toNumber(pct[1]);
                     if (q > 1 && o > 0 && o < 100) tiers[q] = o;
