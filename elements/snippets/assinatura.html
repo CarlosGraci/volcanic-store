@@ -541,6 +541,24 @@ h1 span {
     }
 }
 
+/* ---- Cards "Por que assinar" em HTML (antes eram imagens com textos fixos) ---- */
+.clube-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.clube-card { background: #fff; border: 1px solid #e6e6e6; border-radius: 12px; padding: 28px 26px; box-shadow: 0 2px 8px rgba(0,0,0,.04); text-align: left; }
+.clube-card-icon { width: 60px; height: 54px; background-size: 400px 204px; background-repeat: no-repeat; background-position: -28px -29px; margin-bottom: 18px; }
+.clube-card h4 { font-size: 22px; font-weight: 600; color: #18181d; margin: 0 0 8px; }
+.clube-card p { font-size: 15px; line-height: 1.5; color: #6b6b70; margin: 0; }
+.clube-card p strong { color: #18181d; }
+@media (max-width: 767px) { .clube-cards { grid-template-columns: 1fr; } }
+
+/* ---- Regras da assinatura ---- */
+.regras-assinatura { max-width: 1000px; margin: 60px auto; padding: 0 16px; }
+.regras-assinatura h3 { font-size: 32px; font-weight: 600; color: #18181d; text-align: center; margin-bottom: 28px; }
+.regras-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; }
+.regra { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: #18181d; }
+.regra::before { content: ""; flex: 0 0 auto; width: 10px; height: 6px; margin-top: 8px; border-left: 2px solid #E0001B; border-bottom: 2px solid #E0001B; transform: rotate(-45deg); }
+.regra strong { font-weight: 600; }
+@media (max-width: 767px) { .regras-grid { grid-template-columns: 1fr; } .regras-assinatura h3 { font-size: 26px; } }
+
 </style>
 <section class="hero">
     <ol class="breadcrumb">
@@ -554,7 +572,7 @@ h1 span {
     <div class="container">
         <div class="content">
             <h1>Seu <span>desempenho</span> não pode parar</h1>
-    <p>Manter resultados consistentes depende de disciplina e de nunca ficar sem seus suplementos Volcanic favoritos. Por isso criamos o <strong>Clube Volcanic Assinatura:</strong> a maneira mais prática de garantir entregas programadas, descontos exclusivos e frete grátis.</p>
+    <p>Manter resultados consistentes depende de disciplina e de nunca ficar sem seus suplementos Volcanic favoritos. Por isso criamos o <strong>Clube Volcanic Assinatura:</strong> a maneira mais prática de receber seus suplementos todo mês, com <strong>20% de desconto</strong>, preço fixo e frete grátis durante 6 meses.</p>
     <a href="https://www.volcanicstore.com/" class="bt-red">Assinar agora</a>
         </div>
     </div>
@@ -566,15 +584,21 @@ h1 span {
 
 <section class="pv-text-section">
     <h2 class="pv-subtitle">Por que assinar o <span>Clube Volcanic?</span></h2>
-    <div class="row">
-        <div class="col-md">
-            <img src="{{ asset('img/modelo/club-item1.png') }}" alt="" width="100%">
+    <div class="clube-cards">
+        <div class="clube-card">
+            <div class="clube-card-icon" style="background-image: url('{{ asset('img/modelo/club-item1.png') }}');" aria-hidden="true"></div>
+            <h4>Entrega automática</h4>
+            <p>Seus suplementos chegam todo mês, sem precisar refazer o pedido e sem risco de ficar sem.</p>
         </div>
-        <div class="col-md">
-            <img src="{{ asset('img/modelo/club-item2.png') }}" alt="" width="100%">
+        <div class="clube-card">
+            <div class="clube-card-icon" style="background-image: url('{{ asset('img/modelo/club-item2.png') }}');" aria-hidden="true"></div>
+            <h4>20% de desconto</h4>
+            <p><strong>20% em cada produto assinado</strong>, em todas as 6 entregas da assinatura, com preço fixo do início ao fim.</p>
         </div>
-        <div class="col-md">
-            <img src="{{ asset('img/modelo/club-item3.png') }}" alt="" width="100%">
+        <div class="clube-card">
+            <div class="clube-card-icon" style="background-image: url('{{ asset('img/modelo/club-item3.png') }}');" aria-hidden="true"></div>
+            <h4>Frete grátis</h4>
+            <p>Em todas as entregas mensais da assinatura.</p>
         </div>
     </div>
     <div class="button-bg">
@@ -601,13 +625,13 @@ h1 span {
             <div class="item">
                 <div class="num">3</div>
                 <div class="descricao">
-                    <p>Você pode incluir um ou mais produtos na sua assinatura recorrente</p>
+                    <p>Assine 1 unidade de cada produto. Você pode incluir produtos diferentes na mesma assinatura</p>
                 </div>
             </div>          
             <div class="item">
                 <div class="num">4</div>
                 <div class="descricao">
-                    <p>Selecione a forma e envio</p>
+                    <p>Confira o endereço de entrega (o frete é grátis)</p>
                 </div>
             </div>    
         </div>
@@ -615,7 +639,7 @@ h1 span {
             <div class="item">
                 <div class="num">5</div>
                 <div class="descricao">
-                    <p>Clique em "Continuar"</p>
+                    <p>Clique em “Continuar”</p>
                 </div>
             </div>  
             <div class="item">
@@ -627,13 +651,13 @@ h1 span {
             <div class="item">
                 <div class="num">7</div>
                 <div class="descricao">
-                    <p>Selecione a forma de pagamento</p>
+                    <p>Cadastre seu cartão de crédito: a assinatura é cobrada automaticamente a cada mês</p>
                 </div>
             </div>  
             <div class="item">
                 <div class="num">8</div>
                 <div class="descricao">
-                    <p>Clique em "Finalizar pedido"</p>
+                    <p>Clique em “Finalizar pedido”</p>
                 </div>
             </div>     
         </div>
@@ -648,14 +672,14 @@ h1 span {
             <div class="box-info-assinatura">
                 <img src="{{ asset('img/modelo/assinatura-icon1.png') }}" alt="">
                 <h4 style="color:#F2BC1B">Desconto <br>garantido </h4>
-                <p>Economize até <br>40% por produto</p>
+                <p>Economize 20% por <br>produto durante 6 meses</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="box-info-assinatura">
                 <img src="{{ asset('img/modelo/assinatura-icon2.png') }}" alt="">
                 <h4 style="color:#F2BC1B">Sem <br>surpresas </h4>
-                <p>Preço e prazo de entrega <br>fixos a cada ciclo.</p>
+                <p>Preço fixo durante os <br>6 meses, sem reajuste.</p>
             </div>
         </div>
         <div class="col-md-4">
@@ -665,6 +689,19 @@ h1 span {
                 <p>Vantagens no lançamento <br>de produtos e reposições <br>rápidas.</p>
             </div>
         </div>
+    </div>
+</section>
+<section class="regras-assinatura">
+    <h3>Regras da assinatura</h3>
+    <div class="regras-grid">
+        <p class="regra"><span><strong>Duração de 6 meses:</strong> são 6 entregas mensais, uma por mês.</span></p>
+        <p class="regra"><span><strong>20% de desconto</strong> em todas as entregas, sobre o preço do produto no dia da assinatura.</span></p>
+        <p class="regra"><span><strong>Preço fixo:</strong> o valor não muda durante os 6 meses.</span></p>
+        <p class="regra"><span><strong>Frete grátis</strong> em todas as entregas da assinatura.</span></p>
+        <p class="regra"><span><strong>Pagamento somente no cartão de crédito</strong>, com cobrança automática a cada envio.</span></p>
+        <p class="regra"><span><strong>1 unidade por produto.</strong> Você pode assinar produtos diferentes ao mesmo tempo.</span></p>
+        <p class="regra"><span><strong>Não acumula</strong> com o desconto progressivo de “Leve mais e pague menos”.</span></p>
+        <p class="regra"><span><strong>Sem renovação automática:</strong> após a 6ª entrega a assinatura é encerrada. Para continuar, basta assinar de novo, pelo preço vigente.</span></p>
     </div>
 </section>
 <section class="cta-full">
