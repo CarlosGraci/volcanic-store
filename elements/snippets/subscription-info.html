@@ -77,7 +77,7 @@
         'Pagamento recorrente somente no cartão de crédito, cobrado a cada envio'
     ];
     box.querySelector('.sub-list').innerHTML = items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
-    box.querySelector('.sub-after').textContent = CONFIG.afterText;
+    box.querySelector('.sub-after').innerHTML = CONFIG.afterText;   /* innerHTML: a Tray converte acentos do script em &eacute; etc. */
 
     function isSubscribeButton(el) {
         var label = el.value || el.textContent || '';

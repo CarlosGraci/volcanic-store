@@ -117,9 +117,9 @@
                 'Preco base: ' + basePrice + ' | Preco cheio: ' + listPrice + ' | Estoque: ' + stock + '\n\n' +
                 'Regras recebidas da Tray:\n' +
                 Array.prototype.map.call(box.querySelectorAll('.qd-rules li'), function (li, i) {
-                    return (i + 1) + ') nome: "' + (li.dataset.name || '') + '" | descrição: "' + li.textContent.trim() + '"';
+                    return (i + 1) + ') nome: "' + (li.dataset.name || '') + '" | descricao: "' + li.textContent.trim() + '"';
                 }).join('\n') + '\n\n' +
-                'Faixas reconhecidas no texto: ' + (parsedTiers.length ? parsedTiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') : 'nenhuma (usando padrão)') + '\n' +
+                'Faixas reconhecidas no texto: ' + (parsedTiers.length ? parsedTiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') : 'nenhuma (usando padrao)') + '\n' +
                 'Faixas exibidas: ' + tiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') +
                 (allTiers.length + 1 > tiers.length ? '\nFaixas escondidas por estoque: ' + allTiers.filter(function (t) { return stock && t.qty > stock; }).map(function (t) { return t.qty + 'un'; }).join(', ') : '');
             box.parentNode.insertBefore(dbg, box.nextSibling);
@@ -242,7 +242,7 @@
                 notice.style.cssText = 'font-size:13px;color:#E0001B;text-align:center;margin:10px 0 0;line-height:1.4;';
                 button.parentNode.insertBefore(notice, button.nextSibling);
             }
-            notice.textContent = 'A assinatura é limitada a ' + SUBSCRIPTION_MAX_QTY +
+            notice.innerHTML = 'A assinatura é limitada a ' + SUBSCRIPTION_MAX_QTY +
                 (SUBSCRIPTION_MAX_QTY > 1 ? ' unidades' : ' unidade') +
                 ' por produto e não acumula com o desconto progressivo. Ajustamos a quantidade; clique de novo para assinar.';
         }
