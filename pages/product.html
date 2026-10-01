@@ -352,6 +352,9 @@
                     {# Cards de desconto progressivo por quantidade, sem variação (ver elements/snippets/quantity-discount.html) #}
                     {% element 'snippets/quantity-discount' { 'product': product, 'ProgressiveDiscounts': ProgressiveDiscounts } %}
 
+                    {# Faixa explicativa da assinatura, posicionada acima do botão "Assinar produto" (ver elements/snippets/subscription-info.html) #}
+                    {% element 'snippets/subscription-info' { 'product': product } %}
+
                     {% if productHelper.banner() %}
                         {% set batch_promotion = productHelper.banner() %}
                         <div class="product-batch-promotion {% if 'img' not in batch_promotion %} text-promotion {% endif %}">
