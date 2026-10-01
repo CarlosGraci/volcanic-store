@@ -559,6 +559,22 @@ h1 span {
 .regra strong { font-weight: 600; }
 @media (max-width: 767px) { .regras-grid { grid-template-columns: 1fr; } .regras-assinatura h3 { font-size: 26px; } }
 
+/* ---- Perguntas frequentes e regulamento (abre e fecha, sem JavaScript) ---- */
+.faq-assinatura, .regulamento-assinatura { max-width: 900px; margin: 60px auto; padding: 0 16px; }
+.faq-assinatura h3, .regulamento-assinatura h3 { font-size: 32px; font-weight: 600; color: #18181d; text-align: center; margin-bottom: 24px; }
+.faq-item, .regulamento-box { border: 1px solid #e6e6e6; border-radius: 10px; background: #fff; margin-bottom: 10px; }
+.faq-item summary, .regulamento-box summary { cursor: pointer; list-style: none; padding: 16px 48px 16px 20px; font-size: 16px; font-weight: 600; color: #18181d; position: relative; }
+.faq-item summary::-webkit-details-marker, .regulamento-box summary::-webkit-details-marker { display: none; }
+.faq-item summary::after, .regulamento-box summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; font-weight: 400; color: #E0001B; }
+.faq-item[open] summary::after, .regulamento-box[open] summary::after { content: "\2212"; }
+.faq-item p { padding: 0 20px 18px; margin: 0; font-size: 15px; line-height: 1.6; color: #55555a; }
+.regulamento-content { padding: 0 24px 24px; font-size: 14px; line-height: 1.65; color: #44444a; }
+.regulamento-content h4 { font-size: 16px; font-weight: 600; color: #18181d; margin: 22px 0 8px; }
+.regulamento-content p { margin: 0 0 8px; }
+.regulamento-content .regulamento-data { font-size: 12px; color: #888; margin-top: 20px; }
+.pv-description a { color: inherit; text-decoration: underline; }
+@media (max-width: 767px) { .faq-assinatura h3, .regulamento-assinatura h3 { font-size: 26px; } }
+
 </style>
 <section class="hero">
     <ol class="breadcrumb">
@@ -572,7 +588,7 @@ h1 span {
     <div class="container">
         <div class="content">
             <h1>Seu <span>desempenho</span> não pode parar</h1>
-    <p>Manter resultados consistentes depende de disciplina e de nunca ficar sem seus suplementos Volcanic favoritos. Por isso criamos o <strong>Clube Volcanic Assinatura:</strong> a maneira mais prática de receber seus suplementos todo mês, com <strong>20% de desconto</strong>, preço fixo e frete grátis durante 6 meses.</p>
+    <p>Manter resultados consistentes depende de disciplina e de nunca ficar sem seus suplementos Volcanic favoritos. Por isso criamos o <strong>Clube Volcanic de Assinatura:</strong> a maneira mais prática de receber seus suplementos todo mês, com <strong>20% de desconto</strong> e preço fixo durante 6 meses, e frete grátis a partir do 2º envio.</p>
     <a href="https://www.volcanicstore.com/" class="bt-red">Assinar agora</a>
         </div>
     </div>
@@ -583,7 +599,7 @@ h1 span {
              loading="lazy"> </div></section>-->
 
 <section class="pv-text-section">
-    <h2 class="pv-subtitle">Por que assinar o <span>Clube Volcanic?</span></h2>
+    <h2 class="pv-subtitle">Por que assinar o <span>Clube Volcanic de Assinatura?</span></h2>
     <div class="clube-cards">
         <div class="clube-card">
             <div class="clube-card-icon" style="background-image: url('{{ asset('img/modelo/club-item1.png') }}');" aria-hidden="true"></div>
@@ -598,11 +614,11 @@ h1 span {
         <div class="clube-card">
             <div class="clube-card-icon" style="background-image: url('{{ asset('img/modelo/club-item3.png') }}');" aria-hidden="true"></div>
             <h4>Frete grátis</h4>
-            <p>Em todas as entregas mensais da assinatura.</p>
+            <p>A partir do 2º envio da assinatura. O 1º envio segue o frete normal da loja.</p>
         </div>
     </div>
     <div class="button-bg">
-        <a href="https://www.volcanicstore.com/" class="bt-red">Quero assinar o Clube Volcanic</a>
+        <a href="https://www.volcanicstore.com/" class="bt-red">Quero assinar o Clube Volcanic de Assinatura</a>
     </div>
 </section>
 
@@ -631,7 +647,7 @@ h1 span {
             <div class="item">
                 <div class="num">4</div>
                 <div class="descricao">
-                    <p>Confira o endereço de entrega (o frete é grátis)</p>
+                    <p>Selecione a forma de envio (frete grátis a partir do 2º envio)</p>
                 </div>
             </div>    
         </div>
@@ -697,11 +713,12 @@ h1 span {
         <p class="regra"><span><strong>Duração de 6 meses:</strong> são 6 entregas mensais, uma por mês.</span></p>
         <p class="regra"><span><strong>20% de desconto</strong> em todas as entregas, sobre o preço do produto no dia da assinatura.</span></p>
         <p class="regra"><span><strong>Preço fixo:</strong> o valor não muda durante os 6 meses.</span></p>
-        <p class="regra"><span><strong>Frete grátis</strong> em todas as entregas da assinatura.</span></p>
+        <p class="regra"><span><strong>Frete grátis a partir do 2º envio.</strong> O 1º envio segue o frete normal da loja.</span></p>
         <p class="regra"><span><strong>Pagamento somente no cartão de crédito</strong>, com cobrança automática a cada envio.</span></p>
         <p class="regra"><span><strong>1 unidade por produto.</strong> Você pode assinar produtos diferentes ao mesmo tempo.</span></p>
         <p class="regra"><span><strong>Não acumula</strong> com o desconto progressivo de “Leve mais e pague menos”.</span></p>
         <p class="regra"><span><strong>Sem renovação automática:</strong> após a 6ª entrega a assinatura é encerrada. Para continuar, basta assinar de novo, pelo preço vigente.</span></p>
+        <p class="regra"><span><strong>Cancelamento antes de 6 meses</strong> tem multa proporcional ao tempo de permanência. <a href="#regulamento" style="color:#E0001B;">Veja o regulamento</a>.</span></p>
     </div>
 </section>
 <section class="cta-full">
@@ -716,9 +733,121 @@ h1 span {
 <section class="pv-text-section footer-text">
     <p class="pv-description">
         Para solicitar o cancelamento é necessário enviar um e-mail para: volcanicstore@volcanicbrasil.com.br.<br>
-        Será aplicada uma multa proporcional ao tempo de permanência dentro do período de 12 meses. Confira o Regulamento.
+        Em caso de cancelamento antes de completar 6 meses, será aplicada uma multa proporcional ao tempo de permanência. <a href="#regulamento">Confira o Regulamento</a>.
     </p>
 </section>
+
+<section class="faq-assinatura">
+    <h3>Perguntas frequentes</h3>
+        <details class="faq-item">
+            <summary>Como funciona o Clube Volcanic de Assinatura?</summary>
+            <p>Você escolhe o produto, clica em “Assinar produto” e passa a receber o mesmo item todo mês, durante 6 meses, com 20% de desconto e cobrança automática no cartão de crédito.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Quais produtos posso assinar?</summary>
+            <p>Os produtos que mostram o botão “Assinar produto” na página. Você pode incluir produtos diferentes na mesma assinatura.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso assinar mais de uma unidade do mesmo produto?</summary>
+            <p>Não. A assinatura é de 1 unidade por produto. Para levar mais unidades de uma vez, use a compra avulsa com o desconto “Leve mais e pague menos”.</p>
+        </details>
+        <details class="faq-item">
+            <summary>O desconto da assinatura soma com o “Leve mais e pague menos”?</summary>
+            <p>Não. Os 20% da assinatura não acumulam com o desconto progressivo por quantidade.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Quais são as formas de pagamento?</summary>
+            <p>Somente cartão de crédito. A cobrança é feita automaticamente a cada envio mensal.</p>
+        </details>
+        <details class="faq-item">
+            <summary>O frete é grátis?</summary>
+            <p>O frete é grátis a partir do 2º envio. O 1º envio segue o frete normal da loja para o seu CEP.</p>
+        </details>
+        <details class="faq-item">
+            <summary>O preço pode mudar durante a assinatura?</summary>
+            <p>Não. O valor com desconto fica fixo durante os 6 meses, mesmo que o preço do produto mude no site.</p>
+        </details>
+        <details class="faq-item">
+            <summary>O que acontece depois dos 6 meses?</summary>
+            <p>A assinatura é encerrada automaticamente após a 6ª entrega, sem renovação. Se quiser continuar, é só fazer uma nova assinatura, pelo preço vigente na data.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso cancelar?</summary>
+            <p>Sim, pelo e-mail volcanicstore@volcanicbrasil.com.br. Cancelamentos antes de completar 6 meses têm multa proporcional ao tempo de permanência. Você também pode desistir em até 7 dias após receber o 1º pedido, sem multa, conforme o Código de Defesa do Consumidor.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso trocar o produto ou o endereço de entrega?</summary>
+            <p>Fale com a gente pelo e-mail volcanicstore@volcanicbrasil.com.br e vamos verificar a melhor forma de ajustar a sua assinatura.</p>
+        </details>
+</section>
+
+<section class="regulamento-assinatura" id="regulamento">
+    <h3>Regulamento</h3>
+    <details class="regulamento-box">
+        <summary>Regulamento do Clube Volcanic de Assinatura</summary>
+        <div class="regulamento-content">
+
+            <h4>1. Quem oferece</h4>
+            <p>1.1. O Clube Volcanic de Assinatura é oferecido pela Volcanic Importadora e Distribuidora Ltda., CNPJ 49.746.958/0001-15, com sede na Rua Cardoso Cesar, 115-119, Mairiporã/SP, CEP 07600-162, por meio da loja volcanicstore.com.</p>
+
+            <h4>2. O que é a assinatura</h4>
+            <p>2.1. É uma modalidade de compra recorrente em que o cliente recebe mensalmente os produtos escolhidos, com desconto e cobrança automática.</p>
+            <p>2.2. Só podem ser assinados os produtos que exibem a opção “Assinar produto” na página do produto.</p>
+
+            <h4>3. Adesão</h4>
+            <p>3.1. Para aderir, o cliente precisa ter cadastro na loja, escolher o produto, clicar em “Assinar produto”, informar o endereço de entrega, cadastrar um cartão de crédito e finalizar o pedido.</p>
+            <p>3.2. Ao finalizar o pedido, o cliente declara ter lido e aceitado este regulamento.</p>
+
+            <h4>4. Duração</h4>
+            <p>4.1. A assinatura tem duração de 6 meses, com 6 envios mensais.</p>
+            <p>4.2. Após o 6º envio, a assinatura é encerrada automaticamente, sem renovação. Para continuar, o cliente pode fazer uma nova assinatura, nas condições e preços vigentes na data da nova adesão.</p>
+
+            <h4>5. Preço e desconto</h4>
+            <p>5.1. O assinante recebe 20% de desconto sobre o preço do produto na data da adesão. Quando o produto estiver com preço promocional, o desconto é calculado sobre o preço promocional.</p>
+            <p>5.2. O valor com desconto fica fixo durante os 6 meses da assinatura, sem reajuste.</p>
+            <p>5.3. O desconto da assinatura não é cumulativo com o desconto progressivo por quantidade (“Leve mais e pague menos”).</p>
+
+            <h4>6. Quantidade</h4>
+            <p>6.1. A assinatura é limitada a 1 unidade por produto. O cliente pode incluir produtos diferentes na mesma assinatura.</p>
+
+            <h4>7. Pagamento</h4>
+            <p>7.1. O pagamento é feito exclusivamente por cartão de crédito, com cobrança automática a cada envio mensal.</p>
+            <p>7.2. O envio de cada mês só é realizado após a aprovação do pagamento. Se a cobrança for recusada, o cliente deve atualizar os dados do cartão para que o envio seja liberado.</p>
+            <p>7.3. O cliente é responsável por manter os dados do cartão atualizados durante toda a assinatura.</p>
+
+            <h4>8. Entrega e frete</h4>
+            <p>8.1. O 1º envio é cobrado de acordo com a tabela de frete da loja para o CEP informado.</p>
+            <p>8.2. A partir do 2º envio, o frete é grátis.</p>
+            <p>8.3. O prazo de entrega segue a modalidade de envio escolhida. O cliente deve manter o endereço de entrega atualizado.</p>
+
+            <h4>9. Cancelamento</h4>
+            <p>9.1. O cancelamento deve ser solicitado pelo e-mail volcanicstore@volcanicbrasil.com.br.</p>
+            <p>9.2. Em caso de cancelamento antes de completar 6 meses, será aplicada uma multa proporcional ao tempo de permanência na assinatura.</p>
+            <p>9.3. Conforme o art. 49 do Código de Defesa do Consumidor, o cliente pode desistir da assinatura em até 7 dias corridos contados do recebimento do 1º pedido, sem multa, com devolução dos valores pagos.</p>
+
+            <h4>10. Disponibilidade dos produtos</h4>
+            <p>10.1. Se um produto assinado ficar indisponível, a Volcanic entrará em contato com o cliente para combinar a substituição por outro produto ou o encerramento da assinatura daquele item, sem multa.</p>
+
+            <h4>11. Disposições gerais</h4>
+            <p>11.1. A Volcanic pode alterar este regulamento a qualquer momento. As alterações valem para novas adesões e não mudam as condições das assinaturas já ativas.</p>
+            <p>11.2. Dúvidas podem ser enviadas para volcanicstore@volcanicbrasil.com.br.</p>
+
+            <p class="regulamento-data">Última atualização: outubro de 2026.</p>
+        </div>
+    </details>
+</section>
+<script>
+(function () {
+    function openRegulamento() {
+        if (window.location.hash === '#regulamento') {
+            var box = document.querySelector('#regulamento details');
+            if (box) box.open = true;
+        }
+    }
+    window.addEventListener('hashchange', openRegulamento);
+    document.addEventListener('DOMContentLoaded', openRegulamento);
+})();
+</script>
 
     <!--<section class="ingredients-section"><div class="ingredients-container"><h2 class="ingredients-title">VOLCANIC SUPLEMENTOS</h2><p class="ingredients-subtitle"></p><div class="carousel-container"><div class="carousel-track" style="transform: translateX(-100%);"><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/imagemsite.png?e8ce044e1401fcb564b3a7682c532440" alt="Colheita de café" class="carousel-image"><div class="carousel-content"><h3 class="content-title">SEJA SUA MELHOR VERSÃO</h3><p class="content-text"></p></div></div><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/3.png?e8ce044e1401fcb564b3a7682c532440" alt="Ingredientes naturais" class="carousel-image"><div class="carousel-content"><h3 class="content-title">COM A FORÇA DA NATUREZA E A PRECISÃO DA CIÊNCIA</h3><p class="content-text"></p></div></div> <div class="carousel-slide"><img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" alt="Processo sustentável" class="carousel-image"><div class="carousel-content"><h3 class="content-title">PROCESSO SUSTENTÁVEL</h3><p class="content-text">
                             Nosso compromisso com a natureza se estende desde a origem dos ingredientes até o produto final, respeitando o meio ambiente em cada etapa.
