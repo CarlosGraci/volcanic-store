@@ -1,0 +1,15 @@
+{% if product.available and product.stock > 0 and not product.upon_request and not product.has_variation %}
+
+<form class="quick-buy flex add-cart" data-id="{{ product.id }}">
+    {% element 'snippets/product-quantity' { 'product': product } %}
+
+    <button type="button" class="product-button add-to-cart" aria-label="Comprar">
+        {{ settings.quick_buy_text ? settings.quick_buy_text : 'Comprar' }}
+    </button>
+</form>
+
+{% elseif product.available and product.stock > 0 and product.has_variation and not product.upon_request %}
+<a class="product-button" href="{{ product.link }}" aria-label="Comprar">
+    Comprar
+</a>
+{% endif %}

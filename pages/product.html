@@ -1,0 +1,671 @@
+{% if ProgressiveDiscounts %}
+    <div class="pageProduct-bannerDiscount">
+        {% for discount in ProgressiveDiscounts %}
+            {% if discount.banner %}
+                <img class="bannerDiscount-image" src="{{ discount.banner }}" alt="{{ discount.name }}"/>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% element 'snippets/breadcrumb' %} 
+{% element 'schema' { 'product' : product } %}
+
+<div class="pageProduct" id="page-product">
+    <div class="pageProduct-main">
+        {% set discount = product.price_offer > 0 ? (100 - (product.price_offer / product.price) * 100) : false %}
+        <div class="pageProduct-gallery" data-gallery="product">
+
+            {% if product.video %}
+                <button class="gallery-video" type="button" data-toggle="closed" data-target="#modals-video" data-button="video" data-url="{{ product.video }}" aria-label="Ver Vídeo">
+                    <span class="icon-youtube-simple">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </span>
+                </button>
+            {% endif %}
+
+            <div class="gallery-images swiper" data-slides="gallery">
+                <div class="swiper-wrapper" data-gallery="box-images">
+                    {% for images in product.images %} 
+                        {% set lazyIndex = loop.index == 1 ? false : true %}
+                        <div class="swiper-slide gallery-image" data-gallery="image">
+                            <img class="gallery-img{{ lazyIndex ? ' swiper-lazy' : ' lazyload'}}" data-src="{{ images.full }}" alt="{{ product.name }}"/>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% set quantityImages = product.images | length %}
+            <div class="gallery-thumbs{{ quantityImages > 4 ? ' u-show' }} swiper" data-slides="gallery-thumbs" data-qtd="{{ quantityImages }}">
+                <div class="swiper-wrapper" data-gallery="box-thumbs">
+                    {% if product.images | length > 1 %} 
+                        {% for images in product.images %}
+                            <div class="swiper-slide gallery-thumb" data-gallery="image">
+                                <img class="gallery-img swiper-lazy" data-src="{{ images.medium }}" alt="{{ product.name }}" width="90px" height="90px" />
+                            </div>
+                        {% endfor %} 
+                    {% endif %}
+                </div>
+                <div class="slides-buttonPrev--gallery icon-arrow-simple{{ quantityImages > 4 ? ' u-show' }}"></div>
+                <div class="slides-buttonNext--gallery icon-arrow-simple{{ quantityImages > 4 ? ' u-show' }}"></div>
+            </div>
+            {% if productHelper.social() and settings.social_position == 0 and (product.stock > 0 or
+            settings.without_stock_sale) %}
+                <div class="pageProduct-socialMedia">
+                    Compartilhar por:
+                    <div class="socialMedia">{{ productHelper.social() }}</div>
+                </div>
+            {% endif %}
+        </div>
+        <section class="pageProduct-info">
+            <div class="pageProduct-loader loader">
+                <div class="spinner">
+                    <div class="double-bounce-one"></div>
+                    <div class="double-bounce-two"></div>
+                </div>
+                <div class="message">Atualizando informações ...</div>
+            </div>
+           
+            <div class="pageProduct-nameAndInformation {{ batch_promotion ? 'u-width' }}">
+                <h1 class="pageProduct-name">{{ product.name }}</h1>
+
+
+                {% if settings.show_product_review %}
+                    {% element 'snippets/rating' {
+                        'review': product.ranking,
+                        'total' : true
+                    } %}
+                {% endif %}
+                    
+            </div>
+
+
+            {% if product.available and product.stock > 0 and not product.upon_request %}
+
+                {% set form_classes = [] %}
+
+                {% if product.is_kit %}
+                    {% set form_classes = form_classes | merge(['is-kit']) %}
+                {% endif %}
+
+                {% if productHelper.gifts() %}
+                    {% set form_classes = form_classes | merge(['has-gift']) %}
+                {% endif %}
+
+                <form id="form_comprar" {% if form_classes | length > 0 %} class="{{ form_classes | join (' ') }}" {% endif %} method="post" data-app="product.buy-form" data-id="{{ product.id }}" action="{{ links.cart_add ~ product.id }}">
+
+                   
+
+                    {% if product.variants %}
+
+                        {% element 'snippets/product-variants-json' { 'product': product } %}
+
+                        <div class="product-variants">
+
+                            <div class="tray-content">
+                                {{ productHelper.variants() }}
+                            </div>
+
+                            <!-- <div id="product-data" data-price="{{ product.price }}"></div> -->
+
+                            <div id="product-data" data-price="{{ product.current_price }}"></div>
+                            
+                            {# Script para processar os cards de desconto quando a variaÃ§Ã£o for Compra Combo #}
+                            <!-- Inclua esse elemento para capturar o preÃ§o via data attribute -->
+                            <div id="product-data" data-price="{{ product.current_pricee }}"></div>
+
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                            const variantTitles = document.querySelectorAll('.varTit');
+
+                            variantTitles.forEach(function(title) {
+                                if (title.textContent.trim().includes('Compra Combo')) {
+                                    const variantId = title.id.replace('vars', '');
+                                    const selectElement = document.querySelector(`#opcoes${variantId} select`);
+                                    const variantRow = title.closest('#menuVars');
+
+                                    if (selectElement && variantRow) {
+                                        function processVariantChange() {
+                                            const selectedOption = selectElement.options[selectElement.selectedIndex];
+                                            if (!selectedOption) return;
+                                            
+                                            const variantValue = selectedOption.textContent.trim();
+                                            console.log('DEBUG - Variant Value:', variantValue);
+                                            
+                                            document.querySelector('.quantity-discount-cards')?.remove();
+                                            
+                                            if (variantValue.includes('/')) {
+                                                const sets = variantValue.split('/').map(set => set.split(',').map(item => item.trim()));
+                                                if (sets.every(set => set.length >= 2)) {
+                                                    // const basePrice = parseFloat(document.getElementById('product-data').dataset.price);
+                                                    const basePrice = parseFloat(document.getElementById('product-data').dataset.price.replace('.', '').replace(',', '.'));
+                                                    createDiscountCards(sets, basePrice);
+                                                    variantRow.style.display = 'none';
+                                                } else {
+                                                    console.log('DEBUG - Formato incorreto:', sets);
+                                                }
+                                            } else {
+                                                console.log('DEBUG - VariaÃ§Ã£o sem formato esperado.');
+                                            }
+                                        }
+
+                                        selectElement.addEventListener('change', processVariantChange);
+                                        setTimeout(processVariantChange, 500);
+                                    }
+                                }
+                            });
+
+                            function createDiscountCards(sets, basePrice) {
+                                const cardsContainer = document.createElement('div');
+                                cardsContainer.className = 'quantity-discount-cards';
+                                Object.assign(cardsContainer.style, {
+                                    display: 'flex', flexWrap: 'wrap', gap: '10px',
+                                    marginTop: '20px', marginBottom: '20px'
+                                });
+
+                                sets.forEach(set => {
+                                    const quantity = parseInt(set[0]);
+                                    let discount = parseFloat(set[1].replace(',', '.'));
+                                    if (set.length === 3) {
+                                        discount += parseFloat(set[2].replace(',', '.')) / 10;
+                                    }
+
+                                    if (!isNaN(quantity) && !isNaN(discount)) {
+                                        const regularPrice = basePrice * quantity;
+                                        const discountedPrice = regularPrice * (1 - discount / 100);
+                                        const formattedDiscount = discount.toFixed(1).replace('.', ',');
+                                        
+                                        const card = document.createElement('div');
+                                        card.className = 'discount-card';
+                                        Object.assign(card.style, {
+                                            border: '1px solid #e0e0e0', borderRadius: '8px', padding: '15px',
+                                            textAlign: 'center', flex: '1', minWidth: '150px',
+                                            cursor: 'pointer', position: 'relative'
+                                        });
+                                        card.dataset.quantity = quantity;
+                                        
+                                        card.innerHTML = `
+                                             <div style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid #ddd; display: flex; align-items: center; justify-content: center;"></div>
+                                            <div class="bloco-desconto-combo">
+                                            <div>${quantity} unidade${quantity > 1 ? 's' : ''}</div>
+                                            <div style="font-weight: bold;">R$ ${discountedPrice.toFixed(2).replace('.', ',')}</div>
+                                            <div style="text-decoration: line-through; color: #999; font-size: 0.9em;">R$ ${regularPrice.toFixed(2).replace('.', ',')}</div>
+                                            <div>
+                                            ${parseFloat(formattedDiscount) > 0 ? `<div style="color: #ff0000;">${formattedDiscount}% OFF</div>` : ''}
+                                        `;
+
+                                        card.addEventListener('click', function () {
+                                            document.querySelectorAll('.discount-card').forEach(c => {
+                                                c.style.borderColor = '#e0e0e0';
+                                                c.querySelector('div:first-child').style.backgroundColor = '';
+                                            });
+                                            this.style.borderColor = '#000';
+                                            this.querySelector('div:first-child').style.backgroundColor = '#000';
+                                            
+                                            const quantityInput = document.querySelector('input[name="quant"]');
+                                            if (quantityInput) {
+                                                quantityInput.value = this.dataset.quantity;
+                                                quantityInput.dispatchEvent(new Event('change', { bubbles: true }));
+                                            }
+                                        });
+                                        
+                                        cardsContainer.appendChild(card);
+                                    }
+                                });
+
+                                document.querySelector('.product-variants').appendChild(cardsContainer);
+                                cardsContainer.querySelector('.discount-card')?.click();
+                            }
+                        });
+
+                                </script>
+
+
+
+                                
+                            
+                            <div class="variant-error error-message">
+                                Por favor, selecione as variações antes de prosseguir.
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                    <div class="product-gifts">
+                        {{ productHelper.gifts() }}
+                    </div>
+
+                    <style>
+                        .product-gifts {
+                            display: flex; /* Organiza os itens em linha */
+                            flex-wrap: wrap; /* Permite quebra de linha se necessï¿½rio */
+                            gap: 1rem; /* Espaï¿½o entre os itens */
+                            padding: 1rem;
+                            /* border: 1px solid #ccc;  */
+                            border-radius: 8px; 
+                            /* background-color: #f9f9f9;  */
+                        }
+
+                        .product-gifts > * {
+                            flex: 1 1 calc(33.333% - 1rem); /* Tamanho de cada item, com margem */
+                            box-sizing: border-box; /* Inclui padding e border no tamanho total */
+                            padding: 0.5rem;
+                            /* border: 1px solid #ddd; */
+                            border-radius: 4px; /* Cantos arredondados */
+                            /* background-color: #fff;  */
+                            text-align: center; /* Centraliza o texto */
+                        }
+
+                        /* Ajusta para dispositivos mï¿½veis */
+                        @media (max-width: 768px) {
+                            .product-gifts > * {
+                                flex: 1 1 calc(50% - 1rem); /* Tamanho dos itens no mobile */
+                            }
+                        }
+
+                        @media (max-width: 480px) {
+                            .product-gifts > * {
+                                flex: 1 1 calc(100% - 1rem); /* Tamanho dos itens no mobile menor */
+                            }
+                        }
+                        .imagem_produto {
+                            width: 100px; /* Define a largura das imagens */
+                            height: auto; /* Mantï¿½m a proporï¿½ï¿½o da imagem */
+                            max-width: 100%; /* Garante que a imagem nï¿½o ultrapasse a largura do contï¿½iner */
+                            border-radius: 8px; /* Adiciona bordas arredondadas, se desejar */
+                        }
+
+                        /* Estilos para os cards de desconto */
+                        .quantity-discount-cards {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            flex-direction: column;
+                        }
+
+                        .bloco-desconto-combo{
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            margin-left: 10px;
+                        }
+                        
+                        .discount-card {
+                            border: 1px solid #e0e0e0;
+                            border-radius: 8px;
+                            padding: 15px;
+                            text-align: center;
+                            flex: 1;
+                            min-width: 150px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            display: flex;
+                            align-items: center;
+                        }
+                        
+                        .discount-card:hover {
+                            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .quantity-discount-cards {
+                                justify-content: center;
+                            }
+                            
+                            .discount-card {
+                                min-width: 120px;
+                            }
+                        }
+                    </style>
+
+
+
+                    {% if product.is_kit %}
+                        <div class="pageProduct-kit">
+                            <div class="serverTray-content">{{ productHelper.kit() }}</div>
+                            <div class="error-kit error-message" style="display: none">
+                                Por favor, selecione as variações antes de prosseguir.
+                            </div>
+                        </div>
+                    {% endif %} 
+                    
+                    {% if product.additional_information %}
+                        <div class="product-additional-fields">
+                            
+                            {{ product.additional_information }}
+                            <div class="additional-field-required error-message" style="display: none">
+                                Por favor, preencha os campos acima.
+                            </div>
+
+                        </div>
+                    {% endif %}
+
+                    <div class="product-price flex justify-between align-end">
+                        <div class="product-price-tray {% if settings.showcase_price_display_option == 'in_cash' -%} featured-cash {%- else -%} featured-installments {%- endif %}">
+                            {{ productHelper.pricing() }}
+                        </div>
+                    </div>
+
+                    {% if productHelper.banner() %}
+                        {% set batch_promotion = productHelper.banner() %}
+                        <div class="product-batch-promotion {% if 'img' not in batch_promotion %} text-promotion {% endif %}">
+                            {{ batch_promotion }}
+                        </div>
+                    {% endif %}
+
+                    {% if ProgressiveDiscounts %}
+                        <div class="product-progressive-discount">
+                            <div class="title">
+                                Produto com desconto progressivo
+                                <div class="tooltip">
+                                    <i class="icon icon-help"></i>
+                                    <div class="tooltip-content">
+                                        Somente o maior desconto serÃ¡ aplicado na finalizaÃ§Ã£o do pedido.
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="discounts">
+                                {% for discount in ProgressiveDiscounts %}
+                                    <li class="discount" data-name="{{ discount.name }}">
+                                        {{ discount.description }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    {% if productHelper.bonus() and 'idBonusVariacao' in productHelper.bonus() %}
+                        <div class="product-reward">
+                            {{ productHelper.bonus() }}
+                        </div>
+                    {% endif %}
+
+       
+
+                    <div class="actions">
+                        <div class="add-cart d-flex align-center gap-3"> 
+                            {% element 'snippets/product-quantity' { 'product': product } %}
+                            <button type="button" id="button-buy2" class="product-button add-to-cart {% if product.variants %} validate-variant-selected {% endif %} {% if product.has_acceptance_terms %} has-terms {% endif %} m-0" aria-label="Comprar">
+                                Comprar agora
+                            </button>
+                            
+                            <!-- <span id="span_erro_carrinho" class="blocoAlerta"></span> -->
+                        </div>
+                    </div>
+
+                      <div class="pageProduct-buy serverTray-content" data-buy-product="box">
+                            <input class="buy-quantityTop" type="button" id="more" value="+" data-quantity />
+                            <input class="buy-quantityDown" type="button" id="less" value="-" data-quantity /> {{
+                            productHelper.form() }}
+                        </div>
+
+                </form>
+
+                {% if productHelper.shipping() %}
+                    <div class="product-shipping">
+
+                        {{ productHelper.shipping() }}
+
+                       <h6 class="cepbox-text color-tone-1">Simulador de Frete</h6>
+
+                        <form class="shipping-form">
+                            <div class="form-input">
+                                <label for="zip" class="sr-only">CEP</label>
+                                <input type="tel" class="input zip-code-mask" id="zip" name="zip" maxlength="9" placeholder="Informe seu cep" required>
+                            </div>
+                            <button type="submit" class="submit-shipping" aria-label="Calcular">
+                                Calcular
+                            </button>
+                        </form>
+
+                        <div class="result"></div> 
+
+
+                        
+
+                    </div>
+                {% endif %}
+
+                {% if productHelper.social() %}
+                    <div class="product-social-share">
+                        {{ productHelper.social() }}
+                    </div>
+                {% endif %}
+
+            
+            {% else %}
+
+                {# This helper verify if product is available or not and generate the correct html #}
+                <div class="product-not-sale">
+                    {{ productHelper.pricing() }}
+                </div>
+
+            {% endif %}
+                 
+                {% if productHelper.social() and settings.social_position == 1 and (product.stock > 0 or settings.without_stock_sale) %}
+                    <div class="pageProduct-socialMedia">
+                        Compartilhar por:
+                        <div class="socialMedia">{{ productHelper.social() }}</div>
+                    </div>
+                {% endif %}
+        </section>
+    </div>
+
+    {% if productHelper.bundle() %}
+        <div class="pageProduct-buyTogether">
+            <div class="buyTogether serverTray-content">{{ productHelper.bundle() }}</div>
+        </div>
+    {% endif %}
+
+    <div class="pageProduct-tabs">
+
+          <style>
+            .conteudo-dinamico img{
+                width: 100%;
+            }
+                .beneficios h3 {
+                    font-size: 32px;
+                    font-weight: 600;
+                    color: #18181d;
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
+                .banner-produto {
+                    width: 100vw !important; /* ocupa toda a largura da tela */
+                    margin-left: calc(-50vw + 582px); /* 600px = metade de 1200px */
+                    margin-top: 50px;
+                }
+                .box-descricao{
+                    position: relative;
+                }
+                .box-descricao h3{
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #18181d;
+                    margin: 30px 0 15px 0;
+                }
+                .boxs-produto .box-info-produto{
+                    background-color: #18181D;
+                    padding: 40px;
+                    height: 100%;
+                    border-radius: 10px !important;
+                    height: 425px;
+                }
+                .boxs-produto .box-info-produto h3{
+                    color: #F7A500;
+                    font-size: 32px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+                .boxs-produto .box-info-produto p b{
+                    display: block;
+                    margin-bottom: 20px;
+                }
+
+                .boxs-produto .box-info-produto p{
+                    color: #FFFFFF;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+                .boxs-produto h3 span {
+                    font-size: 22px;
+                }
+                .orientacaoesdeuso{
+                    background-color: #18181D;
+                    color: #FFFFFF;
+                    border-radius: 10px;
+                }
+                .orientacaoesdeuso h3{
+                    font-size: 32px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+                .orientacaoesdeuso p{
+                    font-size: 10px;
+                    line-height: 18px;
+                    margin-bottom: 15px;
+                }
+
+                .ref-biblio h3{
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #18181d;
+                    margin-bottom: 15px;
+                }
+                 .ref-biblio ul{
+                    list-style: disc;
+                    margin-left: 20px;
+                }
+                .ref-biblio a {
+                    overflow-wrap: break-word;
+                }
+                .ref-biblio p, .ref-biblio ul a, .ref-biblio ul li{
+                    color: #717378;
+                    font-size: 12px;
+                }
+                @media (max-width: 767px) {
+                    .boxs-produto .box-info-produto{
+                        height: auto;
+                    } 
+                    .beneficios .row {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                    }
+                    .beneficios .row>* {
+                        padding-bottom: calc(var(--bs-gutter-x) * 1);
+                    }
+                    img.banner-produto {
+                        width: 100%;
+                        margin: 0;
+                    }
+                    .box-descricao {
+                        display: block;
+                    }
+                    .row.boxs-produto.mt-5 {
+                        display: block;
+                    }
+                    .boxs-produto .col-md-4 {
+                        margin-bottom: calc(var(--bs-gutter-x) * 1);
+                    }
+                    .orientacaoesdeuso {
+                        padding: 40px;
+                    }
+                    .orientacaoesdeuso .p-5 {
+                        padding: 0 !important;
+                    }
+                }
+            </style>
+
+            
+                {{ product.description }} 
+           
+
+
+        {% if product.id == '07' %} 
+            <!-- {% element 'produto-07' %}  -->
+        {% elseif product.id == '39' %}
+            <!-- {% element 'produto-39' %} -->
+        {% elseif product.id == '41' %}
+            <!-- {% element 'produto-41' %} -->
+        {% elseif product.id == '43' %}
+            <!-- {% element 'produto-43' %} -->
+        {% elseif product.id == '45' %}
+            <!-- {% element 'produto-45' %} -->
+        {% elseif product.id == '47' %}
+            <!-- {% element 'produto-47' %} -->
+        {% elseif product.id == '49' %}
+            <!-- {% element 'produto-49' %} -->
+        {% elseif product.id == '51' %}
+            <!-- {% element 'produto-51' %} -->
+        {% elseif product.id == '53' %}
+            <!-- {% element 'produto-53' %} -->
+        {% endif %} 
+        
+        <div id="formasdepagamentos">
+            <h3>Formas de pagamento:</h3>
+            <div class="listadepgs">
+
+            </div>
+        </div>
+
+
+
+        <div class="avalicacao" id="avaliacoes-produtos">
+            <h3>Avaliações:</h3>
+
+            {%- set productComments -%}
+            {%- element 'product/comments' -%}
+            {%- endset -%}
+            <div id="tray-comment-block"></div>
+            <script> window.commentsBlock = `{{ productComments | raw }}`; </script>
+               
+
+        </div>
+        
+
+       
+    
+
+        {% element 'snippets/product-tabs' { 'product' : product } %} 
+
+
+        
+    </div> 
+</div>
+
+{% if product.related_products and settings.enable_related_products %}
+    <section class="pageProduct-related">
+        <h2 class="related-title"> 
+            {{ settings.related_products_title ? settings.related_products_title : "Produtos relacionados" }}
+        </h2>
+        <div class="related-showcase">
+            {% for item in product.related_products %}
+                <div class="related-item">
+                    {% element 'snippets/product' {
+                        'product' : item,
+                        'slide'   : false
+                    } %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
+
+{% if settings.history_position %}
+    <section class="pageProduct-lastSeen">
+        <h2 class="lastSeen-title">
+            Últimos Vistos
+        </h2>
+
+        <div class="lastSeen-list serverTray-content">
+            {% element 'snippets/history' {
+                'store.id'      : store.id,
+                'pages.current' : pages.current,
+                'category.id'   : category.id
+            } %}
+        </div>
+    </section>
+{% endif %}

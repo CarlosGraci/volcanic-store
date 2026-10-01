@@ -1,0 +1,225 @@
+{% element 'snippets/banner-line' { 'banner_id': 'home', 'banner_type': 'slides' } %}   
+
+<div class="home-welcome"> 
+    <div class="container">
+        <div class="row">
+            {% for i in 1..4 %}
+            {% set img = attribute(settings, 'linha_fio_image_'~i) %}
+            <div class="box-welcome col-6 col-sm-3">
+                <img src="{{ asset(img) }}" alt="">
+                <div class="text-welcome">
+                    <h4>{{ attribute(settings, 'linha_fio_title_' ~ i) }}</h4> 
+                    <p>{{ attribute(settings, 'linha_fio_description_' ~ i) }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="faixa-aviso">
+    <div class="container">
+        <p class="offer-text">{{ settings.offer_title }}</p>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const el = document.querySelector('.offer-text');
+        if (el) el.innerHTML = el.textContent; // converte entidades em HTML
+        });
+        </script>
+    </div>
+</div>
+
+
+<!-- {% element 'home-showcase' { 
+    'rand' : settings.showcase_rand_products, 
+    'type' : settings.showcase_type_1, 
+    'quantity' :8,
+    'titulo' : 'Conheça nossos produtos'
+} %}  -->
+
+
+    {% element 'home-showcase' {
+        'carousel' : '0',
+        'rand'     : '0',
+        'title'    : 'Conheça nossos produtos',
+        'type'     : 'shorts',
+        'quantity' : '9',
+        'category' : '15, 27, 55, 57'
+    } %}
+
+
+<section class="encontre-objetivo">
+    <div class="container">
+        <h3>Encontre seu <span>objetivo</span></h3>
+        <p>Navegue pelas categorias abaixo:</p>
+    </div>
+    <div class="row">
+        {% for i in 1..6 %}
+        {% set img = attribute(settings, 'objetivo_image_'~i) %}
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ attribute(settings, 'objetivo_link_' ~ i) }}" class="box-objetivo">
+                    <img src="{{ asset(img) }}" alt="Musculação" width="100%">
+                    <div class="legenda">
+                        {{ attribute(settings, 'objetivo_title_' ~ i) }}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section slider-banner-prods" data-slides="bannes-products">
+    <div class="bannes-content swiper">
+        <div class="product-list swiper-wrapper">
+            {% for i in 1..3 %}
+                {% set img = attribute(settings, 'banners_hor_image_'~i) %}
+                <a href="{{ attribute(settings, 'banners_hor_link_' ~ i) }}" class="swiper-slide">
+                    <img src="{{ asset(img) }}" alt="" width="100%">
+                </a>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination paginacao-banners"></div> 
+    </div>    
+</section>
+
+
+<section class="carrousel-img-produtos pb-0" data-slides="carrousel-img-produtos">
+    <div class="products-content swiper">
+        <div class="product-list swiper-wrapper">
+            {% for i in 1..8 %}
+                {% set img = attribute(settings, 'carrossel_prod_image_'~i) %}
+                <a href="{{ attribute(settings, 'carrossel_prod_link_' ~ i) }}" class="swiper-slide">
+                    <img src="{{ asset(img) }}" alt="" width="100%">
+                </a>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+
+<!-- {% element 'home-showcase' { 
+    'rand' : settings.showcase_rand_products, 
+    'type' : combos, 
+    'quantity' :8,
+    'titulo' : 'Combos Volcanic'
+} %}  -->
+
+    {% element 'home-showcase' {
+        'carousel' : '0',
+        'rand'     : '0',
+        'title'    : 'Combos Volcanic',
+        'type'     : 'shorts',
+        'quantity' : '9',
+        'category' : '61'
+    } %}
+
+
+<section class="depoimentos mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Por que as pessoas confiam na <span>Volcanic?</span></h3>
+                <div class="bloco-depoimento">
+                    <img src="{{ asset('img/img-depo-1.png') }}" alt="" width="75px">
+                    <div class="info-bloco-depoi">
+                        <h4>Formulado por especialistas</h4>
+                        <p>Médicos, Nutricionistas e Farmacêuticos</p>
+                    </div>
+                </div>
+
+                <div class="bloco-depoimento">
+                    <img src="{{ asset('img/img-depo-2.png') }}" alt="" width="75px">
+                    <div class="info-bloco-depoi">
+                        <h4>Ingredientes de alta pureza</h4>
+                        <p>Qualidade Premium</p>
+                    </div>
+                </div>
+
+                <div class="bloco-depoimento">
+                    <img src="{{ asset('img/img-depo-3.png') }}" alt="" width="75px">
+                    <div class="info-bloco-depoi">
+                        <h4>rigorosos estudos científicos</h4>
+                        <p>Ingredientes comprovados com pesquisas</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="bloco-right">
+                    <img src="{{ asset('img/aspas-depoi.svg') }}" alt="">
+                    <h4>Quem confia na <span>Volcanic?</span></h4>
+                    
+                    <div class="bannes-content depoSlides swiper">
+                        <div class="swiper-wrapper">
+
+
+                            {% for i in 1..7 %}
+                            <div class="swiper-slide">
+                                <p class="offer-text">“{{ attribute(settings, 'depoimento_' ~ i) | raw }}”</p>
+                                <div>
+                                    <strong>{{ attribute(settings, 'depoimento_nome_' ~ i) }}</strong>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            
+                        </div>   
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="slides-buttonPrev icon-arrow-left"></div>
+                    <div class="slides-buttonNext icon-arrow-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% element 'snippets/blog' { 'banner_id': 'home' } %} 
+
+
+<section class="afiliado">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ asset(settings.afiliado_imagem) }}" alt="" width="100%">
+            </div>
+            <div class="col-md-6 px-5 d-flex flex-column justify-content-center box-texto-afiliado">
+                <h3>Seja um Afiliado <span>Volcanic</span>{{ settings.afiliado_titulo }}</h3>
+                <div class="list-afiliado">
+                    <img src="{{ asset('img/icon-fire.svg') }}" alt="">
+                    {{ settings.afiliado_item_1 }}
+                </div>
+                <div class="list-afiliado">
+                    <img src="{{ asset('img/icon-fire.svg') }}" alt="">
+                    {{ settings.afiliado_item_2 }}
+                </div>
+                <div class="list-afiliado">
+                    <img src="{{ asset('img/icon-fire.svg') }}" alt="">
+                    {{ settings.afiliado_item_3 }}
+                </div>
+                
+                <a href="https://volcanicstore.rds.land/campanha-afiliados?_gl=1*1l8bsgj*_gcl_au*MTA2ODA4NzU1OS4xNzYyNDMzNDg2LjExOTQ0MDQ1ODguMTc2MjQzMzQ4Ny4xNzYyNDMzNTA1*_ga*MTE4NDI4MjY3Ni4xNzYyNDMzNDg2*_ga_E6289L7D1M*czE3NjI0MzM0ODUkbzEkZzEkdDE3NjI0MzQwMjQkajYwJGwwJGgw" target="_blank" class="bt-afiliado">Quero ser Afiliado</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="depoimnetos-videos">
+    <div class="container">
+        <h3><img src="{{ asset('img/icon-fire.svg') }}" alt="">Inspire-se: depoimentos de quem atingiu seus objetivos com Volcanic!</h3>
+        <div class="row">
+            {% for i in 1..4 %}
+                {% set url = attribute(settings, 'inspire_video_' ~ i) %}
+                {% set idvideo = url|replace({'https://www.youtube.com/shorts/': ''}) %}
+                <div class="col-md-3 col-6">
+                    <div class="box-video-depoi">
+                        <iframe width="100%" height="515" src="https://www.youtube.com/embed/{{ idvideo }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+             {% endfor %}
+        </div>
+    </div>
+</section>

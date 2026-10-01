@@ -1,0 +1,155 @@
+{% set email = Translation('ag_email_1') %} 
+{% set whatsappNumber = Translation('ag_telefone_3') %} 
+{% set phone = Translation('ag_telefone_1') %} 
+{% set phone2 = Translation('ag_telefone_2') %}
+
+<footer class="footer">
+  
+    
+    {% if settings.newsletter_active %}
+        <div class="footer-newsletter py-4 px-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="news-text">
+                            Receba em seu e-mail novidades de lançamentos e também <b>benefícios exclusivos</b>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <form class="news-email" action="/mvc/store/newsletter/" method="post">
+                            <input type="hidden" name="loja" value="{{ store.id }}" />
+                            <input
+                                class="email-field"
+                                type="email"
+                                name="email"
+                                placeholder="{{ settings.newsletter_placeholder ? settings.newsletter_placeholder : 'Digite seu e-mail' }}"
+                                required
+                                spellcheck="false"
+                                autocomplete="off"
+                            />
+                            <button type="submit" class="newsletter-button button1" > 
+                                Assinar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="footer-infos">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-12 col-sm-4">
+                    <img src="{{ asset('img/logo-footer.png') }}" alt="logo footer">
+                    <p>A Volcanic desenvolve, testa e disponibiliza seus suplementos com base em ciência, inovação e propósito. Da fórmula à entrega, cada etapa é pensada para promover saúde real e qualidade de vida com excelência.</p>
+                    <p>Os suplementos da Volcanic são formulados por médicos com ingredientes respaldados por rigorosos estudos científicos contendo matérias-primas de qualidade superior que atuam sinergicamente em favor da excelência nutricional, vitalidade e qualidade de vida.</p>
+                    <div class="info-media d-flex gap-2">{% element 'snippets/media-icons' %}</div>
+                </div>
+                <div class="col-12 col-sm-3">
+                    <div class="titulo-info">Políticas e Promoções</div>
+                    <ul class="info-list">
+                       
+                        <li>
+                            <a target="_blank" class="info-link" href="/privacidade" title="Política de Privacidade">Política de Privacidade</a>
+                        </li>
+                        <li>
+                            <a target="_blank" class="info-link" href="/politica-de-frete-gratis" title="Política de Frete Grátis">Política de Frete Grátis</a>
+                        </li>
+                        <li>
+                            <a target="_blank" class="info-link" href="/termo-programa-afiliados" title="Termo e Regulamento do Programa de Afiliados">Termo e Regulamento do Programa de Afiliados</a>
+                        </li>
+                        <li>
+                            <a target="_blank" class="info-link" href="/assinaturas" title="Assinaturas">Assinaturas</a>
+                        </li>
+                        <li>
+                            <a target="_blank" class="info-link" href="/cupons-de-desconto" title="Cupons de desconto">Cupons de desconto</a>
+                        </li>
+                    </ul>
+                    <ul class="info-list" style="display: none;">
+                    {% for custom in pages.custom %}
+                        <li>
+                            <a target="_blank" class="info-link" href="{{ custom.url }}" title="{{ custom.name }}">{{ custom.name }}</a>
+                        </li>
+                    {% endfor %}
+                       
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="titulo-info">volcanic</div>
+                    <ul class="info-list">
+                        <li>
+                            <a class="info-link" href="https://www.volcanicstore.com/sobre-a-empresa-volcanic" target="_blank" title="Sobre a empresa">Sobre a empresa</a>
+                        </li>
+                        <li>
+                            <a class="info-link" href="https://blog.volcanicstore.com/" title="Blog" target="_blank">Blog</a>
+                        </li>
+                         <li>
+                            <a class="info-link" href="https://www.volcanicstore.com/fale-conosco" title="Contato" target="_blank">Fale Conosco</a>
+                        </li>
+                    </ul>
+
+                    <div class="titulo-info mt-5">Fale conosco</div>
+                        <ul class="info-list">
+                            <li>
+                                <a
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="contact-item"
+                                    href="https://api.whatsapp.com/send?l=pt&phone=55{{ link }}"
+                                    title="Fale conosco no WhatsApp: {{ phone2 }}"
+                                >
+                                    <span class="icon-whatsapp" aria-hidden="true"></span>
+                                    WhatsApp: (11) 95161-7448
+                                </a>
+                            </li>
+                    
+                        {% if whatsappNumber %}
+                            <li>{% element 'snippets/whatsapp' { 'number': whatsappNumber, 'include_text' : false } %}</li>
+                        {% endif %} 
+                        {% if email %}
+                            <li>
+                                <a class="contact-item" href="mailto:{{ email }}" title="Email: {{ email }}">
+                                    <span class="icon-email" aria-hidden="true"></span>
+                                    {{ email }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+
+                    <div class="info-security my-4">
+                        <ul class="info-list text-start">
+                            
+                            {% if seals.ebit %}
+                                <li class="ebit-seal">{{ seals.ebit }}</li>
+                            {% endif %} 
+                            {% if seals.hackersafe %}
+                                <li class="loja-protegida-seal">{{ seals.hackersafe }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="formas-pagamento">
+                        <h4>formas de pagamento:</h4>
+                        <img src="{{ asset('img/formas-pagamento.png') }}" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer-credits">
+        <div class="credits">
+            <div class="credits-text">{{ Translation('ag_mensagem_rodape') }}<br>
+            CNPJ: 49.746.958/0001-15 / (11) 95161-7448 / volcanicstore@volcanicbrasil.com.br<br>
+            Copyright© 2025 Volcanic - Todos os direitos reservados
+            </div>
+        </div>
+
+        
+    </div>
+</footer>

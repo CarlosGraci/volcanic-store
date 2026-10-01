@@ -1,0 +1,31 @@
+{% if total is not defined %}
+    {% set total = false %}
+{% endif %}
+
+
+{% if 'product' in pages.current %}
+    <a href="#avaliacoes-produtos" class="product-rating-link">
+{% endif %}
+    <div class="product-rating2" style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #555;">
+        {% if settings.show_product_review %}
+            {% if review.rating %}
+                <span class="rating-icon icon-star-empty" aria-hidden="true"></span>
+                <span style="font-weight: 600; color: #333;">{{ review.rating|number_format(1, '.', '') }}/5</span>
+            {% else %}
+                <span class="rating-icon icon-star" aria-hidden="true"></span>
+                <span style="font-weight: 600; color: #333;">0.0/5</span>
+            {% endif %}
+            
+            {% if total %}
+                {% if review.count > 0 %}
+                    <span style="color: #aaa;">|</span>
+                    <span style="color: #777;">{{ review.count }} Avaliações</span>
+                {% else %}
+                    <span class="rating-message">Seja o primeiro a opinar!</span>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+{% if 'product' in pages.current %}
+    </a>
+{% endif %}

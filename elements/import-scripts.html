@@ -1,0 +1,48 @@
+{% set extensionJs = minified ? '.min.js' : '.js' %} 
+
+{# Tray scripts #} 
+{{ tray.scripts }} 
+
+<script>
+    window.theme = {
+        themePath: '{{ themePath }}',
+    };
+</script>
+
+<script>
+  // Seleciona todos os elementos com a classe
+  const precos = document.querySelectorAll('.PrecoPrincipal');
+
+  // Itera sobre cada elemento e remove " - Vindi"
+  precos.forEach(preco => {
+    preco.textContent = preco.textContent.replace(' - Vindi', '');
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const infoPreco = document.querySelector('#info_preco .txt-com-desconto');
+  if (infoPreco) {
+    infoPreco.innerHTML = 'no <span>PIX</span>';
+  }
+});
+
+
+</script>
+<script src="{{ asset('js/libs.min.js')    }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
+
+<script>
+
+  $('.ingredSlides').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
+
+</script>
+
+{{ html.script({ 
+    '0' : tray.paths.js ~ 'dist/application.min.js?' ~ utils.assets_version 
+}) }}

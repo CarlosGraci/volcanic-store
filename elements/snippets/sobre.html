@@ -1,0 +1,464 @@
+<style>
+
+.container.is-custom-page {
+    display: none;
+}
+
+section.hero {
+    background-image: url("{{ asset('img/hero-sobre.png') }}");
+    background-size: cover;
+    background-position: center;
+    padding: 24px 0;
+}
+
+.hero h1 {
+    text-align: center;
+    font-size: 120px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 90%;
+    margin: 0;
+    height: 450px;
+    align-content: center;
+
+}
+
+.breadcrumb {
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.breadcrumb-link {
+    color: #fff;
+    font-size: 12px;
+}
+
+.breadcrumb-item:not(:first-child):before {
+    color: #712420;
+}
+
+.pv-section {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 12px;
+    gap: 4px;
+    padding: 8px;
+    margin: 20px auto
+}
+
+.pv-banner {
+    flex: .8;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,.1)
+}
+
+.pv-banner:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15)
+}
+
+.pv-gallery {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px
+}
+
+.pv-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,.1);
+    filter: brightness(1)
+}
+
+.pv-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    filter: brightness(1.05);
+    z-index: 1
+}
+
+.pv-img-wide {
+    grid-column: 1/3
+}
+
+@media (max-width: 768px) {
+    section.hero {
+        padding: 52px 0;
+    }
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 56px;
+        align-content: flex-end;
+    }
+
+    .pv-section {
+        flex-direction:column;
+        height: auto;
+        max-height: 550px;
+        gap: 8px;
+        padding: 6px
+    }
+
+    .pv-banner {
+        width: 100%;
+        height: 180px
+    }
+
+    .pv-gallery {
+        grid-template-rows: 120px 120px
+    }
+
+    .pv-banner:hover,.pv-img:hover {
+        transform: scale(1.02)
+    }
+}
+
+@media (max-width: 480px) {
+    .pv-section {
+        max-height:450px;
+        margin: 15px auto
+    }
+
+    .pv-banner {
+        height: 140px
+    }
+
+    .pv-gallery {
+        grid-template-rows: 90px 90px;
+        gap: 6px
+    }
+}
+
+.pv-text-section {
+    max-width: 1220px;
+    margin: 40px auto;
+    text-align: left
+}
+
+.pv-main-title {
+    font-size: 2.5rem;
+    color: var(--color_title_about);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    text-transform: uppercase
+}
+
+.pv-subtitle {
+    font-size: 2rem;
+    color: var(--color_sub_title_about);
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-transform: uppercase
+}
+
+.pv-description {
+    font-size: 16px;
+    color: #717378;
+    line-height: 24px;
+    max-width: 1220px
+}
+
+.pv-highlight {
+    font-size: 1.3rem;
+    color: var(--color_sub_desc_about);
+    font-weight: 600;
+    margin: 30px 0;
+    font-style: italic
+}
+
+.pv-pillars-intro {
+    font-size: 1.2rem;
+    color: var(--color_title_sec_about);
+    font-weight: 600;
+    margin-top: 40px;
+    position: relative;
+    padding-bottom: 20px
+}
+
+.pv-pillars-intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px
+}
+
+@media (max-width: 768px) {
+    .pv-main-title {
+        font-size:2rem
+    }
+
+    .pv-subtitle {
+        font-size: 1.6rem
+    }
+
+    .pv-description {
+        font-size: 1rem;
+        padding: 0 15px
+    }
+
+    .pv-highlight {
+        font-size: 1.2rem;
+        padding: 0 20px
+    }
+
+    .pv-pillars-intro {
+        font-size: 1.1rem;
+        padding: 0 15px 20px
+    }
+}
+
+@media (max-width: 480px) {
+    .pv-main-title {
+        font-size:1.8rem
+    }
+
+    .pv-subtitle {
+        font-size: 1.4rem
+    }
+}
+
+.organic-products {
+    width: 100%;
+    padding: 16px 20px
+}
+
+.organic-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 1220px;
+    margin: 0 auto
+}
+
+.organic-item {
+    flex: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all .3s ease;
+    border-radius: 24px
+}
+
+.organic-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1)
+}
+
+.organic-image {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    display: block
+}
+
+.icon-fire {
+    padding-top: 35px
+}
+
+.icon-fire-gallery {
+    display: flex;
+    max-width: 1220px;
+    justify-self: center;
+    gap: 20px;
+}
+
+.icon-fire-image {
+    height: 60px
+}
+
+@media (max-width: 768px) {
+    .organic-item {
+        margin-bottom: 15px
+    }
+
+    .organic-image {
+        height: 130px
+    }
+
+    .icon-fire {
+        padding-top: 0
+    }
+}
+
+.ingredients-section {
+    background-color: #000000;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden
+}
+
+.ingredients-container {
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+.ingredients-title {
+    color: #eeeeee;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700
+}
+
+.ingredients-subtitle {
+    color: var(--color_desc_def_about);
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform .5s ease-in-out
+}
+
+.carousel-slide {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 100%
+}
+
+.carousel-image {
+    width: 50%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px
+}
+
+.carousel-content {
+    background-color: var(--color_box_about);
+    padding: 40px;
+    border-radius: 8px;
+    width: 50%
+}
+
+.content-title {
+    color: #f10c00;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px
+}
+
+.content-text {
+    color: var(--color_desc_about);
+    line-height: 1.6
+}
+
+@media (max-width: 768px) {
+    .carousel-slide {
+        flex-direction:column
+    }
+
+    .carousel-content,.carousel-image {
+        width: 100%
+    }
+
+    .carousel-image {
+        height: 300px
+    }
+
+    .ingredients-title {
+        font-size: 2rem
+    }
+
+    .prev-button {
+        left: 30%
+    }
+
+    .next-button {
+        right: 30%
+    }
+}
+
+</style>
+<section class="hero">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link" href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link"><span>Sobre a Volcanic</span></a>
+        </li>
+    </ol>
+    <h1>Sobre a Volcanic</h1>
+</section>
+<!--<section class="pv-section"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/besite.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-banner"><div class="pv-gallery"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/6.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-img" loading="lazy"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/7.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-img" loading="lazy"> <img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" 
+             alt="Cachoeira e lago em floresta verde" 
+             class="pv-img pv-img-wide"
+             loading="lazy"> </div></section>-->
+
+             <section class="pv-text-section"><h1 class="pv-main-title"></h1><h2 class="pv-subtitle"></h2><p class="pv-description">
+        Fundada em 2018, a Volcanic é uma multinacional que combina ciência e inovação para desenvolver soluções de saúde de alto impacto.<br><br> Com um portfólio de produtos baseados em evidências científicas e tecnologia de ponta, a Volcanic tem como missão oferecer inovações que transformam vidas, oferecendo alternativas eficazes e acessíveis para o bem-estar, saúde e a qualidade de vida.<br><br> Em 2024, com apenas um ano de atuação no Brasil, a Volcanic alcançou um novo marco ao adquirir as operações da Elleven Healthcare, com o objetivo de construir um ecossistema completo e pioneiro que evolui para a medicina integrativa, personalizada e de precisão.
+    </p><!--<p class="pv-highlight"></p><p class="pv-pillars-intro"></p>--></section>
+
+
+
+    <!-- <section class="knowledge-section"><h2 class="knowledge-title"></h2><div class="knowledge-content"><div class="knowledge-column"><p class="knowledge-text"></p></div><div class="knowledge-column"><p class="knowledge-text"></p><p class="knowledge-text"></p></div></div></section> -->
+
+    <section class="pv-text-section"><p class="pv-description">
+        Os suplementos da Volcanic são formulados por médicos, nutricionistas, pesquisadores e farmacêuticos com ingredientes respaldados por rigorosos estudos científicos contendo matérias-primas de qualidade superior que atuam sinergicamente em favor da excelência nutricional, vitalidade e qualidade de vida. <br><br> Em um mundo que exige tanto da mente e do corpo, buscamos mais do que energia. Buscamos equilíbrio, clareza e propósito.<br><br> Acreditamos que viver bem é um ato de coragem. Que ser o seu melhor começa por dentro — com escolhas que nutrem, fortalecem e transformam.<br><br> Na Volcanic, cada suplemento é mais que um produto. É ciência que respeita a natureza. É inovação com alma. É cuidado que gera potência.Seja na busca por foco, desempenho ou saúde integral, estamos aqui por você — com soluções que verdadeiramente transformam vidas.
+    </p></section>
+    
+    <section class="icon-fire" style="padding: 0;"><div class="icon-fire-gallery"><div class="icon-fire-item"><img src="{{ asset('img/icon-fire.svg') }}" alt=".." class="icon-fire-image"></div><div class="icon-fire-item"><img src="{{ asset('img/icon-fire.svg') }}" alt=".." class="icon-fire-image"></div><div class="icon-fire-item"><img src="{{ asset('img/icon-fire.svg') }}" alt=".." class="icon-fire-image"></div></div></section>
+    
+    <section class="organic-products"><div class="organic-gallery"><div class="organic-item"><img src="{{ asset('img/5.png') }}" alt=".." class="organic-image"></div><div class="organic-item"><img src="{{ asset('img/6.png') }}" alt=".." class="organic-image"></div><div class="organic-item"><img src="{{ asset('img/7.png') }}" alt=".." class="organic-image"></div></div></section>
+
+
+
+    <!--<section class="ingredients-section"><div class="ingredients-container"><h2 class="ingredients-title">VOLCANIC SUPLEMENTOS</h2><p class="ingredients-subtitle"></p><div class="carousel-container"><div class="carousel-track" style="transform: translateX(-100%);"><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/imagemsite.png?e8ce044e1401fcb564b3a7682c532440" alt="Colheita de café" class="carousel-image"><div class="carousel-content"><h3 class="content-title">SEJA SUA MELHOR VERSÃO</h3><p class="content-text"></p></div></div><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/3.png?e8ce044e1401fcb564b3a7682c532440" alt="Ingredientes naturais" class="carousel-image"><div class="carousel-content"><h3 class="content-title">COM A FORÇA DA NATUREZA E A PRECISÃO DA CIÊNCIA</h3><p class="content-text"></p></div></div> <div class="carousel-slide"><img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" alt="Processo sustentável" class="carousel-image"><div class="carousel-content"><h3 class="content-title">PROCESSO SUSTENTÁVEL</h3><p class="content-text">
+                            Nosso compromisso com a natureza se estende desde a origem dos ingredientes até o produto final, respeitando o meio ambiente em cada etapa.
+                        </p></div></div></div><button class="carousel-button prev-button" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button><button class="carousel-button next-button" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button></div></div><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            let currentIndex = 0;
+
+            function updateSlidePosition() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlidePosition();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlidePosition();
+            });
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlidePosition();
+            }, 5000);
+        });
+    </script></section> -->

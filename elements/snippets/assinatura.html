@@ -1,0 +1,716 @@
+<style>
+
+.container.is-custom-page {
+    display: none;
+}
+
+section.hero {
+    background-image: url("{{ asset('img/modelo/hero-assinatura.png') }}");
+    background-size: cover;
+    background-position: center;
+    padding: 24px 0;
+}
+
+section.cta-full {
+    background-image: url("{{ asset('img/modelo/clube-full.png') }}");
+    background-size: cover;
+    background-position: center;
+    padding: 24px 0;
+}
+
+section.footer-text {
+    display: block;
+}
+
+.hero h1 {
+    font-size: 64px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 90%;
+    margin: 0;
+}
+
+h1 span {
+    color: #F10C00;
+}
+
+.breadcrumb {
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.breadcrumb-link {
+    color: #fff;
+    font-size: 12px;
+}
+
+.breadcrumb-item:not(:first-child):before {
+    color: #712420;
+}
+
+.hero .container {
+    align-content: center;
+    padding: 0;
+}
+
+.hero .content {
+    max-width: 600px;
+    height: 450px;
+    align-content: center;
+    display: grid;
+    gap: 24px;
+}
+
+.cta-full .content {
+    max-width: 550px;
+    height: 450px;
+    align-content: center;
+    display: inline-grid;
+    gap: 24px;
+}
+
+.cta-full h3 {
+    color: #F0F0F0;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 100%;
+}
+
+.content p {
+    color: rgba(255, 255, 255, 1);
+    font-size: 18px;
+}
+
+.bt-red {
+    background-color: #F10C00;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 24px;
+    display: block;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.box-assinatura {
+    max-width: 1210px;
+    margin: 0 auto;
+}
+
+.vantagens h3 {
+    max-width: 1220px;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.box-info-assinatura {
+    background-color: #18181D;
+    padding: 40px;
+    height: 100%;
+    border-top-right-radius: 120px;
+    display: grid;
+    gap: 20px;
+    align-content: baseline;
+}
+
+.box-info-assinatura h4 {
+    color: #F2BC1B;
+    font-size: 32px;
+    line-height: 100%;
+    font-weight: 700;
+}
+
+.box-info-assinatura p {
+    color: #fff;
+    font-size: 24px;
+    line-height: 100%;
+}
+
+.pv-section {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 12px;
+    gap: 4px;
+    padding: 8px;
+    margin: 20px auto
+}
+
+.pv-banner {
+    flex: .8;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,.1)
+}
+
+.pv-banner:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15)
+}
+
+.pv-gallery {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px
+}
+
+.pv-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,.1);
+    filter: brightness(1)
+}
+
+.pv-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    filter: brightness(1.05);
+    z-index: 1
+}
+
+.pv-img-wide {
+    grid-column: 1/3
+}
+
+@media (max-width: 768px) {
+    section.hero {
+        padding: 52px 0;
+    }
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 56px;
+        align-content: flex-end;
+    }
+
+    .pv-section {
+        flex-direction:column;
+        height: auto;
+        max-height: 550px;
+        gap: 8px;
+        padding: 6px
+    }
+
+    .pv-banner {
+        width: 100%;
+        height: 180px
+    }
+
+    .pv-gallery {
+        grid-template-rows: 120px 120px
+    }
+
+    .pv-banner:hover,.pv-img:hover {
+        transform: scale(1.02)
+    }
+}
+
+@media (max-width: 480px) {
+    .pv-section {
+        max-height:450px;
+        margin: 15px auto
+    }
+
+    .pv-banner {
+        height: 140px
+    }
+
+    .pv-gallery {
+        grid-template-rows: 90px 90px;
+        gap: 6px
+    }
+}
+
+.pv-text-section {
+    max-width: 1220px;
+    margin: 80px auto;
+    place-items: center;
+    display: grid;
+    gap: 56px;
+}
+
+.button-bg {
+    background-image: url("{{ asset('img/modelo/bg-line.png') }}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    justify-items: center;
+}
+
+.como-funciona {
+    max-width: 1220px;
+    margin: 80px auto;
+    display: grid;
+    gap: 40px;
+}
+
+.como-funciona h3 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.como-funciona .item {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.como-funciona .num {
+    padding: 10px 14px;
+    background-color: #F10C00;
+    border-radius: 50%;
+    text-align: center;
+    align-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #fff;
+}
+
+.como-funciona .descricao {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.pv-main-title {
+    font-size: 2.5rem;
+    color: var(--color_title_about);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    text-transform: uppercase
+}
+
+.pv-subtitle {
+    font-size: 48px;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+}
+
+.pv-subtitle span {
+    color: #F10C00;
+}
+
+.pv-description {
+    font-size: 16px;
+    color: #717378;
+    line-height: 24px;
+    max-width: 1220px;
+    text-align: center;
+}
+
+.pv-highlight {
+    font-size: 1.3rem;
+    color: var(--color_sub_desc_about);
+    font-weight: 600;
+    margin: 30px 0;
+    font-style: italic
+}
+
+.pv-pillars-intro {
+    font-size: 1.2rem;
+    color: var(--color_title_sec_about);
+    font-weight: 600;
+    margin-top: 40px;
+    position: relative;
+    padding-bottom: 20px
+}
+
+.pv-pillars-intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px
+}
+
+@media (max-width: 768px) {
+    .pv-main-title {
+        font-size:2rem
+    }
+
+    .pv-subtitle {
+        font-size: 1.6rem
+    }
+
+    .pv-description {
+        font-size: 1rem;
+        padding: 0 15px
+    }
+
+    .pv-highlight {
+        font-size: 1.2rem;
+        padding: 0 20px
+    }
+
+    .pv-pillars-intro {
+        font-size: 1.1rem;
+        padding: 0 15px 20px
+    }
+}
+
+@media (max-width: 480px) {
+    .pv-main-title {
+        font-size:1.8rem
+    }
+
+    .pv-subtitle {
+        font-size: 1.4rem
+    }
+}
+
+.organic-products {
+    width: 100%;
+    padding: 16px 20px
+}
+
+.organic-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 1220px;
+    margin: 0 auto
+}
+
+.organic-item {
+    flex: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all .3s ease;
+    border-radius: 24px
+}
+
+.organic-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1)
+}
+
+.organic-image {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    display: block
+}
+
+.icon-fire {
+    padding-top: 35px
+}
+
+.icon-fire-gallery {
+    display: flex;
+    max-width: 1220px;
+    justify-self: center;
+    gap: 20px;
+}
+
+.icon-fire-image {
+    height: 60px
+}
+
+@media (max-width: 768px) {
+    .organic-item {
+        margin-bottom: 15px
+    }
+
+    .organic-image {
+        height: 130px
+    }
+
+    .icon-fire {
+        padding-top: 0
+    }
+}
+
+.ingredients-section {
+    background-color: #000000;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden
+}
+
+.ingredients-container {
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+.ingredients-title {
+    color: #eeeeee;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700
+}
+
+.ingredients-subtitle {
+    color: var(--color_desc_def_about);
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform .5s ease-in-out
+}
+
+.carousel-slide {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 100%
+}
+
+.carousel-image {
+    width: 50%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px
+}
+
+.carousel-content {
+    background-color: var(--color_box_about);
+    padding: 40px;
+    border-radius: 8px;
+    width: 50%
+}
+
+.content-title {
+    color: #f10c00;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px
+}
+
+.content-text {
+    color: var(--color_desc_about);
+    line-height: 1.6
+}
+
+@media (max-width: 768px) {
+    .carousel-slide {
+        flex-direction:column
+    }
+
+    .carousel-content,.carousel-image {
+        width: 100%
+    }
+
+    .carousel-image {
+        height: 300px
+    }
+
+    .ingredients-title {
+        font-size: 2rem
+    }
+
+    .prev-button {
+        left: 30%
+    }
+
+    .next-button {
+        right: 30%
+    }
+}
+
+</style>
+<section class="hero">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link" href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link"><span>Assinatura</span></a>
+        </li>
+    </ol>
+    <div class="container">
+        <div class="content">
+            <h1>Seu <span>desempenho</span> não pode parar</h1>
+    <p>Manter resultados consistentes depende de disciplina e de nunca ficar sem seus suplementos Volcanic favoritos. Por isso criamos o <strong>Clube Volcanic Assinatura:</strong> a maneira mais prática de garantir entregas programadas, descontos exclusivos e frete grátis.</p>
+    <a href="https://www.volcanicstore.com/" class="bt-red">Assinar agora</a>
+        </div>
+    </div>
+</section>
+<!--<section class="pv-section"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/besite.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-banner"><div class="pv-gallery"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/6.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-img" loading="lazy"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/7.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-img" loading="lazy"> <img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" 
+             alt="Cachoeira e lago em floresta verde" 
+             class="pv-img pv-img-wide"
+             loading="lazy"> </div></section>-->
+
+<section class="pv-text-section">
+    <h2 class="pv-subtitle">Por que assinar o <span>Clube Volcanic?</span></h2>
+    <div class="row">
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/club-item1.png') }}" alt="" width="100%">
+        </div>
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/club-item2.png') }}" alt="" width="100%">
+        </div>
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/club-item3.png') }}" alt="" width="100%">
+        </div>
+    </div>
+    <div class="button-bg">
+        <a href="https://www.volcanicstore.com/" class="bt-red">Quero assinar o Clube Volcanic</a>
+    </div>
+</section>
+
+<section class="como-funciona">
+    <h3>Como funciona</h3>
+    <div class="row">
+        <div class="col-md">
+            <div class="item">
+                <div class="num">1</div>
+                <div class="descricao">
+                    <p>Escolha seu produto favorito no site</p>
+                </div>
+            </div>    
+            <div class="item">
+                <div class="num">2</div>
+                <div class="descricao">
+                    <p>Clique em “Assinar produto”</p>
+                </div>
+            </div>  
+            <div class="item">
+                <div class="num">3</div>
+                <div class="descricao">
+                    <p>Você pode incluir um ou mais produtos na sua assinatura recorrente</p>
+                </div>
+            </div>          
+            <div class="item">
+                <div class="num">4</div>
+                <div class="descricao">
+                    <p>Selecione a forma e envio</p>
+                </div>
+            </div>    
+        </div>
+        <div class="col-md">
+            <div class="item">
+                <div class="num">5</div>
+                <div class="descricao">
+                    <p>Clique em "Continuar"</p>
+                </div>
+            </div>  
+            <div class="item">
+                <div class="num">6</div>
+                <div class="descricao">
+                    <p>Logue-se na plataforma ou cadastre-se</p>
+                </div>
+            </div>  
+            <div class="item">
+                <div class="num">7</div>
+                <div class="descricao">
+                    <p>Selecione a forma de pagamento</p>
+                </div>
+            </div>  
+            <div class="item">
+                <div class="num">8</div>
+                <div class="descricao">
+                    <p>Clique em "Finalizar pedido"</p>
+                </div>
+            </div>     
+        </div>
+    </div>
+</section>
+    <!-- <section class="knowledge-section"><h2 class="knowledge-title"></h2><div class="knowledge-content"><div class="knowledge-column"><p class="knowledge-text"></p></div><div class="knowledge-column"><p class="knowledge-text"></p><p class="knowledge-text"></p></div></div></section> -->
+
+<section class="vantagens">
+    <h3>Vantagens do Clube Volcanic de Assinatura</h3>
+    <div class="row box-assinatura mt-5">
+        <div class="col-md-4">
+            <div class="box-info-assinatura">
+                <img src="{{ asset('img/modelo/assinatura-icon1.png') }}" alt="">
+                <h4 style="color:#F2BC1B">Desconto <br>garantido </h4>
+                <p>Economize até <br>40% por produto</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box-info-assinatura">
+                <img src="{{ asset('img/modelo/assinatura-icon2.png') }}" alt="">
+                <h4 style="color:#F2BC1B">Sem <br>surpresas </h4>
+                <p>Preço e prazo de entrega <br>fixos a cada ciclo.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box-info-assinatura">
+                <img src="{{ asset('img/modelo/assinatura-icon3.png') }}" alt="">
+                <h4 style="color:#F2BC1B">Prioridade <br>de estoque </h4>
+                <p>Vantagens no lançamento <br>de produtos e reposições <br>rápidas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cta-full">
+    <div class="container">
+        <div class="content">
+            <h3>Não deixe seu progresso parar</h3>
+            <p>Assine agora o <strong>Clube Volcanic de Assinatura</strong> e mantenha seus suplementos sempre à mão!</p>
+            <a href="https://www.volcanicstore.com/" class="bt-red">Assinar agora</a>
+        </div>
+    </div>
+</section>
+<section class="pv-text-section footer-text">
+    <p class="pv-description">
+        Para solicitar o cancelamento é necessário enviar um e-mail para: volcanicstore@volcanicbrasil.com.br.<br>
+        Será aplicada uma multa proporcional ao tempo de permanência dentro do período de 12 meses. Confira o Regulamento.
+    </p>
+</section>
+
+    <!--<section class="ingredients-section"><div class="ingredients-container"><h2 class="ingredients-title">VOLCANIC SUPLEMENTOS</h2><p class="ingredients-subtitle"></p><div class="carousel-container"><div class="carousel-track" style="transform: translateX(-100%);"><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/imagemsite.png?e8ce044e1401fcb564b3a7682c532440" alt="Colheita de café" class="carousel-image"><div class="carousel-content"><h3 class="content-title">SEJA SUA MELHOR VERSÃO</h3><p class="content-text"></p></div></div><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/3.png?e8ce044e1401fcb564b3a7682c532440" alt="Ingredientes naturais" class="carousel-image"><div class="carousel-content"><h3 class="content-title">COM A FORÇA DA NATUREZA E A PRECISÃO DA CIÊNCIA</h3><p class="content-text"></p></div></div> <div class="carousel-slide"><img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" alt="Processo sustentável" class="carousel-image"><div class="carousel-content"><h3 class="content-title">PROCESSO SUSTENTÁVEL</h3><p class="content-text">
+                            Nosso compromisso com a natureza se estende desde a origem dos ingredientes até o produto final, respeitando o meio ambiente em cada etapa.
+                        </p></div></div></div><button class="carousel-button prev-button" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button><button class="carousel-button next-button" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button></div></div><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            let currentIndex = 0;
+
+            function updateSlidePosition() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlidePosition();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlidePosition();
+            });
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlidePosition();
+            }, 5000);
+        });
+    </script></section> -->
+

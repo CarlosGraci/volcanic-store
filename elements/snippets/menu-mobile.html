@@ -1,0 +1,68 @@
+<aside id="menu-mobile" class="menuMobile">
+    <div class="menuMobile-title">
+        <img class="header-image" src="{{ asset(settings.logo) }}" alt="{{ store.name }}" width="150" />
+
+        <button class="menuMobile-close" data-toggle="close" aria-label="Fechar" title="Fechar">
+            <span class="icon-exit" aria-hidden="true"></span>
+        </button>
+    </div>
+    <!-- <a href="">PRODUTOS</a> -->
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                PRODUTOS
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample"> 
+                <div class="accordion-body">
+
+
+                    <div class="row text-center lista-prod-menu">
+                    {% element 'menu-showcase' { 
+                        'carousel' : '0',
+                        'rand'     : '0',
+                        'title'    : 'Conheça nossos produtos',
+                        'type'     : 'shorts',
+                        'quantity' : '50',
+                        'category' : '15, 27, 55, 57'
+                    } %}
+                   
+                    
+                  </div>
+                    <!-- <ul>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/concentracao-e-performance-mental">Concentração e Performance</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/hipertrofia-e-saude-muscular">Hipertrofia e Saúde Muscular</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/performance-no-esporte">Performance no Esporte</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/recuperacao-muscular">Recuperação Muscular</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Suplementos Medicinais
+            </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <ul>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/concentracao-e-performance-mental"> Melhorar e Proteger a Cognição</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/hipertrofia-e-saude-muscular">Melhora do Sono</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/performance-no-esporte">Melhorar Sintomas do Autismo</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/recuperacao-muscular">Melhorar a Visão e Combater a Degeneração Macular</a></li>
+                        <li><a href="https://www.volcanicstore.com/suplementos-para-atletas/recuperacao-muscular">Alívio da Dor</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>   -->
+    </div>
+    <ul>
+        <li class="nav-item"><a class="nav-link" href="https://www.volcanicstore.com/cupons-de-desconto">Promoções</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://blog.volcanicstore.com/" target="_blank">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://www.volcanicstore.com/assinaturas">Assinatura</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://soulogenvios.com.br/tracking/VOLCANIC/" target="_blank">Acompanhe seu pedido</a></li>
+    </ul>
+   
+</aside>

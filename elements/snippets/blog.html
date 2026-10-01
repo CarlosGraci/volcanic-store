@@ -1,0 +1,203 @@
+ <style>
+
+        .accordion-container {
+            display: flex;
+            height: 400px; /* Altura fixa */
+            overflow: hidden; /* Para os cantos arredondados */
+            gap: 20px;
+        }
+
+        .panel {
+            position: relative;
+            /* Por padrão, todos os painéis são flex: 1 (fechados) */
+            flex: 1; 
+            height: 100%;
+            overflow: hidden;
+            display: flex; /* Para alinhar imagem e texto */
+            
+            /* A mágica da animação de expandir/contrair */
+            transition: flex 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .panel-image {
+            width: 100%; /* No estado fechado, a imagem ocupa 100% */
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra o espaço */
+            object-position: center;
+            filter: brightness(0.9); /* Leve escurecida na imagem */
+            
+            /* Animação da largura da imagem */
+            transition: width 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-radius: 16px;
+        }
+
+        .panel-text {
+            /* Por padrão, o texto não tem largura e está invisível */
+            width: 0;
+            opacity: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+            /* Centraliza o conteúdo de texto verticalmente */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            /* Animação da largura e opacidade */
+            transition: width 0.7s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        opacity 0.4s ease 0.3s, /* A opacidade espera a largura aumentar */
+                        padding 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        
+        /* * NOVO: ESTADO INICIAL ABERTO 
+         * Aplica o estilo de "aberto" ao painel com a classe .active
+         */
+        .panel.active {
+            flex: 6;
+        }
+        .panel.active .panel-image {
+            width: 60%;
+            filter: brightness(1);
+        }
+        .panel.active .panel-text {
+            width: 40%;
+            opacity: 1;
+            padding: 20px;
+        }
+
+        /* * O EFEITO HOVER 
+         */
+
+        /* 1. Quando o container PAI sofre hover... */
+        .accordion-container:hover .panel {
+            /* ...TODOS os painéis (incluindo o .active) voltam ao normal (fechado) */
+            flex: 1;
+        }
+        .accordion-container:hover .panel .panel-image {
+            width: 100%;
+            filter: brightness(0.9);
+        }
+        .accordion-container:hover .panel .panel-text {
+            width: 0;
+            opacity: 0;
+            padding: 0;
+        }
+
+        /* 2. ...EXCETO o painel FILHO que está sofrendo o hover */
+        .accordion-container:hover .panel:hover {
+            /* O painel com hover se expande */
+            flex: 6; 
+        }
+        .accordion-container:hover .panel:hover .panel-image {
+            width: 60%; 
+            filter: brightness(1);
+        }
+        .accordion-container:hover .panel:hover .panel-text {
+            width: 40%;
+            opacity: 1;
+            padding: 20px; 
+        }
+
+
+        /* Estilização do texto (como no seu design) */
+        .panel-text h3 {
+            margin: 0 0 10px 0;
+            font-size: 20px; /* 22px */
+            color: #000;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .panel-text p {
+            margin: 0 0 20px 0;
+            font-size: 16px; /* 14px */
+            color: #717378;
+            line-height: 1.6;
+        }
+
+        .panel-text a {
+            font-size: 0.9rem;
+            color: #000;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .accordion-container {
+                flex-direction: column;
+                height: auto;
+            }
+            .panel {
+                flex: none;
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+            }
+            .panel-image {
+                width: 100% !important;
+                height: auto;
+                margin-bottom: 15px;
+            }
+            .panel-text {
+                width: 100% !important;
+                opacity: 1 !important;
+                padding: 0px !important;
+            }
+            .blog{
+              margin: 0;
+            }
+        }
+
+    </style>
+
+
+
+<section class="blog">
+  <div class="container">
+    <h3 class="section-title" style="border:0">
+      <img src="{{ asset('img/icon-fire.svg') }}" alt="">Fique por dentro do nosso blog
+    </h3>
+    <div class="accordion-container"></div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.querySelector('.accordion-container');
+  const apiUrl = 'https://blog.volcanicstore.com/wp-json/wp/v2/posts?_embed&per_page=3';
+
+  try {
+    const response = await fetch(apiUrl);
+    const posts = await response.json();
+
+    container.innerHTML = ''; // limpa o conteúdo inicial
+
+    posts.forEach((post, index) => {
+      // Tenta pegar a imagem destacada via _embedded
+      const image =
+        post._embedded?.['wp:featuredmedia']?.[0]?.source_url ||
+        '{{ asset("img/modelo/blog1.jpg") }}';
+
+      // Cria o HTML do painel
+      const panel = document.createElement('div');
+      panel.classList.add('panel');
+      if (index === 0) panel.classList.add('active');
+
+      panel.innerHTML = `
+        <img src="${image}" alt="${post.title.rendered}" class="panel-image">
+        <div class="panel-text">
+          <h3>${post.title.rendered}</h3>
+          <p>${post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
+          <a href="${post.link}" target="_blank" rel="noopener">Ver mais</a>
+        </div>
+      `;
+
+      container.appendChild(panel);
+    });
+  } catch (error) {
+    console.error('Erro ao carregar posts:', error);
+    container.innerHTML = '<p>Não foi possível carregar os posts no momento.</p>';
+  }
+});
+</script>

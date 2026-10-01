@@ -1,0 +1,76 @@
+<header data-header="scroll" class="header">
+    <div class="header-top">
+        <div class="header-content">
+            <button class="header-button mobile" data-toggle="closed" data-target="#menu-mobile" title="Abrir Menu" aria-label="Abrir o menu">
+                <div class="button-line"></div>
+                <div class="button-line"></div>
+                <div class="button-line"></div>
+            </button>
+
+            <a class="header-logo" href="{{ store.url }}" title="Logo da loja" aria-label="logo da {{ store.name }}">
+                {% if settings.logo %}
+                    <img class="header-image" src="{{ asset(settings.logo) }}"
+                        alt="{{ store.name }}"
+                        width="222" height="55"
+                    />
+                {% endif %} 
+                {% if 'home' in pages.current %}
+                    <h1 class="header-title">{{ store.name }}</h1>
+                {% else %}
+                    <h6 class="header-title">{{ store.name }}</h6>
+                {% endif %}
+            </a>
+
+           
+
+            <nav data-menu="scroll" class="header-menu">{% element 'snippets/menu' %}</nav>
+            <div class="account-search-cart">
+                <div class="header-account">
+                    <a class="open-account" title="Minha Conta" data-bs-toggle="collapse" href="#minhaconta" role="button" aria-expanded="false" aria-controls="minhaconta">
+                        <img src="{{ asset('img/icon-user.svg') }}" alt="">
+                    </a>
+
+                    <div class="collapse" id="minhaconta">
+                        
+                    
+
+                        <div class="tray-hide logged" data-logged-user="true">
+                            <span class="account-text">Olá, <span data-customer="name"></span></span>
+                            <a class="account-link" href="{{ links.central }}" title="Minha Conta">Minha conta</a>
+                            <div class="account-access">
+                                <a class="account-link-entrar" href="{{ links.logout }}" title="Sair">Sair</a>
+                            </div>
+                        </div>
+
+                        <div class="tray-hide logged loggedout" data-logged-user="false">
+                            <span class="account-text">Olá, <b>Visitante</b></span>
+
+                            <div class="account-access">
+                                <a class="account-link" href="{{ links.login }}" title="Entrar">Entrar</a>
+                                <a class="account-link-entrar" href="{{ links.register }}" title="Cadastrar">Não tenho conta</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+    
+                <a href="" class="open-search" data-bs-toggle="collapse" data-bs-target="#box-search-header" aria-expanded="false" aria-controls="box-search-header">
+                    <img src="{{ asset('img/icon-search.svg') }}" alt="">
+                </a>
+                <div class="collapse collapse-horizontal" id="box-search-header">
+                    {% element 'snippets/header-search' %}
+                </div>
+            
+
+
+    
+                <a class="header-cart" href="{{ links.cart }}" title="Carrinho">
+                    <img src="{{ asset('img/bag.svg') }}" alt="">
+                    <span class="cart-quantity" data-cart="amount">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+</header>

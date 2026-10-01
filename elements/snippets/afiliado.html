@@ -1,0 +1,352 @@
+<style>
+    .container.is-custom-page {
+        display: none;
+    }
+
+    section.hero-interna {
+        background-image: url("{{ asset('img/banner-seja-umafiliado.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 24px 20px;
+    }
+
+    .hero-interna h1 {
+        font-size: 80px;
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 90%;
+        margin: 0;
+    }
+
+    .hero-interna h1 span {
+        color: #F10C00;
+    }
+
+    .hero-interna .container {
+        align-content: center;
+        padding: 0;
+    }
+
+    .hero-interna .content {
+        align-content: center;
+        display: grid;
+        gap: 32px;
+        margin-top: 32px
+    }
+
+    .breadcrumb-interna, .form {
+        max-width: 1220px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .breadcrumb-interna .breadcrumb-link {
+        color: #FFFFFF;
+        font-size: 12px;
+    }
+
+    .breadcrumb-interna .breadcrumb-item:not(:first-child):before {
+        color: #712420;
+    }
+
+    .form {
+        display: flex;
+        gap: 48px;
+    }
+
+    .content {
+        width: 50%;
+    }
+
+    .content h2 {
+        font-size: 24px;
+        color: #fff;
+        line-height: 100%;
+    }
+
+    .div-icone {
+        display: flex;
+        gap: 17px;
+        align-items: center;
+    }
+
+    .info-item {
+        margin-bottom: 24px;
+        max-width: 450px;
+    }
+    
+    .info-item p {
+        color: #fff;
+        line-height: 100%;
+    }
+
+    .form-rd {
+        margin-bottom: -60px;
+    }
+
+    div#rd-row-mhvuwlst {
+        display: none !important;
+    }
+
+    .pv-vantagens {
+        max-width: 1220px;
+        margin: 80px auto;
+        place-items: center;
+        display: grid;
+        gap: 24px;
+        padding: 40px 20px 0;
+    }
+
+    .pv-subtitle {
+        font-size: 48px;
+        color: #000;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .pv-subtitle span {
+        color: #F10C00;
+    }
+
+    .section-card {
+        background: linear-gradient(#FFFFFF 50%, #18181D 50%);
+    }
+
+    .card-afiliado {
+        display: flex;
+        max-width: 1220px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #0000001F;
+        border-radius: 16px;
+        padding: 40px;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .card-afiliado img {
+        max-width: 200px;
+        height: 100%;
+    }
+
+    .card-afiliado p {
+        color: #18181DB2;
+        font-size: 18px;
+        line-height: 24px;
+    }    
+
+    .conteudo {
+        background-color: #18181D;
+    }
+
+    .headings {
+        gap: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .conteudo h3 {
+        font-size: 32px;
+        line-height: 40px;
+        color: #fff;
+    }
+
+    .conteudo p {
+        color: #A9A9A9;
+        font-size: 20px;
+    }
+
+    .conteudo p span {
+        color: #F10C00;
+    }
+
+    .conteudo h4 {
+        font-size: 32px;
+        color: #A9A9A9;
+    }
+
+    .img-conteiner {
+        display: flex;
+        gap: 56px;
+        padding: 80px 20px;
+        max-width: 1220px;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    .tabela-afiliado {
+        background: linear-gradient( #18181D 50%, #FFFFFF 50%);
+        text-align: center;
+    }
+
+    .tabela-afiliado img {
+        max-width: 1220px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .cta-footer {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .cta-footer h2 {
+        font-size: 44px;
+        font-weight: 700;
+        margin-bottom: 32px;
+    }
+
+    .cta-footer a {
+        background-color: #F10C00;
+        color: #fff;
+        font-size: 18px;
+        padding: 12px 48px;
+        border-radius: 10px;
+    }
+       #rd-form-mhvuwlsz .bricks-form__input, #rd-button-mhvuwlt4.bricks--component-button{
+        border-radius: 10px !important;
+    }
+
+    @media (max-width: 767px) {
+        ol.breadcrumb-interna {
+            display: none;
+        }
+        section.hero-interna {
+            background-image: url("{{ asset('img/modelo/afiliado-hero-mobile.png') }}");
+        }
+        .hero-interna .content {
+            align-content: end;
+            padding-bottom: 50px;
+            width: 100%;
+        }
+        .hero-interna h1 {
+            font-size: 54px;
+            text-align: left;
+        }
+        .form {
+            display: block;
+        }
+        .info-item h4 {
+            font-size: 18px;
+        }
+        .card-afiliado {
+            display: block;
+            text-align: center;
+        }
+        .img-conteiner img {
+            max-width: 100%;
+        }
+        .img-conteiner {
+            display: block;
+        }
+        .headings {
+            margin-top: 56px;
+        }
+        .pv-subtitle, .cta-footer h2 {
+            font-size: 32px;
+            line-height: 100%;
+        }
+        .conteudo h3, .conteudo h4 {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<section class="hero-interna">
+    <ol class="breadcrumb-interna">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link" href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link"><span>Seja um afiliado</span></a>
+        </li>
+    </ol>
+
+    <div class="form">
+        <div class="content">
+            <h1>Seja um afiliado <span>Volcanic</span></h1>
+            <h2>Exploda seus ganhos <br>vendendo saúde de ponta!</h2>
+                <div class="info">
+                    
+
+                    <div class="info-item">
+                        <div class="div-icone"><img src="{{ asset('img/bullet-check.png') }}" alt="" width="36px"> <p>Até 20 % de cashback</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="div-icone"><img src="{{ asset('img/bullet-check.png') }}" alt=""  width="36px"> <p>Link que nunca expira com cupom embutido</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="div-icone"><img src="{{ asset('img/bullet-check.png') }}" alt=""  width="36px"> <p>Produtos inéditos com comprovação científica que convertem 3× mais</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="div-icone"><img src="{{ asset('img/bullet-check.png') }}" alt=""  width="36px"> <p>Acompanhamento das vendas em real time</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="div-icone"><img src="{{ asset('img/bullet-check.png') }}" alt=""  width="36px"> <p>Kit especial de produtos no valor de até R$ 300, que você escolhe no site</p></div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-rd">
+            <div role="main" id="fale-conosco-volcanic-suplementos-43d04dd53c650a985e53"></div><script type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script><script type="text/javascript"> new RDStationForms('fale-conosco-volcanic-suplementos-43d04dd53c650a985e53', 'UA-232895695-1').createForm();</script> 
+        </div>
+    </div>
+</section>
+
+<section class="pv-vantagens">
+    <h2 class="pv-subtitle">Por que se tornar um afiliado <span>Volcanic?</span></h2>
+    <div class="row">
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/afiliado-vantagem1.png') }}" alt="" width="100%">
+        </div>
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/afiliado-vantagem2.png') }}" alt="" width="100%">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/afiliado-vantagem3.png') }}" alt="" width="100%">
+        </div>
+        <div class="col-md">
+            <img src="{{ asset('img/modelo/afiliado-vantagem4.png') }}" alt="" width="100%">
+        </div>
+    </div>
+</section>
+
+<section class="section-card">
+    <div class="card-afiliado">
+        <img src="{{ asset('img/modelo/volcanic-logo-afiliado.png') }}" alt="" width="100%">
+        <p>Vender os suplementos da <strong>Volcanic</strong> é ter a certeza de estar oferecendo produtos formulados por médicos, nutricionistas, pesquisadores e farmacêuticos com ingredientes respaldados por rigorosos estudos científicos contendo matérias-primas de qualidade superior.</p>
+    </div>
+</section>
+
+<section class="conteudo">
+    <div class="img-conteiner">
+        <div class="imagem-bg">
+            <img src="{{ asset('img/banner-seja-umafiliado2.png') }}" alt="">
+        </div>
+        <div class="headings">
+            <h3>Veja como funciona o cadastro no programa de afiliados:</h3>
+            <p>Todo nosso processo de atendimento passa por 4 Estágios:</p>
+            <p>
+                <span>1.</span> Preencha seus dados completos no formulário e envie para a gente<br>
+                <span>2.</span> Vamos analisar suas informações e daremos um retorno<br>
+                <span>3.</span> Caso aprovado, entraremos em contato para passar todas as informações, enviar seu kit de produtos para você iniciar suas vendas como afiliado, todo material de comunicação e dicas de vendas</p>
+            <h4>Quem compara vira afiliado Volcanic!</h4>
+        </div>
+    </div>
+</section>
+
+<section class="tabela-afiliado">
+    <img src="{{ asset('img/modelo/Tabela.png') }}" alt="">
+</section>
+
+<section class="cta-footer">
+    <h2>Vamos juntos tornar o mundo mais saudável?</h2>
+    <a href="#">🔥 Quero ser um afiliado</a>
+</section>

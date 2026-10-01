@@ -1,0 +1,92 @@
+{% if settings.show_product_tag_on_listing %} 
+   
+{% set discount = product.price_offer > 0 ? (100 - (product.price_offer / product.price) * 100) : false %}
+{% set tags_count = 0 %}
+
+{% if product.new %}
+{% set tags_count = tags_count + 1 %}
+{% endif %}
+
+{% if product.featured %}
+{% set tags_count = tags_count + 1 %}
+{% endif %}
+
+{% if product.free_shipping %}
+{% set tags_count = tags_count + 1 %}
+{% endif %}
+
+{% if discount %}
+{% set tags_count = tags_count + 1 %}
+{% endif %}
+
+{% if product.additional_button and settings.enable_extra_product_tag %}
+{% set tags_count = tags_count + 1 %}
+{% endif %}
+
+{% if product.ProgressiveDiscounts or product.free_shipping or (tags_count > 4 and discount) %}
+<div class="product-tags-circle">
+
+    {% if tags_count > 4 and discount %}
+    <div class="tag-circle discount">
+        <span class="discount-value">
+            -{{ discount | number_format }}%
+        </span>
+    </div>
+    {% endif %}
+
+    {% if tags_count > 1 and product.free_shipping %}
+    <div class="tag-circle free-shipping" aria-label="Frete Grátis" title="Frete Grátis">
+        <i class="icon icon-truck-alt"></i>
+    </div>
+    {% endif %}
+
+    {% if product.ProgressiveDiscounts %}
+    <div class="tag-circle progressive-discount" aria-label="Produto com desconto Progressivo"
+        title="Produto com desconto progressivo">
+        <i class="icon icon-tags"></i>
+    </div>
+    {% endif %}
+
+</div>
+{% endif %}
+
+{% if product.new or product.featured or product.free_shipping or product.additional_button or discount %}
+<div class="product-tags {%- if settings.show_tags_product_listing_inline %} inline-tags {%- endif %} {% if product.free_shipping -%} has-free-shipping-tag {%- endif %}"
+    data-tags-count="{{ tags_count > 4 ? 4 : tags_count }}">
+
+    {% if product.new %}
+    <div class="tag new">
+        <span class="tag-text" {% if not settings.show_tags_product_listing_inline %} aria-label="Novidade" {% endif %}>
+            Novidade
+        </span>
+    </div>
+    {% endif %}
+
+
+    {% if product.free_shipping %}
+    <div class="tag free-shipping">
+        <span class="tag-text">
+            Frete Grátis
+        </span>
+    </div>
+    {% endif %}
+
+    {% if tags_count < 5 and discount %}
+    <div class="tag discount">
+        <span class="tag-text">
+            {{ discount | number_format }}% OFF
+        </span>
+    </div>
+    {% endif %}
+
+    {% if product.additional_button and settings.enable_extra_product_tag and settings.extra_product_tag %}
+    <div class="tag extra">
+        <span class="tag-text">
+            {{ settings.extra_product_tag }}
+        </span>
+    </div>
+    {% endif %}
+
+</div>
+{% endif %}
+{% endif %}

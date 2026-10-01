@@ -1,0 +1,43 @@
+<div class="product-quantity d-flex align-items-center">
+    <div class="qty">Quantidade</div>
+    <button type="button" class="button-minus-quantity" aria-label="Menos">
+       -
+    </button>
+    <input class="input" type="number" name="quant" {%- if 'product' in pages.current %} id="quant" {% endif -%}
+        max="{{ product.stock }}" value="1" required>
+    <button type="button" class="button-plus-quantity" aria-label="Mais">
+        +
+    </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.querySelector('#quant');
+  const btnMais = document.querySelector('.button-plus-quantity');
+  const btnMenos = document.querySelector('.button-minus-quantity');
+
+  if (!input || !btnMais || !btnMenos) return;
+
+  // Define valor mínimo (pode mudar conforme precisar)
+  const min = parseInt(input.getAttribute('min')) || 1;
+  const max = parseInt(input.getAttribute('max')) || 9999;
+
+  // Botão "+"
+  btnMais.addEventListener('click', function() {
+    let valor = parseInt(input.value) || 0;
+    if (valor < max) {
+      input.value = valor + 1;
+      input.dispatchEvent(new Event('change')); // dispara evento caso tenha algo ouvindo
+    }
+  });
+
+  // Botão "-"
+  btnMenos.addEventListener('click', function() {
+    let valor = parseInt(input.value) || 0;
+    if (valor > min) {
+      input.value = valor - 1;
+      input.dispatchEvent(new Event('change'));
+    }
+  });
+});
+</script>

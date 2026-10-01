@@ -1,0 +1,83 @@
+{% set slideshow = utils.is_mobile ? banners.mobile : banners.home %}
+{% if slideshow %}
+
+{% set slideConfigs = { 
+    'stopOnHover' : (settings.banner_main_stop_hover ? true : false), 
+    'timer' : 10000, 
+    'isMobile' : utils.is_mobile } 
+%}
+
+<div class="banner-slides" data-settings="{{ slideConfigs | json_encode() | escape }}" data-slides="bannes-products">
+    {% if slideshow.type == 'javascript' %}
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            {% for banner in slideshow.slides %}
+            <div class="swiper-slide banner-item">
+                {% if banner.link %}
+                <a href="{{ banner.link }}" 
+                    {% if banner.target == '_blank' %} 
+                        target="_blank" rel="noopener noreferrer" 
+                    {% endif %} 
+                    aria-label="ver mais" style="display: block; width: 100%;">
+                    <img 
+                        class="lazyload"
+                      
+                   
+                        src="{{ banner.image }}" 
+                        data-src="{{ banner.image }}" 
+                        alt="{{ banner.label }}" 
+                        loading="eager" width="100%" />
+                </a>
+                {% else %}
+                <img 
+                    class="lazyload"
+            
+                    src="{{ banner.image }}" 
+                    data-src="{{ banner.image }}" 
+                    alt="{{ banner.label }}" 
+                    loading="eager" width="100%" />
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <!-- <div class="slides-buttonPrev icon-arrow-left"></div>
+        <div class="slides-buttonNext icon-arrow-right"></div> -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    {% else %}
+
+    <div class="item">
+        {% set link = slideshow.link ? slideshow.tracked_link : null %}
+        {% if link %}
+        <a href="{{ link }}" 
+            {% if slideshow.target == '_blank' %} 
+                target="_blank" rel="noopener noreferrer" 
+            {% endif %} 
+            aria-label="ver mais">
+            <img 
+                class="lazyload"
+                width="{{ slideshow.width }}" 
+                height="{{ slideshow.height }}" 
+                src="{{ slideshow.src }}" 
+                data-src="{{ slideshow.src }}" 
+                alt="{{ slideshow.alt }}" 
+                loading="eager" width="100%" />
+        </a>
+        {% else %}
+        <img 
+            class="lazyload"
+            width="{{ slideshow.width }}" 
+            height="{{ slideshow.height }}" 
+            src="{{ slideshow.src }}" 
+            data-src="{{ slideshow.src }}" 
+            alt="{{ slideshow.alt }}" 
+            loading="eager" width="100%" />
+        {% endif %}
+    </div>
+
+    {% endif %}
+</div> 
+
+{% endif %}

@@ -1,0 +1,459 @@
+<style>
+    .container.is-custom-page {
+        display: none;
+    }
+
+    div.hero-interna {
+        background-image: url("{{ asset('img/modelo/visao.png') }}");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 24px 20px;
+    }
+
+    .hero-interna h1 {
+        font-size: 106px;
+        font-weight: 700;
+        color: #000;
+        line-height: 90%;
+        margin: 0;
+    }
+
+    .hero-interna .container {
+        align-content: center;
+        padding: 0;
+    }
+
+    .hero-interna .content {
+        max-width: 600px;
+        height: 450px;
+        align-content: center;
+        display: grid;
+        gap: 24px;
+    }
+
+    .breadcrumb-interna {
+        max-width: 1220px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .breadcrumb-interna .breadcrumb-link {
+        color: #717378;
+        font-size: 12px;
+    }
+
+    .breadcrumb-interna .breadcrumb-item:not(:first-child):before {
+        color: #712420;
+    }
+
+    .introducao {
+        max-width: 1220px;
+        margin: 80px auto;
+        padding: 0 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .icones {
+        display: flex;
+        gap: 48px;
+    }
+
+    .introducao h2 {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 56px;
+        color: #000;
+    }
+
+    .introducao p {
+        color: #18181D99;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 32px;
+    }
+
+    .conteudo {
+        max-width: 1220px;
+        margin: 80px auto 40px;
+        padding: 0 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .conteudo p {
+        color: #717378;
+        line-height: 24px;
+    }
+
+    .conteudo ol {
+        padding-left: 10px;
+        color: #717378;
+        line-height: 24px;
+        list-style-type: disc;
+    }
+
+    .bt-red {
+        background-color: #F10C00;
+        color: #fff;
+        font-weight: 500;
+        padding: 8px 24px;
+        display: block;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .img-conteiner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 24px 0;
+    }
+
+    .imagem-bg {
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    .imagem-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .headings {
+        padding: 48px;
+        display: grid;
+        gap: 32px;
+    }
+
+    .headings h2 {
+        font-size: 40px;
+        font-weight: 200;
+        line-height: 52px;
+    }
+
+    .headings h2 strong {
+        font-weight: 700;
+    }
+
+    h4 {
+        color: #717378;
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 300;
+    }
+
+    .headings h4 span {
+        color: #000;
+        font-weight: 700;
+    }
+
+    .ativos {
+        background-color: #F0F0F0;
+    }
+    
+    .ativos-conteiner {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .ativos-conteiner h3 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .box-item {
+        background-color: #18181D;
+        padding: 40px;
+        height: 100%;
+        border-radius: 10px;
+    }
+    
+    .itens h3 {
+        color: #C3B546;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 24px;
+    }
+
+    .itens h3 span {
+        font-size: 22px;
+    }
+
+    .itens p {
+        color: #FFFFFF;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .itens p b {
+        display: block;
+        margin-bottom: 24px;
+    }
+
+    .ativos-texto {    
+        max-width: 1220px;
+        padding: 48px 20px;
+        margin: 0 auto;
+        font-size: 20px;
+        color: #717378;
+        display: grid;
+        gap: 24px;
+    }
+
+    .text-center {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .text-center a {
+        color: #712420;
+        text-decoration: underline;
+    }
+
+    .cta-conteiner {
+        background: linear-gradient(#F0F0F0 50%, #FFFFFF 50%);
+        padding: 0 20px;
+    }
+
+    .cta-conteiner .conteiner {
+        max-width: 1220px;
+        background-image: url("{{ asset('img/modelo/visao-banner.png') }}");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        padding: 80px 40px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .cta-conteiner .content {
+        max-width: 485px;
+        align-content: center;
+        display: grid;
+        gap: 24px;
+    }
+    
+    .content h2 {
+        color: #F0F0F0;
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 100%;
+    }
+
+    .content p {
+        color:#FFFFFFB2;
+        font-size: 18px;
+    }
+
+    .texto-footer {
+        max-width: 1220px;
+        padding: 40px 20px;
+        margin: 0 auto;
+        
+    }
+
+    .content-footer {
+        border: 1px solid #A9A9A9;
+        border-radius: 8px;
+        padding: 24px;
+    }
+
+    @media (max-width: 767px) {
+        ol.breadcrumb-interna {
+            display: none;
+        }
+        div.hero-interna {
+            background-image: url("{{ asset('img/modelo/visao-mobile.png') }}");
+        }
+        .hero-interna .content {
+            height: 390px;
+            align-content: end;
+            padding-bottom: 50px;
+        }
+        .hero-interna h1 {
+            font-size: 54px;
+            text-align: left;
+        }
+        .introducao {
+            margin: 0 auto;
+        }
+        .icones {
+            justify-content: space-evenly;
+            gap: unset;
+        }
+        .icones img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+        .introducao h2 {
+            font-size: 32px;
+            line-height: 40px;
+        }
+        .img-conteiner {
+            display: block;
+        }
+        .imagem-bg {
+            height: 320px;
+        }
+        .headings {
+            padding: 48px 0 0;
+            gap: 16px;
+        }
+        .headings h2 {
+            font-size: 32px;
+            line-height: 44px;
+        }
+        .ativos-conteiner h3 {
+            font-size: 24px;
+        }
+        .col-md-4 {
+            margin-bottom: calc(var(--bs-gutter-x) * 1);
+        }
+        .cta-conteiner .conteiner {
+            background-image: url("{{ asset('img/modelo/visao-banner-mobile.png') }}");
+            border-radius: 0;
+        }
+        .cta-conteiner {
+            padding: 0;
+        }
+        .cta-conteiner .content {
+            max-width: 170px;
+            gap: 16px;
+        }
+        .content h2 {
+            font-size: 24px;
+        }
+        .content p {
+            display: none;
+        }
+        .content .bt-red {
+            background-color: unset;
+            color: #C3B546;
+            padding: 0;
+            text-decoration: underline;
+        }
+    }
+</style>
+{% for page in pages.custom %} 
+    {% if 'visao' in page.slug  %} 
+        {% set conteudo = page.conteudo %} 
+        {{ conteudo }}
+    {% endif %}  
+{% endfor %}
+<!-- <div>
+<div class="hero-interna">
+    <ol class="breadcrumb-interna">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link" href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link"><span>Visão</span></a>
+        </li>
+    </ol>
+    <div class="container">
+        <div class="content">
+            <h1>Visão</h1>
+        </div>
+    </div>
+</div>
+
+<div class="introducao">
+    <div class="icones">
+        <img src="{{ asset('img/modelo/visao-icone1.png') }}" alt="">
+        <img src="{{ asset('img/modelo/visao-icone2.png') }}" alt="">
+        <img src="{{ asset('img/modelo/visao-icone3.png') }}" alt="">
+        <img src="{{ asset('img/modelo/visao-icone4.png') }}" alt="">
+        <img src="{{ asset('img/modelo/visao-icone5.png') }}" alt="">
+        <img src="{{ asset('img/modelo/visao-icone6.png') }}" alt="">
+    </div>
+    <h2>Proteção ocular avançada para uma visão saudável</h2>
+
+    <p>Defesa contra a luz azul nociva e os radicais livres, o Vision® garante função visual otimizada e proteção contra danos celulares.</p>
+</div>
+
+<div class="conteudo">
+    <p>A saúde ocular exige muito mais que simples lubrificação: é preciso nutrir a retina e as células oculares com compostos de alta biodisponibilidade que atuem como escudo contra a luz azul, radicais livres e processos inflamatórios. </p>
+
+    <p>O <strong>Volcanic Vision®</strong> foi desenvolvido para oferecer essa proteção avançada, indo além das fórmulas tradicionais, com ingredientes cientificamente otimizados para combater a degeneração macular relacionada à idade (DMRI) e oferecer visão clara, nítida e saudável.</p>
+
+    <p>Seus antioxidantes poderosos auxiliam na redução de inflamações e retardam o envelhecimento precoce das células visuais, enquanto minerais essenciais asseguram o transporte e o aproveitamento da vitamina A, fundamental para a função visual ideal.</p>
+
+    <div class="img-conteiner">
+        <div class="imagem-bg">
+            <img src="{{ asset('img/modelo/visao-img.png') }}" alt="">
+        </div>
+        <div class="headings">
+            <h2>Visão clara, nítida e <strong>saudável</strong></h2>
+
+            <h4>Com doses balanceadas de cada nutriente, você mantém a saúde dos seus olhos em qualquer fase da vida.</h4>
+        </div>
+    </div>
+
+    <h4>Veja abaixo os principais ativos:</h4>
+</div>
+
+<div class="ativos">
+    <div class="ativos-conteiner">
+        <h3>Volcanic VisionPro®</h3>
+        <div class="itens">
+            <div class="row mt-1">
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Luteína (3,4 mg) e Zeaxantina (0,7 mg)</h3>
+                        <p>
+                            Primeira linha de defesa contra luz azul e radicais livres, protegem a mácula e reduzem risco de degeneração.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Vitamina C (167 mg) e Vitamina E (90 mg)</h3>
+                        <p>
+                            Antioxidantes complementares que combatem inflamação e estresse oxidativo, prevenindo danos celulares.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Zinco (27 mg) e Cobre (700 μg)</h3>
+                        <p>
+                            Cofatores que auxiliam no transporte e armazenamento de vitamina A, otimizando a saúde retinal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ativos-texto">
+        <p>O <strong>Volcanic Vision®</strong> é indicado para pessoas acima de 40 anos preocupadas em preservar a visão e prevenir doenças como DMRI e catarata, indivíduos com histórico familiar de problemas oculares, quem passa longas horas em frente a telas e atletas expostos ao sol e luz intensa.</p>
+
+        <p>Também beneficia quem já sente cansaço ocular, visão embaçada ou sensibilidade à luz, além de usuários de terapias com GLP‑1 que buscam suporte nutricional para manter a visão nítida.</p>
+
+        <p>Ingerir 1 cápsula ao dia ou conforme orientação do seu médico ou nutricionista.</p>
+    </div>
+</div>
+
+<div class="cta-conteiner">
+    <div class="conteiner">
+        <div class="content">
+            <h2>Proteção Ocular Avançada</h2>
+
+            <p>Defesa contra a luz azul nociva e os radicais livres, função visual otimizada e proteção contra danos celulares.</p>
+            <a href="/vision" class="bt-red">Comprar agora</a>
+        </div>
+    </div>
+</div>
+
+<div class="texto-footer">
+    <div class="content-footer">
+        <p>ESTE PRODUTO NÃO É UM MEDICAMENTO. NÃO EXCEDER A RECOMENDAÇÃO DIÁRIA DE CONSUMO INDICADA NA EMBALAGEM. MANTENHA FORA DO ALCANCE DE CRIANÇAS. ESTE PRODUTO NÃO DEVE SER CONSUMIDO POR GESTANTES, LACTANTES E CRIANÇAS.  </p>
+    </div>
+</div>
+</div> -->

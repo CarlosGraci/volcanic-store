@@ -1,0 +1,84 @@
+{% if type and title %}
+
+{% set quantity = quantity | default(8) %}
+{% set shorts_grid = false %}
+
+{% if category and type == 'shorts' %}
+{% set products = Products({
+'filter': ['available'],
+'limit' : quantity,
+'categories': category
+}) %}
+
+{% set shorts_grid = true %}
+
+{% elseif type == 'top_seller' %}
+
+{% set products = Products({
+'filter': ['available'],
+'order' : { 'quantity_sold': 'desc' },
+'limit' : quantity
+}) %}
+
+{% else %}
+{% if rand %}
+
+{% set products = Products({
+'filter': [type, 'available'],
+'limit' : quantity,
+'order' : 'rand'
+}) %}
+
+{% else %}
+
+{% set products = Products({
+'filter': [type, 'available'],
+'limit' : quantity
+}) %}
+
+{% endif %}
+{% endif %}
+
+
+
+    {% if products | length > 0 %}
+        <section class="section showcase">
+            <h2 class="section-title" style="border:0">
+                <img src="{{ asset('img/icon-fire.svg') }}" alt="">{{ title | default(title) }}
+            </h2>
+            <div data-slides="products-carrousel">
+                <div class="swiper">
+                    <ul class=" swiper-wrapper ">
+                        {# Primeiro: produto com ID 47 #}
+{% for item in products %}
+    {% if item.id == 51 %}
+        <li class="swiper-slide">
+            {% element 'snippets/product' {
+                product : item,
+                slide   : carousel
+            } %}
+        </li>
+    {% endif %}
+{% endfor %}
+
+{# Depois: todos os outros produtos #}
+{% for item in products %}
+    {% if item.id != 51 %}
+        <li class="swiper-slide">
+            {% element 'snippets/product' {
+                product : item,
+                slide   : carousel
+            } %}
+        </li>
+    {% endif %}
+{% endfor %}
+                    </ul>
+                </div>
+                <div class="slides-buttonPrevShowcase"><img src="{{ asset('img/seta-Left.png') }}" alt=""></div>
+                <div class="slides-buttonNextShowcase"><img src="{{ asset('img/seta-Right.png') }}" alt=""></div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endif %}
+

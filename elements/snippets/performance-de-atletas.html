@@ -1,0 +1,478 @@
+<style>
+    .container.is-custom-page {
+        display: none;
+    }
+
+    div.hero-interna {
+        background-image: url("{{ asset('img/modelo/Performance.png') }}");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 24px 20px;
+    }
+
+    .hero-interna h1 {
+        font-size: 106px;
+        font-weight: 700;
+        color: #000;
+        line-height: 90%;
+        margin: 0;
+    }
+
+    .hero-interna .container {
+        align-content: center;
+        padding: 0;
+    }
+
+    .hero-interna .content {
+        max-width: 600px;
+        height: 450px;
+        align-content: center;
+        display: grid;
+        gap: 24px;
+    }
+
+    .breadcrumb-interna {
+        max-width: 1220px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .breadcrumb-interna .breadcrumb-link {
+        color: #717378;
+        font-size: 12px;
+    }
+
+    .breadcrumb-interna .breadcrumb-item:not(:first-child):before {
+        color: #712420;
+    }
+
+    .introducao {
+        max-width: 1220px;
+        margin: 80px auto;
+        padding: 0 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .icones {
+        display: flex;
+        gap: 48px;
+    }
+
+    .introducao h2 {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 56px;
+        color: #000;
+    }
+
+    .introducao p {
+        color: #18181D99;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 32px;
+    }
+
+    .conteudo {
+        max-width: 1220px;
+        margin: 80px auto 40px;
+        padding: 0 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .conteudo p, .referencias a {
+        color: #717378;
+        line-height: 24px;
+    }
+
+    .conteudo ol, .referencias ol {
+        padding-left: 10px;
+        color: #717378;
+        line-height: 24px;
+        list-style-type: disc;
+    }
+
+    .bt-red {
+        background-color: #F10C00;
+        color: #fff;
+        font-weight: 500;
+        padding: 8px 24px;
+        display: block;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .img-conteiner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 24px 0;
+    }
+
+    .imagem-bg {
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    .imagem-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .headings {
+        padding: 48px;
+        display: grid;
+        gap: 32px;
+    }
+
+    .headings h2 {
+        font-size: 40px;
+        font-weight: 200;
+        line-height: 52px;
+    }
+
+    .headings h2 strong {
+        font-weight: 700;
+    }
+
+    h4 {
+        color: #717378;
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 300;
+    }
+
+    .headings h4 span {
+        color: #000;
+        font-weight: 700;
+    }
+
+    .ativos {
+        background-color: #F0F0F0;
+    }
+    
+    .ativos-conteiner {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .ativos-conteiner h3 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .box-item {
+        background-color: #18181D;
+        padding: 40px;
+        height: 100%;
+        border-radius: 10px;
+    }
+    
+    .itens h3 {
+        color: #F7A500;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 24px;
+    }
+
+    .itens h3 span {
+        font-size: 22px;
+    }
+
+    .itens p {
+        color: #FFFFFF;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .itens p b {
+        display: block;
+        margin-bottom: 24px;
+    }
+
+    .ativos-texto {    
+        max-width: 1220px;
+        padding: 48px 20px;
+        margin: 0 auto;
+        font-size: 20px;
+        color: #717378;
+        display: grid;
+        gap: 24px;
+    }
+
+    .text-center {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .text-center a {
+        color: #712420;
+        text-decoration: underline;
+    }
+
+    .cta-conteiner {
+        background: linear-gradient(#F0F0F0 50%, #FFFFFF 50%);
+        padding: 0 20px;
+    }
+
+    .cta-conteiner .conteiner {
+        max-width: 1220px;
+        background-image: url("{{ asset('img/modelo/performance-banner.png') }}");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        padding: 80px 40px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .cta-conteiner .content {
+        max-width: 485px;
+        align-content: center;
+        display: grid;
+        gap: 24px;
+    }
+    
+    .content h2 {
+        color: #F0F0F0;
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 100%;
+    }
+
+    .content p {
+        color:#FFFFFFB2;
+        font-size: 18px;
+    }
+
+    .referencias h4 {
+        font-size: 24px;
+        color: #18181D;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    .referencias, .texto-footer {
+        max-width: 1220px;
+        padding: 40px 20px;
+        margin: 0 auto;
+        
+    }
+
+    .content-footer {
+        border: 1px solid #A9A9A9;
+        border-radius: 8px;
+        padding: 24px;
+    }
+
+    @media (max-width: 767px) {
+        ol.breadcrumb-interna {
+            display: none;
+        }
+        div.hero-interna {
+            background-image: url("{{ asset('img/modelo/performance-mobile.png') }}");
+        }
+        .hero-interna .content {
+            height: 390px;
+            align-content: end;
+            padding-bottom: 50px;
+        }
+        .hero-interna h1 {
+            font-size: 52px;
+            text-align: left;
+        }
+        .introducao {
+            margin: 0 auto;
+        }
+        .icones {
+            justify-content: space-evenly;
+            gap: unset;
+        }
+        .icones img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+        .introducao h2 {
+            font-size: 32px;
+            line-height: 40px;
+        }
+        .img-conteiner {
+            display: block;
+        }
+        .imagem-bg {
+            height: 320px;
+        }
+        .headings {
+            padding: 48px 0 0;
+            gap: 16px;
+        }
+        .headings h2 {
+            font-size: 32px;
+            line-height: 44px;
+        }
+        .ativos-conteiner h3 {
+            font-size: 24px;
+        }
+        .col-md-4 {
+            margin-bottom: calc(var(--bs-gutter-x) * 1);
+        }
+        .cta-conteiner .conteiner {
+            background-image: url("{{ asset('img/modelo/performance-banner-mobile.png') }}");
+            border-radius: 0;
+        }
+        .cta-conteiner {
+            padding: 0;
+        }
+        .cta-conteiner .content {
+            max-width: 170px;
+            gap: 16px;
+        }
+        .content h2 {
+            font-size: 24px;
+        }
+        .content p {
+            display: none;
+        }
+        .content .bt-red {
+            background-color: unset;
+            color: #F7A500;
+            padding: 0;
+            text-decoration: underline;
+        }
+    }
+</style>
+{% for page in pages.custom %} 
+    {% if 'performance-de-atletas' in page.slug  %} 
+        {% set conteudo = page.conteudo %} 
+        {{ conteudo }}
+    {% endif %}  
+{% endfor %}
+<!-- <div>
+<div class="hero-interna">
+    <ol class="breadcrumb-interna">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link" href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link"><span>Performance</span></a>
+        </li>
+    </ol>
+    <div class="container">
+        <div class="content">
+            <h1>Performance</h1>
+        </div>
+    </div>
+</div>
+
+<div class="introducao">
+    <div class="icones">
+        <img src="{{ asset('img/modelo/performance-icone1.png') }}" alt="">
+        <img src="{{ asset('img/modelo/performance-icone2.png') }}" alt="">
+        <img src="{{ asset('img/modelo/performance-icone3.png') }}" alt="">
+        <img src="{{ asset('img/modelo/performance-icone4.png') }}" alt="">
+        <img src="{{ asset('img/modelo/performance-icone5.png') }}" alt="">
+        <img src="{{ asset('img/modelo/performance-icone6.png') }}" alt="">
+    </div>
+    <h2>Vá mais rápido. Vá mais longe. Treine mais forte.</h2>
+
+    <p>O suplemento de performance que explode seus limites físicos, com respaldo científico.</p>
+</div>
+
+<div class="conteudo">
+    <p>A performance física vai muito além de força: ela envolve a capacidade de sustentar esforço em corridas, treinos de alta intensidade e esportes de longa duração. Para atingir o seu melhor, é necessário não apenas energia imediata, mas também recuperação rápida e controle da fadiga muscular. </p>
+
+    <p>O <strong>Volcanic MaxResist®</strong> foi desenvolvido exatamente para isso: um suplemento inovador, inédito na América Latina, que combina ciência avançada e tecnologia de ponta para que você ultrapasse seus limites e alcance resultados consistentes.</p>
+
+    <p>O grande diferencial do MaxResist® é o PeptEndure®, um complexo patenteado de proteínas de peptídeos bioativos de colágeno que, em estudos clínicos, demonstrou elevar em até 14 % a velocidade de atletas e permitir maior distância percorrida em treinos de longa duração. </p>
+
+    <p>Além disso, sua fórmula foi projetada para otimizar o metabolismo energético, reduzir a sensação de fadiga e melhorar a composição corporal, contribuindo para ganho de massa magra de forma segura e natural. </p>
+    
+    <p>Para atingir esse desempenho superior, basta diluir 20 g (quatro medidas dosadoras cheias) do pó em 200 mL de água, misturar bem e manter a bebida na geladeira.</p>
+
+    <div class="img-conteiner">
+        <div class="imagem-bg">
+            <img src="{{ asset('img/modelo/performance-img.png') }}" alt="">
+        </div>
+        <div class="headings">
+            <h2>O que faz o <strong>Volcanic MaxResist®</strong> ser único?</h2>
+
+            <h4>Um suplemento inovador e inédito na América Latina desenvolvido para atletas profissionais e amadores que buscam ultrapassar barreiras e impulsionar o desempenho em esportes de resistência, endurance e treinos de alta intensidade.</h4>
+        </div>
+    </div>
+
+    <h4>Cada ingrediente foi selecionado com base em estudos clínicos que demonstram benefícios diretos na performance:</h4>
+</div>
+
+<div class="ativos">
+    <div class="ativos-conteiner">
+        <h3>Volcanic MaxResist®</h3>
+        <div class="itens">
+            <div class="row mt-1">
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>PeptEndure® (9,9 g)</h3>
+                        <p>
+                            Proteína de peptídeos bioativos de colágeno que eleva a resistência muscular, acelera a recuperação e reduz a fadiga por meio de adaptações musculares sustentáveis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Beta‑Alanina (1 600 mg)</h3>
+                        <p>
+                            Aumenta os níveis de carnosina intramuscular, retardando o acúmulo de ácido láctico e prolongando o desempenho em treinos intensos.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Cafeína (100 mg)</h3>
+                        <p>
+                            Estimulante natural que melhora o foco, acelera o metabolismo e mantém a energia elevada por mais tempo, reduzindo a percepção de esforço.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ativos-texto">
+        <p>O Volcanic MaxResist® é perfeito para corredores, ciclistas, nadadores e praticantes de esportes coletivos ou de resistência, bem como para qualquer entusiasta de treinos de alta intensidade que deseja ir mais rápido, mais longe e se recuperar em menos tempo. </p>
+
+        <p>Experimente a revolução na performance física e supere seus próprios recordes com a eficácia comprovada do MaxResist®.</p>
+    </div>
+</div>
+
+<div class="cta-conteiner">
+    <div class="conteiner">
+        <div class="content">
+            <h2>Alcance o máximo da Performance Física</h2>
+
+            <p>O suplemento de performance que explode seus limites físicos, com respaldo científico.</p>
+            <a href="/maxresist" class="bt-red">Comprar agora</a>
+        </div>
+    </div>
+</div>
+
+<div class="referencias">
+    <h4>Referências Bibliográficas:</h4>
+    <ol>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/37935999/" target="_blank">Jerger S, Jendricke P, Centner C, Bischof K, Kohl J, Keller S, Gollhofer A, König D. Effects of Specific Bioactive Collagen Peptides in Combination with Concurrent Training on Running Performance and Indicators of Endurance Capacity in Men: A Randomized Controlled Trial. Sports Med Open. 2023 Nov 7;9(1):103. doi: 10.1186/s40798-023-00654-9. PMID: 37935999; PMCID: PMC10630299.</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/33330579/"
+            target="_blank">Jendricke P, Kohl J, Centner C, Gollhofer A, König D. Influence of Specific Collagen Peptides and Concurrent Training on Cardiometabolic Parameters and Performance Indices in Women: A Randomized Controlled Trial. Front Nutr. 2020 Nov 19;7:580918. doi: 10.3389/fnut.2020.580918. PMID: 33330579; PMCID: PMC7710701.</a></li>
+        <li><a href="https://www.gelita.com/en/products-brands/collagen-peptides" target="_blank">www.gelita.com/en/products/collagen-peptides/peptendure</a></li>
+        <li><a>PeptENDURE® é uma marca registrada da GELITA AG.</a></li>
+    </ol>
+</div>
+<div class="texto-footer">
+    <div class="content-footer">
+        <p>ESTE PRODUTO NÃO É UM MEDICAMENTO. NÃO EXCEDER A RECOMENDAÇÃO DIÁRIA DE CONSUMO INDICADA NA EMBALAGEM. MANTENHA FORA DO ALCANCE DE CRIANÇAS. ESTE PRODUTO NÃO DEVE SER CONSUMIDO POR GESTANTES, LACTANTES E CRIANÇAS. A AGÊNCIA NACIONAL DE VIGILÂNCIA SANITÁRIA (ANVISA) ESTABELECE O CONSUMO DE <strong>ATÉ 400 MG DE CAFEÍNA POR DIA</strong> COMO UM LIMITE SEGURO PARA A MAIORIA DOS ADULTOS SAUDÁVEIS.</p>
+    </div>
+</div>
+</div> -->

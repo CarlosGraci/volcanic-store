@@ -1,0 +1,472 @@
+<style>
+    .container.is-custom-page {
+        display: none;
+    }
+
+    div.hero-interna {
+        background-image: url("{{ asset('img/modelo/foco.png') }}");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 24px 20px;
+    }
+
+    .hero-interna h1 {
+        font-size: 106px;
+        font-weight: 700;
+        color: #000;
+        line-height: 90%;
+        margin: 0;
+    }
+
+    .hero-interna .container {
+        align-content: center;
+        padding: 0;
+    }
+
+    .hero-interna .content {
+        max-width: 600px;
+        height: 450px;
+        align-content: center;
+        display: grid;
+        gap: 24px;
+    }
+
+    .breadcrumb-interna {
+        max-width: 1220px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .breadcrumb-interna .breadcrumb-link {
+        color: #717378;
+        font-size: 12px;
+    }
+
+    .breadcrumb-interna .breadcrumb-item:not(:first-child):before {
+        color: #712420;
+    }
+
+    .introducao {
+        max-width: 1220px;
+        margin: 80px auto;
+        padding: 0 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .icones {
+        display: flex;
+        gap: 48px;
+    }
+
+    .introducao h2 {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 56px;
+        color: #000;
+    }
+
+    .introducao p {
+        color: #18181D99;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 32px;
+    }
+
+    .conteudo {
+        max-width: 1220px;
+        margin: 80px auto 40px;
+        padding: 0 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .conteudo p {
+        color: #717378;
+        line-height: 24px;
+    }
+
+    .bt-red {
+        background-color: #F10C00;
+        color: #fff;
+        font-weight: 500;
+        padding: 8px 24px;
+        display: block;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .img-conteiner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 24px 0;
+    }
+
+    .imagem-bg {
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    .imagem-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .headings {
+        padding: 48px;
+        display: grid;
+        gap: 32px;
+    }
+
+    .headings h2 {
+        font-size: 40px;
+        font-weight: 200;
+        line-height: 52px;
+    }
+
+    .headings h2 strong {
+        font-weight: 700;
+    }
+
+    h4 {
+        color: #717378;
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 300;
+    }
+
+    .headings h4 span {
+        color: #000;
+        font-weight: 700;
+    }
+
+    .ativos {
+        background-color: #F0F0F0;
+    }
+    
+    .ativos-conteiner {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: grid;
+        gap: 24px;
+    }
+
+    .ativos-conteiner h3 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .box-item {
+        background-color: #18181D;
+        padding: 40px;
+        height: 100%;
+        border-radius: 10px;
+    }
+    
+    .itens h3 {
+        color: #85BC66;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 24px;
+    }
+
+    .itens h3 span {
+        font-size: 22px;
+    }
+
+    .itens p {
+        color: #FFFFFF;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .itens p b {
+        display: block;
+        margin-bottom: 24px;
+    }
+
+    .ativos-texto {    
+        max-width: 1220px;
+        padding: 48px 20px;
+        margin: 0 auto;
+        font-size: 20px;
+        color: #717378;
+        display: grid;
+        gap: 24px;
+    }
+
+    .text-center {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .text-center a {
+        color: #712420;
+        text-decoration: underline;
+    }
+
+    .cta-conteiner {
+        background: linear-gradient(#F0F0F0 50%, #FFFFFF 50%);
+        padding: 0 20px;
+    }
+
+    .cta-conteiner .conteiner {
+        max-width: 1220px;
+        background-image: url("{{ asset('img/modelo/foco-banner.png') }}");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        padding: 80px 40px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .cta-conteiner .content {
+        max-width: 485px;
+        align-content: center;
+        display: grid;
+        gap: 24px;
+    }
+    
+    .content h2 {
+        color: #F0F0F0;
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 100%;
+    }
+
+    .content p {
+        color:#FFFFFFB2;
+        font-size: 18px;
+    }
+
+    .texto-footer {
+        max-width: 1220px;
+        padding: 40px 20px;
+        margin: 0 auto;
+        
+    }
+
+    .content-footer {
+        border: 1px solid #A9A9A9;
+        border-radius: 8px;
+        padding: 24px;
+    }
+
+    @media (max-width: 767px) {
+        ol.breadcrumb-interna {
+            display: none;
+        }
+        div.hero-interna {
+            background-image: url("{{ asset('img/modelo/foco-mobile.png') }}");
+        }
+        .hero-interna .content {
+            height: 390px;
+            align-content: end;
+            padding-bottom: 50px;
+        }
+        .hero-interna h1 {
+            font-size: 48px;
+        }
+        .introducao {
+            margin: 0 auto;
+        }
+        .icones {
+            justify-content: space-evenly;
+            gap: unset;
+        }
+        .icones img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+        .introducao h2 {
+            font-size: 32px;
+            line-height: 40px;
+        }
+        .img-conteiner {
+            display: block;
+        }
+        .imagem-bg {
+            height: 320px;
+        }
+        .headings {
+            padding: 48px 0 0;
+            gap: 16px;
+        }
+        .headings h2 {
+            font-size: 32px;
+            line-height: 44px;
+        }
+        .ativos-conteiner h3 {
+            font-size: 24px;
+        }
+        .col-md-4 {
+            margin-bottom: calc(var(--bs-gutter-x) * 1);
+        }
+        .cta-conteiner .conteiner {
+            background-image: url("{{ asset('img/modelo/foco-banner-mobile.png') }}");
+            border-radius: 0;
+        }
+        .cta-conteiner {
+            padding: 0;
+        }
+        .cta-conteiner .content {
+            max-width: 170px;
+            gap: 16px;
+        }
+        .content h2 {
+            font-size: 24px;
+        }
+        .content p {
+            display: none;
+        }
+        .content .bt-red {
+            background-color: unset;
+            color: #85BC66;
+            padding: 0;
+            text-decoration: underline;
+        }
+    }
+</style>
+{% for page in pages.custom %} 
+    {% if 'foco-e-concentracao' in page.slug  %} 
+        {% set conteudo = page.conteudo %} 
+        {{ conteudo }}
+    {% endif %}  
+{% endfor %}
+<!-- <div>  
+<div class="hero-interna">
+    <ol class="breadcrumb-interna">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link" href="/"><span>Home</span></a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link"><span>Foco e Concentração</span></a>
+        </li>
+    </ol>
+    <div class="container">
+        <div class="content">
+            <h1>Foco e Concentração</h1>
+        </div>
+    </div>
+</div>
+
+<div class="introducao">
+    <div class="icones">
+        <img src="{{ asset('img/modelo/foco-icone1.png') }}" alt="">
+        <img src="{{ asset('img/modelo/foco-icone2.png') }}" alt="">
+        <img src="{{ asset('img/modelo/foco-icone3.png') }}" alt="">
+        <img src="{{ asset('img/modelo/foco-icone4.png') }}" alt="">
+        <img src="{{ asset('img/modelo/foco-icone5.png') }}" alt="">
+        <img src="{{ asset('img/modelo/foco-icone6.png') }}" alt="">
+    </div>
+    <h2>Concentre-se mais. Pense rápido. Supere limites mentais.</h2>
+    <p>Mantém a atenção por longos períodos, acelera o raciocínio e protege a saúde ocular, reduzindo a fadiga causada pela exposição prolongada a telas.</p>
+</div>
+
+<div class="conteudo">
+    <p>Foco e concentração são as habilidades mentais que nos permitem direcionar a atenção a uma tarefa específica, filtrando distrações internas (pensamentos dispersos) e externas (ruídos, estímulos visuais).</p>
+
+    <p>No mundo acelerado de hoje, com múltiplas demandas diárias, manter a mente alinhada a um objetivo por períodos prolongados tornou-se cada vez mais desafiador. Dificuldades de concentração podem se manifestar como: procrastinação constante, facilidade em dispersar atenção, sensação de mente dispersa e redução na produtividade.</p>
+
+    <p>Manter foco e concentração é essencial para estudos, trabalho, desempenho esportivo e atividades cotidianas que exigem raciocínio rápido e manutenção de atenção prolongada.</p>
+
+    <p>Um suplemento formulado para o cérebro pode ajudar a restaurar o equilíbrio neuroquímico, melhorar a sinalização sináptica e fornecer energia mental consistente, favorecendo a concentração e o desempenho cognitivo.</p>
+
+    <p>O <strong>Volcanic BrainSpeed®</strong> é um suplemento natural avançado, especialmente desenvolvido para promover foco extremo, clareza mental e resistência cognitiva.</p>
+
+    <div class="img-conteiner">
+        <div class="imagem-bg">
+            <img src="{{ asset('img/modelo/foco-img.png') }}" alt="">
+        </div>
+        <div class="headings">
+            <h2>Para quem busca otimizar a <strong>produtividade</strong> intelectual</h2>
+
+            <h4>Cada ingrediente do <strong>Volcanic BrainSpeed®</strong> foi selecionado com base em estudos clínicos que demonstram benefícios diretos na promoção de foco, clareza mental e proteção neurológica.</h4>
+        </div>
+    </div>
+
+    <h4>Veja abaixo os principais ativos:</h4>
+</div>
+
+<div class="ativos">
+    <div class="ativos-conteiner">
+        <h3>Volcanic BrainSpeed®</h3>
+        <div class="itens">
+            <div class="row mt-1">
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Neumentix® (Polifenóis Bioativos de Hortelã) - 65mg</h3>
+                        <p>
+                            Melhora a clareza mental, acelera o tempo de reação e aumenta a fluidez de raciocínio. Possui ação neuroprotetora que auxilia na manutenção de sinapses saudáveis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Taurina - 700mg</h3>
+                        <p>
+                            Promove plasticidade sináptica, aprimorando a capacidade de adaptação do cérebro a novas demandas. Contribui para a regulação de neurotransmissores que sustentam o estado de alerta sem causar hiperestimulação.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Cafeína - 75mg</h3>
+                        <p>
+                            Estimulante leve que aumenta a atenção e reduz a percepção de esforço mental. Proporciona energia consistente para o cérebro, sem picos bruscos que geram “crash” posterior.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="itens">
+            <div class="row mt-1">
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Guaraná - 0.6g</h3>
+                        <p>
+                            Fonte natural de cafeína de liberação gradual, mantendo o foco por mais tempo. Auxilia na disposição mental, reduzindo a fadiga durante atividades cognitivas prolongadas.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-item">
+                        <h3>Astaxantina - 3mg  e Luteína - 6mg</h3>
+                        <p>
+                            Antioxidantes potentes que protegem células cerebrais e retinais contra danos oxidativos. Reduzem a fadiga ocular decorrente de horas em frente a telas, preservando a atenção visual.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ativos-texto">
+        <p>Indicado para qualquer indivíduo que busca otimizar a produtividade intelectual, o Volcanic BrainSpeed® traz benefícios como: foco extremo e sustentado, clareza mental e raciocínio ágil, proteção ocular e redução de fadiga visual, energia cognitiva sem picos abruptos, resistência mental para longos períodos de estudo ou trabalho e neuroproteção a curto e longo prazo.</p>
+
+        <p><strong>Neumentix®  é uma marca registrada da Kemin </strong></p>
+    </div>
+</div>
+
+<div class="cta-conteiner">
+    <div class="conteiner">
+        <div class="content">
+            <h2>Concentre-se mais e supere limites mentais</h2>
+
+            <p>Mantém a atenção por longos períodos, acelera o raciocínio e protege a saúde ocular, reduzindo a fadiga causada pela exposição prolongada a telas.</p>
+            <a href="/brainspeed" class="bt-red">Comprar agora</a>
+        </div>
+    </div>
+</div>
+
+<div class="texto-footer">
+    <div class="content-footer">
+        <p>ESTE PRODUTO NÃO É UM MEDICAMENTO. NÃO EXCEDER A RECOMENDAÇÃO DIÁRIA DE CONSUMO INDICADA NA EMBALAGEM. MANTENHA FORA DO ALCANCE DE CRIANÇAS. ESTE PRODUTO NÃO DEVE SER CONSUMIDO POR GESTANTES, LACTANTES E CRIANÇAS. A AGÊNCIA NACIONAL DE VIGILÂNCIA SANITÁRIA (ANVISA) ESTABELECE O CONSUMO DE <strong>É 400 MG DE CAFEÍNA POR DIA</strong> COMO UM LIMITE SEGURO PARA A MAIORIA DOS ADULTOS SAUDÁVEIS.</p>
+    </div>
+</div>
+ </div> -->

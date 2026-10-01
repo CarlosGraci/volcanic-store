@@ -1,0 +1,44 @@
+{% if paginate.params.pageCount > 1 %}
+<ul class="pagination">
+    {{ paginate.first( '<span class="pagination-text">Primeira página</span
+    >', { 
+        'escape' : false, 
+        'tag' : 'li', 
+        'title' : 'Primeira página', 
+        'class' : 'page first u-desktop' 
+    }) }} 
+
+    {% if paginate.hasPrev %} 
+        {{ paginate.prev('<span class="pagination-prev icon-arrow-simple"></span>', {   
+            'escape' : false, 
+            'tag' : 'li', 
+            'title' : 'Página anterior', 
+            'class' : 'page prev' 
+        }) }} 
+    {% endif %} 
+
+    {{ paginate.numbers({ 
+        'modulus' : 3, 
+        'separator' : false, 
+        'tag' : 'li', 
+        'class' : 'page', 
+        'currentClass' : 'current',
+    }) }} 
+    
+    {% if paginate.hasNext %} 
+        {{ paginate.next('<span class="pagination-next icon-arrow-simple"></span>', { 
+            'escape' : false, 
+            'tag' : 'li', 
+            'title' : 'Próxima anterior', 
+            'class' : 'page next' 
+        }) }} 
+    {% endif %}
+
+    {{ paginate.last('<span class="pagination-text">Última página</span>',{ 
+        'escape' : false, 
+        'tag' : 'li', 
+        'title' : 'Última página', 
+        'class' : 'page last u-desktop' 
+    }) }}
+</ul>
+{% endif %}

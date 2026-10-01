@@ -1,0 +1,48 @@
+
+
+    {% set quantity = quantity | default(8) %}
+    {% set shorts_grid = false %}
+
+    {% set products = Products({
+        'filter': ['available'],
+        'limit' : quantity,
+        'order': {'name': 'asc'},
+        'categories': [15, 27, 55, 57]
+    }) %}
+
+    {% if products | length > 0 %}
+
+        {% for item in products %}
+            <div class="col-md-2 col-6 mega-product">
+                {% element 'snippets/product' {
+                    product : item,
+                    slide   : false
+                } %}
+            </div>
+        {% endfor %}
+    
+    {% endif %}
+
+
+    {% set products2 = Products({
+        'filter': ['available'],
+        'limit' : quantity,
+        'order': {'name': 'asc'},
+        'categories': 61
+    }) %}
+
+    {% if products2 | length > 0 %}
+
+        {% for item in products2 %}
+            <div class="col-md-2 col-6 mega-product">
+                {% element 'snippets/product' {
+                    product : item,
+                    slide   : false
+                } %}
+            </div>
+        {% endfor %}
+    
+    {% endif %}
+
+
+
