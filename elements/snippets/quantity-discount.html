@@ -200,4 +200,67 @@
         render(current ? (parseInt(current.value, 10) || 1) : 1);
     });
     </script>
+
+    {#
+        Limite de quantidade na assinatura
+        O app de Assinatura da Tray soma o desconto da assinatura com o desconto progressivo.
+        Para evitar o acúmulo, ao clicar em "Assinar produto" com quantidade acima do limite,
+        a quantidade volta para o limite e o cliente vê um aviso antes de seguir.
+        Altere SUBSCRIPTION_MAX_QTY para 2 se quiserem permitir assinatura de 2 unidades
+        (nesse caso o assinante ainda recebe os 5% do progressivo).
+    #}
+    <script>
+    (function () {
+        var SUBSCRIPTION_MAX_QTY = 1;
+        var BUTTON_TEXT = /assinar\s+produto/i;
+
+        function quantityInputs() {
+            return document.querySelectorAll('#form_comprar input[name="quant"], [data-buy-product="box"] input#quant');
+        }
+
+        function currentQty() {
+            var input = quantityInputs()[0];
+            return input ? (parseInt(input.value, 10) || 1) : 1;
+        }
+
+        function findSubscribeButton(el) {
+            while (el && el !== document.body) {
+                if (/^(BUTTON|A|INPUT)$/.test(el.tagName) || el.getAttribute('role') === 'button') {
+                    var label = el.value || el.textContent || '';
+                    return BUTTON_TEXT.test(label) ? el : null;
+                }
+                el = el.parentElement;
+            }
+            return null;
+        }
+
+        function showNotice(button) {
+            var notice = document.getElementById('qd-subscription-notice');
+            if (!notice) {
+                notice = document.createElement('p');
+                notice.id = 'qd-subscription-notice';
+                notice.style.cssText = 'font-size:13px;color:#E0001B;text-align:center;margin:10px 0 0;line-height:1.4;';
+                button.parentNode.insertBefore(notice, button.nextSibling);
+            }
+            notice.textContent = 'A assinatura é limitada a ' + SUBSCRIPTION_MAX_QTY +
+                (SUBSCRIPTION_MAX_QTY > 1 ? ' unidades' : ' unidade') +
+                ' por produto e não acumula com o desconto progressivo. Ajustamos a quantidade; clique de novo para assinar.';
+        }
+
+        /* Fase de captura: roda antes do app da assinatura ler a quantidade */
+        document.addEventListener('click', function (event) {
+            var button = findSubscribeButton(event.target);
+            if (!button || currentQty() <= SUBSCRIPTION_MAX_QTY) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            quantityInputs().forEach(function (input) {
+                input.value = SUBSCRIPTION_MAX_QTY;
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            showNotice(button);
+        }, true);
+    })();
+    </script>
 {% endif %}
