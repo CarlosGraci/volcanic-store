@@ -6,14 +6,19 @@
       os cards apenas mostram os valores e ajustam a quantidade.
     - Base do cálculo: Preço promocional quando preenchido; senão, preço normal.
     - As faixas (quantidade e %) são lidas do nome/descrição das regras cadastradas.
-      Se nenhuma faixa for reconhecida, usa as faixas padrão abaixo (DEFAULT_TIERS),
-      que precisam ser iguais às cadastradas na Tray.
+      Entende "Compre 2 unidades e ganhe 5%", "4 ou mais unidades", "acima de 3",
+      "a partir de 4" e "Pague 1 leve 2" (= 50% em 2 unidades).
+    - Com mais de uma regra, cada quantidade mostra o MAIOR desconto que vale para ela,
+      como a Tray faz no carrinho. Faixas que não melhoram o desconto anterior são omitidas.
+    - Se nenhuma regra for reconhecida, os cards NÃO aparecem (fica o texto da Tray),
+      para nunca mostrar um preço diferente do cobrado.
+    - Para um caso especial, use OVERRIDES no script (por ID do produto).
     - Produtos que ainda usam a variação "Compra Combo" continuam com os cards antigos.
 #}
 {% if ProgressiveDiscounts %}
     {% set qd_base_price = product.price_offer > 0 ? product.price_offer : product.price %}
 
-    <div class="qd" id="quantity-discount" data-base-price="{{ qd_base_price }}" data-list-price="{{ product.price }}" data-stock="{{ product.stock }}" hidden>
+    <div class="qd" id="quantity-discount" data-product-id="{{ product.id }}" data-base-price="{{ qd_base_price }}" data-list-price="{{ product.price }}" data-stock="{{ product.stock }}" hidden>
         <p class="qd-title">Leve mais e pague menos</p>
         <div class="qd-cards" role="radiogroup" aria-label="Escolha a quantidade"></div>
         <ul class="qd-rules" hidden>
@@ -57,8 +62,12 @@
         });
         if (usesComboVariant) { box.remove(); return; }
 
-        /* Faixas padrão: precisam ser iguais às cadastradas no Desconto Progressivo da Tray */
-        var DEFAULT_TIERS = [ { qty: 2, off: 5 }, { qty: 3, off: 10 }, { qty: 4, off: 15 } ];
+        /*
+            Faixas fixas por produto (opcional). Use só se o texto da regra na Tray não for reconhecido.
+            Chave = ID do produto na Tray. Os valores precisam ser iguais aos cadastrados na Tray.
+            Exemplo: '07': [ { qty: 2, off: 50 } ]
+        */
+        var OVERRIDES = {};
 
         function toNumber(value) {
             var s = String(value || '').trim();
@@ -76,8 +85,22 @@
             var tiers = {};
             box.querySelectorAll('.qd-rules li').forEach(function (li) {
                 var text = ((li.dataset.name || '') + ' ' + li.textContent).replace(/\s+/g, ' ');
-                var pct = text.match(/(\d+(?:[.,]\d+)?)\s*%/);
+                var o = 0;
                 var q = 0;
+
+                /* "Pague 1 leve 2" / "Leve 3 pague 2" */
+                var payTake = text.match(/pague\s+(\d+)\s*,?\s*(?:e\s+)?leve\s+(\d+)/i);
+                var takePay = text.match(/leve\s+(\d+)\s*,?\s*(?:e\s+)?pague\s+(\d+)/i);
+                if (payTake || takePay) {
+                    var pay = parseInt(payTake ? payTake[1] : takePay[2], 10);
+                    var take = parseInt(payTake ? payTake[2] : takePay[1], 10);
+                    if (take > pay && pay > 0) {
+                        addTier(take, Math.round((1 - pay / take) * 10000) / 100);
+                        return;
+                    }
+                }
+
+                var pct = text.match(/(\d+(?:[.,]\d+)?)\s*%/);
                 var above = text.match(/(?:acima|mais)\s+(?:de|do|da)\s+(\d+)/i);          /* "acima de 3" = 4 ou mais */
                 var from = text.match(/a\s+partir\s+(?:de|do|da)\s+(\d+)/i);               /* "a partir de 4" = 4 */
                 var qty = text.match(/(\d+)\s*(?:ou\s+mais\s+)?(?:unidades?|un\b|unid|itens?|produtos?|pe[çc]as?|frascos?|potes?)/i);  /* "4 ou mais unidades" = 4 */
@@ -86,13 +109,25 @@
                 else if (from) q = parseInt(from[1], 10);
                 else if (qty) q = parseInt(qty[1], 10);
                 else if (buy) q = parseInt(buy[1], 10);
-                if (pct && q) {
-                    var o = toNumber(pct[1]);
-                    if (q > 1 && o > 0 && o < 100) tiers[q] = o;
-                }
+                if (pct && q) addTier(q, toNumber(pct[1]));
             });
+
+            function addTier(qty, off) {
+                if (qty > 1 && off > 0 && off < 100) tiers[qty] = Math.max(tiers[qty] || 0, off);
+            }
+
             return Object.keys(tiers).map(function (q) { return { qty: +q, off: tiers[q] }; })
                 .sort(function (a, b) { return a.qty - b.qty; });
+        }
+
+        /* A Tray aplica só o maior desconto: cada faixa vale o maior % entre as regras com quantidade menor ou igual */
+        function effectiveTiers(list) {
+            var out = [];
+            var bestOff = 0;
+            list.forEach(function (t) {
+                if (t.off > bestOff) { bestOff = t.off; out.push({ qty: t.qty, off: t.off }); }
+            });
+            return out;
         }
 
         var basePrice = toNumber(box.dataset.basePrice);
@@ -100,12 +135,9 @@
         var stock = parseInt(box.dataset.stock, 10) || 0;
         if (basePrice <= 0) { box.remove(); return; }
 
-        var tiers = parseTiers();
-        var parsedTiers = tiers.slice();
-        if (!tiers.length) {
-            console.warn('[Volcanic] Faixas de desconto não reconhecidas na descrição da regra da Tray. Usando faixas padrão.');
-            tiers = DEFAULT_TIERS;
-        }
+        var productId = String(box.dataset.productId || '');
+        var parsedTiers = parseTiers();
+        var tiers = effectiveTiers(OVERRIDES[productId] ? OVERRIDES[productId].slice().sort(function (a, b) { return a.qty - b.qty; }) : parsedTiers);
         var allTiers = tiers.slice();
         tiers = [ { qty: 1, off: 0 } ].concat(tiers).filter(function (t) { return !stock || t.qty <= stock; });
 
@@ -114,18 +146,23 @@
             var dbg = document.createElement('pre');
             dbg.style.cssText = 'white-space:pre-wrap;font-size:12px;background:#f5f5f5;border:1px dashed #999;padding:10px;margin:10px 0;';
             dbg.textContent = 'DIAGNOSTICO DESCONTO PROGRESSIVO\n' +
+                'Produto ID: ' + productId + (OVERRIDES[productId] ? ' (usando OVERRIDES)' : '') + '\n' +
                 'Preco base: ' + basePrice + ' | Preco cheio: ' + listPrice + ' | Estoque: ' + stock + '\n\n' +
                 'Regras recebidas da Tray:\n' +
                 Array.prototype.map.call(box.querySelectorAll('.qd-rules li'), function (li, i) {
                     return (i + 1) + ') nome: "' + (li.dataset.name || '') + '" | descricao: "' + li.textContent.trim() + '"';
                 }).join('\n') + '\n\n' +
-                'Faixas reconhecidas no texto: ' + (parsedTiers.length ? parsedTiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') : 'nenhuma (usando padrao)') + '\n' +
+                'Faixas reconhecidas no texto: ' + (parsedTiers.length ? parsedTiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') : 'nenhuma - cards ocultos') + '\n' +
                 'Faixas exibidas: ' + tiers.map(function (t) { return t.qty + 'un=' + t.off + '%'; }).join(', ') +
                 (allTiers.length + 1 > tiers.length ? '\nFaixas escondidas por estoque: ' + allTiers.filter(function (t) { return stock && t.qty > stock; }).map(function (t) { return t.qty + 'un'; }).join(', ') : '');
             box.parentNode.insertBefore(dbg, box.nextSibling);
         }
 
-        if (tiers.length < 2) { box.remove(); return; }
+        if (tiers.length < 2) {
+            if (!parsedTiers.length && !OVERRIDES[productId]) console.warn('[Volcanic] Regra de desconto progressivo nao reconhecida. Cards ocultos; abra com ?qd-debug=1 para ver o texto da regra.');
+            box.remove();
+            return;
+        }
 
         var best = tiers[tiers.length - 1].qty;
         var cardsEl = box.querySelector('.qd-cards');
