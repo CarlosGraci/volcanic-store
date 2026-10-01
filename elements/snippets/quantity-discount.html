@@ -1,0 +1,177 @@
+{#
+    Cards de desconto progressivo por quantidade (sem variação)
+    ------------------------------------------------------------
+    - Só aparece quando o produto tem regra de Desconto Progressivo ativa na Tray
+      (ProgressiveDiscounts). O desconto cobrado no carrinho continua sendo o da Tray;
+      os cards apenas mostram os valores e ajustam a quantidade.
+    - Base do cálculo: Preço promocional quando preenchido; senão, preço normal.
+    - As faixas (quantidade e %) são lidas do nome/descrição das regras cadastradas.
+      Se nenhuma faixa for reconhecida, usa as faixas padrão abaixo (DEFAULT_TIERS),
+      que precisam ser iguais às cadastradas na Tray.
+    - Produtos que ainda usam a variação "Compra Combo" continuam com os cards antigos.
+#}
+{% if ProgressiveDiscounts %}
+    {% set qd_base_price = product.price_offer > 0 ? product.price_offer : product.price %}
+
+    <div class="qd" id="quantity-discount" data-base-price="{{ qd_base_price }}" data-list-price="{{ product.price }}" data-stock="{{ product.stock }}" hidden>
+        <p class="qd-title">Leve mais e pague menos</p>
+        <div class="qd-cards" role="radiogroup" aria-label="Escolha a quantidade"></div>
+        <ul class="qd-rules" hidden>
+            {% for discount in ProgressiveDiscounts %}
+                <li data-name="{{ discount.name }}">{{ discount.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <style>
+        .qd { margin: 20px 0; }
+        .qd-title { font-size: 15px; font-weight: 600; margin: 0 0 14px; color: #18181d; }
+        .qd-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+        .qd-card { position: relative; border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px 10px 12px; background: #fff; text-align: center; cursor: pointer; transition: border-color .2s ease; font: inherit; color: #18181d; }
+        .qd-card:hover { border-color: #b5b5b5; }
+        .qd-card.is-active { border: 2px solid #E0001B; padding: 13px 9px 11px; }
+        .qd-card:focus-visible { outline: 2px solid #E0001B; outline-offset: 2px; }
+        .qd-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #E0001B; color: #fff; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+        .qd-qty { display: block; font-size: 15px; font-weight: 600; }
+        .qd-off { display: block; font-size: 13px; margin: 4px 0; color: #1a8a3a; font-weight: 600; }
+        .qd-off.is-base { color: #888; font-weight: 400; }
+        .qd-unit { display: block; font-size: 14px; }
+        .qd-unit small { font-size: 11px; color: #888; }
+        .qd-summary { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #eee; font-size: 14px; }
+        .qd-summary-save { color: #555; }
+        .qd-summary-old { color: #999; text-decoration: line-through; margin-right: 8px; font-size: 13px; }
+        .qd-summary-total { font-size: 20px; font-weight: 700; color: #18181d; }
+        @media (max-width: 480px) {
+            .qd-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
+        }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var box = document.getElementById('quantity-discount');
+        if (!box) return;
+
+        /* Produto ainda usa a variação "Compra Combo": mantém a lógica antiga */
+        var usesComboVariant = Array.prototype.some.call(document.querySelectorAll('.varTit'), function (t) {
+            return t.textContent.indexOf('Compra Combo') !== -1;
+        });
+        if (usesComboVariant) { box.remove(); return; }
+
+        /* Faixas padrão: precisam ser iguais às cadastradas no Desconto Progressivo da Tray */
+        var DEFAULT_TIERS = [ { qty: 2, off: 5 }, { qty: 3, off: 10 }, { qty: 4, off: 15 } ];
+
+        function toNumber(value) {
+            var s = String(value || '').trim();
+            if (s.indexOf(',') !== -1) s = s.replace(/\./g, '').replace(',', '.');
+            var n = parseFloat(s);
+            return isNaN(n) ? 0 : n;
+        }
+
+        function brl(v) {
+            return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        /* Lê "quantidade" e "percentual" do nome/descrição de cada regra da Tray */
+        function parseTiers() {
+            var tiers = {};
+            box.querySelectorAll('.qd-rules li').forEach(function (li) {
+                var text = ((li.dataset.name || '') + ' ' + li.textContent).replace(/\s+/g, ' ');
+                var pct = text.match(/(\d+(?:[.,]\d+)?)\s*%/);
+                var qty = text.match(/(\d+)\s*(?:unidades?|un\b|unid|itens?|produtos?|pe[çc]as?|frascos?|potes?)/i);
+                if (pct && qty) {
+                    var q = parseInt(qty[1], 10);
+                    var o = toNumber(pct[1]);
+                    if (q > 1 && o > 0 && o < 100) tiers[q] = o;
+                }
+            });
+            return Object.keys(tiers).map(function (q) { return { qty: +q, off: tiers[q] }; })
+                .sort(function (a, b) { return a.qty - b.qty; });
+        }
+
+        var basePrice = toNumber(box.dataset.basePrice);
+        var listPrice = toNumber(box.dataset.listPrice) || basePrice;
+        var stock = parseInt(box.dataset.stock, 10) || 0;
+        if (basePrice <= 0) { box.remove(); return; }
+
+        var tiers = parseTiers();
+        if (!tiers.length) {
+            console.warn('[Volcanic] Faixas de desconto não reconhecidas na descrição da regra da Tray. Usando faixas padrão.');
+            tiers = DEFAULT_TIERS;
+        }
+        tiers = [ { qty: 1, off: 0 } ].concat(tiers).filter(function (t) { return !stock || t.qty <= stock; });
+        if (tiers.length < 2) { box.remove(); return; }
+
+        var best = tiers[tiers.length - 1].qty;
+        var cardsEl = box.querySelector('.qd-cards');
+
+        var summary = document.createElement('div');
+        summary.className = 'qd-summary';
+        summary.innerHTML = '<span class="qd-summary-save"></span><span><span class="qd-summary-old"></span><span class="qd-summary-total"></span></span>';
+        box.appendChild(summary);
+
+        tiers.forEach(function (t) {
+            var unit = basePrice * (1 - t.off / 100);
+            var card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'qd-card';
+            card.setAttribute('role', 'radio');
+            card.dataset.qty = t.qty;
+            card.innerHTML =
+                (t.qty === best ? '<span class="qd-tag">Melhor preço</span>' : '') +
+                '<span class="qd-qty">' + t.qty + (t.qty > 1 ? ' unidades' : ' unidade') + '</span>' +
+                '<span class="qd-off' + (t.off ? '' : ' is-base') + '">' + (t.off ? String(t.off).replace('.', ',') + '% OFF' : 'Preço da loja') + '</span>' +
+                '<span class="qd-unit">' + brl(unit) + ' <small>/un</small></span>';
+            card.addEventListener('click', function () { setQuantity(t.qty); });
+            cardsEl.appendChild(card);
+        });
+
+        function quantityInputs() {
+            return document.querySelectorAll('#form_comprar input[name="quant"], [data-buy-product="box"] input#quant');
+        }
+
+        /* Maior faixa atingida pela quantidade escolhida (vale também para o +/-) */
+        function tierFor(qty) {
+            var found = tiers[0];
+            tiers.forEach(function (t) { if (qty >= t.qty) found = t; });
+            return found;
+        }
+
+        function render(qty) {
+            var tier = tierFor(qty);
+            cardsEl.querySelectorAll('.qd-card').forEach(function (c) {
+                var active = +c.dataset.qty === qty;
+                c.classList.toggle('is-active', active);
+                c.setAttribute('aria-checked', active ? 'true' : 'false');
+            });
+            var total = basePrice * qty * (1 - tier.off / 100);
+            var full = listPrice * qty;
+            summary.querySelector('.qd-summary-total').textContent = brl(total);
+            summary.querySelector('.qd-summary-old').textContent = full > total + 0.009 ? brl(full) : '';
+            summary.querySelector('.qd-summary-save').textContent =
+                qty + (qty > 1 ? ' unidades' : ' unidade') + (full > total + 0.009 ? ' · economia de ' + brl(full - total) : '');
+        }
+
+        function setQuantity(qty) {
+            quantityInputs().forEach(function (input) {
+                input.value = qty;
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            render(qty);
+        }
+
+        quantityInputs().forEach(function (input) {
+            ['change', 'input'].forEach(function (evt) {
+                input.addEventListener(evt, function () { render(parseInt(input.value, 10) || 1); });
+            });
+        });
+
+        /* A lista em texto do desconto progressivo fica redundante com os cards */
+        var textList = document.querySelector('.product-progressive-discount');
+        if (textList) textList.style.display = 'none';
+
+        box.hidden = false;
+        var current = quantityInputs()[0];
+        render(current ? (parseInt(current.value, 10) || 1) : 1);
+    });
+    </script>
+{% endif %}

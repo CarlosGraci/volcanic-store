@@ -349,6 +349,9 @@
                         </div>
                     </div>
 
+                    {# Cards de desconto progressivo por quantidade, sem variação (ver elements/snippets/quantity-discount.html) #}
+                    {% element 'snippets/quantity-discount' { 'product': product, 'ProgressiveDiscounts': ProgressiveDiscounts } %}
+
                     {% if productHelper.banner() %}
                         {% set batch_promotion = productHelper.banner() %}
                         <div class="product-batch-promotion {% if 'img' not in batch_promotion %} text-promotion {% endif %}">
