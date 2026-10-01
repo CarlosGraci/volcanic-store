@@ -68,7 +68,7 @@
     box.querySelector('.sub-off').textContent = CONFIG.discount + '% OFF por ' + m + ' meses';
     box.querySelector('.sub-price').innerHTML =
         '<strong>' + brl(monthly) + '</strong> por mês, durante ' + m + ' meses' +
-        '<span class="sub-save">Você economiza ' + brl(saving) + ' por mês · ' + brl(saving * m) + ' em ' + m + ' meses</span>';
+        '<span class="sub-save">Você economiza ' + brl(saving) + ' por mês \u00B7 ' + brl(saving * m) + ' em ' + m + ' meses</span>';
 
     var items = [
         CONFIG.discount + '% de desconto em todas as ' + m + ' entregas',
