@@ -148,7 +148,7 @@
             summary.querySelector('.qd-summary-total').textContent = brl(total);
             summary.querySelector('.qd-summary-old').textContent = full > total + 0.009 ? brl(full) : '';
             summary.querySelector('.qd-summary-save').textContent =
-                qty + (qty > 1 ? ' unidades' : ' unidade') + (full > total + 0.009 ? ' · economia de ' + brl(full - total) : '');
+                qty + (qty > 1 ? ' unidades' : ' unidade') + (full > total + 0.009 ? ' \u00B7 economia de ' + brl(full - total) : '');
         }
 
         function setQuantity(qty) {
