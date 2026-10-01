@@ -66,8 +66,11 @@
             Faixas fixas por produto (opcional). Use só se o texto da regra na Tray não for reconhecido.
             Chave = ID do produto na Tray. Os valores precisam ser iguais aos cadastrados na Tray.
             Exemplo: '07': [ { qty: 2, off: 50 } ]
+            Endocan (07): promoção "Pague 1 leve 2". APAGUE esta linha quando a promoção acabar.
         */
-        var OVERRIDES = {};
+        var OVERRIDES = {
+            '07': [ { qty: 2, off: 50 } ]
+        };
 
         function toNumber(value) {
             var s = String(value || '').trim();
@@ -88,9 +91,10 @@
                 var o = 0;
                 var q = 0;
 
-                /* "Pague 1 leve 2" / "Leve 3 pague 2" */
-                var payTake = text.match(/pague\s+(\d+)\s*,?\s*(?:e\s+)?leve\s+(\d+)/i);
-                var takePay = text.match(/leve\s+(\d+)\s*,?\s*(?:e\s+)?pague\s+(\d+)/i);
+                /* "Pague 1 leve 2", "Compre 1 leve 2", "Leve 2 pague 1", "Leve 2 pelo preço de 1", "2 por 1", "2x1" */
+                var payTake = text.match(/(?:pague|compre)\s+(\d+)\s*(?:unidades?|un\b)?\s*[,e]*\s*(?:e\s+)?leve\s+(\d+)/i);
+                var takePay = text.match(/leve\s+(\d+)\s*(?:unidades?|un\b)?\s*[,e]*\s*(?:e\s+)?(?:pague|pelo\s+pre[çc]o\s+de)\s+(\d+)/i)
+                    || text.match(/\b(\d+)\s*(?:por|x)\s*(\d+)\b/i);
                 if (payTake || takePay) {
                     var pay = parseInt(payTake ? payTake[1] : takePay[2], 10);
                     var take = parseInt(payTake ? payTake[2] : takePay[1], 10);
@@ -135,7 +139,12 @@
         var stock = parseInt(box.dataset.stock, 10) || 0;
         if (basePrice <= 0) { box.remove(); return; }
 
-        var productId = String(box.dataset.productId || '');
+        /* ID com ou sem zero à esquerda ("07" ou "7") */
+        var productId = String(box.dataset.productId || '').replace(/^0+(?=\d)/, '');
+        Object.keys(OVERRIDES).forEach(function (k) {
+            var norm = k.replace(/^0+(?=\d)/, '');
+            if (norm !== k) { OVERRIDES[norm] = OVERRIDES[k]; }
+        });
         var parsedTiers = parseTiers();
         var tiers = effectiveTiers(OVERRIDES[productId] ? OVERRIDES[productId].slice().sort(function (a, b) { return a.qty - b.qty; }) : parsedTiers);
         var allTiers = tiers.slice();
