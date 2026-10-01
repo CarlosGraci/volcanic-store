@@ -422,3 +422,28 @@
     else start();
 })();
 </script>
+
+{#
+    Diagnóstico TEMPORÁRIO dos comentários: abra o produto com ?rv-debug=1
+    Mostra o HTML que a Tray envia para os comentários, para planejar o novo layout.
+    Pode apagar este bloco depois.
+#}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (!/[?&]rv-debug/.test(window.location.search)) return;
+    var raw = String(window.commentsBlock || '');
+    var tmp = document.createElement('div');
+    tmp.innerHTML = raw;
+    tmp.querySelectorAll('form, script, style').forEach(function (el) { el.remove(); });
+    var html = tmp.innerHTML.replace(/\s+/g, ' ').replace(/> </g, '>\n<').trim();
+    var box = document.createElement('div');
+    box.style.cssText = 'margin:20px 0;padding:12px;border:1px dashed #999;background:#f5f5f5;font-size:12px;';
+    box.innerHTML = '<strong>DIAGNOSTICO COMENTARIOS</strong> (' + raw.length + ' caracteres) - copie o texto abaixo e envie:<br>';
+    var ta = document.createElement('textarea');
+    ta.style.cssText = 'width:100%;height:260px;font-family:monospace;font-size:11px;margin-top:8px;';
+    ta.value = html ? html.slice(0, 6000) : '(vazio: este produto nao tem comentarios ou a Tray nao enviou o bloco)';
+    box.appendChild(ta);
+    var target = document.getElementById('avaliacoes-produtos') || document.body;
+    target.insertBefore(box, target.firstChild);
+});
+</script>
