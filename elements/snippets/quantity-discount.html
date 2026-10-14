@@ -390,6 +390,11 @@
     .sub-info.is-wide .sub-after { font-size: 13px; }
     .sub-info.is-wide .sub-cta { display: inline-block; margin-top: 4px; padding: 12px 28px; border: 0; border-radius: 10px; background: #E0001B; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
     .sub-info.is-wide .sub-cta:hover { background: #b80016; }
+
+    /* Computador: esconde o bloco "Compre com recorrencia / Assinar produto" da Tray
+       (o botao "Assinar este produto" da faixa aciona ele). Vale mesmo se o app tentar mostrar de novo. */
+    body.sub-wide-on #button-recurrence,
+    body.sub-wide-on .sub-hide-app { display: none !important; }
 </style>
 
 <script>
@@ -476,13 +481,12 @@
     }
 
     function hideEl(el) {
-        if (!el || el.getAttribute('data-sub-hidden') === '1') return;
+        if (!el || el.classList.contains('sub-hide-app')) return;
         /* trava de seguranca: so esconde coisa pequena dentro da coluna do produto */
         var root = el.getRootNode ? el.getRootNode() : document;
         var anchor = root.host ? root.host : el;
         if (!inScope(anchor) || textLen(el) > 120) return;
-        el.setAttribute('data-sub-hidden', '1');
-        el.style.setProperty('display', 'none', 'important');
+        el.classList.add('sub-hide-app');   /* escondido pela regra de estilo, so no computador */
     }
 
     function hideAppBlocks() {
@@ -504,10 +508,7 @@
     }
 
     function showAppBlocks() {
-        document.querySelectorAll('[data-sub-hidden="1"]').forEach(function (b) {
-            b.removeAttribute('data-sub-hidden');
-            b.style.removeProperty('display');
-        });
+        document.body.classList.remove('sub-wide-on');   /* celular: a regra de estilo deixa de valer */
     }
 
     /* Computador: largura toda, abaixo da foto + informacoes, e o bloco do app fica oculto.
@@ -517,6 +518,7 @@
         if (WIDE.matches && main) {
             box.classList.add('is-wide');
             if (main.nextSibling !== box) main.parentNode.insertBefore(box, main.nextSibling);
+            document.body.classList.add('sub-wide-on');
             hideAppBlocks();
         } else {
             box.classList.remove('is-wide');
