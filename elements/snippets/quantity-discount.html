@@ -277,7 +277,8 @@
                 var el = path[i];
                 if (!el || el.nodeType !== 1) continue;
                 if (el.id === 'subscription-info' || el.classList.contains('sub-cta')) return null;
-                var label = (el.value || el.textContent || '').replace(/\s+/g, ' ').trim();
+                if (el.id === 'button-recurrence') return el;   /* botao "Assinar produto" da Tray */
+                var label = (el.textContent || el.value || '').replace(/\s+/g, ' ').trim();
                 if (label.length <= 40 && BUTTON_TEXT.test(label)) return el;
                 if (label.length > 40) return null;
             }
@@ -443,12 +444,14 @@
 
     /* Todos os "Assinar produto" do app (botao, link ou div clicavel), fora da nossa faixa */
     function appButtons() {
+        var trayBtn = document.getElementById('button-recurrence');   /* botao "Assinar produto" da Tray */
+        if (trayBtn) return [trayBtn];
         var out = [];
         var sc = scope();
         if (!sc) return out;
         allElements(sc, []).forEach(function (el) {
             if (box.contains(el) || el.closest('#subscription-info')) return;
-            var label = (el.value || el.textContent || '').replace(/\s+/g, ' ').trim();
+            var label = (el.textContent || el.value || '').replace(/\s+/g, ' ').trim();
             if (label.length > 40 || !BUTTON_TEXT.test(label)) return;
             /* fica com o elemento mais externo que ainda e "so o botao" */
             var clickable = el.closest('button, a, [role="button"], input') || el;
