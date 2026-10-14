@@ -1695,4 +1695,9 @@ footer .footer-newsletter .news-email input{
     object-fit: cover;
     object-position: center;
   }
+  .banner-slides .banner-video {
+    width: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+  }
 }
