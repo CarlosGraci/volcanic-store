@@ -258,7 +258,7 @@
     <script>
     (function () {
         var SUBSCRIPTION_MAX_QTY = 1;
-        var BUTTON_TEXT = /assinar\s+produto/i;
+        var BUTTON_TEXT = /^assinar\s+produto$/i;   /* texto exato do botao do app */
 
         function quantityInputs() {
             return document.querySelectorAll('#form_comprar input[name="quant"], [data-buy-product="box"] input#quant');
@@ -269,13 +269,17 @@
             return input ? (parseInt(input.value, 10) || 1) : 1;
         }
 
-        function findSubscribeButton(el) {
-            while (el && el !== document.body) {
-                if (/^(BUTTON|A|INPUT)$/.test(el.tagName) || el.getAttribute('role') === 'button') {
-                    var label = el.value || el.textContent || '';
-                    return BUTTON_TEXT.test(label) ? el : null;
-                }
-                el = el.parentElement;
+        /* Acha o "Assinar produto" no caminho do clique (funciona com botao, link, div clicavel
+           e com componentes isolados do app). Ignora o botao da nossa faixa. */
+        function findSubscribeButton(event) {
+            var path = event.composedPath ? event.composedPath() : [event.target];
+            for (var i = 0; i < path.length; i++) {
+                var el = path[i];
+                if (!el || el.nodeType !== 1) continue;
+                if (el.id === 'subscription-info' || el.classList.contains('sub-cta')) return null;
+                var label = (el.value || el.textContent || '').replace(/\s+/g, ' ').trim();
+                if (label.length <= 40 && BUTTON_TEXT.test(label)) return el;
+                if (label.length > 40) return null;
             }
             return null;
         }
@@ -294,7 +298,8 @@
                 wideCta.parentNode.insertBefore(notice, wideCta.nextSibling);
             } else {
                 notice.style.textAlign = 'center';
-                button.parentNode.insertBefore(notice, button.nextSibling);
+                var host = button.getRootNode && button.getRootNode().host ? button.getRootNode().host : button;
+                host.parentNode.insertBefore(notice, host.nextSibling);
             }
             notice.innerHTML = 'A assinatura é limitada a ' + SUBSCRIPTION_MAX_QTY +
                 (SUBSCRIPTION_MAX_QTY > 1 ? ' unidades' : ' unidade') +
@@ -303,7 +308,7 @@
 
         /* Fase de captura: roda antes do app da assinatura ler a quantidade */
         document.addEventListener('click', function (event) {
-            var button = findSubscribeButton(event.target);
+            var button = findSubscribeButton(event);
             if (!button || currentQty() <= SUBSCRIPTION_MAX_QTY) return;
 
             event.preventDefault();
@@ -388,7 +393,7 @@
 
 <script>
 (function () {
-    var BUTTON_TEXT = /assinar\s+produto/i;
+    var BUTTON_TEXT = /^assinar\s+produto$/i;   /* texto exato do botao do app */
 
     var box = document.getElementById('subscription-info');
     if (!box) return;
@@ -412,18 +417,31 @@
     box.querySelector('[data-sub="saving"]').textContent = brl(saving);
     box.querySelector('[data-sub="total"]').textContent = brl(saving * months);
 
-    function isSubscribeButton(el) {
-        var label = el.value || el.textContent || '';
-        return BUTTON_TEXT.test(label);
-    }
-
     var WIDE = window.matchMedia('(min-width: 769px)');
 
-    /* Todos os botoes "Assinar produto" do app (fora da nossa faixa) */
+    /* Todos os elementos, inclusive dentro de componentes isolados do app (shadow DOM aberto) */
+    function allElements(root, out) {
+        root.querySelectorAll('*').forEach(function (el) {
+            out.push(el);
+            if (el.shadowRoot) allElements(el.shadowRoot, out);
+        });
+        return out;
+    }
+
+    /* Todos os "Assinar produto" do app (botao, link ou div clicavel), fora da nossa faixa */
     function appButtons() {
         var out = [];
-        document.querySelectorAll('button, a, input[type="button"], input[type="submit"], [role="button"]').forEach(function (el) {
-            if (!box.contains(el) && isSubscribeButton(el)) out.push(el);
+        allElements(document, []).forEach(function (el) {
+            if (box.contains(el) || el.closest('#subscription-info')) return;
+            var label = (el.value || el.textContent || '').replace(/\s+/g, ' ').trim();
+            if (label.length > 40 || !BUTTON_TEXT.test(label)) return;
+            /* fica com o elemento mais externo que ainda e "so o botao" */
+            var clickable = el.closest('button, a, [role="button"], input') || el;
+            var up = clickable.parentElement;
+            while (up && (up.textContent || '').replace(/\s+/g, ' ').trim().length <= 40 && BUTTON_TEXT.test((up.textContent || '').replace(/\s+/g, ' ').trim())) {
+                clickable = up; up = up.parentElement;
+            }
+            if (out.indexOf(clickable) === -1) out.push(clickable);
         });
         return out;
     }
@@ -445,7 +463,11 @@
     }
 
     function hideAppBlocks() {
-        appButtons().forEach(function (btn) { hideEl(blockOf(btn)); });
+        appButtons().forEach(function (btn) {
+            var root = btn.getRootNode ? btn.getRootNode() : document;
+            if (root.host) hideEl(root.host);          /* botao dentro de componente do app */
+            hideEl(blockOf(btn));
+        });
         /* Texto "Compre com recorrencia R$ ..." solto, fora do mesmo container do botao */
         var info = document.querySelector('.pageProduct-info') || document.body;
         info.querySelectorAll('div, span, p, label').forEach(function (el) {
@@ -507,10 +529,25 @@
         }).observe(document.body, { childList: true, subtree: true });
     }
 
+    /* Elemento mais interno com o texto "Assinar produto": o clique nele sobe ate o botao real do app */
+    function innermost(el) {
+        var found = el;
+        var stack = [el];
+        while (stack.length) {
+            var cur = stack.pop();
+            var kids = cur.children || [];
+            for (var i = 0; i < kids.length; i++) {
+                var t = (kids[i].textContent || '').replace(/\s+/g, ' ').trim();
+                if (BUTTON_TEXT.test(t)) { found = kids[i]; stack.push(kids[i]); }
+            }
+        }
+        return found;
+    }
+
     /* Botao da faixa larga: aciona o botao "Assinar produto" do app da Tray */
     box.querySelector('.sub-cta').addEventListener('click', function () {
         var btn = appButtons()[0];
-        if (btn) btn.click();
+        if (btn) innermost(btn).click();
     });
 
     function tryPlace() {
