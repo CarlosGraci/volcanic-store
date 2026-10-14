@@ -418,48 +418,104 @@
     }
 
     var WIDE = window.matchMedia('(min-width: 769px)');
-    var appButton = null;
-    var appBlock = null;
 
-    /* Computador: largura toda, abaixo da foto + informações. Celular: logo acima do botão do app */
+    /* Todos os botoes "Assinar produto" do app (fora da nossa faixa) */
+    function appButtons() {
+        var out = [];
+        document.querySelectorAll('button, a, input[type="button"], input[type="submit"], [role="button"]').forEach(function (el) {
+            if (!box.contains(el) && isSubscribeButton(el)) out.push(el);
+        });
+        return out;
+    }
+
+    /* Sobe ate o container que tem o texto "Compre com recorrencia" junto do botao */
+    function blockOf(button) {
+        var el = button.parentElement;
+        for (var i = 0; el && i < 5; i++, el = el.parentElement) {
+            if (el.classList && (el.classList.contains('pageProduct-info') || el.id === 'form_comprar')) break;
+            if (/recorr/i.test(el.textContent || '')) return el;
+        }
+        return button;
+    }
+
+    function hideEl(el) {
+        if (!el || el.getAttribute('data-sub-hidden') === '1') return;
+        el.setAttribute('data-sub-hidden', '1');
+        el.style.setProperty('display', 'none', 'important');
+    }
+
+    function hideAppBlocks() {
+        appButtons().forEach(function (btn) { hideEl(blockOf(btn)); });
+        /* Texto "Compre com recorrencia R$ ..." solto, fora do mesmo container do botao */
+        var info = document.querySelector('.pageProduct-info') || document.body;
+        info.querySelectorAll('div, span, p, label').forEach(function (el) {
+            if (box.contains(el)) return;
+            var t = (el.textContent || '').trim();
+            if (t.length > 80 || !/compre\s+com\s+recorr/i.test(t)) return;
+            var parent = el.parentElement;
+            if (parent && (parent.textContent || '').trim().length <= 80) return;
+            hideEl(el);
+        });
+    }
+
+    function showAppBlocks() {
+        document.querySelectorAll('[data-sub-hidden="1"]').forEach(function (b) {
+            b.removeAttribute('data-sub-hidden');
+            b.style.removeProperty('display');
+        });
+    }
+
+    /* Computador: largura toda, abaixo da foto + informacoes, e o bloco do app fica oculto.
+       Celular: faixa logo acima do botao do app, que continua visivel. */
     function position() {
         var main = document.querySelector('.pageProduct-main');
         if (WIDE.matches && main) {
             box.classList.add('is-wide');
             if (main.nextSibling !== box) main.parentNode.insertBefore(box, main.nextSibling);
-            /* O bloco "Compre com recorrencia / Assinar produto" da Tray continua na pagina, so fica oculto:
-               o botao "Assinar este produto" da faixa aciona ele */
-            if (appBlock) appBlock.style.display = 'none';
-        } else if (appBlock) {
+            hideAppBlocks();
+        } else {
             box.classList.remove('is-wide');
-            appBlock.style.display = '';
-            if (appBlock.previousSibling !== box) appBlock.parentNode.insertBefore(box, appBlock);
+            showAppBlocks();
+            var btn = appButtons()[0];
+            if (!btn) return;
+            /* Fica fora do container do app (o app pode redesenhar o proprio bloco) */
+            var anchor = blockOf(btn);
+            while (anchor.parentElement && anchor.parentElement.id !== 'form_comprar' &&
+                   !anchor.parentElement.classList.contains('pageProduct-info') && anchor.parentElement !== document.body) {
+                anchor = anchor.parentElement;
+            }
+            if (anchor.previousSibling !== box) anchor.parentNode.insertBefore(box, anchor);
         }
     }
 
     function placeBox(button) {
-        appButton = button;
-        appBlock = button;
-        var el = button.parentElement;
-        for (var i = 0; el && i < 4; i++, el = el.parentElement) {
-            if (/recorr/i.test(el.textContent || '')) { appBlock = el; break; }
-        }
         position();
         box.hidden = false;
         if (WIDE.addEventListener) WIDE.addEventListener('change', position);
         else if (WIDE.addListener) WIDE.addListener(position);
+
+        /* O app pode redesenhar o bloco depois: reposiciona a faixa e, no computador, esconde o bloco de novo */
+        var pending = false;
+        new MutationObserver(function () {
+            if (pending) return;
+            pending = true;
+            setTimeout(function () {
+                pending = false;
+                if (!box.isConnected) position();
+                if (WIDE.matches) hideAppBlocks();
+            }, 50);
+        }).observe(document.body, { childList: true, subtree: true });
     }
 
-    /* Botão da faixa larga: aciona o botão "Assinar produto" do app da Tray */
+    /* Botao da faixa larga: aciona o botao "Assinar produto" do app da Tray */
     box.querySelector('.sub-cta').addEventListener('click', function () {
-        if (appButton) appButton.click();
+        var btn = appButtons()[0];
+        if (btn) btn.click();
     });
 
     function tryPlace() {
-        var candidates = document.querySelectorAll('button, a, input[type="button"], input[type="submit"], [role="button"]');
-        for (var i = 0; i < candidates.length; i++) {
-            if (isSubscribeButton(candidates[i])) { placeBox(candidates[i]); return true; }
-        }
+        var btn = appButtons()[0];
+        if (btn) { placeBox(btn); return true; }
         return false;
     }
 
