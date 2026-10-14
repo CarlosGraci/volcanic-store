@@ -419,6 +419,19 @@
 
     var WIDE = window.matchMedia('(min-width: 769px)');
 
+    /* SEGURANCA: so mexe em elementos dentro da coluna de informacoes do produto.
+       Janelas e telas que o app abre (fora dessa coluna) nunca sao tocadas. */
+    function scope() {
+        return document.querySelector('.pageProduct-info') || document.getElementById('form_comprar');
+    }
+    function inScope(el) {
+        var sc = scope();
+        return !!(sc && el && sc !== el && sc.contains(el));
+    }
+    function textLen(el) {
+        return (el.textContent || '').replace(/\s+/g, ' ').trim().length;
+    }
+
     /* Todos os elementos, inclusive dentro de componentes isolados do app (shadow DOM aberto) */
     function allElements(root, out) {
         root.querySelectorAll('*').forEach(function (el) {
@@ -431,7 +444,9 @@
     /* Todos os "Assinar produto" do app (botao, link ou div clicavel), fora da nossa faixa */
     function appButtons() {
         var out = [];
-        allElements(document, []).forEach(function (el) {
+        var sc = scope();
+        if (!sc) return out;
+        allElements(sc, []).forEach(function (el) {
             if (box.contains(el) || el.closest('#subscription-info')) return;
             var label = (el.value || el.textContent || '').replace(/\s+/g, ' ').trim();
             if (label.length > 40 || !BUTTON_TEXT.test(label)) return;
@@ -449,8 +464,9 @@
     /* Sobe ate o container que tem o texto "Compre com recorrencia" junto do botao */
     function blockOf(button) {
         var el = button.parentElement;
-        for (var i = 0; el && i < 5; i++, el = el.parentElement) {
-            if (el.classList && (el.classList.contains('pageProduct-info') || el.id === 'form_comprar')) break;
+        for (var i = 0; el && i < 4; i++, el = el.parentElement) {
+            if (!inScope(el) || el.id === 'form_comprar') break;
+            if (textLen(el) > 120) break;                 /* nunca um bloco grande */
             if (/recorr/i.test(el.textContent || '')) return el;
         }
         return button;
@@ -458,6 +474,10 @@
 
     function hideEl(el) {
         if (!el || el.getAttribute('data-sub-hidden') === '1') return;
+        /* trava de seguranca: so esconde coisa pequena dentro da coluna do produto */
+        var root = el.getRootNode ? el.getRootNode() : document;
+        var anchor = root.host ? root.host : el;
+        if (!inScope(anchor) || textLen(el) > 120) return;
         el.setAttribute('data-sub-hidden', '1');
         el.style.setProperty('display', 'none', 'important');
     }
