@@ -1701,3 +1701,20 @@ footer .footer-newsletter .news-email input{
     object-fit: cover !important;
   }
 }
+
+/* ===== Banner da home: slides sempre na largura total (sem faixas brancas) ===== */
+.banner-slides .swiper-slide > a,
+.banner-slides .banner-video-link {
+  display: block !important;
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  max-width: none !important;
+}
+.banner-slides .swiper-slide > img,
+.banner-slides .swiper-slide > video,
+.banner-slides .swiper-slide > a > img,
+.banner-slides .swiper-slide > a > video {
+  display: block;
+  width: 100% !important;
+  max-width: none !important;
+}
