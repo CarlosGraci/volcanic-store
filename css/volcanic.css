@@ -1682,3 +1682,17 @@ footer .footer-newsletter .news-email input{
 .banner-slides .banner-video-item.is-cover .banner-video {
   aspect-ratio: var(--banner-ratio, 16 / 9);
 }
+
+
+/* ===== Banner da home: cabe na 1ª tela no desktop/notebook ===== */
+@media (min-width: 992px) {
+  .banner-slides .swiper-slide img,
+  .banner-slides .swiper-slide .banner-video,
+  .banner-slides > .item img {
+    width: 100%;
+    height: var(--banner-home-h, calc(100vh - 180px));
+    max-height: 820px;
+    object-fit: cover;
+    object-position: center;
+  }
+}

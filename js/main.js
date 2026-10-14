@@ -501,6 +501,7 @@
                             $(targetElement).addClass('show');
                             theme.bannerVideoSync(this);
                             theme.bannerVideoRatio(this);
+                            theme.bannerFitViewport();
                         },
                         slideChange: function () {
                             theme.bannerVideoSync(this);
@@ -508,6 +509,20 @@
                     },
                 });
             }
+        },
+
+        /* Banner da home cabe na 1ª tela (desktop/notebook): altura = janela - espaço acima do banner */
+        bannerFitViewport: function () {
+            const banner = document.querySelector('.banner-slides');
+            if (!banner) return;
+            const apply = function () {
+                const top = banner.getBoundingClientRect().top + window.pageYOffset;
+                const available = Math.max(320, window.innerHeight - top);
+                document.documentElement.style.setProperty('--banner-home-h', available + 'px');
+            };
+            apply();
+            window.addEventListener('resize', apply);
+            window.addEventListener('load', apply);
         },
 
         /* Vídeo no banner da home: toca só o slide ativo e reinicia do começo */
