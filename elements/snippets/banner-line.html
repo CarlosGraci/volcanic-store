@@ -114,3 +114,19 @@
 </div> 
 
 {% endif %}
+
+{# Banner da home cabe na 1ª tela no desktop/notebook #}
+<script>
+(function () {
+    function ajustarBanner() {
+        var banner = document.querySelector('.banner-slides');
+        if (!banner) return;
+        var topo = banner.getBoundingClientRect().top + window.pageYOffset;
+        var altura = Math.max(320, window.innerHeight - topo);
+        document.documentElement.style.setProperty('--banner-home-h', altura + 'px');
+    }
+    document.addEventListener('DOMContentLoaded', ajustarBanner);
+    window.addEventListener('load', ajustarBanner);
+    window.addEventListener('resize', ajustarBanner);
+})();
+</script>
