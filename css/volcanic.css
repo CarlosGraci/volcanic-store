@@ -1666,3 +1666,19 @@ footer .footer-newsletter .news-email input{
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+/* ===== Vídeo no banner da home ===== */
+.banner-slides .banner-video-item { line-height: 0; }
+.banner-slides .banner-video-link { display: block; width: 100%; }
+.banner-slides .banner-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  background: #2b4d72;
+}
+.banner-slides .banner-video-item.is-cover .banner-video {
+  aspect-ratio: var(--banner-ratio, 16 / 9);
+}

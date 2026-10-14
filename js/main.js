@@ -499,10 +499,50 @@
                     on: {
                         init: function () {
                             $(targetElement).addClass('show');
+                            theme.bannerVideoSync(this);
+                            theme.bannerVideoRatio(this);
+                        },
+                        slideChange: function () {
+                            theme.bannerVideoSync(this);
                         },
                     },
                 });
             }
+        },
+
+        /* Vídeo no banner da home: toca só o slide ativo e reinicia do começo */
+        bannerVideoSync: function (swiper) {
+            if (!swiper || !swiper.slides) return;
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            Array.prototype.forEach.call(swiper.slides, function (slide, index) {
+                const video = slide.querySelector('video.banner-video');
+                if (!video) return;
+                video.muted = true;
+                if (index === swiper.activeIndex && !reduceMotion) {
+                    try { video.currentTime = 0; } catch (e) {}
+                    const playing = video.play();
+                    if (playing && playing.catch) playing.catch(function () {});
+                } else {
+                    video.pause();
+                }
+            });
+        },
+
+        /* Opção "ajustar à altura dos banners": usa a proporção da 1ª imagem do slide */
+        bannerVideoRatio: function (swiper) {
+            if (!swiper || !swiper.el) return;
+            const coverItems = swiper.el.querySelectorAll('.banner-video-item.is-cover');
+            const firstImg = swiper.el.querySelector('.banner-item:not(.banner-video-item) img');
+            if (!coverItems.length || !firstImg) return;
+            const apply = function () {
+                if (!firstImg.naturalWidth) return;
+                const ratio = firstImg.naturalWidth + ' / ' + firstImg.naturalHeight;
+                Array.prototype.forEach.call(coverItems, function (item) {
+                    item.style.setProperty('--banner-ratio', ratio);
+                });
+                swiper.update();
+            };
+            if (firstImg.complete) apply(); else firstImg.addEventListener('load', apply);
         },
 
         depoSlides: function () { 

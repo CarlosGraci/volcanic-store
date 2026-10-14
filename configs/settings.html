@@ -3395,6 +3395,77 @@
                                             O tempo de exibição de cada slide é de 10 segundos. Esse valor não pode ser alterado.
                                         </span>
                                     </div>
+
+                                    <!-- Vídeo no banner da home -->
+                                    <div class="box-section">
+                                        <div class="title flex justify-between align-center">
+                                            <span>Exibir vídeo como 1º slide do banner da home?</span>
+                                            <label class="check-drag">
+                                                <input type="checkbox" name="banner_video_ativo" value="1">
+                                                <span class="icon"></span>
+                                            </label>
+                                        </div>
+                                        <span class="msg">
+                                            Vídeo MP4 (H.264), sem som, até ~3 MB. Informe o caminho de um arquivo do tema
+                                            (ex.: img/videos/banner-home-neurobalance.mp4) ou uma URL completa (https://...).
+                                        </span>
+                                        <div class="content-section">
+                                            <label class="input-area">
+                                                <span class="name">Vídeo (desktop)</span>
+                                                <input type="text" placeholder="img/videos/banner-home-neurobalance.mp4" class="encode-characters">
+                                                <input type="hidden" name="banner_video_url">
+                                            </label>
+                                        </div>
+                                        <div class="content-section">
+                                            <label class="input-area">
+                                                <span class="name">Vídeo (celular) - opcional</span>
+                                                <input type="text" placeholder="img/videos/banner-home-neurobalance-mobile.mp4" class="encode-characters">
+                                                <input type="hidden" name="banner_video_url_mobile">
+                                            </label>
+                                        </div>
+                                        <div class="content-section">
+                                            <label class="input-area">
+                                                <span class="name">Link ao clicar no vídeo</span>
+                                                <input type="text" placeholder="https://www.volcanicstore.com/neurobalanceasd" class="encode-characters">
+                                                <input type="hidden" name="banner_video_link">
+                                            </label>
+                                        </div>
+                                        <div class="content-section">
+                                            <label class="input-area">
+                                                <span class="name">Texto alternativo (acessibilidade)</span>
+                                                <input type="text" placeholder="NeuroBalance ASD" class="encode-characters">
+                                                <input type="hidden" name="banner_video_alt">
+                                            </label>
+                                        </div>
+                                        <div class="content-section">
+                                            <label class="input-area">
+                                                <span class="name">Tempo do slide do vídeo (segundos)</span>
+                                                <input type="text" placeholder="24" class="encode-characters">
+                                                <input type="hidden" name="banner_video_tempo">
+                                            </label>
+                                        </div>
+                                        <div class="box-upload">
+                                            <div class="name-file">
+                                                Capa do vídeo (aparece enquanto carrega) - 1920x1080px
+                                            </div>
+                                            <div class="box-file">
+                                                <div class="input-group file">
+                                                    <div class="area-file">
+                                                        <input type="file" class="form-control" accept="image/*" name="banner_video_poster">
+                                                        <div class="show-upload"></div>
+                                                    </div>
+                                                    <a class="remove-img"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="title flex justify-between align-center">
+                                            <span>Recortar o vídeo na mesma altura dos banners de imagem?</span>
+                                            <label class="check-drag">
+                                                <input type="checkbox" name="banner_video_ajustar" value="1">
+                                                <span class="icon"></span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
