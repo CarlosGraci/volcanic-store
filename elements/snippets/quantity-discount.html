@@ -285,7 +285,15 @@
             if (!notice) {
                 notice = document.createElement('p');
                 notice.id = 'qd-subscription-notice';
-                notice.style.cssText = 'font-size:13px;color:#E0001B;text-align:center;margin:10px 0 0;line-height:1.4;';
+                notice.style.cssText = 'font-size:13px;color:#E0001B;margin:10px 0 0;line-height:1.4;';
+            }
+            /* Faixa larga (computador): aviso embaixo do botao da faixa. Senao, embaixo do botao do app */
+            var wideCta = document.querySelector('#subscription-info.is-wide .sub-cta');
+            if (wideCta) {
+                notice.style.textAlign = 'left';
+                wideCta.parentNode.insertBefore(notice, wideCta.nextSibling);
+            } else {
+                notice.style.textAlign = 'center';
                 button.parentNode.insertBefore(notice, button.nextSibling);
             }
             notice.innerHTML = 'A assinatura é limitada a ' + SUBSCRIPTION_MAX_QTY +
@@ -419,8 +427,12 @@
         if (WIDE.matches && main) {
             box.classList.add('is-wide');
             if (main.nextSibling !== box) main.parentNode.insertBefore(box, main.nextSibling);
+            /* O bloco "Compre com recorrencia / Assinar produto" da Tray continua na pagina, so fica oculto:
+               o botao "Assinar este produto" da faixa aciona ele */
+            if (appBlock) appBlock.style.display = 'none';
         } else if (appBlock) {
             box.classList.remove('is-wide');
+            appBlock.style.display = '';
             if (appBlock.previousSibling !== box) appBlock.parentNode.insertBefore(box, appBlock);
         }
     }
@@ -438,11 +450,9 @@
         else if (WIDE.addListener) WIDE.addListener(position);
     }
 
-    /* Botão da faixa larga: leva até o botão "Assinar produto" do app e aciona */
+    /* Botão da faixa larga: aciona o botão "Assinar produto" do app da Tray */
     box.querySelector('.sub-cta').addEventListener('click', function () {
-        if (!appButton) return;
-        (appBlock || appButton).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        setTimeout(function () { appButton.click(); }, 500);
+        if (appButton) appButton.click();
     });
 
     function tryPlace() {
