@@ -1266,6 +1266,11 @@ a.buy-whatsapp-button:hover {
     max-width: 970px; /* largura máxima dos 3 banners: ajuste aqui para aumentar/diminuir */
     margin: 0 auto;
 }
+/* Espaço igual entre: Encontre seu objetivo -> 3 banners -> carrossel de quadrados */
+.encontre-objetivo { padding-bottom: 0 !important; }
+.encontre-objetivo .row { margin-bottom: 0 !important; }
+.slider-banner-prods { margin-top: 40px !important; margin-bottom: 0 !important; }
+.carrousel-img-produtos { padding-top: 48px !important; }
 
 
 .depoimentos{
