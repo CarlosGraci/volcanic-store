@@ -126,7 +126,10 @@ body, a, button, input, select, textarea h1, h2, h3, h4, h5, h6, .header .header
 }
 
 .home-welcome {
-    padding: 80px 0;
+    padding: 40px 0; /* espaço acima e abaixo dos ícones */
+}
+.home-welcome .container {
+    zoom: 0.8; /* ícones e textos 20% menores */
 }
 
 .box-welcome{
@@ -1762,5 +1765,14 @@ footer .footer-newsletter .news-email input{
     max-height: 574px !important; /* 70% de 820px */
     object-fit: contain !important;
     background: transparent !important;
+  }
+}
+
+/* ===== Banner da home: vídeo no formato 1920x540 preenche a largura toda ===== */
+@media (min-width: 992px) {
+  .banner-slides .banner-video-item::before { display: none !important; }
+  .banner-slides .swiper-slide .banner-video,
+  .banner-slides .swiper-slide > a > video {
+    object-fit: cover !important;
   }
 }
