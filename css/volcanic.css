@@ -1163,8 +1163,9 @@ a.buy-whatsapp-button:hover {
     max-width: 1140px; /* largura máxima do bloco: ajuste aqui para aumentar/diminuir */
     padding: 0 15px;
 }
-.encontre-objetivo .row .col-md-3{
-    padding: 0;
+.encontre-objetivo .row > [class*="col-"]{
+    padding: 8px; /* espaço entre os cards = 2x este valor (16px), igual na horizontal e na vertical */
+    margin-top: 0;
 }
 .box-objetivo{
     position: relative;
