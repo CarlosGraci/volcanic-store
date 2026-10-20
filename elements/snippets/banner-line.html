@@ -5,7 +5,7 @@
 {% if bannerVideo %}
     {% set videoUrl = (utils.is_mobile and settings.banner_video_url_mobile) ? settings.banner_video_url_mobile : settings.banner_video_url %}
     {% set videoSrc = videoUrl|slice(0, 4) == 'http' ? videoUrl : asset(videoUrl) %}
-    {% set videoPoster = settings.banner_video_poster ? asset(settings.banner_video_poster) : null %}
+    {% set videoPoster = settings.banner_video_poster ? asset(settings.banner_video_poster) : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@d3ae709796a43c2028cc3c9219e3c05991de8ccd/img/videos/banner-home-neurobalance-wide-poster.jpg' %}
     {% set videoLink = settings.banner_video_link %}
     {% set bannerVideo = videoUrl ? true : false %}
 {% endif %}
@@ -24,7 +24,7 @@
     <div class="swiper">
         <div class="swiper-wrapper">
             {% if bannerVideo %}
-            <div class="swiper-slide banner-item banner-video-item{{ settings.banner_video_ajustar ? ' is-cover' : '' }}" data-swiper-autoplay="{{ settings.banner_video_tempo ? settings.banner_video_tempo * 1000 : 24000 }}">
+            <div class="swiper-slide banner-item banner-video-item{{ settings.banner_video_ajustar ? ' is-cover' : '' }}" style="--bg: url('{{ videoPoster }}')" data-swiper-autoplay="{{ settings.banner_video_tempo ? settings.banner_video_tempo * 1000 : 24000 }}">
                 {% if videoLink %}<a href="{{ videoLink }}" aria-label="{{ settings.banner_video_alt ? settings.banner_video_alt : 'ver mais' }}" class="banner-video-link">{% endif %}
                 <video class="banner-video"
                     src="{{ videoSrc }}"
@@ -37,7 +37,7 @@
             {% endif %}
             {% if slideshow.type == 'javascript' %}
             {% for banner in slideshow.slides %}
-            <div class="swiper-slide banner-item">
+            <div class="swiper-slide banner-item" style="--bg: url('{{ banner.image }}')">
                 {% if banner.link %}
                 <a href="{{ banner.link }}" 
                     {% if banner.target == '_blank' %} 
@@ -66,7 +66,7 @@
             {% endfor %}
             {% elseif slideshow %}
             {# Banner único cadastrado no painel + vídeo: o banner vira o 2º slide #}
-            <div class="swiper-slide banner-item">
+            <div class="swiper-slide banner-item" style="--bg: url('{{ slideshow.src }}')">
                 {% set link = slideshow.link ? slideshow.tracked_link : null %}
                 {% if link %}<a href="{{ link }}" {% if slideshow.target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="ver mais" style="display: block; width: 100%;">{% endif %}
                 <img class="lazyload" src="{{ slideshow.src }}" data-src="{{ slideshow.src }}" alt="{{ slideshow.alt }}" loading="eager" width="100%" />

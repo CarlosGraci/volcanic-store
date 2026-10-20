@@ -1735,3 +1735,32 @@ footer .footer-newsletter .news-email input{
   width: 100% !important;
   max-width: none !important;
 }
+/* ===== Banner da home: 30% mais baixo, largura total, fundo na cor do banner ===== */
+@media (min-width: 992px) {
+  .banner-slides .swiper-slide.banner-item {
+    position: relative;
+    overflow: hidden;
+    background-color: #3d5f86;
+  }
+  .banner-slides .swiper-slide.banner-item::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: var(--bg) center / cover no-repeat;
+    filter: blur(40px) saturate(1.1);
+    z-index: 0;
+  }
+  .banner-slides .swiper-slide.banner-item > * {
+    position: relative;
+    z-index: 1;
+  }
+  .banner-slides .swiper-slide img,
+  .banner-slides .swiper-slide .banner-video,
+  .banner-slides .swiper-slide > a > img,
+  .banner-slides .swiper-slide > a > video {
+    height: calc(var(--banner-home-h, calc(100vh - 180px)) * 0.7) !important;
+    max-height: 574px !important; /* 70% de 820px */
+    object-fit: contain !important;
+    background: transparent !important;
+  }
+}
