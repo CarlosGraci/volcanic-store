@@ -5,7 +5,7 @@
 {% if bannerVideo %}
     {% set videoUrl = (utils.is_mobile and settings.banner_video_url_mobile) ? settings.banner_video_url_mobile : settings.banner_video_url %}
     {% set videoSrc = videoUrl|slice(0, 4) == 'http' ? videoUrl : asset(videoUrl) %}
-    {% set videoPoster = settings.banner_video_poster ? asset(settings.banner_video_poster) : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@b49f89a3d3261c812a3203eabe24db9d4bfc9364/img/videos/banner-home-neurobalance-1920x540-poster.jpg' %}
+    {% set videoPoster = settings.banner_video_poster ? asset(settings.banner_video_poster) : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@8ce83835d4e1ee417ef81f722d3f605b56ba8a89/img/videos/banner-home-neurobalance-e-1920x540-poster.jpg' %}
     {% set videoLink = settings.banner_video_link %}
     {% set bannerVideo = videoUrl ? true : false %}
 {% endif %}
