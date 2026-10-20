@@ -1784,8 +1784,8 @@ footer .footer-newsletter .news-email input{
   .banner-slides .swiper-slide .banner-video,
   .banner-slides .swiper-slide > a > img,
   .banner-slides .swiper-slide > a > video {
-    /* altura: 70% da 1ª tela, no máx. 574px e nunca mais alto que a proporção 1920x540 (não corta em cima/embaixo) */
-    height: min(calc(var(--banner-home-h, calc(100vh - 180px)) * 0.7), 574px, calc(100vw / 3.555)) !important;
+    /* altura: 70% da 1ª tela, sem passar da proporção 1920x540 (nunca corta em cima/embaixo; no máximo corta um pouco das laterais) */
+    height: min(calc(var(--banner-home-h, calc(100vh - 180px)) * 0.7), calc(100vw / 3.555)) !important;
     max-height: none !important;
     object-fit: cover !important;
     object-position: center !important;
