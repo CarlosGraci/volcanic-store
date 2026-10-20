@@ -1,119 +1,67 @@
-{% set slideshow = utils.is_mobile ? banners.mobile : banners.home %}
+{# =====================================================================
+   BANNER PRINCIPAL DA HOME
+   Desktop: vídeo + banners fixos (lista abaixo, na ordem).
+   Celular: vídeo (versão mobile) + banners mobile cadastrados no painel.
+   Para incluir/trocar banners do desktop, edite a lista "bannersHome".
+   ===================================================================== #}
 
-{# ===== Vídeo no banner da home (configurado em Configurações do tema > Banners) ===== #}
-{% set bannerVideo = settings.banner_video_ativo ? true : false %}
-{% if bannerVideo %}
-    {% set videoUrl = (utils.is_mobile and settings.banner_video_url_mobile) ? settings.banner_video_url_mobile : settings.banner_video_url %}
-    {% set videoSrc = videoUrl|slice(0, 4) == 'http' ? videoUrl : asset(videoUrl) %}
-    {% set videoPoster = settings.banner_video_poster ? asset(settings.banner_video_poster) : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@8ce83835d4e1ee417ef81f722d3f605b56ba8a89/img/videos/banner-home-neurobalance-e-1920x540-poster.jpg' %}
-    {% set videoLink = settings.banner_video_link %}
-    {% set bannerVideo = videoUrl ? true : false %}
-{% endif %}
+{% set cdn = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store' %}
 
-{% if slideshow or bannerVideo %}
+{# ----- Vídeo (1º slide) ----- #}
+{% set videoDesktop = settings.banner_video_url ? settings.banner_video_url : cdn ~ '@8ce83835d4e1ee417ef81f722d3f605b56ba8a89/img/videos/banner-home-neurobalance-e-1920x540.mp4' %}
+{% set videoMobile  = settings.banner_video_url_mobile ? settings.banner_video_url_mobile : cdn ~ '@8ce83835d4e1ee417ef81f722d3f605b56ba8a89/img/videos/banner-home-neurobalance-e-mobile.mp4' %}
+{% set videoUrl     = utils.is_mobile ? videoMobile : videoDesktop %}
+{% set videoSrc     = videoUrl|slice(0, 4) == 'http' ? videoUrl : asset(videoUrl) %}
+{% set videoPoster  = cdn ~ '@8ce83835d4e1ee417ef81f722d3f605b56ba8a89/img/videos/banner-home-neurobalance-e-1920x540-poster.jpg' %}
+{% set videoLink    = settings.banner_video_link ? settings.banner_video_link : 'https://www.volcanicstore.com/neurobalanceasd' %}
 
-{% set slideConfigs = { 
-    'stopOnHover' : (settings.banner_main_stop_hover ? true : false), 
-    'timer' : 10000, 
-    'isMobile' : utils.is_mobile } 
-%}
+{# ----- Banners do desktop, na ordem em que aparecem depois do vídeo ----- #}
+{% set bannersHome = [
+    { 'imagem': cdn ~ '@c5c127e1653fc91b669f8ed0319ab7c784cd5395/img/banners/banner-1-neurobalance-tea.jpg',        'link': 'https://www.volcanicstore.com/neurobalanceasd', 'alt': 'NeuroBalance - Inovação no suporte ao TEA' },
+    { 'imagem': cdn ~ '@c5c127e1653fc91b669f8ed0319ab7c784cd5395/img/banners/banner-2-clube-assinaturas.jpg',       'link': 'https://www.volcanicstore.com/assinaturas',     'alt': 'Clube de Assinaturas - até 40% OFF' },
+    { 'imagem': cdn ~ '@c5c127e1653fc91b669f8ed0319ab7c784cd5395/img/banners/banner-3-descontos-progressivos.jpg',  'link': 'https://www.volcanicstore.com/neurobalanceasd', 'alt': 'Descontos Progressivos' }
+] %}
 
-<div class="banner-slides" data-settings="{{ slideConfigs | json_encode() | escape }}" data-slides="bannes-products">
-    {% if slideshow.type == 'javascript' or bannerVideo %}
-
+<div class="banner-slides" data-slides="bannes-products">
     <div class="swiper">
         <div class="swiper-wrapper">
-            {% if bannerVideo %}
-            <div class="swiper-slide banner-item banner-video-item{{ settings.banner_video_ajustar ? ' is-cover' : '' }}" style="--bg: url('{{ videoPoster }}')" data-swiper-autoplay="{{ settings.banner_video_tempo ? settings.banner_video_tempo * 1000 : 24000 }}">
-                {% if videoLink %}<a href="{{ videoLink }}" aria-label="{{ settings.banner_video_alt ? settings.banner_video_alt : 'ver mais' }}" class="banner-video-link">{% endif %}
-                <video class="banner-video"
-                    src="{{ videoSrc }}"
-                    {% if videoPoster %}poster="{{ videoPoster }}"{% endif %}
-                    autoplay muted loop playsinline preload="auto"
-                    disablepictureinpicture disableremoteplayback
-                    aria-label="{{ settings.banner_video_alt ? settings.banner_video_alt : 'Vídeo do banner' }}"></video>
-                {% if videoLink %}</a>{% endif %}
-            </div>
-            {% endif %}
-            {% if slideshow.type == 'javascript' %}
-            {% for banner in slideshow.slides %}
-            <div class="swiper-slide banner-item" style="--bg: url('{{ banner.image }}')">
-                {% if banner.link %}
-                <a href="{{ banner.link }}" 
-                    {% if banner.target == '_blank' %} 
-                        target="_blank" rel="noopener noreferrer" 
-                    {% endif %} 
-                    aria-label="ver mais" style="display: block; width: 100%;">
-                    <img 
-                        class="lazyload"
-                      
-                   
-                        src="{{ banner.image }}" 
-                        data-src="{{ banner.image }}" 
-                        alt="{{ banner.label }}" 
-                        loading="eager" width="100%" />
+
+            {# Vídeo #}
+            <div class="swiper-slide banner-item banner-video-item" data-swiper-autoplay="24000">
+                <a href="{{ videoLink }}" aria-label="NeuroBalance ASD" class="banner-video-link">
+                    <video class="banner-video"
+                        src="{{ videoSrc }}"
+                        poster="{{ videoPoster }}"
+                        autoplay muted loop playsinline preload="auto"
+                        disablepictureinpicture disableremoteplayback
+                        aria-label="NeuroBalance ASD"></video>
                 </a>
-                {% else %}
-                <img 
-                    class="lazyload"
-            
-                    src="{{ banner.image }}" 
-                    data-src="{{ banner.image }}" 
-                    alt="{{ banner.label }}" 
-                    loading="eager" width="100%" />
-                {% endif %}
             </div>
-            {% endfor %}
-            {% elseif slideshow %}
-            {# Banner único cadastrado no painel + vídeo: o banner vira o 2º slide #}
-            <div class="swiper-slide banner-item" style="--bg: url('{{ slideshow.src }}')">
-                {% set link = slideshow.link ? slideshow.tracked_link : null %}
-                {% if link %}<a href="{{ link }}" {% if slideshow.target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="ver mais" style="display: block; width: 100%;">{% endif %}
-                <img class="lazyload" src="{{ slideshow.src }}" data-src="{{ slideshow.src }}" alt="{{ slideshow.alt }}" loading="eager" width="100%" />
-                {% if link %}</a>{% endif %}
-            </div>
+
+            {% if not utils.is_mobile %}
+                {# Desktop: banners fixos #}
+                {% for banner in bannersHome %}
+                <div class="swiper-slide banner-item">
+                    <a href="{{ banner.link }}" aria-label="{{ banner.alt }}" style="display: block; width: 100%;">
+                        <img src="{{ banner.imagem }}" alt="{{ banner.alt }}" loading="eager" width="100%" />
+                    </a>
+                </div>
+                {% endfor %}
+            {% elseif banners.mobile and banners.mobile.slides %}
+                {# Celular: banners mobile do painel #}
+                {% for banner in banners.mobile.slides %}
+                <div class="swiper-slide banner-item">
+                    {% if banner.link %}<a href="{{ banner.link }}" {% if banner.target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="ver mais" style="display: block; width: 100%;">{% endif %}
+                        <img src="{{ banner.image }}" alt="{{ banner.label }}" loading="eager" width="100%" />
+                    {% if banner.link %}</a>{% endif %}
+                </div>
+                {% endfor %}
             {% endif %}
+
         </div>
-        <!-- <div class="slides-buttonPrev icon-arrow-left"></div>
-        <div class="slides-buttonNext icon-arrow-right"></div> -->
         <div class="swiper-pagination"></div>
     </div>
-
-    {% else %}
-
-    <div class="item">
-        {% set link = slideshow.link ? slideshow.tracked_link : null %}
-        {% if link %}
-        <a href="{{ link }}" 
-            {% if slideshow.target == '_blank' %} 
-                target="_blank" rel="noopener noreferrer" 
-            {% endif %} 
-            aria-label="ver mais">
-            <img 
-                class="lazyload"
-                width="{{ slideshow.width }}" 
-                height="{{ slideshow.height }}" 
-                src="{{ slideshow.src }}" 
-                data-src="{{ slideshow.src }}" 
-                alt="{{ slideshow.alt }}" 
-                loading="eager" width="100%" />
-        </a>
-        {% else %}
-        <img 
-            class="lazyload"
-            width="{{ slideshow.width }}" 
-            height="{{ slideshow.height }}" 
-            src="{{ slideshow.src }}" 
-            data-src="{{ slideshow.src }}" 
-            alt="{{ slideshow.alt }}" 
-            loading="eager" width="100%" />
-        {% endif %}
-    </div>
-
-    {% endif %}
-</div> 
-
-{% endif %}
+</div>
 
 {# Banner da home cabe na 1ª tela no desktop/notebook #}
 <script>
