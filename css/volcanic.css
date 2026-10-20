@@ -1158,7 +1158,10 @@ a.buy-whatsapp-button:hover {
     color: #18181D;
 }
 .encontre-objetivo .row{
-    margin: 30px 0;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 1140px; /* largura máxima do bloco: ajuste aqui para aumentar/diminuir */
+    padding: 0 15px;
 }
 .encontre-objetivo .row .col-md-3{
     padding: 0;
