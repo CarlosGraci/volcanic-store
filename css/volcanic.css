@@ -1257,6 +1257,9 @@ a.buy-whatsapp-button:hover {
 }
 .carrousel-img-produtos .products-content {
     padding-bottom: 50px;
+    width: 100%;
+    max-width: 1200px; /* largura máxima do carrossel: ajuste aqui para aumentar/diminuir */
+    margin: 0 auto;
 }
 
 
