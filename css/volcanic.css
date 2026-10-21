@@ -1321,6 +1321,15 @@ a.buy-whatsapp-button:hover {
     font-weight: 400;
     line-height: 24px;
 }
+/* Depoimentos (desktop): texto mais à direita e menor, para não cobrir o rosto da mãe */
+@media (min-width: 992px) {
+    .depoimentos .row > .col-md-6:first-child { padding-left: clamp(60px, 12vw, 180px); } /* quanto maior, mais para a direita */
+    .depoimentos .row > .col-md-6:first-child h3 { font-size: 34px; line-height: 40px; margin-bottom: 24px; }
+    .depoimentos .bloco-depoimento { gap: 14px; margin-bottom: 20px; }
+    .depoimentos .bloco-depoimento > img { width: 60px; }
+    .depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 15px; }
+    .depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 14px; line-height: 20px; }
+}
 .depoimentos .bloco-right{
     padding: 20px 40px 0 40px;
     position: relative;
