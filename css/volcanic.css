@@ -1347,6 +1347,13 @@ a.buy-whatsapp-button:hover {
     section.depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 12px; line-height: 17px; }
     section.depoimentos .bloco-right h4 { font-size: 28px; line-height: 32px; }
 }
+/* Depoimentos: foto ampliada, mãe mais próxima do texto */
+@media (min-width: 992px) {
+    section.depoimentos::after { background-size: auto 120%; background-position: left bottom; }
+}
+@media (min-width: 1200px) {
+    section.depoimentos::after { background-size: auto 140%; } /* aumente para ampliar mais */
+}
 .depoimentos .bloco-right{
     padding: 20px 40px 0 40px;
     position: relative;
