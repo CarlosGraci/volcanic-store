@@ -1321,24 +1321,31 @@ a.buy-whatsapp-button:hover {
     font-weight: 400;
     line-height: 24px;
 }
-/* Depoimentos (desktop): seção ~20% menor e texto fora do rosto da mãe */
+/* Depoimentos (desktop): seção ~20% menor, texto centralizado na vertical e fora do rosto da mãe */
 @media (min-width: 992px) {
-    .depoimentos .row > .col-md-6:first-child { padding-left: clamp(40px, 21vw, 240px); } /* quanto maior, mais para a direita */
-    .depoimentos .row > .col-md-6:first-child h3 { font-size: 32px; line-height: 38px; margin-bottom: 22px; }
-    .depoimentos .bloco-depoimento { gap: 14px; margin-bottom: 18px; }
-    .depoimentos .bloco-depoimento > img { width: 56px; }
-    .depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 14px; }
-    .depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 14px; line-height: 20px; }
-    .depoimentos .bloco-right h4 { font-size: 38px; line-height: 42px; margin: 22px 0; }
-    .depoimentos .bloco-right > img { width: 48px; }
-    .depoimentos .depoSlides .offer-text { font-size: 16px; line-height: 24px; }
+    section.depoimentos { padding: 40px 0; }
+    section.depoimentos .row { align-items: center; } /* centraliza na vertical */
+    section.depoimentos .row > .col-md-6:first-child { padding-left: clamp(40px, 22vw, 270px); } /* quanto maior, mais para a direita */
+    section.depoimentos .row > .col-md-6:first-child h3 { font-size: 30px; line-height: 36px; margin-bottom: 20px; }
+    section.depoimentos .bloco-depoimento { gap: 12px; margin-bottom: 16px; }
+    section.depoimentos .bloco-depoimento > img { width: 52px; }
+    section.depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 13px; }
+    section.depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 13px; line-height: 19px; }
+    section.depoimentos .bloco-right { padding: 0 40px; }
+    section.depoimentos .bloco-right > img { width: 40px; }
+    section.depoimentos .bloco-right h4 { font-size: 32px; line-height: 36px; margin: 14px 0 18px; }
+    section.depoimentos .swiper-slide { gap: 16px; }
+    section.depoimentos .swiper-slide p { font-size: 15px; line-height: 23px; }
+    section.depoimentos .swiper-slide div strong { font-size: 15px; }
+    section.depoimentos .swiper-pagination { margin-top: 18px; }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-    .depoimentos .row > .col-md-6:first-child h3 { font-size: 26px; line-height: 31px; }
-    .depoimentos .bloco-depoimento { gap: 10px; }
-    .depoimentos .bloco-depoimento > img { width: 44px; }
-    .depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 12px; }
-    .depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 12px; line-height: 17px; }
+    section.depoimentos .row > .col-md-6:first-child h3 { font-size: 26px; line-height: 31px; }
+    section.depoimentos .bloco-depoimento { gap: 10px; }
+    section.depoimentos .bloco-depoimento > img { width: 44px; }
+    section.depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 12px; }
+    section.depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 12px; line-height: 17px; }
+    section.depoimentos .bloco-right h4 { font-size: 28px; line-height: 32px; }
 }
 .depoimentos .bloco-right{
     padding: 20px 40px 0 40px;
