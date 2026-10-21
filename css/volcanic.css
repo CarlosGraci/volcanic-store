@@ -1832,3 +1832,49 @@ footer .footer-newsletter .news-email input{
     object-position: center !important;
   }
 }
+
+/* ===== Banner da home: carrossel com slide central, laterais aparecendo e bordas arredondadas ===== */
+.banner-home { --bh-w: min(86vw, 1680px); --bh-r: 20px; padding-top: 16px; position: relative; }
+.banner-home .swiper { width: 100%; overflow: hidden; }
+.banner-home .swiper-slide { width: var(--bh-w) !important; border-radius: var(--bh-r); overflow: hidden; }
+.banner-slides.banner-home .swiper-slide img,
+.banner-slides.banner-home .swiper-slide video,
+.banner-slides.banner-home .swiper-slide .banner-video,
+.banner-slides.banner-home .swiper-slide > a > img,
+.banner-slides.banner-home .swiper-slide > a > video {
+  display: block;
+  width: 100% !important;
+  max-width: none !important;
+  height: min(calc(var(--banner-home-h, calc(100vh - 180px)) * 0.7), calc(var(--bh-w) / 3.555)) !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: var(--bh-r);
+}
+/* bolinhas: canto inferior esquerdo, dentro do banner */
+.banner-home .banner-home-pagination {
+  position: absolute; z-index: 5; bottom: 22px; width: auto !important;
+  left: calc((100% - var(--bh-w)) / 2 + 36px);
+}
+.banner-home .banner-home-pagination .swiper-pagination-bullet {
+  display: inline-block; width: 9px; height: 9px; margin: 0 6px 0 0; border-radius: 50%;
+  background: transparent; border: 2px solid #fff; opacity: .9; cursor: pointer;
+}
+.banner-home .banner-home-pagination .swiper-pagination-bullet-active { background: #fff; transform: scale(1.15); }
+/* setas: pílula branca no canto inferior direito, dentro do banner */
+.banner-home .banner-home-nav {
+  position: absolute; z-index: 5; bottom: 16px; right: calc((100% - var(--bh-w)) / 2 + 28px);
+  display: flex; gap: 4px; padding: 4px; background: #fff; border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.15);
+}
+.banner-home .banner-home-nav button {
+  width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; color: #1f3f66;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
+}
+.banner-home .banner-home-nav button:hover { background: #eef3f8; }
+@media (max-width: 991px) {
+  .banner-home { --bh-w: 90vw; --bh-r: 14px; padding-top: 10px; }
+  .banner-slides.banner-home .swiper-slide img, .banner-slides.banner-home .swiper-slide video, .banner-slides.banner-home .swiper-slide .banner-video,
+  .banner-slides.banner-home .swiper-slide > a > img, .banner-slides.banner-home .swiper-slide > a > video { height: auto !important; }
+  .banner-home .banner-home-nav { display: none; }
+  .banner-home .banner-home-pagination { left: 0; right: 0; width: 100% !important; text-align: center; bottom: 12px; }
+}

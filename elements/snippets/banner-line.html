@@ -22,7 +22,7 @@
     { 'imagem': cdn ~ '@c5c127e1653fc91b669f8ed0319ab7c784cd5395/img/banners/banner-2-clube-assinaturas.jpg',       'link': 'https://www.volcanicstore.com/assinaturas',     'alt': 'Clube de Assinaturas - até 40% OFF' }
 ] %}
 
-<div class="banner-slides" data-slides="bannes-products">
+<div class="banner-slides banner-home" data-slides="banner-home">
     <div class="swiper">
         <div class="swiper-wrapper">
 
@@ -59,11 +59,16 @@
             {% endif %}
 
         </div>
-        <div class="swiper-pagination"></div>
+        {# bolinhas (canto inferior esquerdo) e setas (canto inferior direito), dentro do banner #}
+        <div class="banner-home-pagination"></div>
+        <div class="banner-home-nav">
+            <button type="button" class="banner-home-prev" aria-label="Banner anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button type="button" class="banner-home-next" aria-label="Próximo banner"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
     </div>
 </div>
 
-{# Banner da home cabe na 1ª tela no desktop/notebook #}
+{# Banner da home: altura na 1ª tela + carrossel no estilo "slide central com laterais aparecendo" #}
 <script>
 (function () {
     function ajustarBanner() {
@@ -73,8 +78,37 @@
         var altura = Math.max(320, window.innerHeight - topo);
         document.documentElement.style.setProperty('--banner-home-h', altura + 'px');
     }
+    function tocarVideoAtivo(sw) {
+        Array.prototype.forEach.call(sw.slides, function (slide, i) {
+            var v = slide.querySelector('video');
+            if (!v) return;
+            v.muted = true;
+            if (i === sw.activeIndex) { try { v.currentTime = 0; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+            else { v.pause(); }
+        });
+    }
+    function iniciarCarrossel() {
+        var el = document.querySelector('[data-slides="banner-home"] .swiper');
+        if (!el || el.swiper || typeof Swiper === 'undefined') return;
+        var total = el.querySelectorAll('.swiper-slide').length;
+        new Swiper(el, {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 12,
+            loop: total > 1,
+            loopedSlides: total,
+            speed: 700,
+            autoplay: total > 1 ? { delay: 6000, disableOnInteraction: false } : false,
+            pagination: { el: '.banner-home-pagination', clickable: true },
+            navigation: { prevEl: '.banner-home-prev', nextEl: '.banner-home-next' },
+            on: {
+                init: function () { tocarVideoAtivo(this); },
+                slideChangeTransitionStart: function () { tocarVideoAtivo(this); }
+            }
+        });
+    }
     document.addEventListener('DOMContentLoaded', ajustarBanner);
-    window.addEventListener('load', ajustarBanner);
     window.addEventListener('resize', ajustarBanner);
+    window.addEventListener('load', function () { ajustarBanner(); iniciarCarrossel(); });
 })();
 </script>
