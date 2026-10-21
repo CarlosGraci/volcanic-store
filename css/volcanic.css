@@ -1834,7 +1834,7 @@ footer .footer-newsletter .news-email input{
 }
 
 /* ===== Banner da home: carrossel com slide central, laterais aparecendo e bordas arredondadas ===== */
-.banner-home { --bh-w: min(94vw, 1800px); --bh-r: 20px; padding-top: 16px; position: relative; }
+.banner-home { --bh-w: min(96vw, 1840px); --bh-r: 20px; padding-top: 16px; position: relative; }
 .banner-home .swiper { width: 100%; overflow: hidden; }
 .banner-home .swiper-slide { width: var(--bh-w) !important; border-radius: var(--bh-r); overflow: hidden; }
 .banner-slides.banner-home .swiper-slide img,
