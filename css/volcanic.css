@@ -1282,7 +1282,7 @@ a.buy-whatsapp-button:hover {
     overflow: hidden;
 }
 .depoimentos::after{
-    background: url("../img/bg-depoimentos.png") no-repeat top center;
+    background: url("https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@0fb035db776e5c95575190a40827cb23cc5e679b/img/secoes/bg-depoimentos-mae-filho.jpg") no-repeat left center;
     background-size: cover;
     content: "";
     position: absolute;
