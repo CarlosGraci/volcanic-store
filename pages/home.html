@@ -72,10 +72,14 @@
 <section class="section slider-banner-prods" data-slides="bannes-products">
     <div class="bannes-content swiper">
         <div class="product-list swiper-wrapper">
-            {% for i in 1..3 %}
-                {% set img = attribute(settings, 'banners_hor_image_'~i) %}
-                <a href="{{ attribute(settings, 'banners_hor_link_' ~ i) }}" class="swiper-slide">
-                    <img src="{{ asset(img) }}" alt="" width="100%">
+            {% set bannersProdutos = [
+                { 'imagem': 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@e3a2e14930b12ed57b1c7f90b4fca1cc1bc05570/img/banners-produtos/banner-neurobalance-asd.jpg',       'link': 'https://www.volcanicstore.com/neurobalanceasd',       'alt': 'NeuroBalance ASD - Inovação para Suporte ao TEA' },
+                { 'imagem': 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@e3a2e14930b12ed57b1c7f90b4fca1cc1bc05570/img/banners-produtos/banner-neurobalance-melatonin.jpg', 'link': 'https://www.volcanicstore.com/neurobalancemelatonin', 'alt': 'NeuroBalance Melatonin - Sono de Qualidade' },
+                { 'imagem': 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@e3a2e14930b12ed57b1c7f90b4fca1cc1bc05570/img/banners-produtos/banner-endocan.jpg',                'link': 'https://www.volcanicstore.com/endocan/pea-levagen-curcuma-hydrocurc-e-vitaminas-do-complexo-b-com-30-comprimidos', 'alt': 'Volcanic Endocan - Alívio da dor e Suporte Neuroprotetor' }
+            ] %}
+            {% for banner in bannersProdutos %}
+                <a href="{{ banner.link }}" class="swiper-slide">
+                    <img src="{{ banner.imagem }}" alt="{{ banner.alt }}" width="100%">
                 </a>
             {% endfor %}
         </div>
