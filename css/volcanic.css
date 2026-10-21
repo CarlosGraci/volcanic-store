@@ -1440,6 +1440,14 @@ a.buy-whatsapp-button:hover {
     text-align: center;
     border-radius: 10px;
 }
+/* Seja um Afiliado (desktop): seção ~20% menor */
+@media (min-width: 992px) {
+    section.afiliado { padding: 64px 0; } /* antes 100px */
+    section.afiliado .row { align-items: center; }
+    section.afiliado .col-md-6 > img { width: 80%; display: block; margin-left: auto; border-radius: 24px; } /* foto 20% menor */
+    section.afiliado h3 { font-size: 44px; line-height: 50px; margin-bottom: 24px; }
+    section.afiliado .list-afiliado { margin-bottom: 20px; }
+}
 
 .depoimnetos-videos h3{
     font-weight: 700;
