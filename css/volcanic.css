@@ -1278,11 +1278,11 @@ a.buy-whatsapp-button:hover {
 
 .depoimentos{
     position: relative;
-    padding: 100px 0;
+    padding: 64px 0; /* antes 100px: seção ~20% menor */
     overflow: hidden;
 }
 .depoimentos::after{
-    background: url("https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@0fb035db776e5c95575190a40827cb23cc5e679b/img/secoes/bg-depoimentos-mae-filho.jpg") no-repeat left center;
+    background: url("https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@001aa152ddfbc2462c54788d0b01e0e1301ecb38/img/secoes/bg-depoimentos-mae-filho.jpg") no-repeat left bottom;
     background-size: cover;
     content: "";
     position: absolute;
@@ -1321,14 +1321,24 @@ a.buy-whatsapp-button:hover {
     font-weight: 400;
     line-height: 24px;
 }
-/* Depoimentos (desktop): texto mais à direita e menor, para não cobrir o rosto da mãe */
+/* Depoimentos (desktop): seção ~20% menor e texto fora do rosto da mãe */
 @media (min-width: 992px) {
-    .depoimentos .row > .col-md-6:first-child { padding-left: clamp(60px, 12vw, 180px); } /* quanto maior, mais para a direita */
-    .depoimentos .row > .col-md-6:first-child h3 { font-size: 34px; line-height: 40px; margin-bottom: 24px; }
-    .depoimentos .bloco-depoimento { gap: 14px; margin-bottom: 20px; }
-    .depoimentos .bloco-depoimento > img { width: 60px; }
-    .depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 15px; }
+    .depoimentos .row > .col-md-6:first-child { padding-left: clamp(40px, 21vw, 240px); } /* quanto maior, mais para a direita */
+    .depoimentos .row > .col-md-6:first-child h3 { font-size: 32px; line-height: 38px; margin-bottom: 22px; }
+    .depoimentos .bloco-depoimento { gap: 14px; margin-bottom: 18px; }
+    .depoimentos .bloco-depoimento > img { width: 56px; }
+    .depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 14px; }
     .depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 14px; line-height: 20px; }
+    .depoimentos .bloco-right h4 { font-size: 38px; line-height: 42px; margin: 22px 0; }
+    .depoimentos .bloco-right > img { width: 48px; }
+    .depoimentos .depoSlides .offer-text { font-size: 16px; line-height: 24px; }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .depoimentos .row > .col-md-6:first-child h3 { font-size: 26px; line-height: 31px; }
+    .depoimentos .bloco-depoimento { gap: 10px; }
+    .depoimentos .bloco-depoimento > img { width: 44px; }
+    .depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 12px; }
+    .depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 12px; line-height: 17px; }
 }
 .depoimentos .bloco-right{
     padding: 20px 40px 0 40px;
