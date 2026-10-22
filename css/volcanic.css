@@ -1883,3 +1883,7 @@ footer .footer-newsletter .news-email input{
 .banner-slides.banner-home .banner-areas { position: absolute; left: 0; top: 50%; width: 100%; aspect-ratio: 1920 / 540; transform: translateY(-50%); }
 .banner-slides.banner-home .banner-areas a { position: absolute; display: block; border-radius: 1vw; transition: box-shadow .2s ease, background .2s ease; }
 .banner-slides.banner-home .banner-areas a:hover { background: rgba(255,255,255,.08); box-shadow: 0 0 0 3px rgba(255,51,72,.85); }
+/* ===== Encontre seu objetivo: cantos arredondados ===== */
+.encontre-objetivo .box-objetivo { border-radius: 20px; overflow: hidden; }
+.encontre-objetivo .box-objetivo img { border-radius: 20px; display: block; }
+.encontre-objetivo .box-objetivo .legenda { border-radius: 20px; }
