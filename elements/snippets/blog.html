@@ -163,42 +163,82 @@
 </section>
 
 <script>
-function textoLimpo(html) { var d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); }
-document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.querySelector('.accordion-container');
-  const apiUrl = 'https://blog.volcanicstore.com/wp-json/wp/v2/posts?_embed&per_page=3';
+(function () {
+  var container = document.querySelector('.accordion-container');
+  if (!container) return;
+  var API = 'https://blog.volcanicstore.com/wp-json/wp/v2/posts?per_page=3&_embed&_fields=title,link,excerpt,jetpack_featured_media_url,_links,_embedded';
+  var CHAVE = 'volcanic_blog_posts_v1';
+  var IMG_PADRAO = '{{ asset("img/modelo/blog1.jpg") }}';
 
-  try {
-    const response = await fetch(apiUrl);
-    const posts = await response.json();
+  function textoLimpo(html) { var d = document.createElement('div'); d.innerHTML = html || ''; return (d.textContent || '').trim(); }
 
-    container.innerHTML = ''; // limpa o conteúdo inicial
+  // Converte a resposta do WordPress em dados simples (título, link, resumo, imagem)
+  function simplificar(posts) {
+    return posts.slice(0, 3).map(function (post) {
+      var img = post.jetpack_featured_media_url ||
+        (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0] && post._embedded['wp:featuredmedia'][0].source_url) ||
+        IMG_PADRAO;
+      return {
+        titulo: textoLimpo(post.title && post.title.rendered),
+        link: post.link,
+        resumo: textoLimpo(post.excerpt && post.excerpt.rendered).substring(0, 150),
+        imagem: img
+      };
+    });
+  }
 
-    posts.forEach((post, index) => {
-      // Tenta pegar a imagem destacada via _embedded
-      const image =
-        post._embedded?.['wp:featuredmedia']?.[0]?.source_url ||
-        '{{ asset("img/modelo/blog1.jpg") }}';
+  function desenhar(lista) {
+    container.innerHTML = '';
+    lista.forEach(function (item, index) {
+      var panel = document.createElement('div');
+      panel.className = 'panel' + (index === 0 ? ' active' : '');
 
-      // Cria o HTML do painel
-      const panel = document.createElement('div');
-      panel.classList.add('panel');
-      if (index === 0) panel.classList.add('active');
+      var img = document.createElement('img');
+      img.className = 'panel-image'; img.src = item.imagem; img.alt = item.titulo; img.loading = 'lazy';
+      img.onerror = function () { this.onerror = null; this.src = IMG_PADRAO; };
 
-      panel.innerHTML = `
-        <img src="${image}" alt="${post.title.rendered}" class="panel-image">
-        <div class="panel-text">
-          <h3>${post.title.rendered}</h3>
-          <p>${textoLimpo(post.excerpt.rendered).substring(0, 150)}...</p>
-          <a href="${post.link}" target="_blank" rel="noopener">Ver mais</a>
-        </div>
-      `;
+      var txt = document.createElement('div'); txt.className = 'panel-text';
+      var h = document.createElement('h3'); h.textContent = item.titulo;
+      var p = document.createElement('p'); p.textContent = item.resumo + '...';
+      var a = document.createElement('a'); a.href = item.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Ver mais';
+      txt.appendChild(h); txt.appendChild(p); txt.appendChild(a);
 
+      panel.appendChild(img); panel.appendChild(txt);
       container.appendChild(panel);
     });
-  } catch (error) {
-    console.error('Erro ao carregar posts:', error);
-    container.textContent = 'Não foi possível carregar os posts no momento.';
   }
-});
+
+  function lerReserva() { try { var c = JSON.parse(localStorage.getItem(CHAVE)); return c && c.length ? c : null; } catch (e) { return null; } }
+  function salvarReserva(lista) { try { localStorage.setItem(CHAVE, JSON.stringify(lista)); } catch (e) {} }
+
+  function buscar(tentativa) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 8000);
+    return fetch(API, ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (posts) { if (!posts || !posts.length) throw new Error('sem posts'); return simplificar(posts); })
+      .catch(function (err) {
+        clearTimeout(timer);
+        if (tentativa < 2) return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return buscar(tentativa + 1); });
+        throw err;
+      });
+  }
+
+  function iniciar() {
+    // 1) Sempre busca os 3 posts mais recentes no blog
+    buscar(1).then(function (lista) {
+      desenhar(lista);
+      salvarReserva(lista); // guarda como reserva para quando o blog falhar
+    }).catch(function (err) {
+      console.error('Blog indisponível, usando reserva:', err);
+      // 2) Só se o blog falhar: mostra os últimos posts que carregaram com sucesso
+      var reserva = lerReserva();
+      if (reserva) { desenhar(reserva); return; }
+      // 3) Sem reserva (primeira visita e blog fora do ar): esconde a seção
+      var secao = container.closest('section.blog'); if (secao) secao.style.display = 'none';
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+})();
 </script>
