@@ -56,10 +56,11 @@
     </div>
     <div class="row">
         {% for i in 1..6 %}
-        {% set img = attribute(settings, 'objetivo_image_'~i) %}
+        {% set fotosObjetivo = ['autismo', 'sono', 'dor', 'foco', 'cognicao', 'visao'] %}
+        {% set img = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@a6110ffbf711fb07ba37c6203b2834db2e7d1aec/img/objetivos/' ~ fotosObjetivo[i - 1] ~ '.jpg' %}
             <div class="col-md-4 col-sm-6">
                 <a href="{{ attribute(settings, 'objetivo_link_' ~ i) }}" class="box-objetivo">
-                    <img src="{{ asset(img) }}" alt="Musculação" width="100%">
+                    <img src="{{ img }}" alt="{{ attribute(settings, 'objetivo_title_' ~ i) }}" width="100%">
                     <div class="legenda">
                         {{ attribute(settings, 'objetivo_title_' ~ i) }}
                     </div>
