@@ -163,6 +163,7 @@
 </section>
 
 <script>
+function textoLimpo(html) { var d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); }
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.querySelector('.accordion-container');
   const apiUrl = 'https://blog.volcanicstore.com/wp-json/wp/v2/posts?_embed&per_page=3';
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <img src="${image}" alt="${post.title.rendered}" class="panel-image">
         <div class="panel-text">
           <h3>${post.title.rendered}</h3>
-          <p>${post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
+          <p>${textoLimpo(post.excerpt.rendered).substring(0, 150)}...</p>
           <a href="${post.link}" target="_blank" rel="noopener">Ver mais</a>
         </div>
       `;
@@ -197,7 +198,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   } catch (error) {
     console.error('Erro ao carregar posts:', error);
-    container.innerHTML = '<p>Não foi possível carregar os posts no momento.</p>';
+    container.textContent = 'Não foi possível carregar os posts no momento.';
   }
 });
 </script>
