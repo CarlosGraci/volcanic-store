@@ -50,7 +50,7 @@
 
 {% set slidesAtivos = utils.is_mobile ? slidesMobile : slidesHome %}
 
-<div class="banner-slides banner-home" data-slides="banner-home">
+<div class="banner-slides banner-home{% if utils.is_mobile %} banner-home--mobile{% endif %}" data-slides="banner-home">
     <div class="swiper">
         <div class="swiper-wrapper">
 
