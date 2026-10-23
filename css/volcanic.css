@@ -1976,7 +1976,8 @@ section.showcase .product .product-button:hover { background: #c90a00; transform
   .pageProduct-bannerDiscount .bannerDiscount-image, .pageProduct-tabs img.banner-produto { border-radius: 14px; }
   .pageProduct-tabs img.banner-produto { aspect-ratio: auto; margin-top: 32px !important; }
   .pageProduct-tabs .box-descricao > .col-md-5 img { border-radius: 14px; }
-  .pageProduct-tabs .boxs-produto::before { font-size: 24px; }
+  .pageProduct-tabs .boxs-produto::before { display: block; font-size: 26px; text-align: center; margin: 0 0 16px; }
+  .pageProduct-tabs .boxs-produto > [class*="col-"] { margin-bottom: 16px; }
   .pageProduct-tabs .boxs-produto .box-info-produto { padding: 24px 20px !important; }
   .pageProduct-tabs .boxs-produto .box-info-produto > h3::before { top: 35px; left: 31px; }
   .pageProduct-tabs .orientacaoesdeuso { padding: 28px 22px !important; }
@@ -2007,4 +2008,26 @@ footer.footer .contact-item, footer.footer .contact-item:visited { color: #18181
   .banner-home .banner-home-pagination { position: static !important; display: flex; justify-content: center; gap: 4px; margin: 14px 0 0; transform: none !important; }
   .banner-home .banner-home-pagination .swiper-pagination-bullet { background: #d4d4d8 !important; border: 0 !important; opacity: 1; width: 8px; height: 8px; }
   .banner-home .banner-home-pagination .swiper-pagination-bullet-active { background: #141416 !important; width: 22px; border-radius: 999px; transform: none; }
+}
+/* ===== Home no celular: Encontre seu objetivo em 2 colunas e Depoimentos legíveis ===== */
+@media (max-width: 767px) {
+  .encontre-objetivo .row { margin: 0 10px; }
+  .encontre-objetivo .row > [class*="col-"] { flex: 0 0 50%; width: 50%; max-width: 50%; padding: 6px !important; }
+  .encontre-objetivo .box-objetivo { border-radius: 16px; }
+  .encontre-objetivo .box-objetivo img { border-radius: 16px; }
+  .encontre-objetivo .box-objetivo .legenda { opacity: 1; top: auto; height: auto; padding: 28px 12px 12px; font-size: 15px; line-height: 1.2; justify-content: flex-start; align-items: flex-end; text-align: left; border-radius: 0 0 16px 16px; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%); }
+  .encontre-objetivo .box-objetivo:hover { transform: none; }
+  section.depoimentos { padding: 24px 0 40px; }
+  section.depoimentos::after { display: none; }
+  section.depoimentos .row > .col-md-6:first-child {
+    margin: 0 14px; width: auto; padding: 28px 22px 12px; border-radius: 24px;
+    background: linear-gradient(180deg, rgba(12,12,14,.55) 0%, rgba(12,12,14,.8) 100%), url("https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@001aa152ddfbc2462c54788d0b01e0e1301ecb38/img/secoes/bg-depoimentos-mae-filho.jpg") center 30% / cover no-repeat;
+  }
+  section.depoimentos .row > .col-md-6:first-child h3 { font-size: 28px; line-height: 1.15; margin-bottom: 20px; }
+  section.depoimentos .bloco-depoimento { gap: 12px; margin-bottom: 18px; }
+  section.depoimentos .bloco-depoimento > img { width: 48px; }
+  section.depoimentos .bloco-depoimento .info-bloco-depoi h4 { font-size: 14px; }
+  section.depoimentos .bloco-depoimento .info-bloco-depoi p { font-size: 14px; line-height: 20px; }
+  section.depoimentos .bloco-right { padding: 28px 16px 0; }
+  section.afiliado .col-md-6 > img { border-radius: 20px; display: block; }
 }
