@@ -1949,7 +1949,9 @@ section.showcase .product .product-button:hover { background: #c90a00; transform
 
 /* Ativos: cards claros, limpos, na cor do produto */
 .pageProduct-tabs .boxs-produto { row-gap: 20px; }
-.pageProduct-tabs .boxs-produto::before { content: "Ativos Da Fórmula"; flex: 0 0 100%; width: 100%; text-align: center; font-size: 32px; font-weight: 700; color: #141416; margin-bottom: 6px; }
+.pageProduct-tabs .boxs-produto::before { content: "Ativos Da F\00F3rmula"; flex: 0 0 100%; width: 100%; text-align: center; font-size: 32px; font-weight: 700; color: #141416; margin-bottom: 6px; }
+.pageProduct-tabs .boxs-produto ~ .boxs-produto { margin-top: 20px !important; }
+.pageProduct-tabs .boxs-produto ~ .boxs-produto::before { content: none; display: none; }
 .pageProduct-tabs .boxs-produto > [class*="col-"] { display: flex; }
 .pageProduct-tabs .boxs-produto .box-info-produto { position: relative; display: flex; flex-direction: column; width: 100%; height: auto !important; min-height: 0; background: #fff !important; border: 1px solid var(--prod-cor-borda); border-radius: 22px !important; padding: 30px 28px 28px !important; box-shadow: 0 10px 30px rgba(20,20,22,.06); overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
 .pageProduct-tabs .boxs-produto .box-info-produto::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--prod-cor); }
