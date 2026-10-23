@@ -1,6 +1,6 @@
 {# =====================================================================
    PÁGINAS DE OBJETIVOS — layout premium e clean (compartilhado)
-   Parâmetros: cor (cor do produto), foto (imagem do topo), frase (subtítulo do topo), produto (imagem do pote no CTA final), imagem2 (troca a imagem do meio da página, opcional)
+   Parâmetros: cor (cor do produto), foto (imagem do topo), frase (subtítulo do topo), produto (imagem do pote no CTA final), imagem2 (troca a imagem do meio da página, opcional), fotoPos (enquadramento da foto do topo, ex.: 'center 15%', opcional)
    O conteúdo (textos, ativos) continua vindo da página cadastrada no painel.
    ===================================================================== #}
 {% set fogo = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg' %}
@@ -47,7 +47,7 @@
     }
     .obj-page .hero-interna::after {
         content: ""; position: absolute; right: 28px; top: 28px; bottom: 28px; width: min(44%, 500px);
-        border-radius: 22px; background: url("{{ foto }}") center / cover no-repeat;
+        border-radius: 22px; background: url("{{ foto }}") {{ fotoPos | default('center') }} / cover no-repeat;
         box-shadow: 0 18px 44px rgba(20,20,22,.12);
     }
     .obj-page .breadcrumb-interna { position: relative; z-index: 1; display: flex; gap: 8px; list-style: none; margin: 0; padding: 0; font-size: 12px; }
@@ -61,9 +61,8 @@
         font-size: 12px; font-weight: 700; letter-spacing: .18em;
     }
     .obj-page .hero-interna h1 { font-size: 68px; line-height: 1; font-weight: 800; letter-spacing: -.02em; color: #141416; margin: 0; }
-    .obj-page .hero-interna .content::after {
-        content: "{{ frase | default('Suplementação com base em ciência para o seu objetivo.') }}";
-        display: block; margin-top: 18px; max-width: 460px; font-size: 19px; line-height: 1.5; color: #5a5a60;
+    .obj-page .hero-interna .obj-frase {
+        display: block; margin: 18px 0 0; max-width: 460px; font-size: 19px; line-height: 1.5; color: #5a5a60;
         padding-left: 16px; border-left: 3px solid var(--obj-cor);
     }
 
@@ -165,7 +164,7 @@
         .obj-page .breadcrumb-interna { display: none; }
         .obj-page .hero-interna .content { max-width: 100%; }
         .obj-page .hero-interna h1 { font-size: 44px; }
-        .obj-page .hero-interna .content::after { font-size: 16px; }
+        .obj-page .hero-interna .obj-frase { font-size: 16px; }
         .obj-page .introducao { margin-top: 40px; }
         .obj-page .icones { flex-wrap: nowrap; justify-content: space-between; gap: 6px; padding: 12px 14px; width: 100%; }
         .obj-page .icones img { flex: 0 1 38px; width: 38px; height: 38px; min-width: 0; }
@@ -185,3 +184,18 @@
         .obj-page .cta-conteiner .content p { display: block; font-size: 16px; color: #4a4a50; }
     }
 </style>
+{# Frase do topo: vai como texto HTML (os acentos aparecem certos) e é colocada logo abaixo do título #}
+<p class="obj-frase" id="obj-frase" style="display:none">{{ frase | default('Suplementação com base em ciência para o seu objetivo.') }}</p>
+<script>
+(function () {
+    function colocarFrase() {
+        var frase = document.getElementById('obj-frase');
+        var titulo = document.querySelector('.obj-page .hero-interna h1');
+        if (!frase || !titulo || frase.dataset.ok) return;
+        titulo.insertAdjacentElement('afterend', frase);
+        frase.style.display = '';
+        frase.dataset.ok = '1';
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', colocarFrase); else colocarFrase();
+})();
+</script>
