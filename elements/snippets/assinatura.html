@@ -1,716 +1,237 @@
+{# =====================================================================
+   PÁGINA DE ASSINATURAS (Clube Volcanic) — mesmo padrão das páginas de objetivos
+   Cor do NeuroBalance ASD. Conteúdo fixo no tema.
+   ===================================================================== #}
+{% set cdn  = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store' %}
+{% set loja = 'https://www.volcanicstore.com' %}
+{% set fogo    = cdn ~ '@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg' %}
+{% set foto    = cdn ~ '@3708be759344cc3ee72faaf4d24644b78e607acf/img/assinatura/hero-mae-filho.jpg' %}
+{% set produto = cdn ~ '@90bfdf969976bc45555973052e80df74e3aee7e8/img/modelo/produto-51/neurobalance-asd.png' %}
+{% set linkAssinar = loja ~ '/neurobalanceasd' %}
 <style>
+    .container.is-custom-page { display: none; }
 
-.container.is-custom-page {
-    display: none;
-}
+    .ass-page {
+        --obj-cor: #26BBF2;
+        --obj-suave: color-mix(in srgb, var(--obj-cor) 12%, #ffffff);
+        --obj-fundo: color-mix(in srgb, var(--obj-cor) 6%, #ffffff);
+        --obj-borda: color-mix(in srgb, var(--obj-cor) 24%, #ffffff);
+        --obj-escuro: color-mix(in srgb, var(--obj-cor) 70%, #000000);
+        --obj-fogo: url("{{ fogo }}");
+        color: #2a2a2e; padding: 0 20px;
+    }
+    .ass-page * { box-sizing: border-box; }
+    .ass-page .bt-red {
+        display: inline-flex; align-items: center; gap: 10px; width: fit-content;
+        background: #f10c00; color: #fff !important; font-size: 16px; font-weight: 700; padding: 15px 30px;
+        border-radius: 999px; text-decoration: none; box-shadow: 0 10px 24px rgba(241,12,0,.3); transition: background .2s ease, transform .2s ease;
+    }
+    .ass-page .bt-red::after { content: "\2192"; font-size: 18px; }
+    .ass-page .bt-red:hover { background: #c90a00; transform: translateY(-1px); }
+    .ass-page .ass-titulo { display: block; text-align: center; font-size: 34px; line-height: 1.2; font-weight: 800; color: #141416; margin: 0 0 32px; }
+    .ass-page .ass-titulo::before {
+        content: ""; display: inline-block; vertical-align: -6px; margin-right: 10px; width: 36px; height: 36px; background: var(--obj-cor);
+        -webkit-mask: var(--obj-fogo) center / 24px no-repeat; mask: var(--obj-fogo) center / 24px no-repeat;
+    }
+    .ass-page .ass-titulo span { color: var(--obj-escuro); }
 
-section.hero {
-    background-image: url("{{ asset('img/modelo/hero-assinatura.png') }}");
-    background-size: cover;
-    background-position: center;
-    padding: 24px 0;
-}
+    /* ---------- TOPO (hero) ---------- */
+    .ass-page .ass-hero {
+        position: relative; max-width: 1220px; min-height: 420px; margin: 24px auto 0;
+        padding: 28px 48px 40px; border-radius: 28px; overflow: hidden;
+        background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%);
+        border: 1px solid var(--obj-borda); display: flex; flex-direction: column;
+    }
+    .ass-page .ass-hero::before {
+        content: ""; position: absolute; left: -70px; bottom: -110px; width: 360px; height: 420px;
+        background: var(--obj-cor); opacity: .07; pointer-events: none;
+        -webkit-mask: var(--obj-fogo) center / contain no-repeat; mask: var(--obj-fogo) center / contain no-repeat;
+    }
+    .ass-page .ass-hero::after {
+        content: ""; position: absolute; right: 28px; top: 28px; bottom: 28px; width: min(44%, 500px);
+        border-radius: 22px; background: url("{{ foto }}") center / cover no-repeat;
+        box-shadow: 0 18px 44px rgba(20,20,22,.12);
+    }
+    .ass-page .ass-breadcrumb { position: relative; z-index: 1; display: flex; gap: 8px; list-style: none; margin: 0; padding: 0; font-size: 12px; }
+    .ass-page .ass-breadcrumb a, .ass-page .ass-breadcrumb span { color: #8a8a8f; font-size: 12px; text-decoration: none; }
+    .ass-page .ass-breadcrumb li + li::before { content: "/"; color: #c4c4c8; margin-right: 8px; }
+    .ass-page .ass-hero .content { position: relative; z-index: 1; flex: 1; max-width: 52%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-top: 16px; }
+    .ass-page .ass-pill {
+        display: inline-flex; margin-bottom: 16px; padding: 7px 14px; border-radius: 999px;
+        background: var(--obj-suave); color: var(--obj-escuro); font-size: 12px; font-weight: 700; letter-spacing: .18em;
+    }
+    .ass-page .ass-hero h1 { font-size: 60px; line-height: 1.02; font-weight: 800; letter-spacing: -.02em; color: #141416; margin: 0; }
+    .ass-page .ass-hero h1 span { color: var(--obj-escuro); }
+    .ass-page .ass-frase {
+        margin: 18px 0 26px; max-width: 480px; font-size: 18px; line-height: 1.55; color: #5a5a60;
+        padding-left: 16px; border-left: 3px solid var(--obj-cor);
+    }
+    .ass-page .ass-frase strong { color: #141416; }
 
-section.cta-full {
-    background-image: url("{{ asset('img/modelo/clube-full.png') }}");
-    background-size: cover;
-    background-position: center;
-    padding: 24px 0;
-}
+    /* ---------- POR QUE ASSINAR ---------- */
+    .ass-page .ass-porque { max-width: 1220px; margin: 72px auto 0; }
+    .ass-page .ass-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ass-page .ass-card {
+        position: relative; padding: 30px 28px; overflow: hidden; background: #fff;
+        border: 1px solid var(--obj-borda); border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(20,20,22,.05); transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .ass-page .ass-card::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--obj-cor); }
+    .ass-page .ass-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(20,20,22,.10); }
+    .ass-page .ass-icone { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 16px; background: var(--obj-suave); color: var(--obj-escuro); margin-bottom: 18px; }
+    .ass-page .ass-icone svg { width: 28px; height: 28px; }
+    .ass-page .ass-card h3 { font-size: 21px; line-height: 1.3; font-weight: 700; color: #141416; margin: 0 0 8px; }
+    .ass-page .ass-card p { font-size: 15px; line-height: 1.65; color: #4a4a50; margin: 0; }
+    .ass-page .ass-card p strong { color: #141416; }
+    .ass-page .ass-centro { display: flex; justify-content: center; margin-top: 32px; }
 
-section.footer-text {
-    display: block;
-}
-
-.hero h1 {
-    font-size: 64px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 90%;
-    margin: 0;
-}
-
-h1 span {
-    color: #F10C00;
-}
-
-.breadcrumb {
-    max-width: 1220px;
-    margin: 0 auto;
-}
-
-.breadcrumb-link {
-    color: #fff;
-    font-size: 12px;
-}
-
-.breadcrumb-item:not(:first-child):before {
-    color: #712420;
-}
-
-.hero .container {
-    align-content: center;
-    padding: 0;
-}
-
-.hero .content {
-    max-width: 600px;
-    height: 450px;
-    align-content: center;
-    display: grid;
-    gap: 24px;
-}
-
-.cta-full .content {
-    max-width: 550px;
-    height: 450px;
-    align-content: center;
-    display: inline-grid;
-    gap: 24px;
-}
-
-.cta-full h3 {
-    color: #F0F0F0;
-    font-size: 64px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    line-height: 100%;
-}
-
-.content p {
-    color: rgba(255, 255, 255, 1);
-    font-size: 18px;
-}
-
-.bt-red {
-    background-color: #F10C00;
-    color: #fff;
-    font-weight: 500;
-    padding: 8px 24px;
-    display: block;
-    width: fit-content;
-    border-radius: 10px;
-}
-
-.box-assinatura {
-    max-width: 1210px;
-    margin: 0 auto;
-}
-
-.vantagens h3 {
-    max-width: 1220px;
-    font-size: 40px;
-    font-weight: 700;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.box-info-assinatura {
-    background-color: #18181D;
-    padding: 40px;
-    height: 100%;
-    border-top-right-radius: 120px;
-    display: grid;
-    gap: 20px;
-    align-content: baseline;
-}
-
-.box-info-assinatura h4 {
-    color: #F2BC1B;
-    font-size: 32px;
-    line-height: 100%;
-    font-weight: 700;
-}
-
-.box-info-assinatura p {
-    color: #fff;
-    font-size: 24px;
-    line-height: 100%;
-}
-
-.pv-section {
-    display: flex;
-    width: 100%;
-    max-width: 1000px;
-    height: 350px;
-    overflow: hidden;
-    border-radius: 12px;
-    gap: 4px;
-    padding: 8px;
-    margin: 20px auto
-}
-
-.pv-banner {
-    flex: .8;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: all .3s ease-in-out;
-    box-shadow: 0 4px 15px rgba(0,0,0,.1)
-}
-
-.pv-banner:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 25px rgba(0,0,0,.15)
-}
-
-.pv-gallery {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 8px
-}
-
-.pv-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: all .3s ease-in-out;
-    box-shadow: 0 4px 15px rgba(0,0,0,.1);
-    filter: brightness(1)
-}
-
-.pv-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0,0,0,.15);
-    filter: brightness(1.05);
-    z-index: 1
-}
-
-.pv-img-wide {
-    grid-column: 1/3
-}
-
-@media (max-width: 768px) {
-    section.hero {
-        padding: 52px 0;
+    /* ---------- COMO FUNCIONA ---------- */
+    .ass-page .ass-como { background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 100%); margin: 72px -20px 0; padding: 56px 20px; }
+    .ass-page .ass-passos { max-width: 1220px; margin: 0 auto; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: passo; }
+    .ass-page .ass-passos li {
+        counter-increment: passo; display: flex; align-items: center; gap: 14px; padding: 18px 18px;
+        background: #fff; border: 1px solid var(--obj-borda); border-radius: 18px; font-size: 15px; line-height: 1.45; color: #2a2a2e;
+    }
+    .ass-page .ass-passos li::before {
+        content: counter(passo); flex: none; display: flex; align-items: center; justify-content: center;
+        width: 38px; height: 38px; border-radius: 50%; background: var(--obj-cor); color: #fff; font-weight: 800; font-size: 16px;
     }
 
-    .breadcrumb {
-        display: none;
+    /* ---------- VANTAGENS ---------- */
+    .ass-page .ass-vantagens { max-width: 1220px; margin: 72px auto 0; }
+    .ass-page .ass-vantagens .ass-card h3 span { display: table; margin: 0 0 12px; padding: 5px 13px; border-radius: 999px; background: var(--obj-suave); color: var(--obj-escuro); font-size: 13px; font-weight: 700; }
+
+    /* ---------- CHAMADA FINAL (CTA) ---------- */
+    .ass-page .ass-cta {
+        position: relative; max-width: 1220px; margin: 72px auto 0; padding: 0 64px 0 0; overflow: hidden;
+        display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: stretch; min-height: 420px;
+        border-radius: 28px; border: 1px solid var(--obj-borda);
+        background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%);
     }
-
-    .hero h1 {
-        font-size: 56px;
-        align-content: flex-end;
+    .ass-page .ass-cta::before { content: ""; display: block; height: 100%; min-height: 420px; background: url("{{ produto }}") left top / auto 100% no-repeat; }
+    .ass-page .ass-cta .content { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 18px; align-content: center; justify-items: start; padding: 48px 0; }
+    .ass-page .ass-cta .content::before {
+        content: ""; width: 34px; height: 40px; background: var(--obj-cor);
+        -webkit-mask: var(--obj-fogo) left center / contain no-repeat; mask: var(--obj-fogo) left center / contain no-repeat;
     }
+    .ass-page .ass-cta h2 { color: #141416; font-size: 38px; line-height: 1.15; font-weight: 800; margin: 0; }
+    .ass-page .ass-cta p { color: #4a4a50; font-size: 18px; line-height: 1.6; margin: 0; }
+    .ass-page .ass-cta p strong { color: #141416; }
 
-    .pv-section {
-        flex-direction:column;
-        height: auto;
-        max-height: 550px;
-        gap: 8px;
-        padding: 6px
+    /* ---------- AVISO FINAL ---------- */
+    .ass-page .ass-aviso { max-width: 1220px; margin: 0 auto; padding: 32px 0 48px; }
+    .ass-page .ass-aviso p { background: #fafafa; border: 1px solid #ececec; border-radius: 16px; padding: 18px 22px; font-size: 13px; line-height: 1.6; color: #77737a; margin: 0; }
+
+    /* ---------- TABLET ---------- */
+    @media (max-width: 991px) {
+        .ass-page .ass-passos { grid-template-columns: repeat(2, 1fr); }
     }
-
-    .pv-banner {
-        width: 100%;
-        height: 180px
+    /* ---------- CELULAR ---------- */
+    @media (max-width: 767px) {
+        .ass-page { padding: 0 14px; }
+        .ass-page .ass-hero { min-height: 0; padding: 20px 20px 24px; border-radius: 22px; margin-top: 14px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%); }
+        .ass-page .ass-hero::after { position: relative; display: block; order: -1; right: auto; top: auto; bottom: auto; width: 100%; height: 220px; margin-bottom: 18px; border-radius: 16px; }
+        .ass-page .ass-breadcrumb { display: none; }
+        .ass-page .ass-hero .content { max-width: 100%; padding-top: 0; }
+        .ass-page .ass-hero h1 { font-size: 40px; }
+        .ass-page .ass-frase { font-size: 16px; }
+        .ass-page .ass-titulo { font-size: 26px; margin-bottom: 22px; }
+        .ass-page .ass-porque, .ass-page .ass-vantagens { margin-top: 48px; }
+        .ass-page .ass-cards { grid-template-columns: 1fr; gap: 14px; }
+        .ass-page .ass-card { padding: 24px 22px; }
+        .ass-page .ass-como { margin: 48px -14px 0; padding: 40px 14px; }
+        .ass-page .ass-passos { grid-template-columns: 1fr; gap: 10px; }
+        .ass-page .ass-cta { grid-template-columns: 1fr; gap: 0; min-height: 0; padding: 0; margin-top: 48px; border-radius: 22px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%); }
+        .ass-page .ass-cta::before { height: 320px; min-height: 0; }
+        .ass-page .ass-cta .content { padding: 26px 22px 32px; }
+        .ass-page .ass-cta h2 { font-size: 28px; }
+        .ass-page .ass-cta p { font-size: 16px; }
     }
-
-    .pv-gallery {
-        grid-template-rows: 120px 120px
-    }
-
-    .pv-banner:hover,.pv-img:hover {
-        transform: scale(1.02)
-    }
-}
-
-@media (max-width: 480px) {
-    .pv-section {
-        max-height:450px;
-        margin: 15px auto
-    }
-
-    .pv-banner {
-        height: 140px
-    }
-
-    .pv-gallery {
-        grid-template-rows: 90px 90px;
-        gap: 6px
-    }
-}
-
-.pv-text-section {
-    max-width: 1220px;
-    margin: 80px auto;
-    place-items: center;
-    display: grid;
-    gap: 56px;
-}
-
-.button-bg {
-    background-image: url("{{ asset('img/modelo/bg-line.png') }}");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    justify-items: center;
-}
-
-.como-funciona {
-    max-width: 1220px;
-    margin: 80px auto;
-    display: grid;
-    gap: 40px;
-}
-
-.como-funciona h3 {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.como-funciona .item {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.como-funciona .num {
-    padding: 10px 14px;
-    background-color: #F10C00;
-    border-radius: 50%;
-    text-align: center;
-    align-content: center;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 20px;
-    color: #fff;
-}
-
-.como-funciona .descricao {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 100%;
-}
-
-.pv-main-title {
-    font-size: 2.5rem;
-    color: var(--color_title_about);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 30px;
-    text-transform: uppercase
-}
-
-.pv-subtitle {
-    font-size: 48px;
-    color: #000;
-    font-weight: 700;
-    text-align: center;
-}
-
-.pv-subtitle span {
-    color: #F10C00;
-}
-
-.pv-description {
-    font-size: 16px;
-    color: #717378;
-    line-height: 24px;
-    max-width: 1220px;
-    text-align: center;
-}
-
-.pv-highlight {
-    font-size: 1.3rem;
-    color: var(--color_sub_desc_about);
-    font-weight: 600;
-    margin: 30px 0;
-    font-style: italic
-}
-
-.pv-pillars-intro {
-    font-size: 1.2rem;
-    color: var(--color_title_sec_about);
-    font-weight: 600;
-    margin-top: 40px;
-    position: relative;
-    padding-bottom: 20px
-}
-
-.pv-pillars-intro::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 2px
-}
-
-@media (max-width: 768px) {
-    .pv-main-title {
-        font-size:2rem
-    }
-
-    .pv-subtitle {
-        font-size: 1.6rem
-    }
-
-    .pv-description {
-        font-size: 1rem;
-        padding: 0 15px
-    }
-
-    .pv-highlight {
-        font-size: 1.2rem;
-        padding: 0 20px
-    }
-
-    .pv-pillars-intro {
-        font-size: 1.1rem;
-        padding: 0 15px 20px
-    }
-}
-
-@media (max-width: 480px) {
-    .pv-main-title {
-        font-size:1.8rem
-    }
-
-    .pv-subtitle {
-        font-size: 1.4rem
-    }
-}
-
-.organic-products {
-    width: 100%;
-    padding: 16px 20px
-}
-
-.organic-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    max-width: 1220px;
-    margin: 0 auto
-}
-
-.organic-item {
-    flex: 1;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: all .3s ease;
-    border-radius: 24px
-}
-
-.organic-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,.1)
-}
-
-.organic-image {
-    width: 100%;
-    height: 440px;
-    object-fit: cover;
-    display: block
-}
-
-.icon-fire {
-    padding-top: 35px
-}
-
-.icon-fire-gallery {
-    display: flex;
-    max-width: 1220px;
-    justify-self: center;
-    gap: 20px;
-}
-
-.icon-fire-image {
-    height: 60px
-}
-
-@media (max-width: 768px) {
-    .organic-item {
-        margin-bottom: 15px
-    }
-
-    .organic-image {
-        height: 130px
-    }
-
-    .icon-fire {
-        padding-top: 0
-    }
-}
-
-.ingredients-section {
-    background-color: #000000;
-    padding: 60px 20px;
-    position: relative;
-    overflow: hidden
-}
-
-.ingredients-container {
-    max-width: 1200px;
-    margin: 0 auto
-}
-
-.ingredients-title {
-    color: #eeeeee;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 700
-}
-
-.ingredients-subtitle {
-    color: var(--color_desc_def_about);
-    text-align: center;
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: 0 auto 40px;
-    line-height: 1.6
-}
-
-.carousel-container {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    overflow: hidden
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform .5s ease-in-out
-}
-
-.carousel-slide {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    min-width: 100%
-}
-
-.carousel-image {
-    width: 50%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 8px
-}
-
-.carousel-content {
-    background-color: var(--color_box_about);
-    padding: 40px;
-    border-radius: 8px;
-    width: 50%
-}
-
-.content-title {
-    color: #f10c00;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 20px
-}
-
-.content-text {
-    color: var(--color_desc_about);
-    line-height: 1.6
-}
-
-@media (max-width: 768px) {
-    .carousel-slide {
-        flex-direction:column
-    }
-
-    .carousel-content,.carousel-image {
-        width: 100%
-    }
-
-    .carousel-image {
-        height: 300px
-    }
-
-    .ingredients-title {
-        font-size: 2rem
-    }
-
-    .prev-button {
-        left: 30%
-    }
-
-    .next-button {
-        right: 30%
-    }
-}
-
 </style>
-<section class="hero">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a class="breadcrumb-link" href="/"><span>Home</span></a>
-        </li>
-        <li class="breadcrumb-item">
-            <a class="breadcrumb-link"><span>Assinatura</span></a>
-        </li>
-    </ol>
-    <div class="container">
+
+<div class="ass-page">
+
+    <section class="ass-hero">
+        <ol class="ass-breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><span>Assinatura</span></li>
+        </ol>
         <div class="content">
-            <h1>Seu <span>desempenho</span> não pode parar</h1>
-    <p>Manter resultados consistentes depende de disciplina e de nunca ficar sem seus suplementos Volcanic favoritos. Por isso criamos o <strong>Clube Volcanic Assinatura:</strong> a maneira mais prática de garantir entregas programadas, descontos exclusivos e frete grátis.</p>
-    <a href="https://www.volcanicstore.com/" class="bt-red">Assinar agora</a>
+            <span class="ass-pill">CLUBE VOLCANIC</span>
+            <h1>O Cuidado <span>Não Pode</span> Parar</h1>
+            <p class="ass-frase">A rotina de quem cuida precisa de constância. Com o <strong>Clube Volcanic de Assinatura</strong>, o NeuroBalance ASD chega na sua casa todo mês, com entregas programadas, descontos exclusivos e frete grátis.</p>
+            <a href="{{ linkAssinar }}" class="bt-red">Assinar agora</a>
         </div>
-    </div>
-</section>
-<!--<section class="pv-section"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/besite.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-banner"><div class="pv-gallery"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/6.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-img" loading="lazy"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/7.png?e8ce044e1401fcb564b3a7682c532440" alt=".." class="pv-img" loading="lazy"> <img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" 
-             alt="Cachoeira e lago em floresta verde" 
-             class="pv-img pv-img-wide"
-             loading="lazy"> </div></section>-->
+    </section>
 
-<section class="pv-text-section">
-    <h2 class="pv-subtitle">Por que assinar o <span>Clube Volcanic?</span></h2>
-    <div class="row">
-        <div class="col-md">
-            <img src="{{ asset('img/modelo/club-item1.png') }}" alt="" width="100%">
-        </div>
-        <div class="col-md">
-            <img src="{{ asset('img/modelo/club-item2.png') }}" alt="" width="100%">
-        </div>
-        <div class="col-md">
-            <img src="{{ asset('img/modelo/club-item3.png') }}" alt="" width="100%">
-        </div>
-    </div>
-    <div class="button-bg">
-        <a href="https://www.volcanicstore.com/" class="bt-red">Quero assinar o Clube Volcanic</a>
-    </div>
-</section>
-
-<section class="como-funciona">
-    <h3>Como funciona</h3>
-    <div class="row">
-        <div class="col-md">
-            <div class="item">
-                <div class="num">1</div>
-                <div class="descricao">
-                    <p>Escolha seu produto favorito no site</p>
-                </div>
-            </div>    
-            <div class="item">
-                <div class="num">2</div>
-                <div class="descricao">
-                    <p>Clique em “Assinar produto”</p>
-                </div>
-            </div>  
-            <div class="item">
-                <div class="num">3</div>
-                <div class="descricao">
-                    <p>Você pode incluir um ou mais produtos na sua assinatura recorrente</p>
-                </div>
-            </div>          
-            <div class="item">
-                <div class="num">4</div>
-                <div class="descricao">
-                    <p>Selecione a forma e envio</p>
-                </div>
-            </div>    
-        </div>
-        <div class="col-md">
-            <div class="item">
-                <div class="num">5</div>
-                <div class="descricao">
-                    <p>Clique em "Continuar"</p>
-                </div>
-            </div>  
-            <div class="item">
-                <div class="num">6</div>
-                <div class="descricao">
-                    <p>Logue-se na plataforma ou cadastre-se</p>
-                </div>
-            </div>  
-            <div class="item">
-                <div class="num">7</div>
-                <div class="descricao">
-                    <p>Selecione a forma de pagamento</p>
-                </div>
-            </div>  
-            <div class="item">
-                <div class="num">8</div>
-                <div class="descricao">
-                    <p>Clique em "Finalizar pedido"</p>
-                </div>
-            </div>     
-        </div>
-    </div>
-</section>
-    <!-- <section class="knowledge-section"><h2 class="knowledge-title"></h2><div class="knowledge-content"><div class="knowledge-column"><p class="knowledge-text"></p></div><div class="knowledge-column"><p class="knowledge-text"></p><p class="knowledge-text"></p></div></div></section> -->
-
-<section class="vantagens">
-    <h3>Vantagens do Clube Volcanic de Assinatura</h3>
-    <div class="row box-assinatura mt-5">
-        <div class="col-md-4">
-            <div class="box-info-assinatura">
-                <img src="{{ asset('img/modelo/assinatura-icon1.png') }}" alt="">
-                <h4 style="color:#F2BC1B">Desconto <br>garantido </h4>
-                <p>Economize até <br>40% por produto</p>
+    <section class="ass-porque">
+        <h2 class="ass-titulo">Por Que Assinar o <span>Clube Volcanic?</span></h2>
+        <div class="ass-cards">
+            <div class="ass-card">
+                <div class="ass-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></div>
+                <h3>Entrega Automática</h3>
+                <p>O NeuroBalance ASD chega todo mês, sem você precisar lembrar de comprar e sem risco de falta.</p>
+            </div>
+            <div class="ass-card">
+                <div class="ass-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
+                <h3>Descontos Exclusivos</h3>
+                <p><strong>Até 40% de desconto</strong> em cada produto, válido enquanto sua assinatura estiver ativa.</p>
+            </div>
+            <div class="ass-card">
+                <div class="ass-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1zM15 9h4l4 4v3h-8z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg></div>
+                <h3>Frete Grátis</h3>
+                <p>A partir da segunda remessa, todas as entregas da sua assinatura saem com frete grátis.</p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="box-info-assinatura">
-                <img src="{{ asset('img/modelo/assinatura-icon2.png') }}" alt="">
-                <h4 style="color:#F2BC1B">Sem <br>surpresas </h4>
-                <p>Preço e prazo de entrega <br>fixos a cada ciclo.</p>
+        <div class="ass-centro"><a href="{{ linkAssinar }}" class="bt-red">Quero assinar o Clube Volcanic</a></div>
+    </section>
+
+    <section class="ass-como">
+        <h2 class="ass-titulo">Como <span>Funciona</span></h2>
+        <ol class="ass-passos">
+            <li>Escolha seu produto favorito no site</li>
+            <li>Clique em “Assinar produto”</li>
+            <li>Inclua um ou mais produtos na sua assinatura recorrente</li>
+            <li>Selecione a forma de envio</li>
+            <li>Clique em “Continuar”</li>
+            <li>Faça login na plataforma ou cadastre-se</li>
+            <li>Selecione a forma de pagamento</li>
+            <li>Clique em “Finalizar pedido”</li>
+        </ol>
+    </section>
+
+    <section class="ass-vantagens">
+        <h2 class="ass-titulo">Vantagens do <span>Clube Volcanic</span></h2>
+        <div class="ass-cards">
+            <div class="ass-card">
+                <div class="ass-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <h3><span>Economia</span>Desconto Garantido</h3>
+                <p>Economize até 40% por produto em todos os ciclos da assinatura.</p>
+            </div>
+            <div class="ass-card">
+                <div class="ass-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
+                <h3><span>Tranquilidade</span>Sem Surpresas</h3>
+                <p>Preço e prazo de entrega fixos a cada ciclo, para você planejar a rotina.</p>
+            </div>
+            <div class="ass-card">
+                <div class="ass-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21.1l1.4-7L2 9.3l7-.8z"/></svg></div>
+                <h3><span>Prioridade</span>Prioridade de Estoque</h3>
+                <p>Vantagens em lançamentos e reposições rápidas, para nunca ficar sem.</p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="box-info-assinatura">
-                <img src="{{ asset('img/modelo/assinatura-icon3.png') }}" alt="">
-                <h4 style="color:#F2BC1B">Prioridade <br>de estoque </h4>
-                <p>Vantagens no lançamento <br>de produtos e reposições <br>rápidas.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="cta-full">
-    <div class="container">
+    </section>
+
+    <section class="ass-cta">
         <div class="content">
-            <h3>Não deixe seu progresso parar</h3>
-            <p>Assine agora o <strong>Clube Volcanic de Assinatura</strong> e mantenha seus suplementos sempre à mão!</p>
-            <a href="https://www.volcanicstore.com/" class="bt-red">Assinar agora</a>
+            <h2>Não Deixe o Cuidado Parar</h2>
+            <p>Assine o <strong>Clube Volcanic de Assinatura</strong> e receba o NeuroBalance ASD todo mês, sem correr o risco de ficar sem.</p>
+            <a href="{{ linkAssinar }}" class="bt-red">Assinar agora</a>
         </div>
-    </div>
-</section>
-<section class="pv-text-section footer-text">
-    <p class="pv-description">
-        Para solicitar o cancelamento é necessário enviar um e-mail para: volcanicstore@volcanicbrasil.com.br.<br>
-        Será aplicada uma multa proporcional ao tempo de permanência dentro do período de 12 meses. Confira o Regulamento.
-    </p>
-</section>
+    </section>
 
-    <!--<section class="ingredients-section"><div class="ingredients-container"><h2 class="ingredients-title">VOLCANIC SUPLEMENTOS</h2><p class="ingredients-subtitle"></p><div class="carousel-container"><div class="carousel-track" style="transform: translateX(-100%);"><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/imagemsite.png?e8ce044e1401fcb564b3a7682c532440" alt="Colheita de café" class="carousel-image"><div class="carousel-content"><h3 class="content-title">SEJA SUA MELHOR VERSÃO</h3><p class="content-text"></p></div></div><div class="carousel-slide"><img src="https://images.tcdn.com.br/files/1188978/themes/81/img/settings/3.png?e8ce044e1401fcb564b3a7682c532440" alt="Ingredientes naturais" class="carousel-image"><div class="carousel-content"><h3 class="content-title">COM A FORÇA DA NATUREZA E A PRECISÃO DA CIÊNCIA</h3><p class="content-text"></p></div></div> <div class="carousel-slide"><img src="https://madeirasgasometro.vtexassets.com/arquivos/ids/180397/mdf-bp-colors-cinza-perfeito-guararapes-imagem-01.jpg?v=638181154856670000" alt="Processo sustentável" class="carousel-image"><div class="carousel-content"><h3 class="content-title">PROCESSO SUSTENTÁVEL</h3><p class="content-text">
-                            Nosso compromisso com a natureza se estende desde a origem dos ingredientes até o produto final, respeitando o meio ambiente em cada etapa.
-                        </p></div></div></div><button class="carousel-button prev-button" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button><button class="carousel-button next-button" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button></div></div><script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.querySelector('.carousel-track');
-            const slides = document.querySelectorAll('.carousel-slide');
-            const prevButton = document.querySelector('.prev-button');
-            const nextButton = document.querySelector('.next-button');
-            let currentIndex = 0;
+    <section class="ass-aviso">
+        <p>Para solicitar o cancelamento é necessário enviar um e-mail para: volcanicstore@volcanicbrasil.com.br.<br>
+        Será aplicada uma multa proporcional ao tempo de permanência dentro do período de 12 meses. Confira o Regulamento.</p>
+    </section>
 
-            function updateSlidePosition() {
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                updateSlidePosition();
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateSlidePosition();
-            });
-
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateSlidePosition();
-            }, 5000);
-        });
-    </script></section> -->
-
+</div>
