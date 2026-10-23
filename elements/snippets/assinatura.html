@@ -108,7 +108,7 @@
         border-radius: 28px; border: 1px solid var(--obj-borda);
         background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%);
     }
-    .ass-page .ass-cta::before { content: ""; display: block; height: 100%; min-height: 420px; background: url("{{ mulher }}") center bottom / cover no-repeat; }
+    .ass-page .ass-cta::before { content: ""; display: block; height: 100%; min-height: 420px; background: url("{{ mulher }}") left bottom / cover no-repeat; -webkit-mask-image: linear-gradient(90deg, #000 78%, transparent 100%); mask-image: linear-gradient(90deg, #000 78%, transparent 100%); }
     .ass-page .ass-cta .content { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 18px; align-content: center; justify-items: start; padding: 48px 0; }
     .ass-page .ass-cta .content::before {
         content: ""; width: 34px; height: 40px; background: var(--obj-cor);
@@ -142,7 +142,7 @@
         .ass-page .ass-como { margin: 48px -14px 0; padding: 40px 14px; }
         .ass-page .ass-passos { grid-template-columns: 1fr; gap: 10px; }
         .ass-page .ass-cta { grid-template-columns: 1fr; gap: 0; min-height: 0; padding: 0; margin-top: 48px; border-radius: 22px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%); }
-        .ass-page .ass-cta::before { height: 300px; min-height: 0; background-position: center 20%; }
+        .ass-page .ass-cta::before { height: 300px; min-height: 0; background-position: center 20%; -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%); mask-image: linear-gradient(180deg, #000 80%, transparent 100%); }
         .ass-page .ass-cta .content { padding: 26px 22px 32px; }
         .ass-page .ass-cta h2 { font-size: 28px; }
         .ass-page .ass-cta p { font-size: 16px; }
