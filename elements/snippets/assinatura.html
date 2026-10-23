@@ -1,18 +1,18 @@
 {# =====================================================================
    PÁGINA DE ASSINATURAS (Clube Volcanic) — mesmo padrão das páginas de objetivos
-   Cor do NeuroBalance ASD. Conteúdo fixo no tema.
+   Vermelho da marca (mesmo do banner Volcanic Club). Conteúdo fixo no tema.
    ===================================================================== #}
 {% set cdn  = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store' %}
 {% set loja = 'https://www.volcanicstore.com' %}
 {% set fogo    = cdn ~ '@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg' %}
 {% set foto    = cdn ~ '@3708be759344cc3ee72faaf4d24644b78e607acf/img/assinatura/hero-mae-filho.jpg' %}
-{% set produto = cdn ~ '@90bfdf969976bc45555973052e80df74e3aee7e8/img/modelo/produto-51/neurobalance-asd.png' %}
+{% set mulher  = cdn ~ '@5f059e698f7ea3947f585a555e6ccf56ae5f2ac9/img/assinatura/mulher-club.webp' %}
 {% set linkAssinar = loja ~ '/neurobalanceasd' %}
 <style>
     .container.is-custom-page { display: none; }
 
     .ass-page {
-        --obj-cor: #26BBF2;
+        --obj-cor: #F10C00;
         --obj-suave: color-mix(in srgb, var(--obj-cor) 12%, #ffffff);
         --obj-fundo: color-mix(in srgb, var(--obj-cor) 6%, #ffffff);
         --obj-borda: color-mix(in srgb, var(--obj-cor) 24%, #ffffff);
@@ -104,11 +104,11 @@
     /* ---------- CHAMADA FINAL (CTA) ---------- */
     .ass-page .ass-cta {
         position: relative; max-width: 1220px; margin: 72px auto 0; padding: 0 64px 0 0; overflow: hidden;
-        display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: stretch; min-height: 420px;
+        display: grid; grid-template-columns: 460px 1fr; gap: 56px; align-items: stretch; min-height: 420px;
         border-radius: 28px; border: 1px solid var(--obj-borda);
         background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%);
     }
-    .ass-page .ass-cta::before { content: ""; display: block; height: 100%; min-height: 420px; background: url("{{ produto }}") left top / auto 100% no-repeat; }
+    .ass-page .ass-cta::before { content: ""; display: block; height: 100%; min-height: 420px; background: url("{{ mulher }}") center bottom / cover no-repeat; }
     .ass-page .ass-cta .content { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 18px; align-content: center; justify-items: start; padding: 48px 0; }
     .ass-page .ass-cta .content::before {
         content: ""; width: 34px; height: 40px; background: var(--obj-cor);
@@ -142,7 +142,7 @@
         .ass-page .ass-como { margin: 48px -14px 0; padding: 40px 14px; }
         .ass-page .ass-passos { grid-template-columns: 1fr; gap: 10px; }
         .ass-page .ass-cta { grid-template-columns: 1fr; gap: 0; min-height: 0; padding: 0; margin-top: 48px; border-radius: 22px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%); }
-        .ass-page .ass-cta::before { height: 320px; min-height: 0; }
+        .ass-page .ass-cta::before { height: 300px; min-height: 0; background-position: center 20%; }
         .ass-page .ass-cta .content { padding: 26px 22px 32px; }
         .ass-page .ass-cta h2 { font-size: 28px; }
         .ass-page .ass-cta p { font-size: 16px; }
