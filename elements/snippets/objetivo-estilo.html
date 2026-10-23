@@ -37,8 +37,8 @@
     .obj-page .hero-interna {
         position: relative; max-width: 1220px; min-height: 400px; margin: 24px auto 0;
         padding: 28px 48px 40px; border-radius: 28px; overflow: hidden;
-        background: linear-gradient(115deg, #ffffff 0%, #faf8f7 45%, var(--obj-fundo) 100%) !important;
-        border: 1px solid #efe9e8; display: flex; flex-direction: column;
+        background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%) !important;
+        border: 1px solid var(--obj-borda); display: flex; flex-direction: column;
     }
     .obj-page .hero-interna::before {
         content: ""; position: absolute; left: -70px; bottom: -110px; width: 360px; height: 420px;
@@ -158,7 +158,7 @@
     /* ---------- CELULAR ---------- */
     @media (max-width: 767px) {
         .obj-page { padding: 0 14px; }
-        .obj-page .hero-interna { min-height: 0; padding: 20px 20px 24px; border-radius: 22px; margin-top: 14px; }
+        .obj-page .hero-interna { min-height: 0; padding: 20px 20px 24px; border-radius: 22px; margin-top: 14px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%) !important; }
         .obj-page .hero-interna::after { position: relative; display: block; order: -1; right: auto; top: auto; bottom: auto; width: 100%; height: 220px; margin-bottom: 18px; border-radius: 16px; }
         .obj-page .breadcrumb-interna { display: none; }
         .obj-page .hero-interna .content { max-width: 100%; }
