@@ -4,6 +4,20 @@
    O conteúdo (textos, ativos) continua vindo da página cadastrada no painel.
    ===================================================================== #}
 {% set fogo = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg' %}
+{# Imagem do produto no CTA final: se a página não informar, usa a imagem pela cor do produto #}
+{% set imgCdn = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@90bfdf969976bc45555973052e80df74e3aee7e8/img/modelo/' %}
+{% set imgProdutos = {
+    '#26BBF2': 'produto-51/neurobalance-asd.png',
+    '#7FD3DA': 'produto-47/melatonin.png',
+    '#F0876C': 'produto-45/maxcognition.png',
+    '#C3B546': 'produto-53/visionpro.png',
+    '#F37B4F': 'produto-7/endocan.png',
+    '#85BC66': 'produto-39/brainspeed.png',
+    '#CE8F65': 'produto-43/powergummy.png',
+    '#F7A500': 'produto-41/maxresist.png',
+    '#8A84BB': 'produto-49/recoverypro.png'
+} %}
+{% if not produto and imgProdutos[cor] is defined %}{% set produto = imgCdn ~ imgProdutos[cor] %}{% endif %}
 <style>
     .container.is-custom-page { display: none; }
 
