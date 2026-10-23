@@ -1,18 +1,16 @@
 {# =====================================================================
    BANNER PRINCIPAL DA HOME
    Desktop: 6 slides fixos (lista "slidesHome", na ordem).
-   Celular: vídeo (versão mobile) + banners mobile cadastrados no painel.
+   Celular: 6 slides fixos em formato vertical 4:5 (lista "slidesMobile").
    Tipos de slide: 'video' | 'imagem'. Um slide 'imagem' pode ter "areas"
-   (vários links clicáveis em cima da imagem, em % da arte 1920x540).
+   (vários links clicáveis em cima da imagem, em % da arte).
    ===================================================================== #}
 
 {% set cdn = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store' %}
 {% set v   = cdn ~ '@938035cd4b62cd00b1953cbbd63b6564f9c0d3f8' %}
 {% set loja = 'https://www.volcanicstore.com' %}
 
-{# ----- Vídeo do celular (1º slide no mobile) ----- #}
-{% set videoMobile = settings.banner_video_url_mobile ? settings.banner_video_url_mobile : cdn ~ '@8ce83835d4e1ee417ef81f722d3f605b56ba8a89/img/videos/banner-home-neurobalance-e-mobile.mp4' %}
-{% set videoMobileSrc = videoMobile|slice(0, 4) == 'http' ? videoMobile : asset(videoMobile) %}
+{% set vm  = cdn ~ '@356faed4106807a29ecfd5f29a87c631878ca142' %}
 
 {# ----- Slides do desktop, na ordem ----- #}
 {% set slidesHome = [
@@ -32,62 +30,60 @@
       ] }
 ] %}
 
+{# ----- Slides do celular (formato vertical 4:5), na ordem ----- #}
+{% set slidesMobile = [
+    { 'tipo': 'video',  'video': vm ~ '/img/videos/home-m1-neurobalance.mp4', 'poster': vm ~ '/img/videos/home-m1-neurobalance-poster.jpg', 'tempo': 24000, 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Para famílias atípicas' },
+    { 'tipo': 'imagem', 'imagem': vm ~ '/img/banners/mobile/home-m2.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Inovação no suporte ao TEA' },
+    { 'tipo': 'imagem', 'imagem': vm ~ '/img/banners/mobile/home-m3.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'Conheça o NeuroBalance ASD' },
+    { 'tipo': 'imagem', 'imagem': vm ~ '/img/banners/mobile/home-m4.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'Descontos Progressivos - NeuroBalance ASD' },
+    { 'tipo': 'imagem', 'imagem': vm ~ '/img/banners/mobile/home-m5.jpg', 'link': loja ~ '/assinaturas',     'alt': 'Volcanic Club - Ser assinante é ainda melhor' },
+    { 'tipo': 'imagem', 'imagem': vm ~ '/img/banners/mobile/home-m6.jpg', 'link': loja ~ '/lpautismo',       'alt': 'Encontre seu objetivo', 'proporcao': '1080 / 1350',
+      'areas': [
+        { 'x': 6.48,  'y': 22.22, 'w': 87.04, 'h': 28.89, 'link': loja ~ '/lpautismo',                'alt': 'Autismo' },
+        { 'x': 6.48,  'y': 52.74, 'w': 27.78, 'h': 20.00, 'link': loja ~ '/sono',                     'alt': 'Sono de Qualidade' },
+        { 'x': 36.11, 'y': 52.74, 'w': 27.78, 'h': 20.00, 'link': loja ~ '/dor-e-inflamacao-cronica', 'alt': 'Dor e Inflamação Crônica' },
+        { 'x': 65.74, 'y': 52.74, 'w': 27.78, 'h': 20.00, 'link': loja ~ '/foco-e-concentracao',      'alt': 'Foco e Concentração' },
+        { 'x': 6.48,  'y': 74.37, 'w': 42.59, 'h': 20.00, 'link': loja ~ '/cognicao',                 'alt': 'Cognição' },
+        { 'x': 50.93, 'y': 74.37, 'w': 42.59, 'h': 20.00, 'link': loja ~ '/visao',                    'alt': 'Visão' }
+      ] }
+] %}
+
+{% set slidesAtivos = utils.is_mobile ? slidesMobile : slidesHome %}
+
 <div class="banner-slides banner-home" data-slides="banner-home">
     <div class="swiper">
         <div class="swiper-wrapper">
 
-            {% if not utils.is_mobile %}
-                {# Desktop: slides fixos #}
-                {% for s in slidesHome %}
-                    {% if s.tipo == 'video' %}
-                    <div class="swiper-slide banner-item banner-video-item" data-swiper-autoplay="{{ s.tempo }}">
-                        <a href="{{ s.link }}" aria-label="{{ s.alt }}" class="banner-video-link">
-                            <video class="banner-video"
-                                src="{{ s.video }}"
-                                poster="{{ s.poster }}"
-                                {% if loop.first %}autoplay preload="auto"{% else %}preload="none"{% endif %}
-                                muted loop playsinline
-                                disablepictureinpicture disableremoteplayback
-                                aria-label="{{ s.alt }}"></video>
-                        </a>
-                    </div>
-                    {% elseif s.areas is defined %}
-                    <div class="swiper-slide banner-item banner-areas-item">
-                        <img src="{{ s.imagem }}" alt="{{ s.alt }}" loading="eager" width="100%" />
-                        <div class="banner-areas">
-                            {% for a in s.areas %}
-                            <a href="{{ a.link }}" aria-label="{{ a.alt }}" title="{{ a.alt }}" style="left:{{ a.x }}%;top:{{ a.y }}%;width:{{ a.w }}%;height:{{ a.h }}%"></a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% else %}
-                    <div class="swiper-slide banner-item">
-                        <a href="{{ s.link }}" aria-label="{{ s.alt }}" style="display: block; width: 100%;">
-                            <img src="{{ s.imagem }}" alt="{{ s.alt }}" loading="eager" width="100%" />
-                        </a>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                {# Celular: vídeo mobile + banners mobile do painel #}
-                <div class="swiper-slide banner-item banner-video-item" data-swiper-autoplay="24000">
-                    <a href="{{ loja }}/neurobalanceasd" aria-label="NeuroBalance ASD" class="banner-video-link">
-                        <video class="banner-video" src="{{ videoMobileSrc }}"
-                            autoplay muted loop playsinline preload="auto"
+            {% for s in slidesAtivos %}
+                {% if s.tipo == 'video' %}
+                <div class="swiper-slide banner-item banner-video-item" data-swiper-autoplay="{{ s.tempo }}">
+                    <a href="{{ s.link }}" aria-label="{{ s.alt }}" class="banner-video-link">
+                        <video class="banner-video"
+                            src="{{ s.video }}"
+                            poster="{{ s.poster }}"
+                            {% if loop.first %}autoplay preload="auto"{% else %}preload="none"{% endif %}
+                            muted loop playsinline
                             disablepictureinpicture disableremoteplayback
-                            aria-label="NeuroBalance ASD"></video>
+                            aria-label="{{ s.alt }}"></video>
                     </a>
                 </div>
-                {% if banners.mobile and banners.mobile.slides %}
-                {% for banner in banners.mobile.slides %}
-                <div class="swiper-slide banner-item">
-                    {% if banner.link %}<a href="{{ banner.link }}" {% if banner.target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %} aria-label="ver mais" style="display: block; width: 100%;">{% endif %}
-                        <img src="{{ banner.image }}" alt="{{ banner.label }}" loading="eager" width="100%" />
-                    {% if banner.link %}</a>{% endif %}
+                {% elseif s.areas is defined %}
+                <div class="swiper-slide banner-item banner-areas-item">
+                    <img src="{{ s.imagem }}" alt="{{ s.alt }}" loading="eager" width="100%" />
+                    <div class="banner-areas"{% if s.proporcao is defined %} style="aspect-ratio: {{ s.proporcao }}"{% endif %}>
+                        {% for a in s.areas %}
+                        <a href="{{ a.link }}" aria-label="{{ a.alt }}" title="{{ a.alt }}" style="left:{{ a.x }}%;top:{{ a.y }}%;width:{{ a.w }}%;height:{{ a.h }}%"></a>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% endfor %}
+                {% else %}
+                <div class="swiper-slide banner-item">
+                    <a href="{{ s.link }}" aria-label="{{ s.alt }}" style="display: block; width: 100%;">
+                        <img src="{{ s.imagem }}" alt="{{ s.alt }}" loading="eager" width="100%" />
+                    </a>
+                </div>
                 {% endif %}
-            {% endif %}
+            {% endfor %}
 
         </div>
         {# bolinhas (canto inferior esquerdo) e setas (canto inferior direito), dentro do banner #}
