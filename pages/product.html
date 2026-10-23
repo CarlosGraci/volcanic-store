@@ -581,6 +581,15 @@
 
             
                 {{ product.description }} 
+            <script>
+            /* Cor do produto: usa a cor dos títulos dos ativos da descrição (ex.: azul do NeuroBalance ASD) */
+            (function () {
+                var area = document.querySelector('.pageProduct-tabs');
+                if (!area) return;
+                var titulo = area.querySelector('.box-info-produto h3[style*="color"], .boxs-produto h3[style*="color"]');
+                if (titulo && titulo.style.color) area.style.setProperty('--prod-cor', titulo.style.color);
+            })();
+            </script>
            
 
 
