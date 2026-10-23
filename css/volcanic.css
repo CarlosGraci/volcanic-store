@@ -2001,5 +2001,10 @@ footer .footer-newsletter .news-email input::placeholder { color: #8a8a8f; }
 footer.footer .media-link, footer.footer .media-link span, footer.footer .media-link span::before, footer.footer [class^="icon-"]::before, footer.footer [class*=" icon-"]::before { color: #18181d !important; opacity: 1 !important; }
 footer.footer .media-link img { filter: none !important; opacity: 1 !important; }
 footer.footer .contact-item, footer.footer .contact-item:visited { color: #18181d !important; opacity: 1 !important; }
-/* Banner home no celular: bolinhas visíveis também sobre banners claros */
-@media (max-width: 991px) { .banner-home .banner-home-pagination .swiper-pagination-bullet { box-shadow: 0 0 0 1px rgba(20,20,22,.25), 0 1px 4px rgba(0,0,0,.25); } }
+/* Banner home no celular: slides verticais 4:5 e bolinhas abaixo do banner */
+@media (max-width: 991px) {
+  .banner-slides.banner-home .swiper-slide video, .banner-slides.banner-home .swiper-slide .banner-video { aspect-ratio: 1080 / 1350; object-fit: cover !important; }
+  .banner-home .banner-home-pagination { position: static !important; display: flex; justify-content: center; gap: 4px; margin: 14px 0 0; transform: none !important; }
+  .banner-home .banner-home-pagination .swiper-pagination-bullet { background: #d4d4d8 !important; border: 0 !important; opacity: 1; width: 8px; height: 8px; }
+  .banner-home .banner-home-pagination .swiper-pagination-bullet-active { background: #141416 !important; width: 22px; border-radius: 999px; transform: none; }
+}
