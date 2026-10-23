@@ -1,6 +1,6 @@
 {# =====================================================================
    PÁGINAS DE OBJETIVOS — layout premium e clean (compartilhado)
-   Parâmetros: cor (cor do produto), foto (imagem do topo), frase (subtítulo do topo), produto (imagem do pote no CTA final)
+   Parâmetros: cor (cor do produto), foto (imagem do topo), frase (subtítulo do topo), produto (imagem do pote no CTA final), imagem2 (troca a imagem do meio da página, opcional)
    O conteúdo (textos, ativos) continua vindo da página cadastrada no painel.
    ===================================================================== #}
 {% set fogo = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg' %}
@@ -91,6 +91,7 @@
     }
     .obj-page .imagem-bg { border-radius: 0; overflow: hidden; min-height: 380px; }
     .obj-page .imagem-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    {% if imagem2 %}.obj-page .imagem-bg img { content: url("{{ imagem2 }}"); }{% endif %}
     .obj-page .headings { padding: 52px; display: grid; gap: 24px; align-content: center; }
     .obj-page .headings h2 { font-size: 34px; line-height: 1.3; font-weight: 300; color: #141416; margin: 0; }
     .obj-page .headings h2 strong { font-weight: 700; }
@@ -106,10 +107,11 @@
         content: ""; flex: none; width: 36px; height: 36px; background: var(--obj-cor);
         -webkit-mask: var(--obj-fogo) center / 24px no-repeat; mask: var(--obj-fogo) center / 24px no-repeat;
     }
-    .obj-page .itens .row { row-gap: 20px; }
-    .obj-page .itens .row > [class*="col-"] { display: flex; margin-bottom: 0; }
+    .obj-page .itens .row { row-gap: 20px; justify-content: center; }
+    .obj-page .itens .row > [class*="col-"] { display: flex; margin-bottom: 0; margin-left: 0 !important; }
+    .obj-page .itens .row > [class*="col-"]:empty { display: none; }
     .obj-page .box-item {
-        position: relative; width: 100%; height: auto; padding: 28px 26px; overflow: hidden;
+        position: relative; width: 100%; height: auto !important; min-height: 0 !important; padding: 28px 26px; overflow: hidden;
         background: #fff; border: 1px solid var(--obj-borda); border-radius: 22px;
         box-shadow: 0 10px 30px rgba(20,20,22,.05); transition: transform .25s ease, box-shadow .25s ease;
     }
