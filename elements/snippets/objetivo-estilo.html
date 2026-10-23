@@ -112,17 +112,16 @@
     /* ---------- CHAMADA FINAL (CTA) ---------- */
     .obj-page .cta-conteiner { background: none; padding: 56px 0 0; }
     .obj-page .cta-conteiner .conteiner {
-        position: relative; max-width: 1220px; margin: 0 auto; padding: 40px 64px 0 48px; overflow: hidden;
-        display: grid; grid-template-columns: minmax(260px, 40%) 1fr; gap: 56px; align-items: stretch; min-height: 400px;
+        position: relative; max-width: 1220px; margin: 0 auto; padding: 0 64px 0 0; overflow: hidden;
+        display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: stretch; min-height: 420px;
         border-radius: 28px; border: 1px solid var(--obj-borda);
         background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%) !important;
     }
     .obj-page .cta-conteiner .conteiner::before {
-        content: ""; display: block; min-height: 340px;
-        background: url("{{ produto }}") left bottom / contain no-repeat;
-        filter: drop-shadow(0 18px 30px rgba(20,20,22,.18));
+        content: ""; display: block; height: 100%; min-height: 420px;
+        background: url("{{ produto }}") left top / auto 100% no-repeat;
     }
-    .obj-page .cta-conteiner .content { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 18px; align-content: center; padding: 8px 0 48px; }
+    .obj-page .cta-conteiner .content { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 18px; align-content: center; padding: 48px 0; }
     .obj-page .cta-conteiner .content::before {
         content: ""; width: 34px; height: 40px; background: var(--obj-cor);
         -webkit-mask: var(--obj-fogo) left center / contain no-repeat; mask: var(--obj-fogo) left center / contain no-repeat;
@@ -163,9 +162,9 @@
         .obj-page .ativos { margin: 0 -14px; padding: 16px 14px 0; }
         .obj-page .ativos-conteiner > h3 { font-size: 24px; }
         .obj-page .cta-conteiner { padding-top: 36px; }
-        .obj-page .cta-conteiner .conteiner { grid-template-columns: 1fr; gap: 8px; min-height: 0; padding: 28px 22px 0; border-radius: 22px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%) !important; }
-        .obj-page .cta-conteiner .conteiner::before { min-height: 280px; background-position: center bottom; }
-        .obj-page .cta-conteiner .content { padding: 20px 0 32px; }
+        .obj-page .cta-conteiner .conteiner { grid-template-columns: 1fr; gap: 0; min-height: 0; padding: 0; border-radius: 22px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%) !important; }
+        .obj-page .cta-conteiner .conteiner::before { height: 320px; min-height: 0; background-position: left top; background-size: auto 100%; }
+        .obj-page .cta-conteiner .content { padding: 26px 22px 32px; }
         .obj-page .cta-conteiner .content h2 { font-size: 28px; }
         .obj-page .cta-conteiner .content p { display: block; font-size: 16px; color: #4a4a50; }
     }
