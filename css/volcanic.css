@@ -1982,3 +1982,19 @@ section.showcase .product .product-button:hover { background: #c90a00; transform
   .pageProduct-tabs .orientacaoesdeuso { padding: 28px 22px !important; }
   .pageProduct-tabs .orientacaoesdeuso h3 { font-size: 22px !important; }
 }
+/* ===== Footer claro (off-white), no mesmo tom do menu ===== */
+footer.footer { background: #f6f6f6; color: #18181d; border-top: 1px solid #e7e7e7; }
+footer .footer-newsletter { background-color: #efefef !important; border-bottom: 1px solid #e4e4e4 !important; }
+footer .footer-newsletter .news-text { color: #18181d !important; }
+footer .footer-newsletter .news-text b { color: #f10c00; }
+footer .footer-newsletter .news-email input { background-color: #ffffff !important; color: #18181d !important; border: 1px solid #dcdcdc !important; border-radius: 10px !important; }
+footer .footer-newsletter .news-email input::placeholder { color: #8a8a8f; }
+.footer-infos { background-color: #f6f6f6 !important; color: #18181d !important; }
+.footer-infos .container { border-bottom: 1px solid #e2e2e2 !important; }
+.footer-infos p { color: #3c3c42; }
+.footer-infos img[alt="logo footer"] { content: url("https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@687f713cfde860a31cc97154038b965750ac4952/img/logo-volcanic.svg"); width: 200px; max-width: 100%; height: auto; margin-bottom: 18px; }
+.footer-infos .info-media span::before, .info-list span::before { color: #18181d !important; }
+.footer-infos .info-list a { color: #18181d !important; transition: color .2s ease; }
+.footer-infos .info-list a:hover { color: #f10c00 !important; }
+.footer-credits { background-color: #f6f6f6 !important; color: #4a4a50 !important; }
+.footer-credits .credits, .footer-credits .credits-text { color: #4a4a50 !important; }
