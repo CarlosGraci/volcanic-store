@@ -1998,3 +1998,6 @@ footer .footer-newsletter .news-email input::placeholder { color: #8a8a8f; }
 .footer-infos .info-list a:hover { color: #f10c00 !important; }
 .footer-credits { background-color: #f6f6f6 !important; color: #4a4a50 !important; }
 .footer-credits .credits, .footer-credits .credits-text { color: #4a4a50 !important; }
+footer.footer .media-link, footer.footer .media-link span, footer.footer .media-link span::before, footer.footer [class^="icon-"]::before, footer.footer [class*=" icon-"]::before { color: #18181d !important; opacity: 1 !important; }
+footer.footer .media-link img { filter: none !important; opacity: 1 !important; }
+footer.footer .contact-item, footer.footer .contact-item:visited { color: #18181d !important; opacity: 1 !important; }
