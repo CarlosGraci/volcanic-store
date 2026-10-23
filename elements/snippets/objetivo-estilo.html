@@ -115,15 +115,11 @@
         position: relative; max-width: 1220px; margin: 0 auto; padding: 64px 56px; overflow: hidden;
         border-radius: 28px; background: radial-gradient(700px 360px at 85% 50%, color-mix(in srgb, var(--obj-cor) 35%, transparent), transparent 70%), #141416 !important;
     }
-    .obj-page .cta-conteiner .conteiner::after {
-        content: ""; position: absolute; right: 70px; top: 50%; width: 300px; height: 350px; transform: translateY(-50%);
-        background: var(--obj-cor); opacity: .22;
-        -webkit-mask: var(--obj-fogo) center / contain no-repeat; mask: var(--obj-fogo) center / contain no-repeat;
-    }
+    .obj-page .cta-conteiner .conteiner { min-height: 400px; display: flex; align-items: center; }
     .obj-page .cta-conteiner .conteiner::before {
-        content: ""; position: absolute; z-index: 1; right: 110px; top: 50%; width: 240px; height: 300px; transform: translateY(-50%) rotate(-4deg);
-        background: url("{{ produto }}") center / contain no-repeat;
-        filter: drop-shadow(0 24px 30px rgba(0,0,0,.45));
+        content: ""; position: absolute; z-index: 1; right: 56px; bottom: 0; top: 36px; width: min(36%, 380px);
+        background: url("{{ produto }}") right bottom / contain no-repeat;
+        filter: drop-shadow(0 20px 40px rgba(0,0,0,.35));
     }
     .obj-page .cta-conteiner .content { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 18px; }
     .obj-page .cta-conteiner .content h2 { color: #fff; font-size: 38px; line-height: 1.15; font-weight: 800; margin: 0; }
@@ -162,9 +158,8 @@
         .obj-page .ativos { margin: 0 -14px; padding: 16px 14px 0; }
         .obj-page .ativos-conteiner > h3 { font-size: 24px; }
         .obj-page .cta-conteiner { padding-top: 36px; }
-        .obj-page .cta-conteiner .conteiner { padding: 36px 24px 230px; border-radius: 22px; }
-        .obj-page .cta-conteiner .conteiner::after { right: 50%; top: auto; bottom: 14px; width: 170px; height: 200px; transform: translateX(50%); }
-        .obj-page .cta-conteiner .conteiner::before { right: 50%; top: auto; bottom: 20px; width: 150px; height: 190px; transform: translateX(50%) rotate(-4deg); }
+        .obj-page .cta-conteiner .conteiner { display: block; min-height: 0; padding: 36px 24px 300px; border-radius: 22px; }
+        .obj-page .cta-conteiner .conteiner::before { right: 50%; top: auto; bottom: 0; width: 260px; height: 290px; transform: translateX(50%); background-position: center bottom; }
         .obj-page .cta-conteiner .content h2 { font-size: 28px; }
         .obj-page .cta-conteiner .content p { display: block; font-size: 16px; }
     }
