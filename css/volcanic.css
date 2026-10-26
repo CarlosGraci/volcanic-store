@@ -2049,13 +2049,12 @@ footer.footer .contact-item, footer.footer .contact-item:visited { color: #18181
   section.depoimentos .bloco-right { padding: 28px 16px 0; }
   section.afiliado .col-md-6 > img { border-radius: 20px; display: block; }
 }
-/* ===== Página de produto no celular: nada passa da largura da tela (evita rolagem para a direita) ===== */
-@media (max-width: 991px) {
-  html:has(#page-product), body:has(#page-product) { overflow-x: hidden; }
-  #page-product, .pageProduct-tabs { max-width: 100%; overflow-x: clip; }
-  .pageProduct-tabs * { max-width: 100% !important; box-sizing: border-box; }
-  .pageProduct-tabs img, .pageProduct-tabs video, .pageProduct-tabs iframe { height: auto !important; }
-  .pageProduct-tabs table { display: block; width: 100% !important; overflow-x: auto; }
-  .pageProduct-tabs .row { margin-left: 0 !important; margin-right: 0 !important; }
-  .pageProduct-tabs p, .pageProduct-tabs li, .pageProduct-tabs h1, .pageProduct-tabs h2, .pageProduct-tabs h3, .pageProduct-tabs h4, .pageProduct-tabs span { overflow-wrap: anywhere; }
+/* ===== Página de produto no celular: imagens dos benefícios e da descrição cabem na tela (ex.: MaxCognition) ===== */
+@media (max-width: 767px) {
+  .pageProduct-tabs .beneficios .row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; margin-left: 0; margin-right: 0; }
+  .pageProduct-tabs .beneficios .row > [class*="col-"] { width: auto; max-width: 100%; min-width: 0; }
+  .pageProduct-tabs .beneficios img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+  .pageProduct-tabs .box-descricao > [class*="col-"] { width: 100%; max-width: 100%; }
+  .pageProduct-tabs .box-descricao img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+  .pageProduct-tabs { overflow-x: clip; }
 }
