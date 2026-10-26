@@ -1927,15 +1927,11 @@ section.showcase .product .actions { margin-top: auto; padding-top: 12px; opacit
 section.showcase .product .product-button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 46px; padding: 11px 14px; border-radius: 999px; background: #f10c00; color: #fff !important; font-size: 15px; font-weight: 700; white-space: nowrap; letter-spacing: .01em; border: 0; transition: background .2s ease, transform .2s ease; }
 section.showcase .product .product-button::after { content: "\2192"; font-size: 17px; line-height: 1; }
 section.showcase .product .product-button:hover { background: #c90a00; transform: translateY(-1px); }
-/* Botão "Comprar agora" no celular: cabe inteiro no card */
+/* Botão "Comprar agora" no celular: cabe inteiro no card, sem seta */
 @media (max-width: 767px) {
   section.showcase .product .actions { padding: 10px 0 0 !important; }
   section.showcase .product { padding: 10px 10px 12px; }
-  section.showcase .product .product-button { margin: 0 !important; width: 100%; min-height: 42px; padding: 10px 6px; gap: 4px; font-size: 12.5px; letter-spacing: 0; white-space: nowrap; }
-  section.showcase .product .product-button::after { font-size: 14px; }
-}
-@media (max-width: 359px) {
-  section.showcase .product .product-button { font-size: 12px; }
+  section.showcase .product .product-button { margin: 0 !important; width: 100%; min-height: 42px; padding: 10px 6px; font-size: 13.5px; letter-spacing: 0; white-space: nowrap; }
   section.showcase .product .product-button::after { display: none; }
 }
 /* ===== Página de produto: banners, benefícios, ativos e orientações (visual premium) ===== */
