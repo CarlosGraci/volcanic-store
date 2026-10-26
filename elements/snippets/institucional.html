@@ -1,0 +1,82 @@
+{# =====================================================================
+   PÁGINAS INSTITUCIONAIS (Privacidade, Frete Grátis, Termo de Afiliados)
+   Mesmo padrão das páginas de objetivos, assinaturas e sobre. O texto continua vindo do painel.
+   Incluído no layouts/default.html só para essas páginas.
+   ===================================================================== #}
+{% set cdn  = 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store' %}
+{% set fogo = cdn ~ '@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg' %}
+{% set fotoAfiliados = cdn ~ '@421cd1362e25350d9a99c581240fbc8c82c38195/img/secoes/afiliado-maes-parceria.jpg' %}
+<style>
+    .is-custom-page {
+        --obj-cor: #F10C00;
+        --obj-suave: color-mix(in srgb, var(--obj-cor) 12%, #ffffff);
+        --obj-fundo: color-mix(in srgb, var(--obj-cor) 6%, #ffffff);
+        --obj-borda: color-mix(in srgb, var(--obj-cor) 24%, #ffffff);
+        --obj-escuro: color-mix(in srgb, var(--obj-cor) 70%, #000000);
+        --obj-fogo: url("{{ fogo }}");
+        max-width: 1220px; padding-bottom: 56px; color: #2a2a2e;
+    }
+    .is-custom-page * { box-sizing: border-box; }
+
+    /* ---------- TOPO (título da página como banner) ---------- */
+    .is-custom-page .default-title {
+        position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+        min-height: 260px; margin: 24px 0 48px !important; padding: 40px 48px; border: 1px solid var(--obj-borda) !important; border-radius: 28px;
+        background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 30%, #ffffff) 100%);
+    }
+    .is-custom-page .default-title::before {
+        content: "INSTITUCIONAL"; display: inline-flex; margin-bottom: 16px; padding: 7px 14px; border-radius: 999px;
+        background: var(--obj-suave); color: var(--obj-escuro); font-size: 12px; font-weight: 700; letter-spacing: .18em;
+    }
+    .is-custom-page .default-title::after {
+        content: ""; position: absolute; right: -40px; bottom: -90px; width: 340px; height: 400px;
+        background: var(--obj-cor); opacity: .09; pointer-events: none;
+        -webkit-mask: var(--obj-fogo) center / contain no-repeat; mask: var(--obj-fogo) center / contain no-repeat;
+    }
+    .is-custom-page .default-title .text {
+        position: relative; z-index: 1; display: block; max-width: 760px;
+        font-size: 52px !important; line-height: 1.05; font-weight: 800; letter-spacing: -.02em; color: #141416;
+    }
+
+    /* ---------- TEXTO ---------- */
+    .is-custom-page > *:not(.default-title) { max-width: 860px; margin-left: auto; margin-right: auto; }
+    .is-custom-page p, .is-custom-page li { font-size: 17px !important; line-height: 1.75 !important; color: #4a4a50 !important; }
+    .is-custom-page p { margin: 0 0 16px; }
+    .is-custom-page strong, .is-custom-page b { color: #141416; }
+    .is-custom-page h1, .is-custom-page h2, .is-custom-page h3, .is-custom-page h4 {
+        display: flex; align-items: center; gap: 10px; margin: 40px 0 14px !important; color: #141416 !important;
+        font-size: 24px !important; line-height: 1.3 !important; font-weight: 800 !important;
+    }
+    .is-custom-page h1::before, .is-custom-page h2::before, .is-custom-page h3::before, .is-custom-page h4::before {
+        content: ""; flex: none; width: 28px; height: 28px; background: var(--obj-cor);
+        -webkit-mask: var(--obj-fogo) center / 18px no-repeat; mask: var(--obj-fogo) center / 18px no-repeat;
+    }
+    .is-custom-page ul, .is-custom-page ol { margin: 0 0 18px; padding-left: 22px; }
+    .is-custom-page ul li { list-style: disc; }
+    .is-custom-page ol li { list-style: decimal; }
+    .is-custom-page li::marker { color: var(--obj-cor); }
+    .is-custom-page a { color: var(--obj-escuro) !important; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+
+    /* imagens do texto: arredondadas e sempre na largura da tela */
+    .is-custom-page img { display: block; max-width: 100% !important; height: auto !important; margin: 32px auto; border-radius: 22px; box-shadow: 0 18px 44px rgba(20,20,22,.10); }
+
+    /* tabelas (ex.: faixas de cashback): cartão arredondado */
+    .is-custom-page table { width: 100% !important; margin: 18px 0 28px; border-collapse: separate; border-spacing: 0; border: 1px solid var(--obj-borda); border-radius: 18px; overflow: hidden; background: #fff; }
+    .is-custom-page th, .is-custom-page td { padding: 14px 18px !important; border: 0 !important; border-bottom: 1px solid #f1eceb !important; font-size: 15px; text-align: left; color: #4a4a50; }
+    .is-custom-page tr:first-child th, .is-custom-page tr:first-child td { background: var(--obj-suave); color: var(--obj-escuro); font-weight: 700; }
+    .is-custom-page tr:last-child td { border-bottom: 0 !important; }
+
+    /* Termo do Programa de Afiliados: troca só a imagem do meio do texto */
+    .page-termo-programa-afiliados .is-custom-page img[src*="Rectangle_23"] { content: url("{{ fotoAfiliados }}"); width: 100%; aspect-ratio: 5 / 3; object-fit: cover; }
+
+    /* ---------- CELULAR ---------- */
+    @media (max-width: 767px) {
+        .is-custom-page .default-title { min-height: 0; margin: 14px 0 32px !important; padding: 26px 22px; border-radius: 22px; }
+        .is-custom-page .default-title .text { font-size: 34px !important; }
+        .is-custom-page .default-title::after { width: 220px; height: 260px; right: -50px; bottom: -70px; }
+        .is-custom-page p, .is-custom-page li { font-size: 16px !important; }
+        .is-custom-page h1, .is-custom-page h2, .is-custom-page h3, .is-custom-page h4 { font-size: 20px !important; margin-top: 32px !important; }
+        .is-custom-page table { display: block; overflow-x: auto; }
+        .is-custom-page img { margin: 24px auto; border-radius: 16px; }
+    }
+</style>

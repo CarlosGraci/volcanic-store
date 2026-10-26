@@ -114,6 +114,9 @@
                     {% if pages.current == 'fale-conosco' %}
                         {% element 'snippets/contato' %} 
                     {% endif %}
+                    {% if pages.current in ['privacidade', 'politica-de-frete-gratis', 'termo-programa-afiliados'] %}
+                        {% element 'snippets/institucional' %}
+                    {% endif %}
                     {% if pages.current == 'seja-um-afiliado' %}
                         {% element 'snippets/afiliado' %} 
                     {% endif %}
