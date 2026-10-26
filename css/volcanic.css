@@ -2058,5 +2058,6 @@ footer.footer .contact-item, footer.footer .contact-item:visited { color: #18181
   .pageProduct-tabs .box-descricao img { width: 100% !important; max-width: 100% !important; height: auto !important; }
   .pageProduct-tabs { overflow-x: clip; }
   .pageProduct-tabs .boxs-produto { margin-left: 0 !important; margin-right: 0 !important; }
-  .pageProduct-tabs .boxs-produto::before { width: 100%; padding: 0 8px; margin: 8px 0 24px !important; font-size: 26px; line-height: 1.2; text-align: center; white-space: normal; }
+  .pageProduct-tabs .boxs-produto::before { display: block !important; flex: 0 0 100% !important; width: 100% !important; padding: 0 8px !important; margin: 8px 0 28px !important; font-size: 26px !important; line-height: 1.2 !important; text-align: center !important; white-space: normal !important; }
+  .pageProduct-tabs .boxs-produto > [class*="col-"]:first-of-type { margin-top: 0 !important; }
 }
