@@ -14,6 +14,7 @@
 
 {# ----- Slides do desktop, na ordem ----- #}
 {% set slidesHome = [
+    { 'tipo': 'imagem', 'imagem': cdn ~ '@b85630743aea169eb2eb68e5c814f2393a611ee8/img/banners/campanhas/esquenta-black-desktop.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'Esquenta Black - NeuroBalance ASD com até 35% OFF', 'ate': '2026-10-31T23:59:59-03:00' },
     { 'tipo': 'video',  'video': v ~ '/img/videos/home-b1-neurobalance.mp4', 'poster': v ~ '/img/videos/home-b1-neurobalance-poster.jpg', 'tempo': 24000, 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Para famílias atípicas' },
     { 'tipo': 'imagem', 'imagem': v ~ '/img/banners/home-b2-autismo.jpg',        'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Inovação no suporte ao TEA' },
     { 'tipo': 'video',  'video': v ~ '/img/videos/home-b3-animacao.mp4',     'poster': v ~ '/img/videos/home-b3-animacao-poster.jpg',     'tempo': 27000, 'link': loja ~ '/neurobalanceasd', 'alt': 'Conheça o NeuroBalance ASD' },
@@ -32,6 +33,7 @@
 
 {# ----- Slides do celular (formato vertical 4:5), na ordem ----- #}
 {% set slidesMobile = [
+    { 'tipo': 'imagem', 'imagem': cdn ~ '@b85630743aea169eb2eb68e5c814f2393a611ee8/img/banners/campanhas/esquenta-black-mobile.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'Esquenta Black - NeuroBalance ASD com até 35% OFF', 'ate': '2026-10-31T23:59:59-03:00' },
     { 'tipo': 'video',  'video': vm ~ '/img/videos/home-m1-neurobalance.mp4', 'poster': vm ~ '/img/videos/home-m1-neurobalance-poster.jpg', 'tempo': 24000, 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Para famílias atípicas' },
     { 'tipo': 'imagem', 'imagem': cdn ~ '@3f82881c8ed0fdb03a2eff3702a14be649fda0ce/img/banners/mobile/home-m2-autismo.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Inovação no suporte ao TEA' },
     { 'tipo': 'video',  'video': cdn ~ '@c97c6bfc50c845dcd36a43c9c043073d392ef937/img/videos/home-m3-animacao.mp4', 'poster': cdn ~ '@c97c6bfc50c845dcd36a43c9c043073d392ef937/img/videos/home-m3-animacao-poster.jpg', 'tempo': 27000, 'link': loja ~ '/neurobalanceasd', 'alt': 'Conheça o NeuroBalance ASD' },
@@ -77,7 +79,7 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="swiper-slide banner-item">
+                <div class="swiper-slide banner-item"{% if s.ate is defined %} data-ate="{{ s.ate }}"{% endif %}>
                     <a href="{{ s.link }}" aria-label="{{ s.alt }}" style="display: block; width: 100%;">
                         <img src="{{ s.imagem }}" alt="{{ s.alt }}" loading="eager" width="100%" />
                     </a>
@@ -98,6 +100,11 @@
 {# Banner da home: altura na 1ª tela + carrossel no estilo "slide central com laterais aparecendo" #}
 <script>
 (function () {
+    /* Banners de campanha com data de fim (ex.: Esquenta Black até 31/10): saem sozinhos depois da data */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-slides="banner-home"] [data-ate]'), function (slide) {
+        var fim = Date.parse(slide.getAttribute('data-ate'));
+        if (fim && Date.now() > fim) slide.parentNode.removeChild(slide);
+    });
     function ajustarBanner() {
         var banner = document.querySelector('.banner-slides');
         if (!banner) return;
