@@ -20,30 +20,40 @@
     'rd_identificador' : 'lp-neurobalance-ebook',
     'blog_feed'        : 'https://blog.volcanicstore.com/feed/',
     'blog_url'         : 'https://blog.volcanicstore.com/',
-    'youtube_canal'    : '',
-    'foto_dra'         : 'img/modelo/lp-neurobalance/dra-camila.jpg'
+    'youtube_canal'    : 'https://www.youtube.com/@VolcanicStoreOficial',
+    'instagram_url'    : 'https://www.instagram.com/volcanicstoreoficial/',
+    'foto_dra'         : 'img/modelo/lp-neurobalance/dra-camila.jpg',
+    'ebook_pasta'      : 'img/modelo/lp-neurobalance/ebook/',
+    'ebook_paginas'    : 37
 } %}
 
-{# Vídeos: cole só o ID do YouTube (o que vem depois de v= ou de /shorts/).
-   formato: 'vertical' para Shorts/Reels, 'horizontal' para vídeos normais. #}
+{# Vídeos do Instagram da marca: cole o caminho do post depois de instagram.com/
+   (ex.: 'reel/DaOlbrpIMrW'). Para trocar um vídeo, troque só o 'ig'. #}
 {% set depoimentos = [
-    { 'id': '', 'nome': 'Depoimento 1', 'legenda': 'Mãe atípica', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Depoimento 2', 'legenda': 'Mãe atípica', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Depoimento 3', 'legenda': 'Mãe atípica', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Depoimento 4', 'legenda': 'Mãe atípica', 'formato': 'vertical' }
+    { 'ig': 'reel/DaOlbrpIMrW', 'nome': 'As Mães Contam', 'legenda': 'Websérie NeuroBalance ASD® · episódio final' },
+    { 'ig': 'reel/Dbbn122PZ4V', 'nome': 'Ângela E Leonardo', 'legenda': 'Interação e comunicação aos 14 anos' },
+    { 'ig': 'reel/Das9droRgGQ', 'nome': 'Sheila', 'legenda': 'Antes do diagnóstico, existe uma criança' },
+    { 'ig': 'reel/DaWHfeavRyU', 'nome': 'Terezinha E A Filha', 'legenda': 'Um cuidado multidisciplinar' },
+    { 'ig': 'reel/DQIGbjdgN3m', 'nome': 'Fernanda E Otávio', 'legenda': 'Seletividade alimentar aos 10 anos' },
+    { 'ig': 'reel/DP6bLsjjjRB', 'nome': 'Eva Marques', 'legenda': 'Mãe de um jovem autista de 18 anos' }
 ] %}
 
 {% set videos_manu = [
-    { 'id': '', 'nome': 'Manu Pinheiro', 'legenda': 'Influenciadora e mãe atípica', 'formato': 'horizontal' },
-    { 'id': '', 'nome': 'Manu Pinheiro', 'legenda': 'Rotina com o NeuroBalance ASD®', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Manu Pinheiro', 'legenda': 'Primeiras semanas', 'formato': 'vertical' }
+    { 'ig': 'reel/Da8aCIvxRVQ', 'nome': 'Manu E Enzo', 'legenda': 'Série Mães Que Transformam' },
+    { 'ig': 'reel/DcJ9F0qhqOW', 'nome': 'Um Novo Alimento', 'legenda': 'Pequenos passos, grandes conquistas' },
+    { 'ig': 'reel/Dekt66gBENk', 'nome': 'A Crepioca Do Enzo', 'legenda': 'Seletividade alimentar no dia a dia' }
 ] %}
 
 {% set videos_faq = [
-    { 'id': '', 'nome': 'O que é o NeuroBalance ASD®?', 'legenda': 'Dra. Camila Milagres', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Como usar no dia a dia', 'legenda': 'Dra. Camila Milagres', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Em quanto tempo observar mudanças', 'legenda': 'Dra. Camila Milagres', 'formato': 'vertical' },
-    { 'id': '', 'nome': 'Pode usar junto com as terapias?', 'legenda': 'Dra. Camila Milagres', 'formato': 'vertical' }
+    { 'ig': 'reel/DXsPoYajyS2', 'nome': 'Quem É A Dra. Camila Milagres', 'legenda': 'Trajetória clínica e científica no TEA' },
+    { 'ig': 'reel/DX-RaomP28b', 'nome': 'Como Nasce Um Suplemento Baseado Em Ciência', 'legenda': 'Websérie NeuroBalance' },
+    { 'ig': 'reel/DYQRGrZjY9m', 'nome': 'O Que É Neuroinflamação?', 'legenda': 'Irritabilidade, agitação e sono' },
+    { 'ig': 'reel/DYiVRb2Piyd', 'nome': 'Por Que Isso Não Aparece Nos Exames?', 'legenda': 'Websérie NeuroBalance' },
+    { 'ig': 'reel/DY0U_lRCtk0', 'nome': 'O Que É A PEA?', 'legenda': 'Palmitoiletanolamida, explicada de forma simples' },
+    { 'ig': 'reel/DZGWzScvbji', 'nome': 'Em Quanto Tempo Percebo Mudanças?', 'legenda': 'Expectativas reais' },
+    { 'ig': 'reel/DZYaQXTvQ02', 'nome': 'Pode Usar Junto Com As Terapias?', 'legenda': 'Efeitos, uso contínuo e outras dúvidas' },
+    { 'ig': 'reel/DZqnea4NTN8', 'nome': 'Como Acompanhar A Evolução?', 'legenda': 'O que observar durante o uso' },
+    { 'ig': 'reel/Defg3Jfhvf_', 'nome': 'Suplemento Substitui Terapia?', 'legenda': 'A resposta é não' }
 ] %}
 
 {# ============================ FIM DA CONFIGURAÇÃO ============================ #}
@@ -105,34 +115,34 @@
     .lpn-btn-outline:hover { background: var(--lpn-navy); color: #fff; }
     .lpn-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* Hero */
-    .lpn-hero {
-        position: relative; color: #fff; overflow: hidden;
-        background: radial-gradient(1200px 600px at 85% 20%, rgba(38,187,242,.28), transparent 60%),
-                    linear-gradient(160deg, var(--lpn-navy) 0%, var(--lpn-navy-2) 100%);
-        padding: 72px 0 0;
+    /* Hero no formato dos banners do site: 32:9 no computador (área segura de 100px nas laterais e 60px em cima e embaixo, em 1920x540) e 4:5 no celular */
+    @font-face { font-family: "PP Neue Machina"; src: url("{{ asset('css/fonts/PPNeueMachina-PlainUltrabold.woff2') }}") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+    @font-face { font-family: "PP Neue Machina"; src: url("{{ asset('css/fonts/PPNeueMachina-PlainRegular.woff2') }}") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+    .lpn { --lpn-display: "PP Neue Machina", "Lexend", sans-serif; }
+    .lpn-h2, .lpn-h3 { font-family: var(--lpn-display); font-weight: 800; letter-spacing: -.01em; }
+    .lpn-h2 { font-size: clamp(28px, 3.4vw, 42px); }
+
+    .lpn-hero { background: #fff; }
+    .lpn-banner {
+        position: relative; overflow: hidden; width: 100%;
+        aspect-ratio: 32 / 9; min-height: 460px; max-height: 720px;
+        background: radial-gradient(900px 520px at 78% 40%, #FFFFFF 0%, rgba(255,255,255,0) 70%), linear-gradient(100deg, #EEF1F4 0%, #F6F7F9 55%, #E9EDF1 100%);
+        display: flex; align-items: center;
     }
-    .lpn-hero .lpn-infinity { position: absolute; right: -120px; top: 40px; width: 720px; opacity: .10; pointer-events: none; }
-    .lpn-hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: end; position: relative; }
-    .lpn-hero-text { padding-bottom: 80px; }
-    .lpn-hero .lpn-eyebrow { color: var(--lpn-blue); }
-    .lpn-hero h1 { color: #fff; font-size: clamp(38px, 5.4vw, 68px); font-weight: 600; letter-spacing: -.03em; }
-    .lpn-hero h1 span { color: var(--lpn-blue); }
-    .lpn-hero p.lpn-sub { color: rgba(255,255,255,.78); font-size: 18px; max-width: 580px; margin: 24px 0 32px; }
-    .lpn-hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
-    .lpn-proof { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
-    .lpn-chip {
-        display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px;
-        background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
-        font-size: 13px; color: rgba(255,255,255,.88);
-    }
-    .lpn-chip svg { width: 15px; height: 15px; color: var(--lpn-blue); }
-    .lpn-hero-visual { position: relative; display: flex; justify-content: center; }
-    .lpn-hero-visual::before {
-        content: ""; position: absolute; bottom: 0; width: 88%; aspect-ratio: 1; border-radius: 50%;
-        background: radial-gradient(circle, rgba(38,187,242,.45), rgba(38,187,242,0) 70%);
-    }
-    .lpn-hero-visual img { position: relative; max-height: 520px; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0,0,0,.35)); }
+    .lpn-banner-boy { position: absolute; right: 4%; bottom: 0; height: 104%; display: block; pointer-events: none; }
+    .lpn-banner-boy img { height: 100%; width: auto; max-width: none; display: block; }
+    .lpn-banner-text { position: relative; z-index: 2; width: 100%; max-width: 1920px; margin: 0 auto; padding: 3.2% 5.2%; }
+    .lpn-banner-text > * { max-width: 600px; }
+    .lpn-banner .lpn-eyebrow { color: var(--lpn-blue-d); }
+    .lpn-banner h1 { font-family: var(--lpn-display); font-weight: 800; color: var(--lpn-blue); font-size: clamp(40px, 4.4vw, 76px); line-height: .98; letter-spacing: -.015em; text-wrap: balance; }
+    .lpn-banner h1 small { display: block; font-weight: 400; color: var(--lpn-ink); font-size: .42em; line-height: 1.25; letter-spacing: 0; margin-top: .55em; }
+    .lpn-banner p.lpn-sub { color: var(--lpn-muted); font-size: 17px; max-width: 520px; margin: 22px 0 28px; }
+    .lpn-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+    .lpn-hero-after { display: none; }
+    .lpn-proof-bar { border-top: 1px solid var(--lpn-line); border-bottom: 1px solid var(--lpn-line); background: #fff; }
+    .lpn-proof { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; padding: 16px 20px; max-width: 1220px; margin: 0 auto; }
+    .lpn-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--lpn-ink); }
+    .lpn-chip svg { width: 17px; height: 17px; color: var(--lpn-blue-d); flex-shrink: 0; }
 
     /* Navegação de âncoras */
     .lpn-nav { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--lpn-line); }
@@ -189,10 +199,19 @@
     .lpn-lead-info .lpn-h2 { color: #fff; }
     .lpn-lead-info .lpn-eyebrow { color: var(--lpn-blue); }
     .lpn-lead-info p { color: rgba(255,255,255,.75); }
-    .lpn-materials { display: grid; gap: 14px; margin-top: 32px; }
-    .lpn-material { display: grid; grid-template-columns: 72px 1fr; gap: 18px; align-items: center; padding: 16px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+    .lpn-book { display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: center; margin-top: 32px; }
+    .lpn-book-cover { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 10px 12px 0 rgba(255,255,255,.08), 0 20px 40px rgba(0,0,0,.35); aspect-ratio: 992 / 1404; background: var(--lpn-navy-2); }
+    .lpn-book-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .lpn-book-cover::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: linear-gradient(90deg, rgba(0,0,0,.28), transparent); }
+    .lpn-book h4 { color: #fff; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    .lpn-book p { margin: 0 0 12px; font-size: 14px; }
+    .lpn-book-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .lpn-book-meta span { font-size: 12px; color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 6px 11px; }
+    .lpn-materials { display: grid; gap: 14px; margin-top: 24px; }
+    .lpn-material { display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: center; padding: 16px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
     .lpn-cover { width: 72px; height: 92px; border-radius: 8px; background: linear-gradient(160deg, var(--lpn-blue), var(--lpn-blue-d)); display: grid; place-items: center; color: #fff; font-size: 11px; font-weight: 600; text-align: center; padding: 6px; box-shadow: 6px 6px 0 rgba(255,255,255,.12); }
-    .lpn-cover.alt { background: linear-gradient(160deg, #fff, #CFEFFC); color: var(--lpn-navy); }
+    .lpn-cover.alt { background: #5EC5E5; padding: 0; overflow: hidden; width: 92px; height: 52px; box-shadow: 5px 5px 0 rgba(255,255,255,.12); }
+    .lpn-cover.alt img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .lpn-material h4 { color: #fff; font-size: 17px; margin-bottom: 4px; }
     .lpn-material p { margin: 0; font-size: 14px; }
     .lpn-form { background: #fff; padding: 48px; }
@@ -214,6 +233,44 @@
     .lpn-success.is-visible { display: block; }
     .lpn-success .lpn-icon { margin: 0 auto 18px; width: 64px; height: 64px; border-radius: 50%; }
     .lpn-success .lpn-btn { margin-top: 12px; width: 100%; }
+
+    /* Sumário do e-book */
+    .lpn-toc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+    .lpn-part { background: var(--lpn-bg); border-radius: 18px; padding: 22px; }
+    .lpn-part .n { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lpn-blue-d); }
+    .lpn-part h4 { font-size: 17px; margin: 8px 0 10px; }
+    .lpn-part ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .lpn-part li { font-size: 13px; color: var(--lpn-muted); line-height: 1.45; padding-left: 14px; position: relative; }
+    .lpn-part li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--lpn-blue); }
+    .lpn-part.cta { background: var(--lpn-navy); display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+    .lpn-part.cta h4 { color: #fff; }
+    .lpn-part.cta p { color: rgba(255,255,255,.75); font-size: 14px; margin: 0; }
+
+    /* Mitos */
+    .lpn-myths { margin-top: 56px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: start; background: #fff; border: 1px solid var(--lpn-line); border-radius: 24px; padding: 36px; }
+    .lpn-myths ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .lpn-myths li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--lpn-ink); line-height: 1.45; }
+    .lpn-myths li svg { width: 18px; height: 18px; color: var(--lpn-red); flex-shrink: 0; margin-top: 2px; }
+
+    /* Leitor do e-book */
+    .lpn-reader { position: fixed; inset: 0; z-index: 9999; background: #061626; display: none; flex-direction: column; color: #fff; padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }
+    .lpn-reader.is-open { display: flex; }
+    .lpn-reader-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; }
+    .lpn-reader-top b { font-size: 15px; font-weight: 600; }
+    .lpn-reader-top small { display: block; font-size: 12px; color: rgba(255,255,255,.6); font-weight: 400; }
+    .lpn-reader-close { border: 0; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); color: #fff; font-size: 22px; cursor: pointer; flex-shrink: 0; }
+    .lpn-reader-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 0 12px; }
+    .lpn-reader-pages { height: 100%; max-height: calc(100vh - 170px); display: flex; gap: 4px; align-items: center; justify-content: center; }
+    .lpn-reader-pages img { height: 100%; max-height: calc(100vh - 170px); width: auto; max-width: min(46vw, 640px); object-fit: contain; background: #fff; border-radius: 3px; box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+    .lpn-reader-pages.single img { max-width: 92vw; }
+    .lpn-reader-nav { border: 0; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.12); color: #fff; cursor: pointer; display: grid; place-items: center; flex-shrink: 0; }
+    .lpn-reader-nav:disabled { opacity: .3; cursor: default; }
+    .lpn-reader-nav.bar { display: none; }
+    .lpn-reader-nav svg { width: 20px; height: 20px; }
+    .lpn-reader-bar { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; padding: 14px 18px 18px; }
+    .lpn-reader-bar span { font-size: 13px; font-variant-numeric: tabular-nums; color: rgba(255,255,255,.8); min-width: 70px; text-align: center; }
+    .lpn-reader-bar input[type=range] { width: min(320px, 50vw); accent-color: var(--lpn-blue); }
+    .lpn-reader-bar .lpn-btn { padding: 11px 18px; font-size: 13px; }
 
     /* Produto */
     .lpn-product { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
@@ -268,6 +325,22 @@
 
     /* Protocolo */
     .lpn-protocol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .lpn-observe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .lpn-observe div { background: #fff; border: 1px solid var(--lpn-line); border-radius: 16px; padding: 18px 20px; }
+    .lpn-observe h4 { font-size: 15px; margin-bottom: 4px; }
+    .lpn-observe p { font-size: 13px; margin: 0; }
+    .lpn-table-wrap { margin-top: 28px; overflow-x: auto; background: #fff; border: 1px solid var(--lpn-line); border-radius: 18px; }
+    .lpn-table { width: 100%; border-collapse: collapse; min-width: 860px; font-size: 14px; }
+    .lpn-table th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--lpn-muted); padding: 16px 18px; border-bottom: 1px solid var(--lpn-line); }
+    .lpn-table td { padding: 14px 18px; border-bottom: 1px solid var(--lpn-line); color: var(--lpn-ink); font-variant-numeric: tabular-nums; }
+    .lpn-table tr:last-child td { border-bottom: 0; }
+    .lpn-table td.empty { color: #B8C4CF; }
+    .lpn-evid td { vertical-align: top; line-height: 1.5; }
+    .lpn-evid a { color: var(--lpn-blue-d); text-decoration: underline; text-underline-offset: 3px; }
+    .lpn-table-note { font-size: 12px; color: var(--lpn-muted); margin-top: 10px; }
+    .lpn-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin: 28px 0 0; padding: 0; list-style: none; }
+    .lpn-questions li { font-size: 15px; color: var(--lpn-ink); padding-left: 26px; position: relative; line-height: 1.5; }
+    .lpn-questions li::before { content: "?"; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: var(--lpn-blue-soft); color: var(--lpn-blue-d); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
     .lpn-phase { border-radius: var(--lpn-radius); padding: 30px; background: #fff; border: 1px solid var(--lpn-line); }
     .lpn-phase .weeks { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--lpn-blue-d); }
     .lpn-phase h4 { font-size: 20px; margin: 10px 0 10px; }
@@ -275,30 +348,23 @@
     .lpn-phase-bar { height: 6px; border-radius: 6px; background: var(--lpn-line); margin-top: 22px; overflow: hidden; }
     .lpn-phase-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--lpn-blue), var(--lpn-blue-d)); border-radius: 6px; }
 
-    /* Vídeos */
-    .lpn-videos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-        .lpn-video { display: flex; flex-direction: column; gap: 12px; }
-    .lpn-player {
-        position: relative; width: 100%; border-radius: 20px; overflow: hidden; cursor: pointer;
-        background: linear-gradient(160deg, var(--lpn-navy-2), var(--lpn-navy)) center/cover no-repeat;
-        aspect-ratio: 9 / 16; border: 0; padding: 0; display: block;
-    }
-    .lpn-player.is-h { aspect-ratio: 16 / 9; }
-    .lpn-player::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(10,37,64,.55)); }
-    .lpn-play { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 68px; height: 68px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; transition: .2s; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-    .lpn-play svg { width: 26px; height: 26px; color: var(--lpn-navy); margin-left: 4px; }
-    .lpn-player:hover .lpn-play { transform: translate(-50%,-50%) scale(1.08); background: var(--lpn-blue); }
-    .lpn-player:hover .lpn-play svg { color: #fff; }
-    .lpn-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; }
-    .lpn-player.is-empty { cursor: default; }
-    .lpn-player.is-empty .lpn-play { background: rgba(255,255,255,.15); box-shadow: none; }
-    .lpn-player.is-empty .lpn-play svg { color: #fff; }
-    .lpn-player .soon { position: absolute; z-index: 2; bottom: 16px; left: 16px; right: 16px; color: #fff; font-size: 12px; opacity: .8; }
-    .lpn-video h4 { font-size: 15px; font-weight: 600; }
-    .lpn-video span { font-size: 13px; color: var(--lpn-muted); }
-    .lpn-quote { margin-top: 40px; display: flex; justify-content: center; }
+    /* Vídeos do Instagram */
+    .lpn-igrow { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(326px, calc((100% - 36px) / 3)); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 14px; scrollbar-width: thin; align-items: start; }
+    .lpn-ig { scroll-snap-align: start; min-width: 0; }
+    .lpn-ig .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: none !important; border-radius: 18px !important; border: 1px solid var(--lpn-line) !important; box-shadow: none !important; background: #fff !important; padding: 0 !important; }
+    .lpn-ig iframe.instagram-media { border-radius: 18px !important; }
+    .lpn-ig-fallback { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; aspect-ratio: 9 / 16; border-radius: 18px; padding: 22px; color: #fff; background: radial-gradient(260px 260px at 30% 20%, rgba(38,187,242,.45), transparent 70%), linear-gradient(160deg, var(--lpn-navy-2), var(--lpn-navy)); overflow: hidden; }
+    .lpn-ig-fallback:hover { color: #fff; }
+    .lpn-ig-fallback .lpn-play { position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%); width: 68px; height: 68px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; transition: .2s; }
+    .lpn-ig-fallback .lpn-play svg { width: 26px; height: 26px; color: var(--lpn-navy); margin-left: 4px; }
+    .lpn-ig-fallback:hover .lpn-play { background: var(--lpn-blue); }
+    .lpn-ig-fallback:hover .lpn-play svg { color: #fff; }
+    .lpn-ig-fallback .t { font-family: var(--lpn-display); font-weight: 800; font-size: 20px; line-height: 1.15; }
+    .lpn-ig-fallback .s { font-size: 13px; color: rgba(255,255,255,.75); }
+    .lpn-ig-fallback .cta { margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--lpn-blue); }
+    .lpn-quote { margin-top: 28px; display: flex; justify-content: center; }
 
-    .lpn-influencer { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; margin-bottom: 40px; }
+    .lpn-influencer { display: grid; grid-template-columns: 1fr; gap: 0; margin-bottom: 36px; max-width: 760px; }
     .lpn-influencer blockquote { margin: 24px 0 0; padding: 0 0 0 20px; border-left: 3px solid var(--lpn-blue); font-size: 18px; color: var(--lpn-ink); line-height: 1.6; }
 
     /* FAQ */
@@ -347,22 +413,33 @@
 
     @media (max-width: 991px) {
         .lpn-section { padding: 64px 0; }
-        .lpn-hero { padding-top: 48px; }
-        .lpn-hero-grid, .lpn-split, .lpn-lead-box, .lpn-product, .lpn-science, .lpn-influencer, .lpn-final { grid-template-columns: 1fr; }
-        .lpn-hero-text { padding-bottom: 0; }
-        .lpn-hero-visual img { max-height: 340px; }
-        .lpn-cards, .lpn-actives, .lpn-news, .lpn-protocol, .lpn-use { grid-template-columns: 1fr 1fr; }
+        .lpn-banner-boy { right: -8%; height: 96%; opacity: .95; }
+        .lpn-banner-text > * { max-width: 470px; }
+        .lpn-split, .lpn-lead-box, .lpn-product, .lpn-science, .lpn-influencer, .lpn-final { grid-template-columns: 1fr; }
+        .lpn-cards, .lpn-actives, .lpn-news, .lpn-protocol, .lpn-use, .lpn-toc, .lpn-observe { grid-template-columns: 1fr 1fr; }
+        .lpn-myths { grid-template-columns: 1fr; padding: 28px 22px; }
         .lpn-steps { grid-template-columns: 1fr 1fr; }
-        .lpn-videos { grid-template-columns: 1fr 1fr; }
         .lpn-lead-info, .lpn-form, .lpn-final { padding: 36px 24px; }
         .lpn-timeline { grid-template-columns: 1fr 1fr; row-gap: 28px; }
         .lpn-timeline::before { display: none; }
         .lpn-nav .lpn-nav-cta { display: none; }
     }
     @media (max-width: 600px) {
-        .lpn-stats, .lpn-cards, .lpn-actives, .lpn-news, .lpn-protocol, .lpn-use, .lpn-steps, .lpn-timeline { grid-template-columns: 1fr; }
-        .lpn-videos { grid-template-columns: 1fr 1fr; gap: 12px; }
+        .lpn-stats, .lpn-cards, .lpn-actives, .lpn-news, .lpn-protocol, .lpn-use, .lpn-steps, .lpn-timeline, .lpn-toc, .lpn-observe, .lpn-questions, .lpn-myths ul { grid-template-columns: 1fr; }
+        .lpn-book { grid-template-columns: 110px 1fr; gap: 18px; }
+        .lpn-book h4 { font-size: 19px; }
+        .lpn-reader-stage .lpn-reader-nav { display: none; }
+        .lpn-reader-nav.bar { display: grid; }
+        .lpn-igrow { grid-auto-columns: minmax(300px, 88%); gap: 12px; }
         .lpn-hero-ctas .lpn-btn, .lpn-buy .lpn-btn { width: 100%; }
+        .lpn-banner { aspect-ratio: 4 / 5; min-height: 0; max-height: none; align-items: flex-start; background: radial-gradient(420px 420px at 60% 75%, #FFFFFF 0%, rgba(255,255,255,0) 70%), linear-gradient(180deg, #F6F7F9 0%, #E9EDF1 100%); }
+        .lpn-banner-boy { right: -8%; height: 56%; }
+        .lpn-banner-text { padding: 10vw 5.6vw 0; }
+        .lpn-banner h1 { font-size: clamp(34px, 10vw, 46px); }
+        .lpn-banner p.lpn-sub, .lpn-banner .lpn-hero-ctas { display: none; }
+        .lpn-hero-after { display: block; padding: 24px 20px 8px; }
+        .lpn-hero-after p { font-size: 16px; margin-bottom: 18px; }
+        .lpn-proof { justify-content: flex-start; gap: 10px 18px; }
         .lpn-doctor { grid-template-columns: 1fr; text-align: center; padding: 28px 22px; }
         .lpn-doctor-photo { margin: 0 auto; width: 120px; height: 120px; }
         .lpn-stat strong { font-size: 38px; }
@@ -380,29 +457,40 @@
 
     {# ============================== HERO ============================== #}
     <section class="lpn-hero">
-        <svg class="lpn-infinity" viewBox="0 0 400 200" fill="none" aria-hidden="true">
-            <path d="M100 100c0-33 27-60 60-60 50 0 80 120 130 120 33 0 60-27 60-60s-27-60-60-60c-50 0-80 120-130 120-33 0-60-27-60-60z" stroke="#fff" stroke-width="6"/>
-        </svg>
-        <div class="lpn-wrap lpn-hero-grid">
-            <div class="lpn-hero-text">
+        <div class="lpn-banner">
+            <picture class="lpn-banner-boy">
+                <source type="image/webp" srcset="{{ asset('img/modelo/lp-neurobalance/hero-menino.webp') }}">
+                <img src="{{ asset('img/modelo/lp-neurobalance/hero-menino.png') }}" alt="" width="1200" height="1117" fetchpriority="high">
+            </picture>
+            <div class="lpn-banner-text">
                 <span class="lpn-eyebrow">Guia Completo Sobre O TEA</span>
-                <h1>Autismo, Ciência E Cuidado <span>Em Um Só Lugar</span></h1>
-                <p class="lpn-sub">Tudo o que famílias atípicas precisam saber sobre o Transtorno do Espectro Autista — e como o NeuroBalance ASD® foi desenvolvido, em 2 anos de pesquisa com a Dra. Camila Milagres, para ser um suporte nutricional complementar às terapias.</p>
+                <h1>Além Do Espectro <small>Autismo, ciência e cuidado para famílias atípicas</small></h1>
+                <p class="lpn-sub">Tudo o que famílias atípicas precisam saber sobre o Transtorno do Espectro Autista, com o e-book gratuito da Volcanic e a ciência por trás do NeuroBalance ASD®, desenvolvido em 2 anos de pesquisa com a Dra. Camila Milagres.</p>
                 <div class="lpn-hero-ctas">
                     <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_hero_ebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-                        Baixar E-book Gratuito
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2zm0 0A2 2 0 006 22h12"/></svg>
+                        Ler O E-book Gratuito
                     </a>
-                    <a href="#neurobalance" class="lpn-btn lpn-btn-ghost" data-lpn-track="cta_hero_produto">Conhecer O NeuroBalance ASD®</a>
-                </div>
-                <div class="lpn-proof">
-                    <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 006.2 21h11.6a2 2 0 001.7-2.5L14 9V3"/></svg> Estudo Publicado Na Behavioural Brain Research</span>
-                    <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 2 Anos De Pesquisa</span>
-                    <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> PEA Levagen+®</span>
+                    <a href="#neurobalance" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_hero_produto">Conhecer O NeuroBalance ASD®</a>
                 </div>
             </div>
-            <div class="lpn-hero-visual">
-                <img src="{{ asset('img/modelo/produto-51/neurobalance-asd.png') }}" alt="NeuroBalance ASD®" width="460" height="520" fetchpriority="high">
+        </div>
+        <div class="lpn-hero-after">
+            <p>Tudo o que famílias atípicas precisam saber sobre o Transtorno do Espectro Autista, com o e-book gratuito da Volcanic e a ciência por trás do NeuroBalance ASD®, desenvolvido em 2 anos de pesquisa com a Dra. Camila Milagres.</p>
+            <div class="lpn-hero-ctas">
+                <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_hero_ebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2zm0 0A2 2 0 006 22h12"/></svg>
+                        Ler O E-book Gratuito
+                    </a>
+                    <a href="#neurobalance" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_hero_produto">Conhecer O NeuroBalance ASD®</a>
+            </div>
+        </div>
+        <div class="lpn-proof-bar">
+            <div class="lpn-proof">
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 006.2 21h11.6a2 2 0 001.7-2.5L14 9V3"/></svg> Artigo Na Behavioural Brain Research</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 2 Anos De Pesquisa</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2z"/></svg> E-book Com 22 Capítulos</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> PEA Levagen+®</span>
             </div>
         </div>
     </section>
@@ -411,7 +499,7 @@
     <nav class="lpn-nav" aria-label="Seções da página">
         <ul>
             <li><a href="#entenda">Entenda O Autismo</a></li>
-            <li><a href="#materiais">E-book E Protocolo</a></li>
+            <li><a href="#materiais">E-book Gratuito</a></li>
             <li><a href="#neurobalance">NeuroBalance ASD®</a></li>
             <li><a href="#ciencia">Ciência</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
@@ -506,6 +594,23 @@
                 <div class="lpn-step"><h4>Nutrição</h4><p>Alimentação e suplementação com orientação de médico ou nutricionista.</p></div>
                 <div class="lpn-step"><h4>Direitos E Rede</h4><p>Lei 12.764/2012, carteira CIPTEA e grupos de apoio a famílias.</p></div>
             </div>
+
+            <div class="lpn-myths">
+                <div>
+                    <h3 class="lpn-h3">O Que O Autismo Não É</h3>
+                    <p>Alguns mitos ainda machucam muitas famílias. Reconhecer as forças da criança é tão importante quanto identificar as necessidades: memória, atenção a detalhes, persistência, criatividade e interesses profundos também fazem parte do espectro.</p>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é consequência da educação recebida</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é culpa dos pais</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é falta de amor</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é falta de inteligência</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é ausência de sentimentos</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não significa incapacidade para aprender</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é igual para todas as pessoas</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>Não é causado por vacinas</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -514,22 +619,24 @@
         <div class="lpn-wrap">
             <div class="lpn-lead-box">
                 <div class="lpn-lead-info">
-                    <span class="lpn-eyebrow">Materiais Gratuitos</span>
-                    <h2 class="lpn-h2">Conteúdo Feito Para Famílias Atípicas</h2>
-                    <p class="lpn-lead">Receba no seu e-mail os dois materiais que preparamos com a Dra. Camila Milagres para apoiar a sua rotina.</p>
+                    <span class="lpn-eyebrow">E-book Gratuito</span>
+                    <h2 class="lpn-h2">Guia Completo E Acolhedor Para Famílias Na Jornada Do TEA</h2>
+                    <div class="lpn-book">
+                        <div class="lpn-book-cover">
+                            <img src="{{ asset(lp.ebook_pasta ~ 'p01.jpg') }}" alt="Capa do e-book Além Do Espectro" width="992" height="1404" loading="lazy">
+                        </div>
+                        <div>
+                            <h4>Além Do Espectro</h4>
+                            <p>Diagnóstico, terapias, nutrição, rotina, escola e o protocolo integrativo NeuroBalance®, em linguagem simples, para consultar sempre que surgir uma dúvida.</p>
+                            <div class="lpn-book-meta"><span>22 capítulos</span><span>7 partes</span><span>Leitura no site ou PDF</span></div>
+                        </div>
+                    </div>
                     <div class="lpn-materials">
                         <div class="lpn-material">
-                            <div class="lpn-cover">E-book<br>TEA</div>
+                            <div class="lpn-cover alt"><img src="{{ asset(lp.ebook_pasta ~ 'protocolo-capa.jpg') }}" alt="Capa do Protocolo de 12 Semanas" width="720" height="405" loading="lazy"></div>
                             <div>
-                                <h4>E-book Completo Sobre O Autismo</h4>
-                                <p>37 páginas sobre o espectro, rotina, sono, alimentação e o papel da suplementação.</p>
-                            </div>
-                        </div>
-                        <div class="lpn-material">
-                            <div class="lpn-cover alt">12<br>Semanas</div>
-                            <div>
-                                <h4>Protocolo De Acompanhamento</h4>
-                                <p>Guia de 12 semanas para registrar e acompanhar a evolução com o NeuroBalance ASD®.</p>
+                                <h4>Bônus: Protocolo De 12 Semanas</h4>
+                                <p>Tabela para imprimir e registrar sono, crises, momentos de calma e alimentação, da semana 0 à 12.</p>
                             </div>
                         </div>
                     </div>
@@ -537,8 +644,8 @@
 
                 <div class="lpn-form">
                     <form id="lpn-lead-form" novalidate>
-                        <h3>Receba Os Materiais Gratuitos</h3>
-                        <p>Preencha e libere o download na hora.</p>
+                        <h3>Receba O E-book Gratuito</h3>
+                        <p>Preencha e comece a ler na hora. Também enviamos para o seu e-mail.</p>
 
                         <div class="lpn-field">
                             <label for="lpn-nome">Nome</label>
@@ -569,17 +676,18 @@
                         </label>
                         <button type="submit" class="lpn-btn lpn-btn-primary">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-                            Quero Os Materiais
+                            Quero Ler O E-book
                         </button>
                         <div class="lpn-form-msg" role="alert"></div>
                     </form>
 
                     <div class="lpn-success" id="lpn-success">
                         <div class="lpn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
-                        <h3>Pronto! Seus Materiais Estão Liberados</h3>
-                        <p>Também enviamos os links para o seu e-mail.</p>
+                        <h3>Pronto! Seu E-book Está Liberado</h3>
+                        <p>Leia agora aqui mesmo ou baixe para ler depois.</p>
+                        <button type="button" class="lpn-btn lpn-btn-primary" data-lpn-open-reader data-lpn-track="abrir_leitor_ebook">Ler O E-book Agora</button>
                         {% if lp.ebook_url %}
-                            <a href="{{ lp.ebook_url }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-primary" data-lpn-track="download_ebook">Baixar E-book</a>
+                            <a href="{{ lp.ebook_url }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-outline" data-lpn-track="download_ebook">Baixar O PDF</a>
                         {% endif %}
                         {% if lp.protocolo_url %}
                             <a href="{{ lp.protocolo_url }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-outline" data-lpn-track="download_protocolo">Baixar Protocolo De 12 Semanas</a>
@@ -587,6 +695,21 @@
                         <a href="#neurobalance" class="lpn-btn lpn-btn-outline">Conhecer O NeuroBalance ASD®</a>
                     </div>
                 </div>
+            </div>
+
+            <div class="lpn-head" style="margin: 72px 0 0;">
+                <span class="lpn-eyebrow">O Que Tem No E-book</span>
+                <h2 class="lpn-h2">Um Companheiro Para Cada Fase Da Jornada</h2>
+            </div>
+            <div class="lpn-toc">
+                <div class="lpn-part"><span class="n">Parte 1</span><h4>Compreender</h4><ul><li>O que é TEA</li><li>Quando a família começa a perceber os sinais</li><li>A descoberta: o que é normal sentir</li><li>Como funciona o diagnóstico</li></ul></div>
+                <div class="lpn-part"><span class="n">Parte 2</span><h4>Agir</h4><ul><li>Os próximos passos depois do laudo</li><li>Os primeiros 30 dias, semana a semana</li><li>Como escolher terapias com segurança</li></ul></div>
+                <div class="lpn-part"><span class="n">Parte 3</span><h4>O Corpo Também Faz Parte</h4><ul><li>Alimentação e seletividade alimentar</li><li>O eixo intestino-cérebro</li><li>Suplementação com base científica</li></ul></div>
+                <div class="lpn-part"><span class="n">Parte 4</span><h4>O Protocolo Integrativo</h4><ul><li>NeuroBalance ASD®: nutrição, ciência e cuidado integral</li><li>Ritmo circadiano e NeuroBalance Melatonin®</li><li>Portfólio NeuroBalance e ciência com responsabilidade</li></ul></div>
+                <div class="lpn-part"><span class="n">Parte 5</span><h4>O Dia A Dia</h4><ul><li>Rotina, comunicação e autonomia em casa</li><li>Comportamentos desafiadores e crises</li><li>Escola e inclusão</li></ul></div>
+                <div class="lpn-part"><span class="n">Parte 6</span><h4>Cuidar De Todos</h4><ul><li>Cuidando de quem cuida</li><li>Adolescência, autonomia e futuro</li></ul></div>
+                <div class="lpn-part"><span class="n">Parte 7</span><h4>Ferramentas Práticas</h4><ul><li>Protocolo de 12 Semanas</li><li>Perguntas frequentes</li><li>Respostas para comentários inadequados</li><li>Checklist final da família</li></ul></div>
+                <div class="lpn-part cta"><div><h4>Leia Agora, De Graça</h4><p>Cadastre-se e abra o e-book aqui mesmo no site.</p></div><a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_sumario_ebook">Quero O E-book</a></div>
             </div>
         </div>
     </section>
@@ -605,8 +728,8 @@
                     <p class="lpn-lead">Suplemento alimentar em pó, de fórmula inédita, que combina cinco compostos bioativos selecionados a partir da literatura científica para oferecer suporte nutricional a pessoas no espectro — sempre como complemento às terapias.</p>
                     <ul class="lpn-checks">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Desenvolvido em 2 anos de pesquisa com a Dra. Camila Milagres e equipe</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Uso combinado com o NeuroBalance Melatonin® avaliado em estudo publicado</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Em pó, sem sabor marcante: mistura fácil em alimentos e bebidas</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Constituintes em quantidades declaradas por porção e extrato de uva padronizado</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Em pó e sem sabor: boa aceitação mesmo por crianças com sensibilidade ao gosto e à textura</li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Uma dose ao dia, junto a uma refeição</li>
                     </ul>
                     <div class="lpn-buy">
@@ -614,7 +737,7 @@
                         {% if lp.url_combo %}
                             <a href="{{ lp.url_combo }}" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_produto_combo">Ver Combo Com Melatonin</a>
                         {% else %}
-                            <a href="{{ lp.url_melatonin }}" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_produto_melatonin">Ver NeuroBalance Melatonin®</a>
+                            <a href="{{ lp.url_melatonin }}" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_produto_melatonin">Ver NeuroBalance Melatonin® (Adultos)</a>
                         {% endif %}
                     </div>
                 </div>
@@ -643,13 +766,13 @@
                 </div>
                 <div class="lpn-active">
                     <span class="dose">114 mg/dose</span>
-                    <h4>Antocianinas <small>de sementes de uva</small></h4>
-                    <p>Pigmentos naturais antioxidantes estudados por sua relação com o eixo intestino-cérebro.</p>
+                    <h4>Proantocianidinas <small>de semente de uva</small></h4>
+                    <p>Antioxidante padronizado estudado por sua ação na modulação inflamatória e na proteção dos neurônios.</p>
                 </div>
                 <div class="lpn-active combo">
-                    <span class="dose">Combo NeuroBalance®</span>
-                    <h4>+ NeuroBalance Melatonin®</h4>
-                    <p>Melatonina líquida para apoiar o ciclo natural do sono. O estudo publicado avaliou o uso combinado dos dois produtos.</p>
+                    <span class="dose">Linha NeuroBalance®</span>
+                    <h4>NeuroBalance Melatonin® <small>para adultos</small></h4>
+                    <p>Melatonina em gotas (0,21 mg por gota, 1 gota ao dia) para quem busca suporte ao ritmo do sono. Conforme a legislação, é destinado exclusivamente a pessoas com 19 anos ou mais.</p>
                 </div>
             </div>
 
@@ -673,8 +796,8 @@
             <div class="lpn-timeline">
                 <div class="lpn-tl"><h4>Revisão Científica</h4><p>Levantamento de estudos sobre cada ativo e sua relação com o TEA.</p></div>
                 <div class="lpn-tl"><h4>Formulação</h4><p>Definição de ativos, doses e forma de uso pensada para a rotina da família.</p></div>
-                <div class="lpn-tl"><h4>Estudo</h4><p>Avaliação do uso combinado com o NeuroBalance Melatonin®.</p></div>
-                <div class="lpn-tl"><h4>Publicação</h4><p>Resultados publicados na revista internacional Behavioural Brain Research.</p></div>
+                <div class="lpn-tl"><h4>Padronização</h4><p>Quantidades declaradas por porção e extrato de semente de uva padronizado em proantocianidinas.</p></div>
+                <div class="lpn-tl"><h4>Publicação</h4><p>Artigo científico publicado na revista internacional Behavioural Brain Research.</p></div>
             </div>
 
             <div class="lpn-science">
@@ -691,31 +814,55 @@
                 </div>
                 <div class="lpn-doc-card">
                     <span class="lpn-eyebrow">Artigo Científico</span>
-                    <h4>Estudo Publicado Com O Combo NeuroBalance®</h4>
-                    <p>Pesquisa sobre o uso concomitante do NeuroBalance ASD® com o NeuroBalance Melatonin®, publicada no periódico Behavioural Brain Research.</p>
+                    <h4>Artigo Publicado Na Behavioural Brain Research</h4>
+                    <p>Artigo científico ligado à linha NeuroBalance®, publicado em periódico internacional revisado por pares.</p>
                     <a href="{{ lp.artigo_url }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-outline" data-lpn-track="abrir_artigo">Ler O Artigo</a>
                 </div>
                 <div class="lpn-doc-card">
-                    <span class="lpn-eyebrow">Dossiê Técnico</span>
+                    <span class="lpn-eyebrow">Para Profissionais De Saúde</span>
                     <h4>Dossiê Completo Do NeuroBalance®</h4>
-                    <p>Documento elaborado pela Dra. Camila Milagres com o detalhamento técnico de cada ativo, doses e referências.</p>
+                    <p>Evidências científicas de cada constituinte, com desenho dos estudos, resultados e referências, organizadas pela Dra. Camila Milagres.</p>
                     <a href="{{ lp.dossie_url }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-outline" data-lpn-track="abrir_dossie">Acessar O Dossiê</a>
                 </div>
+            </div>
+
+            <h3 class="lpn-h3" style="margin-top:56px">O Que Os Estudos Avaliaram</h3>
+            <p style="max-width:760px">Pesquisas conduzidas com cada constituinte isolado, em populações e condições próprias de cada estudo. Elas mostram onde a ciência está hoje e não são promessa de resultado do produto.</p>
+            <div class="lpn-table-wrap">
+                <table class="lpn-table lpn-evid">
+                    <thead><tr><th>Constituinte</th><th>Estudo</th><th>Desenho</th><th>Quem Participou</th><th>O Que Foi Avaliado</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>PEA</b></td><td><a href="https://www.sciencedirect.com/science/article/pii/S002239561731405X" target="_blank" rel="noopener">Khalaj et al., 2018</a></td><td>Randomizado, duplo-cego, controlado por placebo</td><td>62 crianças de 4 a 12 anos, em uso de risperidona</td><td>Irritabilidade e hiperatividade em 10 semanas</td></tr>
+                        <tr><td><b>PEA</b></td><td><a href="https://pubmed.ncbi.nlm.nih.gov/26491593/" target="_blank" rel="noopener">Antonucci et al., 2015</a></td><td>Relato de dois casos</td><td>2 adolescentes</td><td>Linguagem, cognição e comportamento</td></tr>
+                        <tr><td><b>Coenzima Q10</b></td><td><a href="https://pubmed.ncbi.nlm.nih.gov/29684771/" target="_blank" rel="noopener">Mousavinejad et al., 2018</a></td><td>Randomizado, controlado por placebo</td><td>78 crianças</td><td>Estresse oxidativo, sono e queixas gastrointestinais em 100 dias</td></tr>
+                        <tr><td><b>Coenzima Q10</b></td><td><a href="https://doi.org/10.1155/2014/798957" target="_blank" rel="noopener">Gvozdjáková et al., 2014</a></td><td>Estudo clínico aberto</td><td>24 crianças de 3 a 6 anos</td><td>Comportamento, comunicação, alimentação e sono</td></tr>
+                        <tr><td><b>Trans-resveratrol</b></td><td><a href="https://pubmed.ncbi.nlm.nih.gov/31714621/" target="_blank" rel="noopener">Hendouei et al., 2020</a></td><td>Randomizado, duplo-cego, controlado por placebo</td><td>70 crianças de 4 a 12 anos, em uso de risperidona</td><td>Irritabilidade e hiperatividade em 10 semanas</td></tr>
+                        <tr><td><b>Trans-resveratrol</b></td><td><a href="https://pubmed.ncbi.nlm.nih.gov/36066854/" target="_blank" rel="noopener">Marchezan et al., 2022</a></td><td>Estudo piloto</td><td>5 crianças de 10 a 13 anos</td><td>Comportamento e marcadores genéticos em 90 dias</td></tr>
+                        <tr><td><b>Vitamina D</b></td><td><a href="https://doi.org/10.1080/1028415X.2015.1123847" target="_blank" rel="noopener">Feng et al., 2017</a></td><td>Estudo clínico com grupo de comparação</td><td>215 crianças com TEA e 285 sem TEA</td><td>Níveis de vitamina D e escalas de comportamento (ABC e CARS)</td></tr>
+                        <tr><td><b>Proantocianidinas</b></td><td>Dossiê técnico ENOVITA® e estudos pré-clínicos</td><td>Revisão técnica e modelos experimentais</td><td>Não se aplica</td><td>Ação antioxidante, modulação inflamatória e proteção neuronal</td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <details class="lpn-refs">
                 <summary>Referências Bibliográficas</summary>
                 <ol>
-                    <li>Antonucci N, Cirillo A, Siniscalco D. Beneficial effects of palmitoylethanolamide on expressive language, cognition, and behaviors in autism: a report of two cases. Case Reports in Psychiatry, 2015.</li>
-                    <li>Clayton P, Hill M, Subah S, Venkatesh R. Palmitoylethanolamide: a natural compound for health management. Int. J. Mol. Sci., 2021; 22.</li>
-                    <li>Feng J, Shan L, Du L, et al. Clinical improvement following vitamin D3 supplementation in Autism Spectrum Disorder.</li>
-                    <li>Mousavinejad E, Ghaffari MA, Riahi F, et al. Coenzyme Q10 supplementation reduces oxidative stress and decreases antioxidant enzyme activity in children with autism spectrum disorders.</li>
-                    <li>Bagheri S, et al. Neuroprotective effects of coenzyme Q10 on neurological diseases: a review article. Front Neurosci., 2023; 17:1188839.</li>
-                    <li>Cirilli I, et al. Role of Coenzyme Q10 in Health and Disease: An Update on the Last 10 Years (2010-2020). Antioxidants (Basel), 2021; 10(8):1325.</li>
-                    <li>Ebrahimi A, et al. Involvement of Coenzyme Q10 in Various Neurodegenerative and Psychiatric Diseases. Biochem Res Int., 2023; 2023:5510874.</li>
-                    <li>Serra D, Henriques JF, Sousa FJ, et al. Attenuation of autism-like behaviors by an anthocyanin-rich extract from Portuguese blueberries via microbiota–gut–brain axis modulation in a valproic acid mouse model.</li>
-                    <li>Aarsland D, et al. A randomised placebo-controlled study of purified anthocyanins on cognition in individuals at increased risk for dementia. Am J Geriatr Psychiatry, 31(2), 141–151.</li>
-                    <li>Jackson PA, Wightman EL, Veasey R, et al. A randomized, crossover study of the acute cognitive and cerebral blood flow effects of phenolic, nitrate and botanical beverages in young, healthy humans.</li>
+                    <li>World Health Organization. Autism spectrum disorders — fact sheet, 2023.</li>
+                    <li>Hodges H, Fealko C, Soares N. Autism spectrum disorder: definition, epidemiology, causes, and clinical evaluation. Transl Pediatr. 2020.</li>
+                    <li>Li YA, Chen ZJ, Li XD, et al. Epidemiology of autism spectrum disorders. Front Pediatr. 2022.</li>
+                    <li>Sharp WG, Berry RC, McCracken C, et al. Feeding problems and nutrient intake in children with ASD. J Autism Dev Disord. 2013.</li>
+                    <li>Pancheva R et al. Therapeutic diets and supplementation in ASD. 2024.</li>
+                    <li>Khalaj M, Saghazadeh A, Shirazi E, et al. Palmitoylethanolamide as adjunctive therapy for autism. J Psychiatr Res. 2018.</li>
+                    <li>Antonucci N, Cirillo A, Siniscalco D. Beneficial effects of PEA on expressive language, cognition and behaviors in autism. Case Rep Psychiatry. 2015.</li>
+                    <li>Mousavinejad E, et al. Coenzyme Q10 supplementation reduces oxidative stress in children with ASD. Psychiatry Res. 2018.</li>
+                    <li>Gvozdjáková A, et al. Ubiquinol improves symptoms in children with autism. Oxid Med Cell Longev. 2014.</li>
+                    <li>Hendouei F, et al. Resveratrol as adjunctive therapy in treatment of irritability in children with autism. J Clin Pharm Ther. 2020.</li>
+                    <li>Marchezan J, Deckmann I, da Fonseca GC, et al. Resveratrol Treatment of Autism Spectrum Disorder — A Pilot Study. Clin Neuropharmacol. 2022.</li>
+                    <li>Menegas S, et al. Potential mechanisms of action of resveratrol in prevention and therapy for mental disorders. J Nutr Biochem. 2023.</li>
+                    <li>Feng J, et al. Clinical improvement following vitamin D3 supplementation in ASD. Nutr Neurosci. 2017.</li>
+                    <li>Wimalawansa SJ. Vitamin D Deficiency: Effects on Oxidative Stress, Epigenetics, Gene Regulation, and Aging. Biology. 2019.</li>
+                    <li>ENOVITA® Technical Dossier, Indena — natural antioxidant and capillarotropic grape seed proanthocyanidins.</li>
+                    <li>Turner M. The role of drugs in the treatment of autism. Aust Prescr. 2020.</li>
                 </ol>
             </details>
         </div>
@@ -724,33 +871,39 @@
     {# ============================== PROTOCOLO ============================== #}
     <section class="lpn-section alt" id="protocolo">
         <div class="lpn-wrap">
-            <div class="lpn-head center">
+            <div class="lpn-head">
                 <span class="lpn-eyebrow">Protocolo De 12 Semanas</span>
-                <h2 class="lpn-h2">Acompanhe A Evolução Com Método</h2>
-                <p class="lpn-lead">O protocolo ajuda a família a registrar a rotina e observar, semana a semana, o que muda — informação valiosa para compartilhar com a equipe que acompanha a criança.</p>
+                <h2 class="lpn-h2">Observe O Dia A Dia Com Mais Clareza</h2>
+                <p class="lpn-lead">Um guia de observação para enxergar padrões e levar dados concretos para médicos e terapeutas. Não é um instrumento de diagnóstico: é uma ferramenta de registro, da semana 0 à semana 12.</p>
             </div>
-            <div class="lpn-protocol">
-                <div class="lpn-phase">
-                    <span class="weeks">Semanas 1 a 4</span>
-                    <h4>Início E Adaptação</h4>
-                    <p>Introdução do NeuroBalance ASD® na rotina e registro do ponto de partida: sono, comportamento e comunicação.</p>
-                    <div class="lpn-phase-bar"><span style="width:33%"></span></div>
-                </div>
-                <div class="lpn-phase">
-                    <span class="weeks">Semanas 5 a 8</span>
-                    <h4>Acompanhamento</h4>
-                    <p>Registros semanais para identificar mudanças e conversar com o profissional que acompanha a criança.</p>
-                    <div class="lpn-phase-bar"><span style="width:66%"></span></div>
-                </div>
-                <div class="lpn-phase">
-                    <span class="weeks">Semanas 9 a 12</span>
-                    <h4>Avaliação</h4>
-                    <p>Comparação com o início para avaliar a evolução e definir os próximos passos com a equipe.</p>
-                    <div class="lpn-phase-bar"><span style="width:100%"></span></div>
-                </div>
+            <div class="lpn-observe">
+                <div><h4>Sono</h4><p>Nota de 1 (dormiu muito mal) a 5 (dormiu muito bem).</p></div>
+                <div><h4>Crises</h4><p>Quantas crises significativas houve e como foram: mais expansivas e intensas ou mais retraídas e silenciosas.</p></div>
+                <div><h4>Intensidade Média</h4><p>Nota de 1 (leve) a 5 (muito intensa) para as crises da semana.</p></div>
+                <div><h4>Momentos De Calma</h4><p>Se houve um período em que a criança ficou bem regulada, tranquila e mais conectada, e quando.</p></div>
+                <div><h4>O Que Veio Antes</h4><p>As situações que antecederam as crises, como uma mudança na rotina.</p></div>
+                <div><h4>Alimentação</h4><p>Normal, muito seletiva ou quase não comeu. E observações livres sobre a semana.</p></div>
             </div>
+            <div class="lpn-table-wrap">
+                <table class="lpn-table">
+                    <thead><tr><th>Semana</th><th>Sono (1–5)</th><th>Crises</th><th>Intensidade (1–5)</th><th>Momentos De Calma</th><th>Antes Das Crises</th><th>Alimentação</th><th>Observações</th></tr></thead>
+                    <tbody>
+                        <tr><td>S1 (exemplo)</td><td>3</td><td>Sem crises</td><td>2</td><td>Pela manhã</td><td>Mudança na rotina</td><td>Seletiva</td><td>Dormiu mal</td></tr>
+                        <tr><td>S2</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td></tr>
+                        <tr><td>S3</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="lpn-table-note">Sono: 1 = dormiu muito mal, 5 = dormiu muito bem · Intensidade: 1 = leve, 5 = muito intensa. A versão para imprimir traz a tabela em branco da semana 0 à 12.</p>
+            <h3 class="lpn-h3" style="margin-top:40px">Ao Final, Leve Estas Perguntas Para A Consulta</h3>
+            <ul class="lpn-questions">
+                <li>Há dias em que as crises são mais fortes? O que acontece nesses dias?</li>
+                <li>Como o sono parece influenciar o comportamento no dia seguinte?</li>
+                <li>Existem horários “clássicos” de crise, como o fim da tarde ou depois da escola?</li>
+                <li>Percebo diferença em dias com rotina mais previsível ou menos estímulo sensorial?</li>
+            </ul>
             <div class="lpn-quote">
-                <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_protocolo">Receber O Protocolo Gratuito</a>
+                <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_protocolo">Receber O E-book E O Protocolo</a>
             </div>
         </div>
     </section>
@@ -761,22 +914,23 @@
             <div class="lpn-head">
                 <span class="lpn-eyebrow">Depoimentos</span>
                 <h2 class="lpn-h2">Histórias De Mães Atípicas</h2>
-                <p class="lpn-lead">Famílias que contam, com as próprias palavras, como está sendo a rotina com o NeuroBalance ASD®.</p>
+                <p class="lpn-lead">Famílias que contam, com as próprias palavras, como o NeuroBalance ASD® entrou na rotina, sempre junto com as terapias e o acompanhamento profissional.</p>
             </div>
-            <div class="lpn-videos">
+            <div class="lpn-igrow" data-lpn-ig>
                 {% for v in depoimentos %}
-                    <div class="lpn-video">
-                        <button type="button" class="lpn-player {{ v.formato == 'horizontal' ? 'is-h' }} {{ v.id ? '' : 'is-empty' }}" data-yt="{{ v.id }}" data-title="{{ v.nome }}" aria-label="Assistir: {{ v.nome }}" {% if v.id %}style="background-image:url('https://i.ytimg.com/vi/{{ v.id }}/hqdefault.jpg')"{% endif %}>
-                            <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                            {% if not v.id %}<span class="soon">Vídeo em breve</span>{% endif %}
-                        </button>
-                        <div><h4>{{ v.nome }}</h4><span>{{ v.legenda }}</span></div>
+                    <div class="lpn-ig">
+                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/{{ v.ig }}/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
+                            <a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" class="lpn-ig-fallback" data-lpn-track="abrir_instagram">
+                                <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                                <span class="t">{{ v.nome }}</span>
+                                <span class="s">{{ v.legenda }}</span>
+                                <span class="cta">Assistir No Instagram</span>
+                            </a>
+                        </blockquote>
                     </div>
                 {% endfor %}
             </div>
-            {% if lp.youtube_canal %}
-                <div class="lpn-quote"><a href="{{ lp.youtube_canal }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-outline" data-lpn-track="abrir_youtube">Ver Mais Depoimentos No YouTube</a></div>
-            {% endif %}
+            <div class="lpn-quote"><a href="{{ lp.instagram_url }}" target="_blank" rel="noopener" class="lpn-btn lpn-btn-outline" data-lpn-track="seguir_instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg> Seguir @volcanicstoreoficial</a></div>
         </div>
     </section>
 
@@ -787,33 +941,24 @@
                 <div>
                     <span class="lpn-eyebrow">Mãe Atípica</span>
                     <h2 class="lpn-h2">A Rotina Da Manu Pinheiro</h2>
-                    <p class="lpn-lead">Influenciadora e mãe atípica, a Manu compartilha como organiza o dia a dia da família e onde o NeuroBalance ASD® entra nessa rotina.</p>
+                    <p class="lpn-lead">Jornalista e mãe atípica, a Manu Pinheiro mostra os pequenos passos do Enzo com a seletividade alimentar e como o NeuroBalance ASD® faz parte da estratégia de cuidado da família.</p>
                     <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_manu_ebook" style="margin-top:12px">Receber O E-book Gratuito</a>
                 </div>
-                {% set manu_destaque = videos_manu|first %}
-                <div class="lpn-video">
-                    <button type="button" class="lpn-player is-h {{ manu_destaque.id ? '' : 'is-empty' }}" data-yt="{{ manu_destaque.id }}" data-title="{{ manu_destaque.legenda }}" aria-label="Assistir: {{ manu_destaque.legenda }}" {% if manu_destaque.id %}style="background-image:url('https://i.ytimg.com/vi/{{ manu_destaque.id }}/maxresdefault.jpg')"{% endif %}>
-                        <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                        {% if not manu_destaque.id %}<span class="soon">Vídeo em breve</span>{% endif %}
-                    </button>
-                    <div><h4>{{ manu_destaque.legenda }}</h4><span>{{ manu_destaque.nome }}</span></div>
-                </div>
             </div>
-            {% if videos_manu|length > 1 %}
-                <div class="lpn-videos">
-                    {% for v in videos_manu %}
-                        {% if not loop.first %}
-                            <div class="lpn-video">
-                                <button type="button" class="lpn-player {{ v.formato == 'horizontal' ? 'is-h' }} {{ v.id ? '' : 'is-empty' }}" data-yt="{{ v.id }}" data-title="{{ v.legenda }}" aria-label="Assistir: {{ v.legenda }}" {% if v.id %}style="background-image:url('https://i.ytimg.com/vi/{{ v.id }}/hqdefault.jpg')"{% endif %}>
-                                    <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                                    {% if not v.id %}<span class="soon">Vídeo em breve</span>{% endif %}
-                                </button>
-                                <div><h4>{{ v.legenda }}</h4><span>{{ v.nome }}</span></div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
+            <div class="lpn-igrow" data-lpn-ig>
+                {% for v in videos_manu %}
+                    <div class="lpn-ig">
+                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/{{ v.ig }}/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
+                            <a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" class="lpn-ig-fallback" data-lpn-track="abrir_instagram">
+                                <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                                <span class="t">{{ v.nome }}</span>
+                                <span class="s">{{ v.legenda }}</span>
+                                <span class="cta">Assistir No Instagram</span>
+                            </a>
+                        </blockquote>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </section>
 
@@ -823,21 +968,36 @@
             <div class="lpn-head">
                 <span class="lpn-eyebrow">Dúvidas Frequentes</span>
                 <h2 class="lpn-h2">A Dra. Camila Responde</h2>
-                <p class="lpn-lead">As perguntas que mais recebemos das famílias, respondidas em vídeos curtos pela Dra. Camila Milagres.</p>
+                <p class="lpn-lead">As perguntas que mais recebemos das famílias, respondidas pela Dra. Camila Milagres na websérie NeuroBalance.</p>
             </div>
-            <div class="lpn-videos">
+            <div class="lpn-igrow" data-lpn-ig>
                 {% for v in videos_faq %}
-                    <div class="lpn-video">
-                        <button type="button" class="lpn-player {{ v.formato == 'horizontal' ? 'is-h' }} {{ v.id ? '' : 'is-empty' }}" data-yt="{{ v.id }}" data-title="{{ v.nome }}" aria-label="Assistir: {{ v.nome }}" {% if v.id %}style="background-image:url('https://i.ytimg.com/vi/{{ v.id }}/hqdefault.jpg')"{% endif %}>
-                            <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                            {% if not v.id %}<span class="soon">Vídeo em breve</span>{% endif %}
-                        </button>
-                        <div><h4>{{ v.nome }}</h4><span>{{ v.legenda }}</span></div>
+                    <div class="lpn-ig">
+                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/{{ v.ig }}/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
+                            <a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" class="lpn-ig-fallback" data-lpn-track="abrir_instagram">
+                                <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                                <span class="t">{{ v.nome }}</span>
+                                <span class="s">{{ v.legenda }}</span>
+                                <span class="cta">Assistir No Instagram</span>
+                            </a>
+                        </blockquote>
                     </div>
                 {% endfor %}
             </div>
 
             <div class="lpn-faq">
+                <details>
+                    <summary>O TEA tem cura?</summary>
+                    <div><p>Não. O TEA é uma condição do neurodesenvolvimento que acompanha a pessoa por toda a vida. O que existe são intervenções terapêuticas que ampliam habilidades, autonomia e qualidade de vida.</p></div>
+                </details>
+                <details>
+                    <summary>Em que idade posso perceber os primeiros sinais?</summary>
+                    <div><p>Alguns sinais podem aparecer entre 12 e 24 meses, mas cada criança tem seu ritmo. O importante é observar a persistência e o conjunto de sinais, não um comportamento isolado.</p></div>
+                </details>
+                <details>
+                    <summary>Vacinas causam autismo?</summary>
+                    <div><p>Não. Essa hipótese foi amplamente investigada e refutada pela comunidade científica internacional. O TEA tem origem multifatorial, com componentes genéticos e ambientais.</p></div>
+                </details>
                 <details>
                     <summary>O NeuroBalance ASD® é um medicamento?</summary>
                     <div><p>Não. É um suplemento alimentar com nutrientes e compostos bioativos. Ele não trata nem cura o autismo e não substitui medicamentos ou terapias — é um suporte nutricional complementar.</p></div>
@@ -855,8 +1015,8 @@
                     <div><p>Adicione 2 g (1/2 medida dosadora) sobre alimentos ou bebidas e misture. Consuma 1 vez ao dia, de preferência junto a uma refeição, ou conforme orientação do médico ou nutricionista.</p></div>
                 </details>
                 <details>
-                    <summary>Posso usar junto com o NeuroBalance Melatonin®?</summary>
-                    <div><p>Sim. O estudo publicado avaliou justamente o uso combinado dos dois produtos — o ASD durante o dia e a melatonina para apoiar o sono. Converse com o profissional que acompanha a criança sobre o melhor horário e a dose.</p></div>
+                    <summary>O NeuroBalance Melatonin® pode ser usado por crianças?</summary>
+                    <div><p>Não. Conforme a legislação brasileira, suplementos à base de melatonina são destinados exclusivamente a pessoas com 19 anos ou mais e não são indicados para gestantes, lactantes, crianças e adolescentes. Cada produto da linha NeuroBalance® tem as próprias condições de uso, descritas na rotulagem.</p></div>
                 </details>
                 <details>
                     <summary>Em quanto tempo é possível perceber mudanças?</summary>
@@ -907,7 +1067,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg>
                     </a>
                     <a href="{{ lp.url_combo ?: lp.url_melatonin }}" class="lpn-offer" data-lpn-track="cta_final_combo">
-                        <span><b>{{ lp.url_combo ? 'Combo NeuroBalance®' : 'NeuroBalance Melatonin®' }}</b><small>{{ lp.url_combo ? 'ASD + Melatonin · o uso avaliado no estudo' : 'Melatonina líquida para o sono' }}</small></span>
+                        <span><b>{{ lp.url_combo ? 'Combo NeuroBalance®' : 'NeuroBalance Melatonin®' }}</b><small>{{ lp.url_combo ? 'ASD + Melatonin · confira as condições de uso de cada produto' : 'Melatonina em gotas · para adultos' }}</small></span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg>
                     </a>
                     <a href="{{ lp.url_assinatura }}" class="lpn-offer" data-lpn-track="cta_final_assinatura">
@@ -920,6 +1080,25 @@
         </div>
     </section>
 
+    <div class="lpn-reader" id="lpn-reader" role="dialog" aria-modal="true" aria-label="Leitor do e-book Além Do Espectro" data-pasta="{{ asset(lp.ebook_pasta ~ 'p01.jpg')|replace({'p01.jpg': ''}) }}" data-total="{{ lp.ebook_paginas }}">
+        <div class="lpn-reader-top">
+            <b>Além Do Espectro<small>Guia de autismo para famílias</small></b>
+            <button type="button" class="lpn-reader-close" data-lpn-close-reader aria-label="Fechar o e-book">×</button>
+        </div>
+        <div class="lpn-reader-stage">
+            <button type="button" class="lpn-reader-nav" data-lpn-prev aria-label="Página anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <div class="lpn-reader-pages" id="lpn-reader-pages"></div>
+            <button type="button" class="lpn-reader-nav" data-lpn-next aria-label="Próxima página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="lpn-reader-bar">
+            <button type="button" class="lpn-reader-nav bar" data-lpn-prev aria-label="Página anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <span id="lpn-reader-count">1 / {{ lp.ebook_paginas }}</span>
+            <button type="button" class="lpn-reader-nav bar" data-lpn-next aria-label="Próxima página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+            <input type="range" id="lpn-reader-range" min="1" max="{{ lp.ebook_paginas }}" value="1" aria-label="Ir para a página">
+            <a href="{{ lp.url_asd }}" class="lpn-btn lpn-btn-buy" data-lpn-track="cta_leitor_comprar">Conhecer O NeuroBalance ASD®</a>
+        </div>
+    </div>
+
     <div class="lpn-sticky" id="lpn-sticky">
         <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_sticky_ebook">E-book Grátis</a>
         <a href="{{ lp.url_asd }}" class="lpn-btn lpn-btn-buy" data-lpn-track="cta_sticky_comprar">Comprar</a>
@@ -931,11 +1110,13 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+        { "@type": "Question", "name": "O TEA tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O TEA é uma condição do neurodesenvolvimento que acompanha a pessoa por toda a vida. O que existe são intervenções terapêuticas que ampliam habilidades, autonomia e qualidade de vida." } },
+        { "@type": "Question", "name": "Vacinas causam autismo?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Essa hipótese foi amplamente investigada e refutada pela comunidade científica internacional. O TEA tem origem multifatorial, com componentes genéticos e ambientais." } },
         { "@type": "Question", "name": "O NeuroBalance ASD® é um medicamento?", "acceptedAnswer": { "@type": "Answer", "text": "Não. É um suplemento alimentar com nutrientes e compostos bioativos. Ele não trata nem cura o autismo e não substitui medicamentos ou terapias — é um suporte nutricional complementar." } },
         { "@type": "Question", "name": "Ele substitui as terapias?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Terapias como fonoaudiologia, terapia ocupacional e psicologia continuam sendo a base do cuidado. O NeuroBalance ASD® foi pensado para ser usado junto com o acompanhamento da equipe." } },
         { "@type": "Question", "name": "A partir de que idade pode ser usado?", "acceptedAnswer": { "@type": "Answer", "text": "Conforme a regulamentação da ANVISA, suplementos alimentares são recomendados para pessoas a partir de 19 anos. O uso por menores de 19 anos deve acontecer somente sob indicação médica." } },
         { "@type": "Question", "name": "Como devo usar no dia a dia?", "acceptedAnswer": { "@type": "Answer", "text": "Adicione 2 g (1/2 medida dosadora) sobre alimentos ou bebidas e misture. Consuma 1 vez ao dia, de preferência junto a uma refeição, ou conforme orientação do médico ou nutricionista." } },
-        { "@type": "Question", "name": "Posso usar junto com o NeuroBalance Melatonin®?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O estudo publicado avaliou o uso combinado dos dois produtos. Converse com o profissional que acompanha a criança sobre o melhor horário e a dose." } }
+        { "@type": "Question", "name": "O NeuroBalance Melatonin® pode ser usado por crianças?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Conforme a legislação brasileira, suplementos à base de melatonina são destinados exclusivamente a pessoas com 19 anos ou mais e não são indicados para gestantes, lactantes, crianças e adolescentes." } }
     ]
 }
 </script>
@@ -1057,23 +1238,105 @@
             try { if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'E-book NeuroBalance ASD' }); } catch (err) {}
             form.style.display = 'none';
             success.classList.add('is-visible');
+            try { localStorage.setItem('lpn_ebook_ok', '1'); } catch (err) {}
         });
     });
 
-    /* ---------- Vídeos (carrega o YouTube só no clique, a página fica leve) ---------- */
-    root.querySelectorAll('.lpn-player[data-yt]').forEach(function (p) {
-        p.addEventListener('click', function () {
-            var id = p.getAttribute('data-yt');
-            if (!id || p.querySelector('iframe')) return;
-            var f = document.createElement('iframe');
-            f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-            f.title = p.getAttribute('data-title') || 'Vídeo';
-            f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            f.allowFullscreen = true;
-            p.appendChild(f);
-            track('video_play', { video_id: id, video_title: f.title });
-        });
+    /* ---------- Vídeos do Instagram: o script só carrega quando os vídeos estão perto da tela ---------- */
+    var igRows = root.querySelectorAll('[data-lpn-ig]');
+    var igLoaded = false;
+    function loadIg() {
+        if (igLoaded) return; igLoaded = true;
+        if (window.instgrm && window.instgrm.Embeds) { window.instgrm.Embeds.process(); return; }
+        var sc = document.createElement('script');
+        sc.async = true; sc.src = 'https://www.instagram.com/embed.js';
+        sc.onload = function () { try { window.instgrm.Embeds.process(); } catch (e) {} };
+        document.body.appendChild(sc);
+    }
+    if (igRows.length) {
+        if ('IntersectionObserver' in window) {
+            var igo = new IntersectionObserver(function (en) {
+                if (en.some(function (x) { return x.isIntersecting; })) { loadIg(); igo.disconnect(); }
+            }, { rootMargin: '600px' });
+            igRows.forEach(function (r) { igo.observe(r); });
+        } else { loadIg(); }
+    }
+
+    /* ---------- Quem já se cadastrou volta direto para a leitura ---------- */
+    try {
+        if (localStorage.getItem('lpn_ebook_ok') === '1') {
+            form.style.display = 'none';
+            success.classList.add('is-visible');
+        }
+    } catch (e) {}
+
+    /* ---------- Leitor do e-book ---------- */
+    var reader = document.getElementById('lpn-reader');
+    var rPages = document.getElementById('lpn-reader-pages');
+    var rCount = document.getElementById('lpn-reader-count');
+    var rRange = document.getElementById('lpn-reader-range');
+    var rTotal = parseInt(reader.getAttribute('data-total'), 10) || 1;
+    var rBase = reader.getAttribute('data-pasta');
+    var rPage = 1;
+    var lastFocus = null;
+    function pageSrc(n) { return rBase + 'p' + (n < 10 ? '0' + n : n) + '.jpg'; }
+    function isSpread() { return window.innerWidth >= 1100 && window.innerHeight >= 600; }
+    function renderReader() {
+        var spread = isSpread() && rPage > 1;
+        var nums = spread ? [rPage, rPage + 1].filter(function (n) { return n <= rTotal; }) : [rPage];
+        rPages.classList.toggle('single', nums.length === 1);
+        rPages.innerHTML = nums.map(function (n) {
+            return '<img src="' + pageSrc(n) + '" alt="Página ' + n + ' do e-book" width="992" height="1404" decoding="async">';
+        }).join('');
+        var shown = nums.length > 1 ? nums[0] + '–' + nums[1] : nums[0];
+        rCount.textContent = shown + ' / ' + rTotal;
+        rRange.value = rPage;
+        var last = nums[nums.length - 1];
+        reader.querySelectorAll('[data-lpn-prev]').forEach(function (b) { b.disabled = rPage <= 1; });
+        reader.querySelectorAll('[data-lpn-next]').forEach(function (b) { b.disabled = last >= rTotal; });
+        [last + 1, last + 2].forEach(function (n) { if (n <= rTotal) { var i = new Image(); i.src = pageSrc(n); } });
+    }
+    function step(dir) {
+        var spread = isSpread();
+        if (dir > 0) rPage = rPage === 1 || !spread ? rPage + 1 : rPage + 2;
+        else rPage = !spread || rPage <= 2 ? rPage - 1 : rPage - 2;
+        rPage = Math.max(1, Math.min(rTotal, rPage));
+        renderReader();
+        if (rPage === rTotal || rPage + 1 === rTotal) track('ebook_fim');
+    }
+    function openReader() {
+        lastFocus = document.activeElement;
+        reader.classList.add('is-open');
+        document.documentElement.style.overflow = 'hidden';
+        renderReader();
+        reader.querySelector('[data-lpn-close-reader]').focus();
+    }
+    function closeReader() {
+        reader.classList.remove('is-open');
+        document.documentElement.style.overflow = '';
+        track('ebook_fechar', { ebook_pagina: rPage });
+        if (lastFocus) lastFocus.focus();
+    }
+    root.querySelectorAll('[data-lpn-open-reader]').forEach(function (b) { b.addEventListener('click', openReader); });
+    reader.querySelector('[data-lpn-close-reader]').addEventListener('click', closeReader);
+    reader.querySelectorAll('[data-lpn-prev]').forEach(function (b) { b.addEventListener('click', function () { step(-1); }); });
+    reader.querySelectorAll('[data-lpn-next]').forEach(function (b) { b.addEventListener('click', function () { step(1); }); });
+    rRange.addEventListener('input', function () { rPage = parseInt(rRange.value, 10); if (isSpread() && rPage > 1 && rPage % 2 === 1) rPage -= 1; renderReader(); });
+    document.addEventListener('keydown', function (e) {
+        if (!reader.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeReader();
+        if (e.key === 'ArrowRight') step(1);
+        if (e.key === 'ArrowLeft') step(-1);
     });
+    var tx = null;
+    rPages.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+    rPages.addEventListener('touchend', function (e) {
+        if (tx === null) return;
+        var dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+        tx = null;
+    }, { passive: true });
+    window.addEventListener('resize', function () { if (reader.classList.contains('is-open')) renderReader(); });
 
     /* ---------- Navegação: item ativo + barra fixa no celular ---------- */
     var links = root.querySelectorAll('.lpn-nav a[href^="#"]');
