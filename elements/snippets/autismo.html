@@ -254,7 +254,12 @@
     .lpn-field input:focus, .lpn-field select:focus { outline: none; border-color: var(--lpn-blue); background: #fff; box-shadow: 0 0 0 4px rgba(38,187,242,.15); }
     .lpn-field.has-error input, .lpn-field.has-error select { border-color: var(--lpn-red); }
     .lpn-check { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 12px; color: var(--lpn-muted); line-height: 1.5; }
-    .lpn-check input { margin-top: 3px; accent-color: var(--lpn-blue-d); }
+    .lpn-check { cursor: pointer; }
+    .lpn-check input[type=checkbox] { -webkit-appearance: none !important; appearance: none !important; display: inline-block !important; position: static !important; opacity: 1 !important; visibility: visible !important; flex: none; width: 22px !important; height: 22px !important; min-width: 22px; margin: 1px 0 0 !important; padding: 0 !important; border: 2px solid var(--lpn-blue-d) !important; border-radius: 6px !important; background: #fff center / 14px no-repeat !important; cursor: pointer; }
+    .lpn-check input[type=checkbox]::before, .lpn-check input[type=checkbox]::after { content: none !important; display: none !important; }
+    .lpn-check input[type=checkbox]:checked { background-color: var(--lpn-blue-d) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") !important; }
+    .lpn-check input[type=checkbox]:focus-visible { outline: 3px solid rgba(38,187,242,.35); outline-offset: 2px; }
+    .lpn-check.has-error input[type=checkbox] { border-color: var(--lpn-red) !important; }
     .lpn-form .lpn-btn { width: 100%; margin-top: 22px; }
     .lpn-form-msg { font-size: 13px; margin-top: 12px; color: var(--lpn-red); min-height: 18px; }
     .lpn-success { display: none; text-align: center; padding: 20px 0; }
