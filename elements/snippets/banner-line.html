@@ -12,9 +12,19 @@
 
 {% set vm  = cdn ~ '@356faed4106807a29ecfd5f29a87c631878ca142' %}
 
+{# ----- Banner de campanha: editável no painel (Editar Tema > Banner de campanha) -----
+   Aparece em 1º até o último dia informado e sai sozinho depois. Imagens em branco = Esquenta Black. #}
+{% set campPadrao = cdn ~ '@393655f8fcca5adc6906080fec67bcf9d3eb6f71/img/banners/campanhas/esquenta-black' %}
+{% set campFim  = settings.campanha_fim ? settings.campanha_fim : '2026-11-09' %}
+{% set campLink = settings.campanha_link ? settings.campanha_link : loja ~ '/neurobalanceasd' %}
+{% set campAlt  = settings.campanha_alt ? settings.campanha_alt : 'Esquenta Black - NeuroBalance ASD com até 35% OFF' %}
+{% set campDesk = settings.campanha_img_desktop ? asset(settings.campanha_img_desktop) : campPadrao ~ '-desktop.jpg' %}
+{% set campMob  = settings.campanha_img_mobile ? asset(settings.campanha_img_mobile) : campPadrao ~ '-mobile.jpg' %}
+{% set slideCampDesk = { 'tipo': 'imagem', 'imagem': campDesk, 'link': campLink, 'alt': campAlt, 'ate': campFim ~ 'T23:59:59-03:00' } %}
+{% set slideCampMob  = { 'tipo': 'imagem', 'imagem': campMob,  'link': campLink, 'alt': campAlt, 'ate': campFim ~ 'T23:59:59-03:00' } %}
+
 {# ----- Slides do desktop, na ordem ----- #}
 {% set slidesHome = [
-    { 'tipo': 'imagem', 'imagem': cdn ~ '@393655f8fcca5adc6906080fec67bcf9d3eb6f71/img/banners/campanhas/esquenta-black-desktop.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'Esquenta Black - NeuroBalance ASD com até 35% OFF', 'ate': '2026-10-31T23:59:59-03:00' },
     { 'tipo': 'video',  'video': v ~ '/img/videos/home-b1-neurobalance.mp4', 'poster': v ~ '/img/videos/home-b1-neurobalance-poster.jpg', 'tempo': 24000, 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Para famílias atípicas' },
     { 'tipo': 'imagem', 'imagem': v ~ '/img/banners/home-b2-autismo.jpg',        'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Inovação no suporte ao TEA' },
     { 'tipo': 'video',  'video': v ~ '/img/videos/home-b3-animacao.mp4',     'poster': v ~ '/img/videos/home-b3-animacao-poster.jpg',     'tempo': 27000, 'link': loja ~ '/neurobalanceasd', 'alt': 'Conheça o NeuroBalance ASD' },
@@ -33,7 +43,6 @@
 
 {# ----- Slides do celular (formato vertical 4:5), na ordem ----- #}
 {% set slidesMobile = [
-    { 'tipo': 'imagem', 'imagem': cdn ~ '@393655f8fcca5adc6906080fec67bcf9d3eb6f71/img/banners/campanhas/esquenta-black-mobile.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'Esquenta Black - NeuroBalance ASD com até 35% OFF', 'ate': '2026-10-31T23:59:59-03:00' },
     { 'tipo': 'video',  'video': vm ~ '/img/videos/home-m1-neurobalance.mp4', 'poster': vm ~ '/img/videos/home-m1-neurobalance-poster.jpg', 'tempo': 24000, 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Para famílias atípicas' },
     { 'tipo': 'imagem', 'imagem': cdn ~ '@3f82881c8ed0fdb03a2eff3702a14be649fda0ce/img/banners/mobile/home-m2-autismo.jpg', 'link': loja ~ '/neurobalanceasd', 'alt': 'NeuroBalance ASD - Inovação no suporte ao TEA' },
     { 'tipo': 'video',  'video': cdn ~ '@c97c6bfc50c845dcd36a43c9c043073d392ef937/img/videos/home-m3-animacao.mp4', 'poster': cdn ~ '@c97c6bfc50c845dcd36a43c9c043073d392ef937/img/videos/home-m3-animacao-poster.jpg', 'tempo': 27000, 'link': loja ~ '/neurobalanceasd', 'alt': 'Conheça o NeuroBalance ASD' },
@@ -51,6 +60,7 @@
 ] %}
 
 {% set slidesAtivos = utils.is_mobile ? slidesMobile : slidesHome %}
+{% if not settings.campanha_ocultar %}{% set slidesAtivos = [ utils.is_mobile ? slideCampMob : slideCampDesk ]|merge(slidesAtivos) %}{% endif %}
 
 <div class="banner-slides banner-home{% if utils.is_mobile %} banner-home--mobile{% endif %}" data-slides="banner-home">
     <div class="swiper">
