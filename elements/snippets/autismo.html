@@ -8,7 +8,7 @@
 ================================================================================
 #}
 {% set lp = {
-    'ebook_url'        : '',
+    'ebook_url'        : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@35d584e68f7e479e72286fb728405ec7641febcd/img/modelo/lp-neurobalance/pdf/Alem-Do-Espectro-Volcanic.pdf',
     'protocolo_url'    : '',
     'artigo_url'       : 'https://www.sciencedirect.com/science/article/pii/S0166432825002396',
     'dossie_url'       : 'https://docsend.com/v/g6x4v/neurobalance',
@@ -304,6 +304,7 @@
     .lpn-reader-bar span { font-size: 13px; font-variant-numeric: tabular-nums; color: rgba(255,255,255,.8); min-width: 70px; text-align: center; }
     .lpn-reader-bar input[type=range] { width: min(320px, 50vw); accent-color: var(--lpn-blue); }
     .lpn-reader-bar .lpn-btn { padding: 11px 18px; font-size: 13px; }
+    .lpn-reader-bar .lpn-reader-dl { background: #fff; color: var(--lpn-navy) !important; border: 2px solid #fff; }
 
     /* Produto */
     .lpn-product { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
@@ -1130,6 +1131,7 @@
             <span id="lpn-reader-count">1 / {{ lp.ebook_paginas }}</span>
             <button type="button" class="lpn-reader-nav bar" data-lpn-next aria-label="Próxima página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
             <input type="range" id="lpn-reader-range" min="1" max="{{ lp.ebook_paginas }}" value="1" aria-label="Ir para a página">
+            {% if lp.ebook_url %}<a href="{{ lp.ebook_url }}" target="_blank" rel="noopener" download class="lpn-btn lpn-reader-dl" data-lpn-track="download_ebook_leitor">Baixar PDF</a>{% endif %}
             <a href="{{ lp.url_asd }}" class="lpn-btn lpn-btn-buy" data-lpn-track="cta_leitor_comprar">Conhecer O NeuroBalance ASD®</a>
         </div>
     </div>
