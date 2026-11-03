@@ -30,7 +30,8 @@
 } %}
 
 {# Vídeos do Instagram da marca: 'ig' é o caminho do post depois de instagram.com/ (ex.: 'reel/DaOlbrpIMrW').
-   'views' é o número de visualizações mostrado ao passar o mouse (dados do Instagram de 03/11/2026; atualize quando quiser). #}
+   'views' (visualizações) ou 'curtidas' é o número mostrado ao passar o mouse (dados do Instagram de 03/11/2026; atualize quando quiser).
+   Os collabs da Manu vêm do perfil dela, onde o Instagram só mostra curtidas. #}
 {% set depoimentos = [
     { 'ig': 'reel/DaOlbrpIMrW', 'views': 1348, 'nome': 'As Mães Contam', 'legenda': 'Websérie NeuroBalance ASD® · episódio final' },
     { 'ig': 'reel/Dbbn122PZ4V', 'views': 369, 'nome': 'Ângela E Leonardo', 'legenda': 'Interação e comunicação aos 14 anos' },
@@ -41,9 +42,14 @@
 ] %}
 
 {% set videos_manu = [
-    { 'ig': 'reel/Da8aCIvxRVQ', 'views': 581, 'nome': 'Manu E Enzo', 'legenda': 'Série Mães Que Transformam' },
-    { 'ig': 'reel/DcJ9F0qhqOW', 'views': 306, 'nome': 'Um Novo Alimento', 'legenda': 'Pequenos passos, grandes conquistas' },
-    { 'ig': 'reel/Dekt66gBENk', 'views': 341, 'nome': 'A Crepioca Do Enzo', 'legenda': 'Seletividade alimentar no dia a dia' }
+    { 'ig': 'reel/De0DchOxpgp', 'curtidas': 302, 'nome': 'A Evolução De Outros Autistas', 'legenda': 'Episódio 01 da série sobre suplementação' },
+    { 'ig': 'reel/Dd2RTxfxxL7', 'curtidas': 95, 'nome': 'Dúvidas Sobre O NeuroBalance ASD®', 'legenda': 'O Enzo usa há 1 ano e 7 meses' },
+    { 'ig': 'reel/DbyyLSZREZ0', 'curtidas': 209, 'nome': 'A Dra. Camila Explica A PEA', 'legenda': 'Com a Dra. Camila Milagres' },
+    { 'ig': 'reel/DbtyZz2xm4s', 'curtidas': 988, 'nome': 'Pedidos Espontâneos', 'legenda': 'Autonomia nas férias em família' },
+    { 'ig': 'reel/DZtOG69x4lk', 'curtidas': 157, 'nome': 'O Que Eu Quero Pro Meu Filho', 'legenda': 'Mais de um ano de NeuroBalance ASD®' },
+    { 'ig': 'reel/DXXikahx_tu', 'curtidas': 116, 'nome': 'O Sabor Das Conquistas', 'legenda': 'Mostrar é melhor que falar' },
+    { 'ig': 'reel/DUdqhfmEQOR', 'curtidas': 108, 'nome': 'O Cognitivo Do Enzo', 'legenda': 'Quase um ano de uso' },
+    { 'ig': 'reel/DSTVtc8EY2t', 'curtidas': 139, 'nome': 'Pergunte Ao Médico Sobre A PEA', 'legenda': 'Com o perfil Entender Autismo TEA' }
 ] %}
 
 {% set videos_faq = [
@@ -943,7 +949,7 @@
                         <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
                             <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
                             <div class="lpn-ig-ov" aria-hidden="true">
-                                <span class="lpn-ig-views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações</span>
+                                <span class="lpn-ig-views">{% if v.views %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg>{{ v.curtidas >= 1000 ? ((v.curtidas / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.curtidas }} curtidas{% endif %}</span>
                                 <span class="lpn-ig-title">{{ v.nome }}</span>
                             </div>
                         </div>
@@ -962,7 +968,7 @@
                 <div>
                     <span class="lpn-eyebrow">Mãe Atípica</span>
                     <h2 class="lpn-h2">A Rotina Da Manu Pinheiro</h2>
-                    <p class="lpn-lead">Jornalista e mãe atípica, a Manu Pinheiro mostra os pequenos passos do Enzo com a seletividade alimentar e como o NeuroBalance ASD® faz parte da estratégia de cuidado da família.</p>
+                    <p class="lpn-lead">Jornalista e mãe atípica, a Manu Pinheiro documenta a evolução do Enzo e compartilha com outras famílias como o NeuroBalance ASD® faz parte do cuidado, sempre junto com as terapias.</p>
                     <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_manu_ebook" style="margin-top:12px">Receber O E-book Gratuito</a>
                 </div>
             </div>
@@ -972,7 +978,7 @@
                         <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
                             <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
                             <div class="lpn-ig-ov" aria-hidden="true">
-                                <span class="lpn-ig-views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações</span>
+                                <span class="lpn-ig-views">{% if v.views %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg>{{ v.curtidas >= 1000 ? ((v.curtidas / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.curtidas }} curtidas{% endif %}</span>
                                 <span class="lpn-ig-title">{{ v.nome }}</span>
                             </div>
                         </div>
@@ -997,7 +1003,7 @@
                         <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
                             <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
                             <div class="lpn-ig-ov" aria-hidden="true">
-                                <span class="lpn-ig-views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações</span>
+                                <span class="lpn-ig-views">{% if v.views %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg>{{ v.curtidas >= 1000 ? ((v.curtidas / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.curtidas }} curtidas{% endif %}</span>
                                 <span class="lpn-ig-title">{{ v.nome }}</span>
                             </div>
                         </div>
