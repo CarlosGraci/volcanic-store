@@ -24,36 +24,38 @@
     'instagram_url'    : 'https://www.instagram.com/volcanicstoreoficial/',
     'foto_dra'         : 'img/modelo/lp-neurobalance/dra-camila.jpg',
     'ebook_pasta'      : 'img/modelo/lp-neurobalance/ebook/',
+    'foto_topo'        : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@a6110ffbf711fb07ba37c6203b2834db2e7d1aec/img/objetivos/autismo.jpg',
+    'fogo'             : 'https://cdn.jsdelivr.net/gh/CarlosGraci/volcanic-store@6082ed2dbaf59f6e7da9c11f6458e94304bcf2d0/img/icon-fire.svg',
     'ebook_paginas'    : 37
 } %}
 
-{# Vídeos do Instagram da marca: cole o caminho do post depois de instagram.com/
-   (ex.: 'reel/DaOlbrpIMrW'). Para trocar um vídeo, troque só o 'ig'. #}
+{# Vídeos do Instagram da marca: 'ig' é o caminho do post depois de instagram.com/ (ex.: 'reel/DaOlbrpIMrW').
+   'views' é o número de visualizações mostrado ao passar o mouse (dados do Instagram de 03/11/2026; atualize quando quiser). #}
 {% set depoimentos = [
-    { 'ig': 'reel/DaOlbrpIMrW', 'nome': 'As Mães Contam', 'legenda': 'Websérie NeuroBalance ASD® · episódio final' },
-    { 'ig': 'reel/Dbbn122PZ4V', 'nome': 'Ângela E Leonardo', 'legenda': 'Interação e comunicação aos 14 anos' },
-    { 'ig': 'reel/Das9droRgGQ', 'nome': 'Sheila', 'legenda': 'Antes do diagnóstico, existe uma criança' },
-    { 'ig': 'reel/DaWHfeavRyU', 'nome': 'Terezinha E A Filha', 'legenda': 'Um cuidado multidisciplinar' },
-    { 'ig': 'reel/DQIGbjdgN3m', 'nome': 'Fernanda E Otávio', 'legenda': 'Seletividade alimentar aos 10 anos' },
-    { 'ig': 'reel/DP6bLsjjjRB', 'nome': 'Eva Marques', 'legenda': 'Mãe de um jovem autista de 18 anos' }
+    { 'ig': 'reel/DaOlbrpIMrW', 'views': 1348, 'nome': 'As Mães Contam', 'legenda': 'Websérie NeuroBalance ASD® · episódio final' },
+    { 'ig': 'reel/Dbbn122PZ4V', 'views': 369, 'nome': 'Ângela E Leonardo', 'legenda': 'Interação e comunicação aos 14 anos' },
+    { 'ig': 'reel/Das9droRgGQ', 'views': 383, 'nome': 'Sheila', 'legenda': 'Antes do diagnóstico, existe uma criança' },
+    { 'ig': 'reel/DaWHfeavRyU', 'views': 359, 'nome': 'Terezinha E A Filha', 'legenda': 'Um cuidado multidisciplinar' },
+    { 'ig': 'reel/DQIGbjdgN3m', 'views': 444, 'nome': 'Fernanda E Otávio', 'legenda': 'Seletividade alimentar aos 10 anos' },
+    { 'ig': 'reel/DP6bLsjjjRB', 'views': 400, 'nome': 'Eva Marques', 'legenda': 'Mãe de um jovem autista de 18 anos' }
 ] %}
 
 {% set videos_manu = [
-    { 'ig': 'reel/Da8aCIvxRVQ', 'nome': 'Manu E Enzo', 'legenda': 'Série Mães Que Transformam' },
-    { 'ig': 'reel/DcJ9F0qhqOW', 'nome': 'Um Novo Alimento', 'legenda': 'Pequenos passos, grandes conquistas' },
-    { 'ig': 'reel/Dekt66gBENk', 'nome': 'A Crepioca Do Enzo', 'legenda': 'Seletividade alimentar no dia a dia' }
+    { 'ig': 'reel/Da8aCIvxRVQ', 'views': 581, 'nome': 'Manu E Enzo', 'legenda': 'Série Mães Que Transformam' },
+    { 'ig': 'reel/DcJ9F0qhqOW', 'views': 306, 'nome': 'Um Novo Alimento', 'legenda': 'Pequenos passos, grandes conquistas' },
+    { 'ig': 'reel/Dekt66gBENk', 'views': 341, 'nome': 'A Crepioca Do Enzo', 'legenda': 'Seletividade alimentar no dia a dia' }
 ] %}
 
 {% set videos_faq = [
-    { 'ig': 'reel/DXsPoYajyS2', 'nome': 'Quem É A Dra. Camila Milagres', 'legenda': 'Trajetória clínica e científica no TEA' },
-    { 'ig': 'reel/DX-RaomP28b', 'nome': 'Como Nasce Um Suplemento Baseado Em Ciência', 'legenda': 'Websérie NeuroBalance' },
-    { 'ig': 'reel/DYQRGrZjY9m', 'nome': 'O Que É Neuroinflamação?', 'legenda': 'Irritabilidade, agitação e sono' },
-    { 'ig': 'reel/DYiVRb2Piyd', 'nome': 'Por Que Isso Não Aparece Nos Exames?', 'legenda': 'Websérie NeuroBalance' },
-    { 'ig': 'reel/DY0U_lRCtk0', 'nome': 'O Que É A PEA?', 'legenda': 'Palmitoiletanolamida, explicada de forma simples' },
-    { 'ig': 'reel/DZGWzScvbji', 'nome': 'Em Quanto Tempo Percebo Mudanças?', 'legenda': 'Expectativas reais' },
-    { 'ig': 'reel/DZYaQXTvQ02', 'nome': 'Pode Usar Junto Com As Terapias?', 'legenda': 'Efeitos, uso contínuo e outras dúvidas' },
-    { 'ig': 'reel/DZqnea4NTN8', 'nome': 'Como Acompanhar A Evolução?', 'legenda': 'O que observar durante o uso' },
-    { 'ig': 'reel/Defg3Jfhvf_', 'nome': 'Suplemento Substitui Terapia?', 'legenda': 'A resposta é não' }
+    { 'ig': 'reel/DXsPoYajyS2', 'views': 4122, 'nome': 'Quem É A Dra. Camila Milagres', 'legenda': 'Trajetória clínica e científica no TEA' },
+    { 'ig': 'reel/DX-RaomP28b', 'views': 2823, 'nome': 'Como Nasce Um Suplemento Baseado Em Ciência', 'legenda': 'Websérie NeuroBalance' },
+    { 'ig': 'reel/DYQRGrZjY9m', 'views': 2061, 'nome': 'O Que É Neuroinflamação?', 'legenda': 'Irritabilidade, agitação e sono' },
+    { 'ig': 'reel/DYiVRb2Piyd', 'views': 1393, 'nome': 'Por Que Isso Não Aparece Nos Exames?', 'legenda': 'Websérie NeuroBalance' },
+    { 'ig': 'reel/DY0U_lRCtk0', 'views': 1506, 'nome': 'O Que É A PEA?', 'legenda': 'Palmitoiletanolamida, explicada de forma simples' },
+    { 'ig': 'reel/DZGWzScvbji', 'views': 1757, 'nome': 'Em Quanto Tempo Percebo Mudanças?', 'legenda': 'Expectativas reais' },
+    { 'ig': 'reel/DZYaQXTvQ02', 'views': 2240, 'nome': 'Pode Usar Junto Com As Terapias?', 'legenda': 'Efeitos, uso contínuo e outras dúvidas' },
+    { 'ig': 'reel/DZqnea4NTN8', 'views': 1367, 'nome': 'Como Acompanhar A Evolução?', 'legenda': 'O que observar durante o uso' },
+    { 'ig': 'reel/Defg3Jfhvf_', 'views': 659, 'nome': 'Suplemento Substitui Terapia?', 'legenda': 'A resposta é não' }
 ] %}
 
 {# ============================ FIM DA CONFIGURAÇÃO ============================ #}
@@ -115,32 +117,49 @@
     .lpn-btn-outline:hover { background: var(--lpn-navy); color: #fff; }
     .lpn-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* Hero no formato dos banners do site: 32:9 no computador (área segura de 100px nas laterais e 60px em cima e embaixo, em 1920x540) e 4:5 no celular */
+    /* Fonte da marca para os títulos das seções */
     @font-face { font-family: "PP Neue Machina"; src: url("{{ asset('css/fonts/PPNeueMachina-PlainUltrabold.woff2') }}") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
     @font-face { font-family: "PP Neue Machina"; src: url("{{ asset('css/fonts/PPNeueMachina-PlainRegular.woff2') }}") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
     .lpn { --lpn-display: "PP Neue Machina", "Lexend", sans-serif; }
     .lpn-h2, .lpn-h3 { font-family: var(--lpn-display); font-weight: 800; letter-spacing: -.01em; }
     .lpn-h2 { font-size: clamp(28px, 3.4vw, 42px); }
 
-    .lpn-hero { background: #fff; }
-    .lpn-banner {
-        position: relative; overflow: hidden; width: 100%;
-        aspect-ratio: 32 / 9; min-height: 460px; max-height: 720px;
-        background: radial-gradient(900px 520px at 78% 40%, #FFFFFF 0%, rgba(255,255,255,0) 70%), linear-gradient(100deg, #EEF1F4 0%, #F6F7F9 55%, #E9EDF1 100%);
-        display: flex; align-items: center;
+    /* Topo no mesmo padrão das páginas de objetivo do site (Autismo, Sono, Cognição...) */
+    .lpn {
+        --obj-cor: #26BBF2;
+        --obj-suave: color-mix(in srgb, var(--obj-cor) 12%, #ffffff);
+        --obj-fundo: color-mix(in srgb, var(--obj-cor) 6%, #ffffff);
+        --obj-borda: color-mix(in srgb, var(--obj-cor) 24%, #ffffff);
+        --obj-escuro: color-mix(in srgb, var(--obj-cor) 70%, #000000);
     }
-    .lpn-banner-boy { position: absolute; right: 4%; bottom: 0; height: 104%; display: block; pointer-events: none; }
-    .lpn-banner-boy img { height: 100%; width: auto; max-width: none; display: block; }
-    .lpn-banner-text { position: relative; z-index: 2; width: 100%; max-width: 1920px; margin: 0 auto; padding: 3.2% 5.2%; }
-    .lpn-banner-text > * { max-width: 600px; }
-    .lpn-banner .lpn-eyebrow { color: var(--lpn-blue-d); }
-    .lpn-banner h1 { font-family: var(--lpn-display); font-weight: 800; color: var(--lpn-blue); font-size: clamp(40px, 4.4vw, 76px); line-height: .98; letter-spacing: -.015em; text-wrap: balance; }
-    .lpn-banner h1 small { display: block; font-weight: 400; color: var(--lpn-ink); font-size: .42em; line-height: 1.25; letter-spacing: 0; margin-top: .55em; }
-    .lpn-banner p.lpn-sub { color: var(--lpn-muted); font-size: 17px; max-width: 520px; margin: 22px 0 28px; }
-    .lpn-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-    .lpn-hero-after { display: none; }
-    .lpn-proof-bar { border-top: 1px solid var(--lpn-line); border-bottom: 1px solid var(--lpn-line); background: #fff; }
-    .lpn-proof { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; padding: 16px 20px; max-width: 1220px; margin: 0 auto; }
+    .lpn-hero { padding: 0 20px; background: #fff; }
+    .lpn-objhero {
+        position: relative; max-width: 1220px; min-height: 400px; margin: 24px auto 0;
+        padding: 28px 48px 40px; border-radius: 28px; overflow: hidden;
+        background: linear-gradient(100deg, #ffffff 0%, var(--obj-fundo) 38%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%);
+        border: 1px solid var(--obj-borda); display: flex; flex-direction: column;
+    }
+    .lpn-objhero::before {
+        content: ""; position: absolute; left: -70px; bottom: -110px; width: 360px; height: 420px;
+        background: var(--obj-cor); opacity: .07; pointer-events: none;
+        -webkit-mask: url("{{ lp.fogo }}") center / contain no-repeat; mask: url("{{ lp.fogo }}") center / contain no-repeat;
+    }
+    .lpn-objhero-foto {
+        position: absolute; right: 28px; top: 28px; bottom: 28px; width: min(44%, 500px);
+        border-radius: 22px; background: url("{{ lp.foto_topo }}") center / cover no-repeat;
+        box-shadow: 0 18px 44px rgba(20,20,22,.12);
+    }
+    .lpn-objhero .lpn-bc { position: relative; z-index: 1; display: flex; gap: 8px; list-style: none; margin: 0; padding: 0; font-size: 12px; }
+    .lpn-objhero .lpn-bc a, .lpn-objhero .lpn-bc span { color: #8a8a8f; font-size: 12px; text-decoration: none; }
+    .lpn-objhero .lpn-bc li + li::before { content: "/"; color: #c4c4c8; margin-right: 8px; }
+    .lpn-objhero-wrap { position: relative; z-index: 1; flex: 1; display: flex; align-items: center; }
+    .lpn-objhero-content { max-width: 52%; padding: 24px 0 0; }
+    .lpn-objhero-pill { display: inline-flex; align-items: center; margin-bottom: 16px; padding: 7px 14px; border-radius: 999px; background: var(--obj-suave); color: var(--obj-escuro); font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .lpn-objhero h1 { font-size: 68px; line-height: 1; font-weight: 800; letter-spacing: -.02em; color: #141416; margin: 0; }
+    .lpn-objhero .obj-frase { display: block; margin: 18px 0 0; max-width: 470px; font-size: 19px; line-height: 1.5; color: #5a5a60; padding-left: 16px; border-left: 3px solid var(--obj-cor); }
+    .lpn-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .lpn-proof-bar { max-width: 1220px; margin: 0 auto; }
+    .lpn-proof { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; padding: 18px 0 6px; }
     .lpn-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--lpn-ink); }
     .lpn-chip svg { width: 17px; height: 17px; color: var(--lpn-blue-d); flex-shrink: 0; }
 
@@ -300,11 +319,12 @@
 
     /* Ciência */
     .lpn-science { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .lpn-doctor { display: grid; grid-template-columns: 160px 1fr; gap: 28px; align-items: center; background: #fff; border-radius: 28px; padding: 32px; border: 1px solid var(--lpn-line); grid-column: 1 / -1; }
-    .lpn-doctor-photo { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(160deg, var(--lpn-blue), var(--lpn-navy)); display: grid; place-items: center; color: #fff; font-size: 44px; font-weight: 600; overflow: hidden; }
-    .lpn-doctor-photo { position: relative; }
+    .lpn-doctor { display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: center; background: #fff; border-radius: 28px; padding: 24px 40px 24px 24px; border: 1px solid var(--lpn-line); grid-column: 1 / -1; }
+    .lpn-doctor-photo { position: relative; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; background: linear-gradient(160deg, var(--lpn-blue), var(--lpn-navy)); }
     .lpn-doctor-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .lpn-doctor h3 { font-size: 26px; font-weight: 600; margin-bottom: 4px; }
+    .lpn-doctor h3 { font-family: var(--lpn-display); font-size: 30px; font-weight: 800; margin-bottom: 4px; }
+    .lpn-doctor blockquote { margin: 18px 0 0; padding-left: 16px; border-left: 3px solid var(--lpn-blue); color: var(--lpn-ink); font-size: 17px; line-height: 1.6; }
+    .lpn-doctor .lpn-btn { margin-top: 22px; }
     .lpn-doctor .role { color: var(--lpn-blue-d); font-size: 14px; margin-bottom: 14px; }
     .lpn-doc-card { background: #fff; border-radius: 24px; padding: 32px; border: 1px solid var(--lpn-line); display: flex; flex-direction: column; }
     .lpn-doc-card .lpn-btn { margin-top: auto; align-self: flex-start; }
@@ -348,20 +368,25 @@
     .lpn-phase-bar { height: 6px; border-radius: 6px; background: var(--lpn-line); margin-top: 22px; overflow: hidden; }
     .lpn-phase-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--lpn-blue), var(--lpn-blue-d)); border-radius: 6px; }
 
-    /* Vídeos do Instagram */
-    .lpn-igrow { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(326px, calc((100% - 36px) / 3)); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 14px; scrollbar-width: thin; align-items: start; }
-    .lpn-ig { scroll-snap-align: start; min-width: 0; }
-    .lpn-ig .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: none !important; border-radius: 18px !important; border: 1px solid var(--lpn-line) !important; box-shadow: none !important; background: #fff !important; padding: 0 !important; }
-    .lpn-ig iframe.instagram-media { border-radius: 18px !important; }
-    .lpn-ig-fallback { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; aspect-ratio: 9 / 16; border-radius: 18px; padding: 22px; color: #fff; background: radial-gradient(260px 260px at 30% 20%, rgba(38,187,242,.45), transparent 70%), linear-gradient(160deg, var(--lpn-navy-2), var(--lpn-navy)); overflow: hidden; }
-    .lpn-ig-fallback:hover { color: #fff; }
-    .lpn-ig-fallback .lpn-play { position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%); width: 68px; height: 68px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; transition: .2s; }
-    .lpn-ig-fallback .lpn-play svg { width: 26px; height: 26px; color: var(--lpn-navy); margin-left: 4px; }
-    .lpn-ig-fallback:hover .lpn-play { background: var(--lpn-blue); }
-    .lpn-ig-fallback:hover .lpn-play svg { color: #fff; }
-    .lpn-ig-fallback .t { font-family: var(--lpn-display); font-weight: 800; font-size: 20px; line-height: 1.15; }
-    .lpn-ig-fallback .s { font-size: 13px; color: rgba(255,255,255,.75); }
-    .lpn-ig-fallback .cta { margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--lpn-blue); }
+    /* Vídeos do Instagram: capa e vídeo do próprio Instagram, recortados só na área do vídeo (4:5), tocando na página */
+    .lpn-igrow { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 54px) / 4); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 14px; scrollbar-width: thin; }
+    .lpn-ig { scroll-snap-align: start; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+    .lpn-ig-frame { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: radial-gradient(260px 260px at 30% 20%, rgba(38,187,242,.4), transparent 70%), linear-gradient(160deg, var(--lpn-navy-2), var(--lpn-navy)); isolation: isolate; }
+    .lpn-ig-frame iframe { position: absolute; left: 0; top: -54px; width: 100%; height: calc(100% + 400px); border: 0; display: block; }
+    .lpn-ig-ov { position: absolute; inset: 0; z-index: 2; pointer-events: none; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; background: linear-gradient(180deg, rgba(10,37,64,.0) 55%, rgba(10,37,64,.72) 100%); transition: opacity .25s, background .25s; }
+    .lpn-ig-views { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; background: rgba(10,37,64,.78); color: #fff; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(-6px); transition: .25s; font-variant-numeric: tabular-nums; }
+    .lpn-ig-views svg { width: 15px; height: 15px; }
+    .lpn-ig-title { color: #fff; font-family: var(--lpn-display); font-weight: 800; font-size: 17px; line-height: 1.2; text-shadow: 0 1px 8px rgba(0,0,0,.35); transition: .25s; }
+    .lpn-ig-frame:hover .lpn-ig-views, .lpn-ig-frame:focus-within .lpn-ig-views { opacity: 1; transform: none; }
+    .lpn-ig-frame:hover .lpn-ig-ov { background: linear-gradient(180deg, rgba(10,37,64,.25) 0%, rgba(10,37,64,0) 30%); }
+    .lpn-ig-frame:hover .lpn-ig-title { opacity: 0; }
+    .lpn-ig-frame.is-playing .lpn-ig-ov { opacity: 0; }
+    .lpn-ig-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; }
+    .lpn-ig-fallback .lpn-play { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; }
+    .lpn-ig-fallback .lpn-play svg { width: 24px; height: 24px; color: var(--lpn-navy); margin-left: 4px; }
+    .lpn-ig-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .lpn-ig-meta span { font-size: 13px; color: var(--lpn-muted); line-height: 1.4; }
+    .lpn-ig-meta a { flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--lpn-blue-d); }
     .lpn-quote { margin-top: 28px; display: flex; justify-content: center; }
 
     .lpn-influencer { display: grid; grid-template-columns: 1fr; gap: 0; margin-bottom: 36px; max-width: 760px; }
@@ -411,11 +436,23 @@
     /* Barra fixa no celular */
     .lpn-sticky { display: none; }
 
+    @media (max-width: 767px) {
+        .lpn-hero { padding: 0 16px; }
+        .lpn-objhero { min-height: 0; padding: 20px 20px 24px; border-radius: 22px; margin-top: 14px; background: linear-gradient(180deg, #ffffff 0%, var(--obj-fundo) 45%, color-mix(in srgb, var(--obj-cor) 38%, #ffffff) 100%); }
+        .lpn-objhero-foto { position: relative; order: -1; right: auto; top: auto; bottom: auto; width: 100%; height: 220px; margin-bottom: 18px; border-radius: 16px; }
+        .lpn-objhero .lpn-bc { display: none; }
+        .lpn-objhero-content { max-width: 100%; padding: 0; }
+        .lpn-objhero h1 { font-size: 44px; }
+        .lpn-objhero .obj-frase { font-size: 16px; }
+        .lpn-hero-ctas .lpn-btn { width: 100%; }
+        .lpn-proof { justify-content: flex-start; gap: 10px 18px; }
+    }
+    @media (max-width: 1100px) { .lpn-igrow { grid-auto-columns: calc((100% - 36px) / 3); } }
     @media (max-width: 991px) {
         .lpn-section { padding: 64px 0; }
-        .lpn-banner-boy { right: -8%; height: 96%; opacity: .95; }
-        .lpn-banner-text > * { max-width: 470px; }
+        .lpn-doctor { grid-template-columns: 260px 1fr; gap: 28px; }
         .lpn-split, .lpn-lead-box, .lpn-product, .lpn-science, .lpn-influencer, .lpn-final { grid-template-columns: 1fr; }
+        .lpn-igrow { grid-auto-columns: calc((100% - 18px) / 2.2); }
         .lpn-cards, .lpn-actives, .lpn-news, .lpn-protocol, .lpn-use, .lpn-toc, .lpn-observe { grid-template-columns: 1fr 1fr; }
         .lpn-myths { grid-template-columns: 1fr; padding: 28px 22px; }
         .lpn-steps { grid-template-columns: 1fr 1fr; }
@@ -430,18 +467,10 @@
         .lpn-book h4 { font-size: 19px; }
         .lpn-reader-stage .lpn-reader-nav { display: none; }
         .lpn-reader-nav.bar { display: grid; }
-        .lpn-igrow { grid-auto-columns: minmax(300px, 88%); gap: 12px; }
+        .lpn-igrow { grid-auto-columns: 78%; gap: 12px; }
         .lpn-hero-ctas .lpn-btn, .lpn-buy .lpn-btn { width: 100%; }
-        .lpn-banner { aspect-ratio: 4 / 5; min-height: 0; max-height: none; align-items: flex-start; background: radial-gradient(420px 420px at 60% 75%, #FFFFFF 0%, rgba(255,255,255,0) 70%), linear-gradient(180deg, #F6F7F9 0%, #E9EDF1 100%); }
-        .lpn-banner-boy { right: -8%; height: 56%; }
-        .lpn-banner-text { padding: 10vw 5.6vw 0; }
-        .lpn-banner h1 { font-size: clamp(34px, 10vw, 46px); }
-        .lpn-banner p.lpn-sub, .lpn-banner .lpn-hero-ctas { display: none; }
-        .lpn-hero-after { display: block; padding: 24px 20px 8px; }
-        .lpn-hero-after p { font-size: 16px; margin-bottom: 18px; }
-        .lpn-proof { justify-content: flex-start; gap: 10px 18px; }
-        .lpn-doctor { grid-template-columns: 1fr; text-align: center; padding: 28px 22px; }
-        .lpn-doctor-photo { margin: 0 auto; width: 120px; height: 120px; }
+        .lpn-doctor { grid-template-columns: 1fr; gap: 22px; padding: 16px 16px 26px; }
+        .lpn-doctor .lpn-btn { width: 100%; }
         .lpn-stat strong { font-size: 38px; }
         .lpn-sticky {
             display: flex; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
@@ -457,40 +486,30 @@
 
     {# ============================== HERO ============================== #}
     <section class="lpn-hero">
-        <div class="lpn-banner">
-            <picture class="lpn-banner-boy">
-                <source type="image/webp" srcset="{{ asset('img/modelo/lp-neurobalance/hero-menino.webp') }}">
-                <img src="{{ asset('img/modelo/lp-neurobalance/hero-menino.png') }}" alt="" width="1200" height="1117" fetchpriority="high">
-            </picture>
-            <div class="lpn-banner-text">
-                <span class="lpn-eyebrow">Guia Completo Sobre O TEA</span>
-                <h1>Além Do Espectro <small>Autismo, ciência e cuidado para famílias atípicas</small></h1>
-                <p class="lpn-sub">Tudo o que famílias atípicas precisam saber sobre o Transtorno do Espectro Autista, com o e-book gratuito da Volcanic e a ciência por trás do NeuroBalance ASD®, desenvolvido em 2 anos de pesquisa com a Dra. Camila Milagres.</p>
-                <div class="lpn-hero-ctas">
-                    <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_hero_ebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2zm0 0A2 2 0 006 22h12"/></svg>
-                        Ler O E-book Gratuito
-                    </a>
-                    <a href="#neurobalance" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_hero_produto">Conhecer O NeuroBalance ASD®</a>
+        <div class="lpn-objhero">
+            <div class="lpn-objhero-foto" role="img" aria-label="Criança sorrindo olhando para cima"></div>
+            <ol class="lpn-bc">
+                <li><a href="/">Home</a></li>
+                <li><span>Autismo</span></li>
+            </ol>
+            <div class="lpn-objhero-wrap">
+                <div class="lpn-objhero-content">
+                    <span class="lpn-objhero-pill">Guia Completo Sobre O TEA</span>
+                    <h1>Autismo</h1>
+                    <p class="obj-frase">O que é o Transtorno do Espectro Autista, os primeiros sinais, o diagnóstico, as terapias, a rotina da família e a ciência por trás do apoio nutricional para pessoas com TEA.</p>
+                    <div class="lpn-hero-ctas">
+                        <a href="#entenda" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_hero_entenda">Entender O Autismo</a>
+                        <a href="#materiais" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_hero_ebook">Ler O E-book Gratuito</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="lpn-hero-after">
-            <p>Tudo o que famílias atípicas precisam saber sobre o Transtorno do Espectro Autista, com o e-book gratuito da Volcanic e a ciência por trás do NeuroBalance ASD®, desenvolvido em 2 anos de pesquisa com a Dra. Camila Milagres.</p>
-            <div class="lpn-hero-ctas">
-                <a href="#materiais" class="lpn-btn lpn-btn-primary" data-lpn-track="cta_hero_ebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2zm0 0A2 2 0 006 22h12"/></svg>
-                        Ler O E-book Gratuito
-                    </a>
-                    <a href="#neurobalance" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_hero_produto">Conhecer O NeuroBalance ASD®</a>
             </div>
         </div>
         <div class="lpn-proof-bar">
             <div class="lpn-proof">
-                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 006.2 21h11.6a2 2 0 001.7-2.5L14 9V3"/></svg> Artigo Na Behavioural Brain Research</span>
-                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 2 Anos De Pesquisa</span>
-                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2z"/></svg> E-book Com 22 Capítulos</span>
-                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> PEA Levagen+®</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0zm9-4v4l3 2"/></svg> Dados Do IBGE, CDC E OMS</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2z"/></svg> E-book Gratuito Com 22 Capítulos</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 006.2 21h11.6a2 2 0 001.7-2.5L14 9V3"/></svg> Conteúdo Da Dra. Camila Milagres</span>
+                <span class="lpn-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg> Histórias De Mães Atípicas</span>
             </div>
         </div>
     </section>
@@ -803,13 +822,15 @@
             <div class="lpn-science">
                 <div class="lpn-doctor">
                     <div class="lpn-doctor-photo">
-                        <img src="{{ asset(lp.foto_dra) }}" alt="Dra. Camila Milagres" width="160" height="160" loading="lazy" onerror="this.remove()">
-                        <span>CM</span>
+                        <img src="{{ asset(lp.foto_dra) }}" alt="Dra. Camila Milagres abraçada pelo filho" width="800" height="1000" loading="lazy">
                     </div>
                     <div>
+                        <span class="lpn-eyebrow">Médica, Pesquisadora E Mãe Atípica</span>
                         <h3>Dra. Camila Milagres</h3>
                         <div class="role">Responsável científica pelo NeuroBalance®</div>
-                        <p>Conduziu, com sua equipe, os 2 anos de estudo dos ativos que deram origem ao NeuroBalance ASD®. É também a voz das nossas lives e conteúdos sobre o TEA — e responde às dúvidas mais frequentes das famílias logo abaixo.</p>
+                        <p>A maternidade mudou a trajetória da Dra. Camila. Depois do diagnóstico de autismo do filho, ela mergulhou nos estudos sobre o TEA e liderou, com uma equipe de pesquisadores, os 2 anos de pesquisa que deram origem ao NeuroBalance ASD®.</p>
+                        <p>Hoje ela é a voz das nossas lives e conteúdos sobre o espectro, e responde às dúvidas mais frequentes das famílias na websérie NeuroBalance, logo abaixo nesta página.</p>
+                        <a href="#duvidas" class="lpn-btn lpn-btn-outline" data-lpn-track="cta_trajetoria_dra">Assistir A Dra. Camila</a>
                     </div>
                 </div>
                 <div class="lpn-doc-card">
@@ -919,14 +940,14 @@
             <div class="lpn-igrow" data-lpn-ig>
                 {% for v in depoimentos %}
                     <div class="lpn-ig">
-                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/{{ v.ig }}/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
-                            <a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" class="lpn-ig-fallback" data-lpn-track="abrir_instagram">
-                                <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                                <span class="t">{{ v.nome }}</span>
-                                <span class="s">{{ v.legenda }}</span>
-                                <span class="cta">Assistir No Instagram</span>
-                            </a>
-                        </blockquote>
+                        <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
+                            <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
+                            <div class="lpn-ig-ov" aria-hidden="true">
+                                <span class="lpn-ig-views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações</span>
+                                <span class="lpn-ig-title">{{ v.nome }}</span>
+                            </div>
+                        </div>
+                        <div class="lpn-ig-meta"><span>{{ v.legenda }}</span><a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" data-lpn-track="abrir_instagram">Instagram</a></div>
                     </div>
                 {% endfor %}
             </div>
@@ -948,14 +969,14 @@
             <div class="lpn-igrow" data-lpn-ig>
                 {% for v in videos_manu %}
                     <div class="lpn-ig">
-                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/{{ v.ig }}/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
-                            <a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" class="lpn-ig-fallback" data-lpn-track="abrir_instagram">
-                                <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                                <span class="t">{{ v.nome }}</span>
-                                <span class="s">{{ v.legenda }}</span>
-                                <span class="cta">Assistir No Instagram</span>
-                            </a>
-                        </blockquote>
+                        <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
+                            <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
+                            <div class="lpn-ig-ov" aria-hidden="true">
+                                <span class="lpn-ig-views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações</span>
+                                <span class="lpn-ig-title">{{ v.nome }}</span>
+                            </div>
+                        </div>
+                        <div class="lpn-ig-meta"><span>{{ v.legenda }}</span><a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" data-lpn-track="abrir_instagram">Instagram</a></div>
                     </div>
                 {% endfor %}
             </div>
@@ -973,14 +994,14 @@
             <div class="lpn-igrow" data-lpn-ig>
                 {% for v in videos_faq %}
                     <div class="lpn-ig">
-                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/{{ v.ig }}/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
-                            <a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" class="lpn-ig-fallback" data-lpn-track="abrir_instagram">
-                                <span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                                <span class="t">{{ v.nome }}</span>
-                                <span class="s">{{ v.legenda }}</span>
-                                <span class="cta">Assistir No Instagram</span>
-                            </a>
-                        </blockquote>
+                        <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
+                            <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
+                            <div class="lpn-ig-ov" aria-hidden="true">
+                                <span class="lpn-ig-views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações</span>
+                                <span class="lpn-ig-title">{{ v.nome }}</span>
+                            </div>
+                        </div>
+                        <div class="lpn-ig-meta"><span>{{ v.legenda }}</span><a href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" data-lpn-track="abrir_instagram">Instagram</a></div>
                     </div>
                 {% endfor %}
             </div>
@@ -1242,25 +1263,36 @@
         });
     });
 
-    /* ---------- Vídeos do Instagram: o script só carrega quando os vídeos estão perto da tela ---------- */
-    var igRows = root.querySelectorAll('[data-lpn-ig]');
-    var igLoaded = false;
-    function loadIg() {
-        if (igLoaded) return; igLoaded = true;
-        if (window.instgrm && window.instgrm.Embeds) { window.instgrm.Embeds.process(); return; }
-        var sc = document.createElement('script');
-        sc.async = true; sc.src = 'https://www.instagram.com/embed.js';
-        sc.onload = function () { try { window.instgrm.Embeds.process(); } catch (e) {} };
-        document.body.appendChild(sc);
+    /* ---------- Vídeos do Instagram: o player oficial (capa + vídeo) entra quando o card chega perto da tela ---------- */
+    function mountIg(fr) {
+        if (fr.querySelector('iframe')) return;
+        var f = document.createElement('iframe');
+        f.src = fr.getAttribute('data-src');
+        f.title = 'Vídeo: ' + (fr.getAttribute('data-title') || 'Instagram');
+        f.setAttribute('scrolling', 'no');
+        f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; clipboard-write');
+        f.setAttribute('allowfullscreen', '');
+        f.loading = 'lazy';
+        fr.appendChild(f);
+        var fb = fr.querySelector('.lpn-ig-fallback'); if (fb) fb.style.display = 'none';
     }
-    if (igRows.length) {
-        if ('IntersectionObserver' in window) {
-            var igo = new IntersectionObserver(function (en) {
-                if (en.some(function (x) { return x.isIntersecting; })) { loadIg(); igo.disconnect(); }
-            }, { rootMargin: '600px' });
-            igRows.forEach(function (r) { igo.observe(r); });
-        } else { loadIg(); }
-    }
+    var igFrames = root.querySelectorAll('[data-lpn-igframe]');
+    if ('IntersectionObserver' in window) {
+        var igo = new IntersectionObserver(function (en) {
+            en.forEach(function (x) { if (x.isIntersecting) { mountIg(x.target); igo.unobserve(x.target); } });
+        }, { rootMargin: '300px 600px' });
+        igFrames.forEach(function (fr) { igo.observe(fr); });
+    } else { igFrames.forEach(mountIg); }
+    /* O clique vai para dentro do player; quando a página perde o foco para o iframe, escondemos o título para o vídeo ficar limpo */
+    window.addEventListener('blur', function () {
+        setTimeout(function () {
+            var a = document.activeElement;
+            if (a && a.tagName === 'IFRAME' && a.parentNode && a.parentNode.hasAttribute('data-lpn-igframe')) {
+                a.parentNode.classList.add('is-playing');
+                track('video_play', { video_title: a.parentNode.getAttribute('data-title') });
+            }
+        }, 0);
+    });
 
     /* ---------- Quem já se cadastrou volta direto para a leitura ---------- */
     try {
