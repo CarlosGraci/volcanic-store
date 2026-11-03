@@ -949,7 +949,7 @@
                 {% for v in depoimentos %}
                     <div class="lpn-ig">
                         <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
-                            <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
+                            <iframe src="https://www.instagram.com/{{ v.ig }}/embed/" title="Vídeo: {{ v.nome }}" loading="lazy" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write" allowfullscreen></iframe>
                             <div class="lpn-ig-ov" aria-hidden="true">
                                 <span class="lpn-ig-views">{% if v.views %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg>{{ v.curtidas >= 1000 ? ((v.curtidas / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.curtidas }} curtidas{% endif %}</span>
                                 <span class="lpn-ig-title">{{ v.nome }}</span>
@@ -978,7 +978,7 @@
                 {% for v in videos_manu %}
                     <div class="lpn-ig">
                         <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
-                            <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
+                            <iframe src="https://www.instagram.com/{{ v.ig }}/embed/" title="Vídeo: {{ v.nome }}" loading="lazy" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write" allowfullscreen></iframe>
                             <div class="lpn-ig-ov" aria-hidden="true">
                                 <span class="lpn-ig-views">{% if v.views %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg>{{ v.curtidas >= 1000 ? ((v.curtidas / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.curtidas }} curtidas{% endif %}</span>
                                 <span class="lpn-ig-title">{{ v.nome }}</span>
@@ -1003,7 +1003,7 @@
                 {% for v in videos_faq %}
                     <div class="lpn-ig">
                         <div class="lpn-ig-frame" data-lpn-igframe data-src="https://www.instagram.com/{{ v.ig }}/embed/" data-title="{{ v.nome }}">
-                            <a class="lpn-ig-fallback" href="https://www.instagram.com/{{ v.ig }}/" target="_blank" rel="noopener" aria-label="Assistir {{ v.nome }} no Instagram"><span class="lpn-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a>
+                            <iframe src="https://www.instagram.com/{{ v.ig }}/embed/" title="Vídeo: {{ v.nome }}" loading="lazy" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; clipboard-write" allowfullscreen></iframe>
                             <div class="lpn-ig-ov" aria-hidden="true">
                                 <span class="lpn-ig-views">{% if v.views %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>{{ v.views >= 1000 ? ((v.views / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.views }} visualizações{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0112 6.3 5 5 0 0121.3 12C19 16.6 12 21 12 21z"/></svg>{{ v.curtidas >= 1000 ? ((v.curtidas / 1000)|number_format(1, ',', '.')) ~ ' mil' : v.curtidas }} curtidas{% endif %}</span>
                                 <span class="lpn-ig-title">{{ v.nome }}</span>
