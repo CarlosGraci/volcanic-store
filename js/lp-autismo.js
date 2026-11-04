@@ -88,8 +88,28 @@
             jobs.push(fetch('/mvc/store/newsletter/', { method: 'POST', body: fd, credentials: 'same-origin' }).catch(function () {}));
         } catch (err) {}
 
-        /* 2) RD Station Marketing (conversão com token público) */
+        /* 2) RD Station Marketing: conversão "lp-neurobalance-ebook".
+              Tenta a API nova (chave de API) e, se ela recusar, usa a API do token público. */
         if (CFG.rdToken) {
+            var perfilTag = 'perfil-' + perfil.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            var origem = utm.utm_source || (document.referrer ? document.referrer.split('/')[2] : 'direto');
+            var rdLegado = function () {
+                var f = new URLSearchParams();
+                f.append('token_rdstation', CFG.rdToken);
+                f.append('identificador', CFG.rdId);
+                f.append('nome', nome);
+                f.append('email', email);
+                f.append('celular', '+55' + tel);
+                f.append('perfil', perfil);
+                f.append('tags', 'ebook-alem-do-espectro,' + perfilTag);
+                f.append('traffic_source', origem);
+                if (utm.utm_medium) f.append('traffic_medium', utm.utm_medium);
+                if (utm.utm_campaign) f.append('traffic_campaign', utm.utm_campaign);
+                if (utm.utm_content) f.append('utm_content', utm.utm_content);
+                f.append('c_utmz', document.cookie.replace(/(?:(?:^|.*;\s*)__utmz\s*=\s*([^;]*).*$)|^.*$/, '$1'));
+                f.append('client_id', document.cookie.replace(/(?:(?:^|.*;\s*)rdtrk\s*=\s*([^;]*).*$)|^.*$/, '$1'));
+                return fetch('https://www.rdstation.com.br/api/1.3/conversions', { method: 'POST', mode: 'no-cors', body: f }).catch(function () {});
+            };
             var payload = {
                 event_type: 'CONVERSION',
                 event_family: 'CDP',
@@ -98,16 +118,16 @@
                     name: nome,
                     email: email,
                     mobile_phone: '+55' + tel,
-                    cf_perfil: perfil,
+                    tags: ['ebook-alem-do-espectro', perfilTag],
                     legal_bases: [{ category: 'communications', type: 'consent', status: 'granted' }],
-                    traffic_source: utm.utm_source || document.referrer || 'direct'
+                    traffic_source: origem
                 }, utm.utm_medium ? { traffic_medium: utm.utm_medium } : {}, utm.utm_campaign ? { traffic_campaign: utm.utm_campaign } : {}, utm.utm_term ? { traffic_value: utm.utm_term } : {})
             };
             jobs.push(fetch('https://api.rd.services/platform/conversions?api_key=' + encodeURIComponent(CFG.rdToken), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
-            }).catch(function () {}));
+            }).then(function (r) { if (!r.ok) return rdLegado(); }).catch(rdLegado));
         }
 
         Promise.all(jobs).then(function () {
