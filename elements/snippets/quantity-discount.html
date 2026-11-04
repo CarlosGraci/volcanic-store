@@ -15,7 +15,7 @@
     - Para um caso especial, use OVERRIDES no script (por ID do produto).
     - Produtos que ainda usam a variação "Compra Combo" continuam com os cards antigos.
 #}
-{% if product %}   {# sempre na pagina do produto: usa as regras da Tray ou, se a Tray nao enviar, OVERRIDES #}
+{% if ProgressiveDiscounts %}
     {% set qd_base_price = product.price_offer > 0 ? product.price_offer : product.price %}
 
     <div class="qd" id="quantity-discount" data-product-id="{{ product.id }}" data-base-price="{{ qd_base_price }}" data-list-price="{{ product.price }}" data-stock="{{ product.stock }}" hidden>
@@ -69,8 +69,7 @@
             Endocan (07): promoção "Pague 1 leve 2". APAGUE esta linha quando a promoção acabar.
         */
         var OVERRIDES = {
-            '07': [ { qty: 2, off: 50 } ],
-            '45': [ { qty: 2, off: 5 }, { qty: 3, off: 10 }, { qty: 4, off: 15 } ]   /* MaxCognition: a Tray nao envia as regras para a pagina */
+            '07': [ { qty: 2, off: 50 } ]
         };
 
         function toNumber(value) {
@@ -243,7 +242,6 @@
         if (textList) textList.style.display = 'none';
 
         box.hidden = false;
-        window.qdActive = true;   /* avisa a trava da assinatura que este produto tem desconto progressivo */
         var current = quantityInputs()[0];
         render(current ? (parseInt(current.value, 10) || 1) : 1);
     });
@@ -312,7 +310,7 @@
         /* Fase de captura: roda antes do app da assinatura ler a quantidade */
         document.addEventListener('click', function (event) {
             var button = findSubscribeButton(event);
-            if (!window.qdActive || !button || currentQty() <= SUBSCRIPTION_MAX_QTY) return;   /* so quando ha desconto progressivo */
+            if (!button || currentQty() <= SUBSCRIPTION_MAX_QTY) return;
 
             event.preventDefault();
             event.stopImmediatePropagation();
