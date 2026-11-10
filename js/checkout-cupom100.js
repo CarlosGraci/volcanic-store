@@ -1,6 +1,6 @@
 /* VOLCANIC | Mascara da finalizacao para pedidos 100% cupom (total R$ 0,00, sem pagamento)
    Carregado via GTM (modelo personalizado com injectScript), porque o checkout da Tray bloqueia script inline.
-   v2: troca todas as copias dos textos e reaplica por 60s se a Tray redesenhar a tela. */
+   v3: esconde o quadro vazio em toda volta; v2: troca todas as copias dos textos e reaplica por 60s se a Tray redesenhar a tela. */
 (function () {
   if (!/checkout/i.test(location.href)) return;
   if (window.__vlcMascara) return; window.__vlcMascara = true;
@@ -27,7 +27,27 @@
     return out;
   }
 
-  var ativo = false;
+  var ativo = false, cards = [];
+
+  function esconderVazio(dica) {
+    var card = dica;
+    while (card.parentElement && card.parentElement !== document.body) {
+      var ir = card.parentElement.children, vazio = false;
+      for (var j = 0; j < ir.length; j++) {
+        if (ir[j] !== card && norm(ir[j].textContent) === '' && !ir[j].querySelector('img,iframe,canvas,svg,input,button') && ir[j].offsetHeight > 10) {
+          ir[j].style.setProperty('display', 'none', 'important'); vazio = true;
+        }
+      }
+      if (vazio || card.style.flex) {
+        card.style.setProperty('width', '100%', 'important');
+        card.style.setProperty('max-width', '100%', 'important');
+        card.style.setProperty('flex', '1 1 100%', 'important');
+        return;
+      }
+      card = card.parentElement;
+      if (/obrigado por sua compra/i.test(norm(card.textContent))) return;
+    }
+  }
 
   function aplicar() {
     var dicas = internos(RE_DICA);
@@ -39,19 +59,12 @@
     for (i = 0; i < tits.length; i++) { tits[i].textContent = TITULO; tits[i].style.color = '#1a7f37'; feitos++; }
 
     for (i = 0; i < dicas.length; i++) {
-      var dica = dicas[i];
-      dica.textContent = DICA; feitos++;
-      var card = dica;
-      while (card.parentElement && card.parentElement !== document.body) {
-        var ir = card.parentElement.children, vazio = false;
-        for (var j = 0; j < ir.length; j++) {
-          if (ir[j] !== card && norm(ir[j].textContent) === '' && ir[j].offsetHeight > 30) { ir[j].style.display = 'none'; vazio = true; }
-        }
-        if (vazio) { card.style.width = '100%'; card.style.maxWidth = '100%'; card.style.flex = '1 1 100%'; break; }
-        card = card.parentElement;
-        if (/obrigado por sua compra/i.test(norm(card.textContent))) break;
-      }
+      dicas[i].textContent = DICA; feitos++;
+      if (cards.indexOf(dicas[i]) < 0) cards.push(dicas[i]);
     }
+
+    /* esconde o quadro vazio ao lado das dicas (repete a cada volta, porque a Tray pode desenhar ele depois) */
+    for (i = 0; i < cards.length; i++) esconderVazio(cards[i]);
 
     var rots = internos(RE_ROT);
     for (i = 0; i < rots.length; i++) { rots[i].textContent = 'Tudo Certo'; feitos++; }
@@ -60,7 +73,7 @@
     return feitos;
   }
 
-  console.log('[Volcanic] script iniciado v2');
+  console.log('[Volcanic] script iniciado v3');
   var n = 0, t = setInterval(function () {
     n++;
     aplicar();
